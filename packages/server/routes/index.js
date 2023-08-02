@@ -3,7 +3,7 @@ var router = express.Router();
 var platform = require('platform');
 var axios = require('axios');
 const { log } = require('../logger');
-
+const deployed = process.env.DEPLOYED || 'false';
 
 /**
  * @swagger
@@ -14,10 +14,10 @@ const { log } = require('../logger');
 */
 router.get('/', async function(req, res, next) {
   const ua = platform.parse(req.get('User-Agent'));
-  res.locals.ip = req.ip;
+  
   //not fetch ipinfo if localhost
   log("Server", `Connection from ${req.ip}`, 'log', true);
-  if (req.ip.startsWith('::1') || req.ip.startsWith('::ffff:')){
+  if (deployed === 'false'){
     res.locals.hostname = 'localhost';
     res.locals.city = 'localhost';
     res.locals.region = 'localhost';
@@ -29,7 +29,7 @@ router.get('/', async function(req, res, next) {
     res.locals.readme = 'localhost';
   }else{
     const ipInfo = await axios.get(`https://ipinfo.io/${req.ip}?token=4c71014842cc6a`).then(res => res.data).catch(err => `Unknown`);
-    log("Server", ipInfo);
+    res.locals.ip = ipInfo.ip;
     res.locals.hostname = ipInfo.hostname;
     res.locals.city = ipInfo.city;
     res.locals.region = ipInfo.region;
