@@ -20,6 +20,10 @@ const swaggerDefinition = {
     },
     servers: [
       {
+        url: 'https://swu-gep.pages.dev/',
+        description: 'Web Application on Cloudflare Pages',
+      },
+      {
         url: 'https://gepswu-server.onrender.com',
         description: 'API server on Render',
       },
