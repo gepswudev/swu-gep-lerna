@@ -14,7 +14,7 @@ const deployed = process.env.DEPLOYED || 'false';
 */
 router.get('/', async function(req, res, next) {
   const ua = platform.parse(req.get('User-Agent'));
-  
+  console.log(req)
   //not fetch ipinfo if localhost
   log("Server", `Connection from ${req.ip}`, 'log', true);
   if (deployed === 'false'){
