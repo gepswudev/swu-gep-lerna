@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const saltRound = Number(process.env.SALTROUND);
 const User = require("../models/Users.js");
+const { log } = require("../logger.js");
 
 // Create a new user
 exports.create = async (req, res) => {
@@ -15,19 +16,24 @@ exports.create = async (req, res) => {
     // Create a User object from the request body
     const user = new User({
       username: req.body.username || "Untitled User",
-      password: req.body.password,
+      password: bcrypt.hashSync(req.body.password, saltRound),
     });
 
     // Save the user in the database
     const data = await user.save();
-    res.status(201).send(data); // Send the saved user data with status 201 (Created)
-    console.log(data); // Log the saved user data
+    res.status(201).send({
+      message: "User created successfully",
+      data:{
+        username: data.username,
+      }
+    }); // Send the saved user data with status 201 (Created)
+    log("User", `${req.body.username} registered!`, "info");
   } catch (err) {
     // Handle errors if any occurred during the creation process
     res.status(500).send({
       message: err.message || "Some error occurred while creating the User.",
     });
-    console.error(err);
+    log("User", `${req.body.username} failed to register!`, "error");
   }
 };
 
@@ -40,13 +46,13 @@ exports.findAll = async (req, res) => {
       .select("-password")
       .exec();
     res.status(200).send(users); // Send the list of users with status 200 (OK)
-    console.log(users); // Log the list of users
+    log("User", `All users retrieved!`);
   } catch (err) {
     // Handle errors if any occurred during the retrieval process
     res.status(500).send({
       message: err.message || "Some error occurred while retrieving users.",
     });
-    console.error(err);
+    log("User", `Failed to retrieve users!`, "error");
   }
 };
 
@@ -94,13 +100,16 @@ exports.login = async (req, res) => {
       }
       bcrypt.compare(password, user.password, (err, result)=>{
         if(err){
+          log("User", `${req.body.username} password do not match!`, "error")
           return res.status(401).send({
             message: "Auth failed"
           });
         }
         if(result){
-          return res.status(200).send({message: "Login successful", username: user.username, role: user.role});
+          log("User", `${req.body.username} logged in!`, "log")
+          return res.status(200).send({message: "Login successful", username: user.username, role: user.role, token:`SomeTokenHere!`});
         }
+        log("User", `${req.body.username} failed to login!`, "error")
         return res.status(401).send({
           message: "Auth failed"
         });
