@@ -1,0 +1,16 @@
+[
+  { "title": "NavEN1", "link": "/" },
+  { "title": "NavEN2", "link": "/about" },
+  { "title": "NavEN3", "link": "/personnel" },
+  { "title": "NavEN4", "link": "/course" },
+  { "title": "NavEN5", "link": "/activity" },
+  { "title": "WELL CENTER", "link": "/wellcenter" },
+  {
+    "title": "EN-Dropdown",
+    "link": "/contact",
+    "submenu": [
+      { "title": "NavEN6", "link": "/contact" },
+      { "title": "NavEN7", "link": "/map" }
+    ]
+  }
+]

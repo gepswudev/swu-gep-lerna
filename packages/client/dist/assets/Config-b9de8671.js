@@ -1,0 +1,1 @@
+const t="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา",n="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา มหาวิทยาลัยศรีนครินทรวิโรฒ",i={title:"ภาควิชาการแนะแนวและจิตวิทยาการศึกษา"},o={title:t,description:n,nav:i};export{o as default,n as description,i as nav,t as title};

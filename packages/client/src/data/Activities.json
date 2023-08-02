@@ -1,0 +1,23 @@
+[
+    {"title":"กิจกรรม1",
+    "desc":"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio ea cum totam nesciunt laudantium modi explicabo soluta libero corrupti repellat? Harum alias architecto, iste asperiores libero vitae neque placeat ea culpa repellendus ullam cumque mollitia maiores! Corrupti eligendi, doloremque incidunt eaque numquam explicabo minima doloribus voluptatem beatae pariatur qui hic!",
+    "img":"https://picsum.photos/500/200",
+    "href":"https://www.google.com",
+    "badge":"ใหม่"
+    },
+    {"title":"กิจกรรม2",
+    "desc":"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio ea cum totam nesciunt laudantium modi explicabo soluta libero corrupti repellat? Harum alias architecto, iste asperiores libero vitae neque placeat ea culpa repellendus ullam cumque mollitia maiores! Corrupti eligendi, doloremque incidunt eaque numquam explicabo minima doloribus voluptatem beatae pariatur qui hic!",
+    "img":"https://picsum.photos/500/200",
+    "href":"https://www.google.com",
+    "badge":"ใหม่"
+    },
+    {"title":"กิจกรรม3",
+    "desc":"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio ea cum totam nesciunt laudantium modi explicabo soluta libero corrupti repellat? Harum alias architecto, iste asperiores libero vitae neque placeat ea culpa repellendus ullam cumque mollitia maiores! Corrupti eligendi, doloremque incidunt eaque numquam explicabo minima doloribus voluptatem beatae pariatur qui hic!",
+    "img":"https://picsum.photos/500/200",
+    "href":"https://www.google.com"
+    },
+    {"title":"กิจกรรม4",
+    "img":"https://picsum.photos/500/200",
+    "href":"https://www.google.com"
+    }
+]

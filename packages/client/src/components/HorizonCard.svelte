@@ -1,0 +1,33 @@
+<!-- Card -->
+<script>
+  import log from '../lib/log';
+    import swa from '../lib/popalert';
+    export let data;
+    const showAllDesc = () => {
+        swa({
+            title: data.title,
+            text: data.desc,
+            icon: data.icon,
+            confirmButtonText: "Read more",
+        }, (result) => {
+            if(result.isConfirmed) window.open(data.href);
+        });
+    }
+    
+    $: log("HorizonCard", `Card loaded : ${data.title}`);
+</script>
+
+
+<a id={data.title} class="card w-[20rem] mx-auto bg-base-100 shadow-xl hover:shadow-2xl border hover:border-primary duration-500 transition-transform transform hover:scale-110" href={"#"+data.title} on:click={showAllDesc}>
+    <figure><img class="h-52" src={data.img} alt={data.title+"_IMG"} /></figure>
+    <div class="card-body">
+      <h2 class="card-title">
+        {data.title ?? ""}
+        {#if data.badge}
+        <div class="badge badge-primary">{data.badge}</div>
+        {/if}
+      </h2>
+      <p>{(data.desc??"").substring(0, 80)+" ..."}</p>
+    </div>
+</a>
+<!-- Card -->
