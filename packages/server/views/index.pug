@@ -3,5 +3,44 @@ extends layout
 block content
   h1= title
   h2 Welcome to #{title}
-  p Go to document
-  a(href='/docs') API Document
+  p.dpText 
+    | Go to&nbsp;
+    a(href='https://swu-gep.pages.dev/') Website
+  p.dpText 
+    | Go to&nbsp;
+    a(href='/docs') API Document
+  b Connection MetaData
+  div.connetionMeta  
+    p
+      span.title Connection from:
+      | #{userAgent}
+    p
+      span.title IP:
+      | #{ip}
+    p
+      span.title Provider:
+      | #{org}
+    p
+      span.title Hostname:
+      | #{hostname}
+    p
+      span.title TimeZone:
+      | #{timezone}
+    p
+      span.title Location:
+      | #{city}, #{region}, #{country} #{postal} at #{loc}
+    p
+      span.title Browser:
+      | #{ua.name}
+    p
+      span.title Browser Version:
+      | #{ua.version}
+    p
+      span.title Browser Layout:
+      | #{ua.layout}
+    p
+      span.title OS:
+      | #{ua.os}
+    p
+      span.title Identifier:
+      | #{ua.description}
