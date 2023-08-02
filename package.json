@@ -1,0 +1,14 @@
+{
+  "name": "swu-app",
+  "version": "1.0.0",
+  "description": "A monorepo for the GE SWU app",
+  "author": "Passion Fruit Team",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^7.1.4"
+  }
+}
