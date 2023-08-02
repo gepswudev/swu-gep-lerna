@@ -10,37 +10,48 @@ block content
     | Go to&nbsp;
     a(href='/docs') API Document
   b Connection MetaData
-  div.connetionMeta  
-    p
-      span.title Connection from:
-      | #{userAgent}
-    p
-      span.title IP:
-      | #{ip}
-    p
-      span.title Provider:
-      | #{org}
-    p
-      span.title Hostname:
-      | #{hostname}
-    p
-      span.title TimeZone:
-      | #{timezone}
-    p
-      span.title Location:
-      | #{city}, #{region}, #{country} #{postal} at #{loc}
-    p
-      span.title Browser:
-      | #{ua.name}
-    p
-      span.title Browser Version:
-      | #{ua.version}
-    p
-      span.title Browser Layout:
-      | #{ua.layout}
-    p
-      span.title OS:
-      | #{ua.os}
-    p
-      span.title Identifier:
-      | #{ua.description}
+  div.connetionMeta
+    if userAgent
+      p
+        span.title Connection from:
+        | #{userAgent}
+    if ip
+      p
+        span.title IP:
+        | #{ip}
+    if org
+      p
+        span.title Provider:
+        | #{org}
+    if hostname
+      p
+        span.title Hostname:
+        | #{hostname}
+    if timezone
+      p
+        span.title TimeZone:
+        | #{timezone}
+    if city || region || country || postal || loc
+      p
+        span.title Location:
+        | #{city ? city : ''}, #{region ? region : ''}, #{country ? country : ''} #{postal ? postal : ''} at #{loc ? loc : ''}
+    if ua.name
+      p
+        span.title Browser:
+        | #{ua.name}
+    if ua.version
+      p
+        span.title Browser Version:
+        | #{ua.version}
+    if ua.layout
+      p
+        span.title Browser Layout:
+        | #{ua.layout}
+    if ua.os
+      p
+        span.title OS:
+        | #{ua.os}
+    if ua.description
+      p
+        span.title Identifier:
+        | #{ua.description}

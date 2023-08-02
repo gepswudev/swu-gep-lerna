@@ -14,6 +14,7 @@ const deployed = process.env.DEPLOYED || 'false';
 */
 router.get('/', async function(req, res, next) {
   const ua = platform.parse(req.get('User-Agent'));
+  const ip = req.headers['cf-connecting-ip'] || req.headers['true-client-ip'] || req.headers['x-forwarded-for'][0];
   console.log(req)
   //not fetch ipinfo if localhost
   log("Server", `Connection from ${req.ip}`, 'log', true);
@@ -28,7 +29,7 @@ router.get('/', async function(req, res, next) {
     res.locals.timezone = 'localhost';
     res.locals.readme = 'localhost';
   }else{
-    const ipInfo = await axios.get(`https://ipinfo.io/${req.ip}?token=4c71014842cc6a`).then(res => res.data).catch(err => `Unknown`);
+    const ipInfo = await axios.get(`https://ipinfo.io/${ip}?token=4c71014842cc6a`).then(res => res.data).catch(err => `Unknown`);
     res.locals.ip = ipInfo.ip;
     res.locals.hostname = ipInfo.hostname;
     res.locals.city = ipInfo.city;
