@@ -16,17 +16,18 @@ router.get('/', async function(req, res, next) {
   const ua = platform.parse(req.get('User-Agent'));
   res.locals.ip = req.ip;
   //not fetch ipinfo if localhost
-  res.locals.hostname = 'localhost';
-  res.locals.city = 'localhost';
-  res.locals.region = 'localhost';
-  res.locals.country = 'localhost';
-  res.locals.loc = 'localhost';
-  res.locals.org = 'localhost';
-  res.locals.postal = 'localhost';
-  res.locals.timezone = 'localhost';
-  res.locals.readme = 'localhost';
-
-  if (!req.ip === '::1' || !req.ip === '::ffff:'){
+  log("Server", `Connection from ${req.ip}`, 'log', true);
+  if (req.ip.startsWith('::1') || req.ip.startsWith('::ffff:')){
+    res.locals.hostname = 'localhost';
+    res.locals.city = 'localhost';
+    res.locals.region = 'localhost';
+    res.locals.country = 'localhost';
+    res.locals.loc = 'localhost';
+    res.locals.org = 'localhost';
+    res.locals.postal = 'localhost';
+    res.locals.timezone = 'localhost';
+    res.locals.readme = 'localhost';
+  }else{
     const ipInfo = await axios.get(`https://ipinfo.io/${req.ip}?token=4c71014842cc6a`).then(res => res.data).catch(err => `Unknown`);
     log("Server", ipInfo);
     res.locals.hostname = ipInfo.hostname;
