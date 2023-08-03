@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@tabler/icons-svelte": "^2.29.0",
+    "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
     "svelte-carousel": "^1.0.25",
     "svelte-routing": "^2.0.0",
     "sweetalert2": "^11.7.20"
