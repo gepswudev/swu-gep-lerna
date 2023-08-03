@@ -62,7 +62,6 @@
 
     //language changer handler
     let langButton;
-
     const languageChange = () => {
       if (lang() == "th") {
         localStorage.setItem("lang", "en");

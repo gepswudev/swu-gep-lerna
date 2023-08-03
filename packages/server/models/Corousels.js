@@ -2,24 +2,26 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { v4: uuidv4 } = require('uuid');
 const connectDB = require('../database/connect');
+const APIpath = process.env.API || 'http://localhost:5001';
 
-const UsersSchema = new Schema({
+const CorouselsSchema = new Schema({
     uid: {
         type: String,
         default: uuidv4()
     },
-    username: {
+    name: {
         type: String,
-        unique: true,
-        required: true
+        required: true,
+        unique: true
     },
-    password: {
+    img: {
         type: String,
-        required: true
+        // default: APIpath + '/images/corousels/default.jpg'
+        default: 'https://picsum.photos/1920/800'
     },
-    role:{
+    url: {
         type: String,
-        default: 'user'
+        default: '#'
     },
     createAt : {
         type: Date,
@@ -32,4 +34,4 @@ const UsersSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('Users', UsersSchema);
+module.exports = mongoose.model('Corousels', CorouselsSchema);

@@ -14,7 +14,8 @@ module.exports.log = (page, msg, type = 'log', important = false) => {
     }
 
     //Log everything in development mode
-    console.info(`[Logger]: SWU SERVER | ${process.env.NODE_ENV} `.bgWhite.black)
+    //console.info(`[Logger]: SWU SERVER | ${process.env.NODE_ENV} `.bgWhite.black)
+    const mode = (process.env.NODE_ENV ?? 'undefined').charAt(0).toUpperCase() + (process.env.NODE_ENV ?? 'undefined').slice(1);
     if(!['log', 'info', 'warn', 'error'].includes(type)) {
         type = 'log';
     }
@@ -34,17 +35,17 @@ module.exports.log = (page, msg, type = 'log', important = false) => {
         type = 'log';
     }
     if(type === 'error'){
-        console.error(`- ${page} > ${msg}`.bgRed)
+        console.error(`[${mode}] - ${page} > ${msg}`.bgRed)
         return;
     }
     if(type === 'warn'){
-        console.warn(`- ${page} > ${msg}`.bgYellow)
+        console.warn(`[${mode}] - ${page} > ${msg}`.bgYellow)
         return;
     }
     if(type === 'info'){
-        console.info(`- ${page} > ${msg}`.bgCyan)
+        console.info(`[${mode}] - ${page} > ${msg}`.bgCyan)
         return;
     }
-    console.log(`- ${page} > ${msg}`.bgGreen)
+    console.log(`[${mode}] - ${page} > ${msg}`.bgGreen)
 
 }

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { v4: uuidv4 } = require('uuid');
 const connectDB = require('../database/connect');
-const APIpath = process.env.API || 'http://localhost:3000';
+const APIpath = process.env.API || 'http://localhost:5001';
 
 const ActivitiesSchema = new Schema({
     uid: {
@@ -13,13 +13,22 @@ const ActivitiesSchema = new Schema({
         type: String,
         required: true
     },
-    description: {
+    desc: {
         type: String,
         default: ''
     },
     img: {
         type: String,
-        default: APIpath + '/images/activities/default.jpg'
+        // default: APIpath + '/images/activities/default.jpg'
+        default: 'https://picsum.photos/500/200'
+    },
+    href: {
+        type: String,
+        default: ''
+    },
+    badge: {
+        type: String,
+        default: ''
     },
     createAt : {
         type: Date,
@@ -32,4 +41,4 @@ const ActivitiesSchema = new Schema({
 });
 
 
-module.exports.Activities = mongoose.model('Activities', ActivitiesSchema);
+module.exports = mongoose.model('Activities', ActivitiesSchema);
