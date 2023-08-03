@@ -6,7 +6,7 @@ const { combine, timestamp, label, printf } = format;
 const logDir = "log/database";
 
 // Create the log directory if it does not exist
-if (!fs.existsSync(logDir)) {
+if (!fs.existsSync("./"+logDir)) {
   fs.mkdirSync(logDir);
 }
 
