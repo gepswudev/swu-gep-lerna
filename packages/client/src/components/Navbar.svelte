@@ -56,7 +56,7 @@
           isNavbarTransparent = false;
         }
       }
-      log("Navbar", `User scrolled ${window.scrollY}px`);
+      //log("Navbar", `User scrolled ${window.scrollY}px`);
     }
     window.addEventListener("scroll", updateNavbar);
 

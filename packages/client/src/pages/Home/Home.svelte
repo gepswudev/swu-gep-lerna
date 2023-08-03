@@ -6,6 +6,7 @@
   // @ts-ignore
   import activities from "../../data/Activities.json"
   import { onMount } from "svelte";
+  import log from "../../lib/log";
 
   export let lang;
   let data;
@@ -19,7 +20,6 @@
       .then((res) => {
         if (res.status === 200) {
           loaded = true;
-          activityData = res.data.data;
         } else {
           err = res.statusText || "Server Error";
         }
@@ -28,6 +28,21 @@
         err = e.message || "Server Error";
       });
   });
+
+  axios
+    .get("https://gepswu-server.onrender.com/activities")
+    .then((res) => {
+      if (res.status === 200) {
+        loaded = true;
+        activityData = res.data.data;
+        log("Home", `Activities loaded : ${activityData.length} items`);
+      } else {
+        err = res.statusText || "Server Error";
+      }
+    })
+    .catch((e) => {
+      err = e.message || "Server Error";
+    });
 
 
 </script>
@@ -55,10 +70,15 @@
     <div class="container mx-auto">
       <h2 class="text-5xl font-bold">ประมวลภาพกิจกรรรม</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 my-16 ">
-        {#if !loaded || err}
-        {#each activities as activity (activity.title)}
-        <HorizonCard data={activity}/>
-        {/each}
+        {#if !loaded}
+        <!-- tailwindcss full page loader animation progress bar-->
+        <div
+          class="fixed top-0 left-0 z-50 w-screen h-screen flex items-center justify-center bg-base-100"
+        >
+          <div
+            class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"
+          />
+        </div>
         {:else}
         {#each activityData as activity (activity.title)}
         <HorizonCard data={activity}/>

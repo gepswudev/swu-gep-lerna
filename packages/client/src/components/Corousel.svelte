@@ -3,6 +3,7 @@
   import Carousel from "svelte-carousel";
   import data from "../data/lang/th/Corousel.json";
   import { onMount } from "svelte";
+  import log from "../lib/log";
   let corousels = data;
   let loaded = false;
   let err = "";
@@ -13,6 +14,7 @@
         if (res.status === 200) {
           loaded = true;
           corousels = res.data.data;
+          log("Corousel", `Corousels loaded : ${corousels.length} items`);
         } else {
           err = res.statusText || "Server Error";
         }
