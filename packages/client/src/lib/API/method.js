@@ -2,6 +2,8 @@ import axios from "axios";
 import log from "../log";
 
 import { API } from "./baseapi";
+import Swal from "sweetalert2";
+
 
 export async function get(url) {
   try {
@@ -37,3 +39,4 @@ export async function post(url, data) {
     return error?.response?.data;
   }
 };
+

@@ -9,23 +9,23 @@
   
   <LoginForm />
   <RegisterForm />
-  {#if $user.username !== ""}
+  {#if $user !== null}
   <div class="h-full p-12 my-0 mx-auto col-span-2 border border-black rounded-lg">
     {#if $user.username !== ""}
       <p class="text-2xl">Username :</p>
-      {$user.username}
+      {$user?.username}
     {/if}
-    {#if $user.token !== ""}
+    {#if $user?.token !== ""}
       <p class="text-2xl">Token :</p>
-      {$user.token.substr(0, 10) + "*".repeat($user.token.length - 10)}
+      {$user?.token.substr(0, 10) + "*".repeat($user.token.length - 10)}
     {/if}
-    {#if $user.role !== ""}
+    {#if $user?.role !== ""}
       <p class="text-2xl">Role :</p>
-      {$user.role}
+      {$user?.role}
     {/if}
-    {#if $user.loginAt !== ""}
+    {#if $user?.loginAt !== ""}
       <p class="text-2xl">Login at :</p>
-      {$user.loginAt}
+      {$user?.loginAt}
     {/if}
   </div>
   {/if}

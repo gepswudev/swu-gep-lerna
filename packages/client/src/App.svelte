@@ -63,7 +63,7 @@
 
 <Router {basepath}>
   <Navbar active={currentPath} />
-  <main class="pt-28 w-screen h-full">
+  <main class="pั-28 w-screen h-full">
     <Route path="/" component={Hero} />
     <Route path="/user" component={Login} />
   

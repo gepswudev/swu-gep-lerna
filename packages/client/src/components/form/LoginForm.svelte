@@ -2,7 +2,10 @@
   import { createForm } from "svelte-forms-lib";
   import * as yup from "yup";
   import { post } from "../../lib/API/method";
-  import { user } from "../../store/user";
+  import { login } from "../../store/user";
+
+  let isLoading;
+
   const { form, errors, state, handleChange, handleSubmit } = createForm({
     initialValues: {
       username: "",
@@ -13,21 +16,29 @@
         .string()
         .required("Username is required")
         .max(16, "Username must be at most 16 characters"),
-      password: yup
-        .string()
-        .required("Password is required")
+      password: yup.string().required("Password is required"),
     }),
     onSubmit: (values) => {
+      isLoading.innerHTML = "Logging in...";
+      isLoading.disabled = true;
+      isLoading.classList.add("cursor-not-allowed");
+      isLoading.classList.add("opacity-50");
+      isLoading.classList.add("animate-pulse");
       post("users/login", values)
         .then((res) => {
           console.log(res);
           if (res.status === "success") {
-            user.set({
+            login({
               username: res.data.username,
               token: res.data.token,
               role: res.data.role,
               loginAt: new Date().toLocaleString(),
             });
+            isLoading.innerHTML = "Login";
+            isLoading.disabled = false;
+            isLoading.classList.remove("cursor-not-allowed");
+            isLoading.classList.remove("opacity-50");
+            isLoading.classList.remove("animate-pulse");
           } else {
             alert(JSON.stringify(res.message));
           }
@@ -73,7 +84,7 @@
   <button
     type="submit"
     class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-    >Login</button
+    bind:this={isLoading}>Login</button
   ><label for="username" class="font-bold">Test account</label>
   <input
     type="text"

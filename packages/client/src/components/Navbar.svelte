@@ -76,11 +76,11 @@
     //active nav handler
     $: log("Navbar", `Active nav is ${active}`)
 
-    import { user } from '../store/user';
+    import { user, logout } from '../store/user';
 
   </script>
   
-  {#if  $user.username !== ""}
+  {#if  $user !== null}
   <div class={navClass}>
     <div class="navbar-start">
       <!-- Mobile size -->
@@ -123,7 +123,7 @@
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
         <li><a href="/user">{$user.username}</a></li>
-        <li><button class="btn btn-ghost px-0 normal-case" >Logout</button></li>
+        <li><button class="btn btn-ghost px-0 normal-case" on:click={logout}>Logout</button></li>
       </ul>
     </div>
     <div class="navbar-end">
