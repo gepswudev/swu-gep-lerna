@@ -16,3 +16,4 @@ export default function env (env) {
         localStorage.setItem('env', 'prod');
     }
 }
+env(localStorage.getItem('env') || 'dev');

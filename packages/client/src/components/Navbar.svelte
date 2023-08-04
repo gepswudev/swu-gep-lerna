@@ -1,6 +1,7 @@
 <script>
     //muti-lang handlers
     import { onMount } from 'svelte';
+    import { writable } from 'svelte/store';
     import lang from '../lib/lang'
     export let active;
     let navLink = [];
@@ -38,7 +39,7 @@
     log("Navbar", `Language loaded : ${lang().toLocaleUpperCase()}`)
     let isNavbarTransparent = false;
     let nav;
-    const navOnTop = "fixed navbar  bg-base-100 z-50 transition-transform transform duration-800";
+    const navOnTop = "fixed navbar h-28  bg-base-100 z-50 transition-transform transform duration-800";
     const navScrolled = "fixed navbar  bg-base-100/[.5] h-12 z-50 transition-transform transform duration-800"
     let navClass = navOnTop;
     function updateNavbar() {
@@ -75,8 +76,11 @@
     //active nav handler
     $: log("Navbar", `Active nav is ${active}`)
 
+    import { user } from '../store/user';
+
   </script>
   
+  {#if  $user.username !== ""}
   <div class={navClass}>
     <div class="navbar-start">
       <!-- Mobile size -->
@@ -101,11 +105,75 @@
             <li><a id={"nav_"+nav.link} href={nav.link}>{nav.title}</a></li>
           {/if}
           {/each}
+          <li class="navbar-end flex flex-rows">
+            <!-- Languages Switcher -->
+            <button  on:click={languageChange} bind:this={langButton}>{@html lang() === 'th' ? '<b>TH</b> / EN': '<b>EN</b> / TH'}</button>
+            <!-- Languages Switcher -->
+          </li>
+          <li>
+            
+          </li>
         </ul>
       </div>
       <!-- Mobile size -->
       <a href="/"><img src={logo} class="hidden sm:flex w-16 m-4 pt-2" alt="_swu_logo"></a>
-      <a class="hidden md:flex btn btn-ghost normal-case text-xl" href="/">{navData?.nav?.title || navData?.title}</a>
+      <a class="hidden md:flex md:flex-1 xl:flex-none btn btn-ghost px-0 normal-case text-xl" href="/">{navData?.nav?.title || navData?.title}</a>
+    </div>
+    <img src={logo} class="navcenter sm:hidden w-16 m-4 pt-2" alt="_swu_logo">
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="/user">{$user.username}</a></li>
+        <li><button class="btn btn-ghost px-0 normal-case" >Logout</button></li>
+      </ul>
+    </div>
+    <div class="navbar-end">
+      <!-- Languages Switcher -->
+      <button class="hidden sm:block btn bg-transparent border-none" on:click={languageChange} bind:this={langButton}>{@html lang() === 'th' ? '<b>TH</b> / EN': '<b>EN</b> / TH'}</button>
+      <!-- Languages Switcher -->
+
+      <!-- Theme Switcher -->
+      <ThemeSwitch />
+      <!-- Theme Switcher -->
+    </div>
+  </div>
+  {:else}
+  <div class={navClass}>
+    <div class="navbar-start">
+      <!-- Mobile size -->
+      <div class="dropdown">
+        <p tabindex="-1" class="btn btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        </p>
+        <ul tabindex="-1" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 ">
+          {#each navLink as nav, index ("m_"+nav+index)}
+          {#if nav.submenu}
+          <li tabindex="-1">
+            <details>
+              <summary>{nav.title}</summary>
+              <ul class="p-2 z-50">
+                {#each nav.submenu as menu, index ("md_"+menu+index)}
+                <li><a id={"nav_"+menu.link} href={menu.link}>{menu.title}</a></li>
+                {/each}
+              </ul>
+            </details>
+          </li>
+          {:else}
+            <li><a id={"nav_"+nav.link} href={nav.link}>{nav.title}</a></li>
+          {/if}
+          {/each}
+          <li class="navbar-end flex flex-rows">
+            <!-- Languages Switcher -->
+            <button  on:click={languageChange} bind:this={langButton}>{@html lang() === 'th' ? '<b>TH</b> / EN': '<b>EN</b> / TH'}</button>
+            <!-- Languages Switcher -->
+          </li>
+          <li>
+            
+          </li>
+        </ul>
+      </div>
+      <!-- Mobile size -->
+      <a href="/"><img src={logo} class="hidden sm:flex w-16 m-4 pt-2" alt="_swu_logo"></a>
+      <a class="hidden md:flex md:flex-1 xl:flex-none btn btn-ghost px-0 normal-case text-xl" href="/">{navData?.nav?.title || navData?.title}</a>
     </div>
     <img src={logo} class="navcenter sm:hidden w-16 m-4 pt-2" alt="_swu_logo">
     <div class="navbar-center hidden lg:flex">
@@ -132,7 +200,7 @@
     </div>
     <div class="navbar-end">
       <!-- Languages Switcher -->
-      <button class="btn bg-transparent border-none" on:click={languageChange} bind:this={langButton}>{@html lang() === 'th' ? '<b>TH</b> / EN': '<b>EN</b> / TH'}</button>
+      <button class="hidden sm:block btn bg-transparent border-none" on:click={languageChange} bind:this={langButton}>{@html lang() === 'th' ? '<b>TH</b> / EN': '<b>EN</b> / TH'}</button>
       <!-- Languages Switcher -->
 
       <!-- Theme Switcher -->
@@ -140,3 +208,4 @@
       <!-- Theme Switcher -->
     </div>
   </div>
+  {/if}
