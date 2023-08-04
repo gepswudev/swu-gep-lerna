@@ -26,7 +26,6 @@
       isLoading.classList.add("animate-pulse");
       post("users/login", values)
         .then((res) => {
-          console.log(res);
           if (res.status === "success") {
             login({
               username: res.data.username,

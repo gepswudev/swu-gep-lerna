@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { get, writable } from "svelte/store";
 import Swal from "sweetalert2";
 import log from "../lib/log";
 
@@ -14,9 +14,10 @@ export const login = (data) => {
         timer: 3000,
         timerProgressBar: true,
         showConfirmButton: false,
-        backdrop: true,
     }).then(() => {
         user.set(data);
+        localStorage.setItem("username", data.username);
+        localStorage.setItem("token", data.token);
         log("LOGIN", `User ${data.username} logged in`, "info");
     });
 };
@@ -40,9 +41,10 @@ export const logout = () => {
                 timer: 3000,
                 timerProgressBar: true,
                 showConfirmButton: false,
-                backdrop: true,
             });
             user.set(null);
+            localStorage.removeItem("username");
+            localStorage.removeItem("token");
             log("LOGOUT", `User ${user.username} logged out`, "info");
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             Swal.fire("Cancelled", `You are still logged in as ${user.username}`, "error");

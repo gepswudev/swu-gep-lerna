@@ -1,13 +1,17 @@
 const jwt = require("jsonwebtoken");
 const { log } = require("../logger.js");
+const { error } = require("winston");
 
 const secret = process.env.JWT_SECRET;
 const tokenExp = process.env.JWT_EXPIRATION;
 
 const tokenize = (req, res, next) => {
   try {
+    console.log(req.headers);
+    // log("Token", `Tokenizing : ${req.headers.authorization}`, "info")
     const token = req.headers.authorization.split(" ")[1] || req.body.token || req.query.token;
     const decoded = jwt.verify(token, secret);
+    log("Token", token)
     //if token expired
     const exp = new Date(decoded.exp * 1000);
     decoded.expDate = exp;
@@ -29,7 +33,7 @@ const tokenize = (req, res, next) => {
     req.userData = decoded;
     next();
   } catch (err) {
-    log("Token", `Auth: ${res.locals.ip ?? 'loaclhost'} | Invalid token!`, "error");
+    log("Token", `Auth: ${res.locals.ip ?? 'loaclhost'} | Invalid token! : ${err}`, "error");
     return res.status(401).json({
       status: "error",
       message: "Invalid token!",

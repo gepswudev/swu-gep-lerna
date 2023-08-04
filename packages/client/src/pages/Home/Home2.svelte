@@ -5,8 +5,8 @@
   import HorizonCardSkeleton from "../../components/skeletons/HorizonCard_Skeleton.svelte";
   import { get } from "../../lib/API/method";
 
-  let activityData = get("activities");
-  let corouselData = get("corousels");
+  let activityData = get("activities").data;
+  let corouselData = get("corousels").data;
 </script>
 
 <svelte:head>
