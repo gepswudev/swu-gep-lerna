@@ -5,8 +5,8 @@
   import HorizonCardSkeleton from "../../components/skeletons/HorizonCard_Skeleton.svelte";
   import { get } from "../../lib/API/method";
 
-  let activityData = get("activities").data;
-  let corouselData = get("corousels").data;
+  let activityData = get("activities");
+  let corouselData = get("corousels");
 </script>
 
 <svelte:head>
@@ -22,7 +22,7 @@
   {#await corouselData}
     <div></div>
   {:then data} 
-  <Corousel {data}/>
+  <Corousel data={data.data}/>
   {/await}
   
   <div class="hero text-center py-8 z-30">
@@ -46,10 +46,10 @@
         {#await activityData}
           <HorizonCardSkeleton load={4} />
         {:then activitise}
-          {#if activitise.length == 0}
+          {#if activitise.data.length == 0}
             <div class="text-center text-2xl text-gray-500">ไม่มีกิจกรรม</div>
           {:else}
-            {#each activitise as activity}
+            {#each activitise.data as activity}
               <HorizonCard data={activity} />
             {/each}
           {/if}
