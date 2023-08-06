@@ -4,7 +4,7 @@
 //       This is to prevent the client from crashing when the server is not running
 //       This is also to prevent the client from crashing when the server is running
 //       but the API is not working
-const axios = require("axios");
+import axios from "axios";
 
 const getAvailableAPI = async () => {
   let api = "https://localhost:5001/";
