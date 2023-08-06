@@ -3,6 +3,7 @@
   import * as yup from "yup";
   import { post } from "../../lib/API/methods";
   import { login } from "../../store/user";
+  import { navigate } from "svelte-routing";
 
   let isLoading;
 
@@ -38,6 +39,9 @@
             isLoading.classList.remove("cursor-not-allowed");
             isLoading.classList.remove("opacity-50");
             isLoading.classList.remove("animate-pulse");
+            if(res.data.role === "admin") {
+              navigate("/admin");
+            }
           } else {
             alert(JSON.stringify(res.message));
           }
