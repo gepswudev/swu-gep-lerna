@@ -1,7 +1,7 @@
 <script>
   import { createForm } from "svelte-forms-lib";
   import * as yup from "yup";
-  import { post } from "../../lib/API/method";
+  import { post } from "../../lib/API/methods";
   import { login } from "../../store/user";
 
   let isLoading;
@@ -88,13 +88,13 @@
   <input
     type="text"
     class="w-full p-2 border border-gray-300 rounded"
-    value="test1"
+    value="Non-admin : test1"
     readonly
   />
   <input
     type="text"
     class="w-full p-2 border border-gray-300 rounded"
-    value="test1"
+    value="Admin: admin1"
     readonly
   />
 </form>

@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var dotenv  = require('dotenv').config();
 var cors = require('cors');
+var fileUpload = require("express-fileupload");
+
 
 var { swaggerUi, swaggerSpec } = require('./docs/swagger');
 var indexRouter = require('./routes/index');
@@ -27,6 +29,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
+
 
 if(process.env.NODE_ENV !== 'production') app.use('/log', express.static(path.join(__dirname, 'log')));
 

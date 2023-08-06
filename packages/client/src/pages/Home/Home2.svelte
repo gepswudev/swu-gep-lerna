@@ -3,7 +3,7 @@
   import Corousel from "../../components/Corousel.svelte";
   import HorizonCard from "../../components/HorizonCard.svelte";
   import HorizonCardSkeleton from "../../components/skeletons/HorizonCard_Skeleton.svelte";
-  import { get } from "../../lib/API/method";
+  import { get } from "../../lib/API/methods";
 
   let activityData = get("activities").data;
   let corouselData = get("corousels").data;

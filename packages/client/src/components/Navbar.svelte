@@ -87,7 +87,7 @@
   $: log("Navbar", `Active nav is ${active}`);
 
   import { user, logout, login } from "../store/user";
-  import { get } from "../lib/API/method";
+  import { get } from "../lib/API/methods";
   //auth token
   let token = localStorage.getItem("token");
   if (token) {

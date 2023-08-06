@@ -4,7 +4,12 @@
   import Navbar from "./components/Navbar.svelte";
   import Footer from "./components/Footer.svelte";
   import Hero from "./pages/Home/Home.svelte";
-  import Home2 from "./pages/Home/Home2.svelte";
+
+  import AdminMain from "./pages/Admin/Main.svelte";
+  import AdminActivities from "./pages/Admin/activities/Activities.svelte";
+  import AdminActivitieSlug from "./pages/Admin/activities/[slug].svelte";
+  import AdminCorousels from "./pages/Admin/Corousels.svelte";
+
 
   import { Route, Router } from "svelte-routing";
   import log from "./lib/log";
@@ -63,10 +68,16 @@
 
 <Router {basepath}>
   <Navbar active={currentPath} />
-  <main class="pั-28 w-screen h-full">
+  <main class="mx-auto pt-28 w-screen h-full">
     <Route path="/" component={Hero} />
     <Route path="/user" component={Login} />
-  
+    <Route path="/admin" component={AdminMain} />
+    <Route path="/admin/corousels" component={AdminCorousels} />
+    <Route path="/admin/activities" component={AdminActivities} />
+    <Route path="/admin/activities/:id" let:params>
+      <AdminActivitieSlug {...params} />
+    </Route>
+
     <Route path="*" component={Hero} />
   </main>
   <Footer />

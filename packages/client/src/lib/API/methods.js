@@ -1,8 +1,6 @@
 import axios from "axios";
 import log from "../log";
-
 import { API } from "./baseapi";
-import Swal from "sweetalert2";
 
 
 export async function get(url, headers = {}) {
@@ -40,3 +38,33 @@ export async function post(url, data, headers = {}) {
   }
 };
 
+
+export async function put(url, data, headers = {}) {
+  try {
+    const response = await axios.put(API + url, data , {headers});
+    log('PUT', `${url} - ${response?.status} : ${response?.data?.message}`, 'info');
+    return response?.data;
+  } catch (error) {
+    log(
+      "PUT",
+      `${url} - ${error?.response?.status} : ${error?.response?.data?.message}`,
+      "error"
+    );
+    return error?.response?.data;
+  }
+}
+
+export async function del(url, headers = {}) {
+  try {
+    const response = await axios.delete(API + url, {headers});
+    log('DELETE', `${url} - ${response?.status} : ${response?.data?.message}`, 'info');
+    return response?.data;
+  } catch (error) {
+    log(
+      "DELETE",
+      `${url} - ${error?.response?.status} : ${error?.response?.data?.message}`,
+      "error"
+    );
+    return error?.response?.data;
+  }
+}

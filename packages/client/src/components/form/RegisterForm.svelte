@@ -1,7 +1,7 @@
 <script>
   import { createForm } from "svelte-forms-lib";
   import * as yup from "yup";
-  import { post } from "../../lib/API/method";
+  import { post } from "../../lib/API/methods";
 
   const { form, errors, state, handleChange, handleSubmit } = createForm({
     initialValues: {
