@@ -5,6 +5,7 @@ import log from "../lib/log";
 export const user = writable(null);
 
 export const login = (data) => {
+
     Swal.fire({
         title: "Login Success",
         text: `Welcome back, ${data.username}`,
@@ -21,7 +22,7 @@ export const login = (data) => {
         log("LOGIN", `User ${data.username} logged in`, "info");
     });
 };
-export const logout = () => {
+export const logout = (redirect = "/") => {
     Swal.fire({
         title: "Are you sure?",
         text: "You will be logged out.",
@@ -45,6 +46,7 @@ export const logout = () => {
             user.set(null);
             localStorage.removeItem("username");
             localStorage.removeItem("token");
+            window.location.href = redirect;
             log("LOGOUT", `User ${user.username} logged out`, "info");
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             Swal.fire("Cancelled", `You are still logged in as ${user.username}`, "error");

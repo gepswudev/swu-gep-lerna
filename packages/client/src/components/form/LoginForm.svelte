@@ -28,6 +28,7 @@
       post("users/login", values)
         .then((res) => {
           if (res.status === "success") {
+            localStorage.setItem("token", res.data.token);
             login({
               username: res.data.username,
               token: res.data.token,
@@ -40,7 +41,7 @@
             isLoading.classList.remove("opacity-50");
             isLoading.classList.remove("animate-pulse");
             if(res.data.role === "admin") {
-              navigate("/admin");
+              window.location.href = "/admin";
             }
           } else {
             alert(JSON.stringify(res.message));

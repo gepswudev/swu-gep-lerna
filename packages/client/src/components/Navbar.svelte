@@ -18,6 +18,32 @@
       );
       navData = navDataData.default;
       log("Navbar", `Language loaded : ${lang().toLocaleUpperCase()}`);
+
+      let token = localStorage.getItem("token");
+      if (token) {
+        log("TOKEN", token);
+        get("users/auth", { Authorization: `Bearer ${token}` })
+          .then((res) => {
+            if (res.status !== "error") {
+              login({
+                username: res.data.username,
+                token: token,
+                role: res.data.role,
+                loginAt: new Date().toLocaleString(),
+              });
+              log("AUTH", `User logged in as ${res.data.username}`);
+            } else {
+              //destroy token
+              localStorage.removeItem("username");
+              log("AUTH", `User not logged in`);
+            }
+          })
+          .catch((err) => {
+            //destroy token
+            localStorage.removeItem("username");
+            log("AUTH", `User not logged in : ${err.message}`);
+          });
+      }
     } catch (error) {
       log(
         "Navbar",
@@ -89,31 +115,6 @@
   import { user, logout, login } from "../store/user";
   import { get } from "../lib/API/methods";
   //auth token
-  let token = localStorage.getItem("token");
-  if (token) {
-    log("TOKEN", token)
-    get("users/auth", { Authorization: `Bearer ${token}` })
-      .then((res) => {
-        if (res.status !== "error") {
-          login({
-            username:res.data.username,
-            token:token,
-            role:res.data.role,
-            loginAt: new Date().toLocaleString()
-          });
-          log("AUTH", `User logged in as ${res.data.username}`);
-        } else {
-          localStorage.removeItem("token");
-          localStorage.removeItem("username");
-          log("AUTH", `User not logged in`);
-        }
-      })
-      .catch((err) => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("username");
-        log("AUTH", `User not logged in : ${err.message}`);
-      });
-  }
 </script>
 
 {#if $user !== null}
@@ -189,15 +190,16 @@
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
         {#if $user.role === "admin"}
-        <li><a href="/admin/activities">Manage Activities</a></li>
-        <li><a href="/admin/corousel">Manage Corousel</a></li>
+          <li><a href="/admin/activities">Manage Activities</a></li>
+          <li><a href="/admin/corousel">Manage Corousel</a></li>
         {:else}
-        <li><a href="/user">You are not admin!</a></li>
+          <li><a href="/user">You are not admin!</a></li>
         {/if}
         <li><a href="/user">{$user.username}</a></li>
         <li>
-          <button class="btn btn-ghost text-center normal-case" on:click={logout}
-            >Logout</button
+          <button
+            class="btn btn-ghost text-center normal-case"
+            on:click={logout}>Logout</button
           >
         </li>
       </ul>
