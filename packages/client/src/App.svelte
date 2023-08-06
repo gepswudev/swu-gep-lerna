@@ -71,6 +71,7 @@
   <main class="mx-auto pt-28 w-screen h-full">
     <Route path="/" component={Hero} />
     <Route path="/user" component={Login} />
+    <Route path="/login" component={Login} />
     <Route path="/admin" component={AdminMain} />
     <Route path="/admin/corousels" component={AdminCorousels} />
     <Route path="/admin/activities" component={AdminActivities} />
