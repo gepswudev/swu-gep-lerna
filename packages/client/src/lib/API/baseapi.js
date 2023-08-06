@@ -4,24 +4,12 @@
 //       This is to prevent the client from crashing when the server is not running
 //       This is also to prevent the client from crashing when the server is running
 //       but the API is not working
-import axios from "axios";
 
-const getAvailableAPI = async () => {
-  let api = "https://localhost:5001/";
-  const response = await axios
-    .get(`${api}health`)
-    .then((res) => {
-      if (res.status === 200) {
-        api = "https://localhost:5001/";
-      }
-      api = "https://gepswu-server.onrender.com/";
-      return api;
-    })
-    .catch((err) => {
-      api = "https://gepswu-server.onrender.com/";
-      return api;
-    });
-  return api;
+const getAvailableAPI = () => {
+    if(window.location.hostname === "localhost") {
+        return "http://localhost:5001/";
+    }
+    return "https://gepswu-server.onrender.com/";
 };
 
 export const API = getAvailableAPI();
