@@ -16,8 +16,8 @@
         animating = true;
         darkMode = !darkMode;
         //change body data-theme
-        document.body.dataset.theme = darkMode ? 'dark' : 'light';
-        localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+        document.body.dataset.theme = darkMode ? 'dark' : 'main';
+        localStorage.setItem('theme', darkMode ? 'dark' : 'main');
         //change button animation
         thmemButton.animate(
           [
@@ -36,7 +36,7 @@
       }
     }
 
-    $: log("ThemeSwitch", `Theme is ${darkMode ? 'dark' : 'light'}`);
+    $: log("ThemeSwitch", `Theme is ${darkMode ? 'dark' : 'main'}`);
   </script>
   
   <button
