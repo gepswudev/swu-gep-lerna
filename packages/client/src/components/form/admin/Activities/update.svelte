@@ -1,17 +1,20 @@
 <script>
   import { onMount } from "svelte";
-  import { get, post } from "../../../../lib/API/methods";
+  import { get, post, put } from "../../../../lib/API/methods";
   import swa from "../../../../lib/popalert";
   import log from "../../../../lib/log";
   import Loading from "../../../Loading.svelte";
   export let id;
   export let sx = "";
   let form;
+  let title;
+  let desc;
+  let img;
+  let href;
+  let badge;
   let submitButton;
   let err = { title: "", desc: "", img: "", href: "", badge: "" };
   let validated = false;
-  const imgSize = 10000000;
-  const authorizedExtensions = [".jpg", ".jpeg", ".png", ".webp"];
 
   //form validation function
   const formValidate = () => {
@@ -26,26 +29,12 @@
     if (title === "") {
       err = { ...err, title: "Title is required" };
     }
-    //check image file can't be empty and must be image file and size must be less than 10MB
-    if (img.size > imgSize) {
-      err = {
-        ...err,
-        img: `Image size must be less than ${imgSize / 1000000} MB`,
-      };
-    }
-    //check image file extension
-    if (
-      !authorizedExtensions.includes(img.name.slice(img.name.lastIndexOf(".")))
-    ) {
-      err = { ...err, img: `Image must be ${authorizedExtensions.join(", ")}` };
-    }
-    //check image file name
-    if (img.name === "") {
-      err = { ...err, img: "Image is required" };
-    }
     //check link must be url
     if (!href.includes("http") && href !== "") {
-      err = { ...err, href: "Link must be url: https://example.com" };
+      err = {
+        ...err,
+        href: "Link must be url: https://example.com or leave it empty",
+      };
     }
     //check badge must be at most 8 characters
     if (badge !== "") {
@@ -72,12 +61,11 @@
     const data = {
       title,
       desc,
-      img,
       href,
       badge,
     };
     console.log(data);
-    post("activities", data, {
+    put(`activities/${id}`, data, {
       "Content-Type": "multipart/form-data",
       Authorization: "Bearer " + localStorage.getItem("token"),
     })
@@ -103,16 +91,21 @@
         title: res.status,
         text: res.message,
       });
-    log("Edit activity", `Activity: ${res.data.title} (${res.data.id})`);
-    form.title.value = activity.title;
-    form.desc.value = activity.desc;
-    form.href.value = activity.href;
-    form.badge.value = activity.badge;
+    log("Edit activity", `Activity: ${res.data.title} (${res.data._id})`);
+    console.log(res);
+    activity = res.data;
+    title = res.data.title;
+    desc = res.data.desc;
+    img = res.data.img;
+    href = res.data.href;
+    badge = res.data.badge;
+    return res.data;
   });
 </script>
 
 {#await activity}
   <Loading title="Loading activity data" desc="Please wait..." />
+  <form bind:this={form} />
 {:then data}
   <form
     class={"form-control" + sx}
@@ -120,12 +113,15 @@
     on:submit|preventDefault={handlerSubmit}
     on:change={formValidate}
   >
-    <h2 class="text-2xl font-semibold text-center">Activity : {data.title}</h2>
+    <h2 class="text-2xl font-semibold text-center">
+      Update Activity : {data?.title}
+    </h2>
     <div class="mb-4">
       <label for="title" class="label justify-start"
         >Title<span class="text-red-500">*</span></label
       >
       <input
+        bind:value={title}
         type="text"
         name="title"
         id="title"
@@ -141,6 +137,7 @@
     <div class="mb-4">
       <label for="desc" class="label">Description</label>
       <textarea
+        bind:value={desc}
         name="desc"
         id="desc"
         class="textarea textarea-primary w-full"
@@ -150,15 +147,17 @@
 
     <div class="mb-4">
       <label for="img" class="label justify-start"
-        >Image<span class="text-red-500">*</span></label
+        >Image (Image can't edit, Please delete and create new one!)<span
+          class="text-red-500">*</span
+        ></label
       >
       <input
-        class="file-input file-input-bordered file-input-primary w-full"
-        type="file"
+        class="input input-bordered input-primary w-full"
+        type="text"
         name="img"
         id="img"
-        accept={authorizedExtensions.join(",")}
-        required
+        bind:value={img}
+        readonly
       />
       {#if err.img}
         <p class="text-red-500">{err.img}</p>
@@ -168,6 +167,7 @@
     <div class="mb-4">
       <label for="href" class="label">Link</label>
       <input
+        bind:value={href}
         type="url"
         name="href"
         id="href"
@@ -182,6 +182,7 @@
     <div class="mb-4">
       <label for="badge" class="label">Badge</label>
       <input
+        bind:value={badge}
         type="text"
         name="badge"
         id="badge"
@@ -194,8 +195,11 @@
     </div>
 
     <div class="mt-6">
-      <button bind:this={submitButton} type="submit" class="btn btn-primary"
-        >Create</button
+      <button
+        bind:this={submitButton}
+        type="submit"
+        class="btn btn-primary w-full disabled:bg-opacity-50 disabled:cursor-not-allowed"
+        >Update</button
       >
     </div>
   </form>

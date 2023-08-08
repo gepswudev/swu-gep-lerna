@@ -65,7 +65,7 @@
     type="text"
     on:change={handleChange}
     bind:value={$form.username}
-    class="w-full p-2 border border-gray-300 rounded"
+    class="w-full p-2 border border-gray-300 bg-base-100 rounded"
     placeholder="Enter your username"
   />
   {#if $errors.username}
@@ -79,7 +79,7 @@
     type="password"
     on:change={handleChange}
     bind:value={$form.password}
-    class="w-full p-2 border border-gray-300 rounded"
+    class="w-full p-2 border border-gray-300 bg-base-100 rounded"
     placeholder="Enter your password"
   />
   {#if $errors.password}
@@ -92,13 +92,13 @@
   ><label for="username" class="font-bold">Test account</label>
   <input
     type="text"
-    class="w-full p-2 border border-gray-300 rounded"
+    class="w-full p-2 border border-gray-300 bg-base-100 rounded"
     value="Non-admin : test1"
     readonly
   />
   <input
     type="text"
-    class="w-full p-2 border border-gray-300 rounded"
+    class="w-full p-2 border border-gray-300 bg-base-100 rounded"
     value="Admin: admin1"
     readonly
   />

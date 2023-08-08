@@ -72,7 +72,7 @@
     type="text"
     on:change={handleChange}
     bind:value={$form.username}
-    class="w-full p-2 border border-gray-300 rounded"
+    class="w-full p-2 border border-gray-300 bg-base-100 rounded"
     placeholder="Enter your username"
   />
   {#if $errors.username}
@@ -86,7 +86,7 @@
     type="password"
     on:change={handleChange}
     bind:value={$form.password}
-    class="w-full p-2 border border-gray-300 rounded"
+    class="w-full p-2 border border-gray-300 bg-base-100 rounded"
     placeholder="Enter your password"
   />
   {#if $errors.password}
@@ -100,7 +100,7 @@
     type="password"
     on:change={handleChange}
     bind:value={$form.c_password}
-    class="w-full p-2 border border-gray-300 rounded"
+    class="w-full p-2 border border-gray-300 bg-base-100 rounded"
     placeholder="Confirm your password"
   />
   {#if $errors.c_password}

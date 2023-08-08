@@ -118,13 +118,33 @@ exports.findOne = async (req, res) => {
 
 // Update an existing activity by ID
 exports.update = async (req, res) => {
-  const { title, desc, img, href, badge } = req.body;
+  const { title, desc ,href, badge } = req.body;
   try {
+    if(!title || title === "") {
+      return res.status(400).send({
+        status: "error",
+        message: "Title is required.",
+      });
+    }
+
+    //check if the activity with the given title already exists and not the same id
+    const isExist = await Activities.findOne({ title, _id: { $ne: req.params.id } });
+    if (isExist) {
+      return res.status(400).send({
+        status: "error",
+        message: `Activities ${title} already exists`,
+      });
+    }
+
+
     // Find the activity by ID and update its properties
     const activities = await Activities.findByIdAndUpdate(
       req.params.id,
       {
-        ...req.body,
+        title,
+        desc,
+        href,
+        badge,
         updateAt: Date.now(),
       },
       {

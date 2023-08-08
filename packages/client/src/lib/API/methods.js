@@ -54,9 +54,13 @@ export async function put(url, data, headers = {}) {
   }
 }
 
-export async function del(url, headers = {}) {
+export async function del(url) {
   try {
-    const response = await axios.delete(API + url, {headers});
+    const response = await axios.delete(API + url, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     log('DELETE', `${url} - ${response?.status} : ${response?.data?.message}`, 'info');
     return response?.data;
   } catch (error) {

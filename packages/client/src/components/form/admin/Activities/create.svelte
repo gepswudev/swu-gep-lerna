@@ -73,6 +73,10 @@
       badge,
     };
     console.log(data);
+    //change button while creating
+    submitButton.innerHTML = "Creating...";
+    submitButton.disabled = true;
+    //send data to server
     post("activities", data, {
       "Content-Type": "multipart/form-data",
       "Authorization": "Bearer " + localStorage.getItem("token"),
@@ -84,6 +88,9 @@
           title: res.status,
           text: res.message,
         });
+        //change button after creating
+        submitButton.innerHTML = "Create";
+        submitButton.disabled = false;
         console.log(res);
       })
       .catch((err) => {
@@ -98,7 +105,7 @@
   on:submit|preventDefault={handlerSubmit}
   on:change={formValidate}
 >
-  <h2 class="text-2xl font-semibold text-center">Activity</h2>
+  <h2 class="text-2xl font-semibold text-center">Create New Activity</h2>
   <div class="mb-4">
     <label for="title" class="label justify-start"
       >Title<span class="text-red-500">*</span></label
@@ -167,7 +174,7 @@
   </div>
 
   <div class="mt-6">
-    <button bind:this={submitButton} type="submit" class="btn btn-primary"
+    <button bind:this={submitButton} type="submit" class="btn btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50 disabled:btn-loading"
       >Create</button
     >
   </div>
