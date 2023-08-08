@@ -17,17 +17,27 @@
 
     err = { ...err, file:""};
 
-    //check image file can't be empty and must be image file and size must be less than 10MB
+    //check file can't be empty and must be file and size must be less than 10MB
     if (file.size > fileSize) {
       err = {
         ...err,
         file: `Image size must be less than ${fileSize / 500000000} MB`,
       };
     }
-
-    //check image file name
+    
+    //check is filename is english
+    const english = /^[A-Za-z0-9 _.-]*$/;
+    console.log(!english.test(file.name))
+     if (!english.test(file.name)) {
+       err = {
+         ...err,
+         file: "File name must be English only , Please rename file to English with out special character and try again",
+       };
+     }
+     console.log(file.name, err);
+    //check file name
     if (file.name === "") {
-      err = { ...err, img: "File is required" };
+      err = { ...err, file: "File is required" };
     }
 
     //check if form is validated
@@ -45,38 +55,40 @@
     //change button while creating
     submitButton.innerHTML = "Uploading...";
     submitButton.disabled = true;
+    console.log(fileupload);
     //send data to server
-    post("filesys", {fileupload}, {
-      "Content-Type": "multipart/form-data",
-      Authorization: "Bearer " + localStorage.getItem("token"),
-    })
-      .then((res) => {
-        console.log(res);
-        swa({
-          icon: res.status,
-          title: res.status,
-          text: res.message,
-          timer: 3000,
-        },() => {
-          submitButton.innerHTML = "Upload";
-          submitButton.disabled = false;
-          location.reload();
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+     post("filesys", {fileupload}, {
+       "Content-Type": "multipart/form-data",
+       Authorization: "Bearer " + localStorage.getItem("token"),
+     })
+       .then((res) => {
+         console.log(res);
+         swa({
+           icon: res.status,
+           title: res.status,
+           text: res.message,
+           timer: 3000,
+         },() => {
+           submitButton.innerHTML = "Upload";
+           submitButton.disabled = false;
+           location.reload();
+         });
+       })
+       .catch((err) => {
+         console.log(err);
+       });
   };
 </script>
 
 <form
   class={"flex flex-rows items-baseline w-full gap-2" + sx}
+  accept-charset="UTF-8"
   bind:this={form}
   on:submit|preventDefault={handlerSubmit}
   on:change={formValidate}
 >
   
-  <div class="mb-4 flex grow">
+  <div class="mb-4 flex grow flex-row">
     <input
       class="file-input file-input-bordered file-input-primary w-full"
       type="file"
@@ -84,9 +96,7 @@
       id="fileupload"
       required
     />
-    {#if err.img}
-      <p class="text-red-500">{err.img}</p>
-    {/if}
+    
   </div>
 
   <div class="mt-2">
@@ -98,4 +108,8 @@
       >Upload</button
     >
   </div>
+  
 </form>
+{#if err.file}
+      <p class="text-red-500">&nbsp; &nbsp;*{err.file}</p>
+    {/if}
