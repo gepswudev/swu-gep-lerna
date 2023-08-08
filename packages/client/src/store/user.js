@@ -12,7 +12,7 @@ export const login = (data) => {
         icon: "success",
         toast: true,
         position: "top-end",
-        timer: 3000,
+        timer: 1000,
         timerProgressBar: true,
         showConfirmButton: false,
     }).then(() => {

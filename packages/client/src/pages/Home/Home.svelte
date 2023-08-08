@@ -5,6 +5,8 @@
   import HorizonCardSkeleton from "../../components/skeletons/HorizonCard_Skeleton.svelte";
   import { get } from "../../lib/API/methods";
 
+
+
   let activityData = get("activities");
   let corouselData = get("corousels");
 </script>

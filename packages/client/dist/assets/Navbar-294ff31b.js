@@ -1,1 +1,0 @@
-const t=[{title:"หน้าแรก",link:"/"},{title:"ประวัติ",link:"/about"},{title:"บุคลากร",link:"/personnel"},{title:"หลักสูตร",link:"/course"},{title:"กิจกรรมนิสิต",link:"/activity"},{title:"WELL CENTER",link:"/wellcenter"},{title:"ติดต่อ",link:"/contact",submenu:[{title:"ติดต่อเรา",link:"/contact"},{title:"แผนที่",link:"/map"}]}];export{t as default};

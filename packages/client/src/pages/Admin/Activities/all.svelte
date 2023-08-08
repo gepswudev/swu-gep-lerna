@@ -5,18 +5,10 @@
   import Skeleton from "../../../components/skeletons/HorizonCard_Skeleton.svelte";
   import { get } from "../../../lib/API/methods";
   import { user } from "../../../store/user";
-  import Swal from "sweetalert2";
 
-  const handlerDelete = (data) => {
-    
-  };
   let activities = get("activities");
-  $: console.log(activities);
 </script>
 
-<svelte:head>
-  <title>Admin | Activities</title>
-</svelte:head>
 
 {#key $user}
   {#if $user !== null}
@@ -32,7 +24,7 @@
       </div>
 
       <div
-        class="mx-auto my-24 mt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        class="mx-16 justify-center items-start my-24 mt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2"
       >
         {#await activities}
           <Skeleton load={4} />

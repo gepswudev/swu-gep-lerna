@@ -2,6 +2,8 @@
   import { user } from "../../store/user";
   import LoginForm from "../../components/form/LoginForm.svelte";
   import RegisterForm from "../../components/form/RegisterForm.svelte";
+
+  
 </script>
 
 

@@ -7,6 +7,7 @@
   import History from "./pages/History/History01.svelte";
 
   import AdminMain from "./pages/Admin/Main.svelte";
+  import AdminUsers from "./pages/Admin/User.svelte";
   import AdminActivities from "./pages/Admin/Activities/all.svelte";
   import AdminActivitiesCreate from "./pages/Admin/Activities/create.svelte";
   import AdminActivitiesUpdate from "./pages/Admin/Activities/update.svelte";
@@ -76,11 +77,12 @@
     <Route path="/user" component={Login} />
     <Route path="/login" component={Login} />
     <Route path="/admin" component={AdminMain} />
-    <Route path="/admin/corousels" component={AdminCorousels} />
-    <Route path="/admin/activities" component={AdminActivities} />
+    <Route path="/viewusers" component={AdminUsers} />
+    <Route path="/viewcorousels" component={AdminCorousels} />
+    <Route path="/viewactivities" component={AdminActivities} />
     <Route path="/admin/activities/create" component={AdminActivitiesCreate}/> 
     <Route path="/admin/activities/update/:id" let:params>
-      <AdminActivitiesUpdate type="edit" {...params} />
+      <AdminActivitiesUpdate {...params} />
     </Route>
     <Route path="/test" component={Test} />
 

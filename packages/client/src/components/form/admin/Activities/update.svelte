@@ -1,9 +1,9 @@
 <script>
-  import { onMount } from "svelte";
   import { get, post, put } from "../../../../lib/API/methods";
   import swa from "../../../../lib/popalert";
   import log from "../../../../lib/log";
   import Loading from "../../../Loading.svelte";
+  import { navigate } from "svelte-routing";
   export let id;
   export let sx = "";
   let form;
@@ -77,6 +77,7 @@
           text: res.message,
         });
         console.log(res);
+        navigate("/viewactivities");
       })
       .catch((err) => {
         console.log(err);

@@ -37,14 +37,21 @@
                   text: res.message,
                   icon: "success",
                   confirmButtonText: "OK",
-                })
-                window.location.reload();
+                  cancelButtonColor: "#00A2E0",
+                }).then(() => {
+                  location.reload();
+                });
+
+                location.reload();
               } else {
                 Swal.fire({
                   title: "Error!",
                   text: res.message + " as Admin",
                   icon: res.status,
                   confirmButtonText: "OK",
+                  cancelButtonColor: "#00A2E0",
+                }).then(() => {
+                  location.reload();
                 });
               }
             })
@@ -54,10 +61,14 @@
                 text: e.message,
                 icon: "error",
                 confirmButtonText: "OK",
-              });
+                cancelButtonColor: "#00A2E0",
+              }).then(() => {
+                  location.reload();
+                });
             });
         }
       });
+      
     } catch (error) {
       Swal.fire({
         title: "Error!",
@@ -74,7 +85,7 @@
 <!-- Card -->
 <div
   id={data.title}
-  class="card w-[20rem] mx-auto bg-base-100 border-none shadow-xl hover:shadow-2xl border hover:border-primary duration-500 transition-transform transform hover:scale-110"
+  class="card w-[20rem] bg-base-100 border-none shadow-xl hover:shadow-2xl border hover:border-primary duration-500 transition-transform transform hover:scale-110"
 >
   <figure><img class="h-52" src={getImg()} alt={data.title + "_IMG"} /></figure>
   <div class="card-body">

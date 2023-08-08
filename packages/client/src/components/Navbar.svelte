@@ -190,12 +190,13 @@
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
         {#if $user.role === "admin"}
-          <li><a href="/admin/activities">Manage Activities</a></li>
-          <li><a href="/admin/corousel">Manage Corousel</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/viewactivities">Manage Activities</a></li>
+          <li><a href="/viewcorousels">Manage Corousel</a></li>
         {:else}
           <li><a href="/user">You are not admin!</a></li>
         {/if}
-        <li><a href="/user">{$user.username}</a></li>
+        <li><a href="/admin">{$user.username}</a></li>
         <li>
           <button
             class="btn btn-ghost text-center normal-case"

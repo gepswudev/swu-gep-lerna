@@ -1,4 +1,5 @@
 <script>
+  import { navigate } from "svelte-routing";
   import { post } from "../../../../lib/API/methods";
   import swa from "../../../../lib/popalert";
   export let sx = "";
@@ -91,6 +92,7 @@
         //change button after creating
         submitButton.innerHTML = "Create";
         submitButton.disabled = false;
+        navigate("/viewactivities");
         console.log(res);
       })
       .catch((err) => {

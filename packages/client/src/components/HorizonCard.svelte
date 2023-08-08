@@ -7,6 +7,12 @@
   export let popup = true;
   export let disabled = false;
 
+  const getImg = () => {
+    if(data.img.startsWith("http")) return data.img;
+    if(window.location.hostname === "localhost") return `http://localhost:5001/${data.img}`;
+    return `https://gepswu-server.onrender.com/${data.img}`;
+  };
+
   const showAllDesc = () => {
     if (disabled) return;
     if(!popup){
@@ -37,7 +43,7 @@
   href={"#" + data.title}
   on:click={showAllDesc}
 >
-  <figure><img class="h-52" src={data.img} alt={data.title + "_IMG"} /></figure>
+  <figure><img class="h-52" src={getImg()} alt={data.title + "_IMG"} /></figure>
   <div class="card-body">
     <h2 class="card-title">
       {data.title ?? ""}
