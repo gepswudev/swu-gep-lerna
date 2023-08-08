@@ -131,7 +131,7 @@ router.post('/filesys', (req, res) => {
 
   // The name of the input field (e.g. "file") is used to retrieve the uploaded file
   const uploadedFile = req.files.fileupload;
-  uploadedFile.name.replace(/\s+/g, '_');
+  uploadedFile.name.replace(/[()]/g, '').replace(/:/g, '').replace(/\s+/g, '_');
 
   // Use the mv() method to place the file somewhere on your server
   // For simplicity, we'll save the file in the "uploads" directory in the project root

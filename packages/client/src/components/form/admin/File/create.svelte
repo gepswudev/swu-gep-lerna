@@ -26,12 +26,12 @@
     }
     
     //check is filename is english
-    const english = /^[A-Za-z0-9 _.-]*$/;
-    console.log(!english.test(file.name))
-     if (!english.test(file.name)) {
+    const format = /^[A-Za-z0-9_.,()\-\s]*$/;
+    console.log(!format.test(file.name))
+     if (!format.test(file.name)) {
        err = {
          ...err,
-         file: "File name must be English only , Please rename file to English with out special character and try again",
+         file: "File name must contain only English characters, digits, underscores, commas, parentheses, dashes, periods, and whitespaces., Please rename file follow the rules and try again",
        };
      }
      console.log(file.name, err);
