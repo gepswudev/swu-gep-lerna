@@ -21,6 +21,8 @@
   import Swal from "sweetalert2";
   import Login from "./pages/User/UserTest.svelte";
   import Test from "./pages/test.svelte";
+  import CookiesPage from "./components/CookiesPage.svelte";
+  import Cookies from "./components/Cookies.svelte";
 
   const defaultLang = "th";
   const lang = localStorage.getItem("lang") || defaultLang;
@@ -90,7 +92,9 @@
 
     <Route path="/history" component={History} />
 
+    <Route path="/cookies" component={CookiesPage} />
     <Route path="*" component={Hero} />
+    <Cookies />
   </main>
   <Footer />
 </Router>
