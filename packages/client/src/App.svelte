@@ -4,6 +4,7 @@
   import Navbar from "./components/Navbar.svelte";
   import Footer from "./components/Footer.svelte";
   import Hero from "./pages/Home/Home.svelte";
+  import History from "./pages/History/History01.svelte";
 
   import AdminMain from "./pages/Admin/Main.svelte";
   import AdminActivities from "./pages/Admin/activities/Activities.svelte";
@@ -78,6 +79,8 @@
     <Route path="/admin/activities/:id" let:params>
       <AdminActivitieSlug {...params} />
     </Route>
+
+    <Route path="/history" component={History} />
 
     <Route path="*" component={Hero} />
   </main>
