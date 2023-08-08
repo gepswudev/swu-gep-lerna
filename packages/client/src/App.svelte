@@ -6,8 +6,8 @@
   import Hero from "./pages/Home/Home.svelte";
 
   import AdminMain from "./pages/Admin/Main.svelte";
-  import AdminActivities from "./pages/Admin/activities/Activities.svelte";
-  import AdminActivitieSlug from "./pages/Admin/activities/[slug].svelte";
+  import AdminActivities from "./pages/Admin/Activities/all.svelte";
+  import AdminActivitiesManage from "./pages/Admin/Activities/manage.svelte";
   import AdminCorousels from "./pages/Admin/Corousels.svelte";
 
 
@@ -76,8 +76,9 @@
     <Route path="/admin" component={AdminMain} />
     <Route path="/admin/corousels" component={AdminCorousels} />
     <Route path="/admin/activities" component={AdminActivities} />
-    <Route path="/admin/activities/:id" let:params>
-      <AdminActivitieSlug {...params} />
+    <Route path="/admin/activities/create" component={AdminActivitiesManage} />
+    <Route path="/admin/activities/update/:id" let:params>
+      <AdminActivitiesManage {...params} />
     </Route>
     <Route path="/test" component={Test} />
 

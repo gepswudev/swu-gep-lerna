@@ -12,12 +12,14 @@
 {#key $user}
   {#if $user !== null}
     {#if $user?.role === "admin"}
+      <button class="btn btn-success align-middle items-end">New</button>
       <div
         class="mx-auto my-24 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4"
       >
         {#await activities}
           <Skeleton load={4} />
         {:then data}
+        
           {#each data.data as activity}
             {@const id = activity._id}
             <Card data={activity} {id} />
