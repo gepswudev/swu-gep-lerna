@@ -1,0 +1,19 @@
+<script>
+    export let title = "";
+    export let desc = "";
+    export let sx = "";
+
+</script>
+
+<div class={"hero min-h-screen bg-base-200 "+sx}>
+  <div class="hero-content flex-col text-center">
+    <div class="max-w-xl">
+      <h1 class="text-5xl font-bold">{title}</h1>
+      <p class="py-6">{desc}</p>
+      <!-- Loding animation -->
+      <div
+        class="loading ease-linear rounded-full border-8 border-t-8 border-primary bg-primary h-32 w-32"
+      />
+    </div>
+  </div>
+</div>

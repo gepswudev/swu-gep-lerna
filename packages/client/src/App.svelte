@@ -16,6 +16,7 @@
   import { checkConnection } from "./lib/API/checkConnection";
   import Swal from "sweetalert2";
   import Login from "./pages/User/UserTest.svelte";
+  import Test from "./pages/test.svelte";
 
   const defaultLang = "th";
   const lang = localStorage.getItem("lang") || defaultLang;
@@ -78,6 +79,7 @@
     <Route path="/admin/activities/:id" let:params>
       <AdminActivitieSlug {...params} />
     </Route>
+    <Route path="/test" component={Test} />
 
     <Route path="*" component={Hero} />
   </main>

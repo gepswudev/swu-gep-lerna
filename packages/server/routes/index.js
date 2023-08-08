@@ -83,4 +83,25 @@ router.get("/health", async (req, res) => {
   });
 });
 
+router.post('/upload', (req, res) => {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).json({ message: 'No files were uploaded.' });
+  }
+
+  // The name of the input field (e.g. "file") is used to retrieve the uploaded file
+  const uploadedFile = req.files.img;
+  console.log(uploadedFile);
+
+  // Use the mv() method to place the file somewhere on your server
+  // For simplicity, we'll save the file in the "uploads" directory in the project root
+  uploadedFile.mv(`${__dirname}/../uploads/${uploadedFile.name}`, (err) => {
+    if (err) {
+      console.log(err)
+      return res.status(500).json({ message: 'Error occurred while uploading the file.' });
+    }
+
+    res.status(200).json({ message: 'File uploaded successfully.' });
+  });
+});
+
 module.exports = router;

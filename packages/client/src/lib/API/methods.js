@@ -25,7 +25,7 @@ export async function get(url, headers = {}) {
 
 export async function post(url, data, headers = {}) {
   try {
-    const response = await axios.post(API + url, data);
+    const response = await axios.post(API + url, data, {headers});
     log('POST', `${url} - ${response?.status} : ${response?.data?.message}`, 'info');
     return response?.data;
   } catch (error) {
