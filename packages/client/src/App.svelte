@@ -12,6 +12,7 @@
   import AdminActivitiesCreate from "./pages/Admin/Activities/create.svelte";
   import AdminActivitiesUpdate from "./pages/Admin/Activities/update.svelte";
   import AdminCorousels from "./pages/Admin/Corousels.svelte";
+  import FileManagement from "./pages/Admin/FileManagement.svelte";
 
 
   import { Route, Router } from "svelte-routing";
@@ -84,6 +85,7 @@
     <Route path="/admin/activities/update/:id" let:params>
       <AdminActivitiesUpdate {...params} />
     </Route>
+    <Route path="/files" component={FileManagement} />
     <Route path="/test" component={Test} />
 
     <Route path="/history" component={History} />

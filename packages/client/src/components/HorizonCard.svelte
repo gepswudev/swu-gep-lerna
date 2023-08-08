@@ -23,13 +23,15 @@
       title: data.title,
       text: data.desc,
       icon: data.icon,
-      imageUrl: data.img,
+      imageUrl: getImg(),
       imageWidth: 500,
       imageHeight: 200,
       imageAlt: `${data.title}_cardImgaes`,
       confirmButtonText: "Read more",
+      confirmButtonColor: "#00A2E0",
+      showCloseButton: true,
     }).then((result) => {
-      if (result.isConfirmed) window.open(data.href);
+      if (result.isConfirmed) window.location.href = data.href;
     });
   };
 

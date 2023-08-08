@@ -1,88 +1,101 @@
 <script>
-    import axios from "axios";
-    import { post } from "../../../../lib/API/methods";
-  
-    const authorizedExtensions = [".jpg", ".jpeg", ".png", ".webp"];
-  
-    const handlerSubmit = () => {
-      const form = document.querySelector("form");
-      const formData = new FormData(form);
-      const title = formData.get("title");
-      const desc = formData.get("desc");
-      const img = formData.get("img");
-      const href = formData.get("href");
-      const badge = formData.get("badge");
-      const data = {
-        title,
-        desc,
-        img,
-        href,
-        badge,
+  import { navigate } from "svelte-routing";
+  import { post } from "../../../../lib/API/methods";
+  import swa from "../../../../lib/popalert";
+  export let sx = "";
+  let form;
+  let submitButton;
+  let err = { file: ""};
+  let validated = false;
+  const fileSize = 500000000;
+
+  //form validation function
+  const formValidate = () => {
+    const formData = new FormData(form);
+    const file = formData.get("fileupload");
+
+
+    err = { ...err, file:""};
+
+    //check image file can't be empty and must be image file and size must be less than 10MB
+    if (file.size > fileSize) {
+      err = {
+        ...err,
+        file: `Image size must be less than ${fileSize / 500000000} MB`,
       };
-      post("upload", data, {
-        "Content-Type": "multipart/form-data",
-      })
-        .then((res) => {
-          alert(res.message);
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
+    }
+
+    //check image file name
+    if (file.name === "") {
+      err = { ...err, img: "File is required" };
+    }
+
+    //check if form is validated
+    validated = Object.values(err).every((e) => e === "");
+
+    //disable submit button if form is not validated
+    submitButton.disabled = !validated;
+  };
+
+  //submit form function
+  const handlerSubmit = () => {
+    //get form data
+    const formData = new FormData(form);
+    const fileupload = formData.get("fileupload");
+    //change button while creating
+    submitButton.innerHTML = "Uploading...";
+    submitButton.disabled = true;
+    //send data to server
+    post("filesys", {fileupload}, {
+      "Content-Type": "multipart/form-data",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    })
+      .then((res) => {
+        console.log(res);
+        swa({
+          icon: res.status,
+          title: res.status,
+          text: res.message,
+          timer: 3000,
+        },() => {
+          submitButton.innerHTML = "Upload";
+          submitButton.disabled = false;
+          location.reload();
         });
-    };
-  </script>
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+</script>
+
+<form
+  class={"flex flex-rows items-baseline w-full gap-2" + sx}
+  bind:this={form}
+  on:submit|preventDefault={handlerSubmit}
+  on:change={formValidate}
+>
   
-  <form class="form-control mx-32" on:submit|preventDefault={handlerSubmit}>
-    <div class="mb-4">
-      <label for="title" class="label">Title</label>
-      <input
-        type="text"
-        name="title"
-        id="title"
-        required
-        class="input input-bordered w-full"
-      />
-    </div>
-  
-    <div class="mb-4">
-      <label for="desc" class="label">Description</label>
-      <textarea name="desc" id="desc" class="textarea textarea-bordered w-full" />
-    </div>
-  
-    <div class="mb-4">
-      <label for="img" class="label">Image</label>
-      <input
-        type="file"
-        name="img"
-        id="img"
-        accept={authorizedExtensions.join(",")}
-        required
-        class="input input-bordered w-full"
-      />
-    </div>
-  
-    <div class="mb-4">
-      <label for="href" class="label">Link</label>
-      <input
-        type="text"
-        name="href"
-        id="href"
-        class="input input-bordered w-full"
-      />
-    </div>
-  
-    <div class="mb-4">
-      <label for="badge" class="label">Badge</label>
-      <input
-        type="text"
-        name="badge"
-        id="badge"
-        class="input input-bordered w-full"
-      />
-    </div>
-  
-    <div class="mt-6">
-      <button type="submit" class="btn btn-primary">Create</button>
-    </div>
-  </form>
-  
+  <div class="mb-4 flex grow">
+    <input
+      class="file-input file-input-bordered file-input-primary w-full"
+      type="file"
+      name="fileupload"
+      id="fileupload"
+      required
+    />
+    {#if err.img}
+      <p class="text-red-500">{err.img}</p>
+    {/if}
+  </div>
+
+  <div class="mt-2">
+    <button
+      bind:this={submitButton}
+      type="submit"
+      disabled
+      class="btn btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50 disabled:btn-loading"
+      >Upload</button
+    >
+  </div>
+</form>

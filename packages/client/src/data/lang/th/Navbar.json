@@ -12,13 +12,5 @@
       { "title": "ติดต่อเรา", "link": "/contact" },
       { "title": "แผนที่", "link": "/map" }
     ]
-  },
-  {
-    "title": "[Test] Admin",
-    "link": "/user",
-    "submenu": [
-      { "title": "[Test] login", "link": "/user" },
-      { "title": "[Test] register", "link": "/user" }
-    ]
   }
 ]

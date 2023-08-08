@@ -191,8 +191,24 @@
       <ul class="menu menu-horizontal px-1">
         {#if $user.role === "admin"}
           <li><a href="/">Home</a></li>
-          <li><a href="/viewactivities">Manage Activities</a></li>
-          <li><a href="/viewcorousels">Manage Corousel</a></li>
+          <li tabindex="-1">
+            <details>
+              <summary>Menu</summary>
+              <ul class="p-2 z-50">
+                {#each navLink as menu, index ("md_" + menu + index)}
+                  <li>
+                    <a id={"nav_" + menu.link} href={menu.link}
+                      >{menu.title}</a
+                    >
+                  </li>
+                {/each}
+              </ul>
+            </details>
+          </li>
+          <li><a href="/files">File system</a></li>
+          <li><a href="/viewactivities">Activities</a></li>
+          <li><a href="/viewcorousels">Banner</a></li>
+          
         {:else}
           <li><a href="/user">You are not admin!</a></li>
         {/if}
@@ -290,31 +306,35 @@
       >
     </div>
     <img src={logo} class="navcenter sm:hidden w-16 m-4 pt-2" alt="_swu_logo" />
-    <div class="navbar-center hidden lg:flex">
-      <ul class="menu menu-horizontal px-1">
-        {#each navLink as nav, index ("d_" + nav + index)}
-          {#if nav.submenu}
-            <li tabindex="-1">
-              <details>
-                <summary>{nav.title}</summary>
-                <ul class="p-2 z-50">
-                  {#each nav.submenu as menu, index ("dd_" + menu + index)}
-                    <li>
-                      <a id={"nav_" + menu.link} href={menu.link}
-                        >{menu.title}</a
-                      >
-                    </li>
-                  {/each}
-                </ul>
-              </details>
-            </li>
-          {:else}
-            <li><a id={"nav_" + nav.link} href={nav.link}>{nav.title}</a></li>
-          {/if}
-        {/each}
-      </ul>
-    </div>
+    <!-- <div class="navbar-center hidden lg:flex">
+      
+    </div> -->
     <div class="navbar-end">
+      <!-- Navbar Link Desktop size -->
+      <div class="hidden xl:flex">
+        <ul class="menu menu-horizontal px-1">
+          {#each navLink as nav, index ("d_" + nav + index)}
+            {#if nav.submenu}
+              <li tabindex="-1">
+                <details>
+                  <summary>{nav.title}</summary>
+                  <ul class="p-2 z-50">
+                    {#each nav.submenu as menu, index ("dd_" + menu + index)}
+                      <li>
+                        <a id={"nav_" + menu.link} href={menu.link}
+                          >{menu.title}</a
+                        >
+                      </li>
+                    {/each}
+                  </ul>
+                </details>
+              </li>
+            {:else}
+              <li><a id={"nav_" + nav.link} href={nav.link}>{nav.title}</a></li>
+            {/if}
+          {/each}
+        </ul>
+      </div>
       <!-- Languages Switcher -->
       <button
         class="hidden sm:block btn bg-transparent border-none"
@@ -327,6 +347,7 @@
       <!-- Theme Switcher -->
       <ThemeSwitch />
       <!-- Theme Switcher -->
+      <a href="/login" class="btn btn-ghost border border-gray mr-2">Login</a>
     </div>
   </div>
 {/if}

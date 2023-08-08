@@ -34,6 +34,7 @@ app.use(fileUpload());
 if(process.env.NODE_ENV !== 'production') app.use('/log', express.static(path.join(__dirname, 'log')));
 
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
+app.use('/files', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
