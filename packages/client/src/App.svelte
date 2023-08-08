@@ -7,8 +7,9 @@
   import History from "./pages/History/History01.svelte";
 
   import AdminMain from "./pages/Admin/Main.svelte";
-  import AdminActivities from "./pages/Admin/activities/Activities.svelte";
-  import AdminActivitieSlug from "./pages/Admin/activities/[slug].svelte";
+  import AdminActivities from "./pages/Admin/Activities/all.svelte";
+  import AdminActivitiesCreate from "./pages/Admin/Activities/create.svelte";
+  import AdminActivitiesUpdate from "./pages/Admin/Activities/update.svelte";
   import AdminCorousels from "./pages/Admin/Corousels.svelte";
 
 
@@ -17,6 +18,7 @@
   import { checkConnection } from "./lib/API/checkConnection";
   import Swal from "sweetalert2";
   import Login from "./pages/User/UserTest.svelte";
+  import Test from "./pages/test.svelte";
 
   const defaultLang = "th";
   const lang = localStorage.getItem("lang") || defaultLang;
@@ -76,9 +78,11 @@
     <Route path="/admin" component={AdminMain} />
     <Route path="/admin/corousels" component={AdminCorousels} />
     <Route path="/admin/activities" component={AdminActivities} />
-    <Route path="/admin/activities/:id" let:params>
-      <AdminActivitieSlug {...params} />
+    <Route path="/admin/activities/create" component={AdminActivitiesCreate}/> 
+    <Route path="/admin/activities/update/:id" let:params>
+      <AdminActivitiesUpdate type="edit" {...params} />
     </Route>
+    <Route path="/test" component={Test} />
 
     <Route path="/history" component={History} />
 

@@ -7,7 +7,7 @@ const tokenExp = process.env.JWT_EXPIRATION;
 
 const tokenize = (req, res, next) => {
   try {
-    console.log(req.headers);
+    log("Token", `Auth: ${res.locals.ip ?? 'loaclhost'} | Tokenizing : ${req.headers.authorization}`, "info")
     // log("Token", `Tokenizing : ${req.headers.authorization}`, "info")
     const token = req.headers.authorization.split(" ")[1] || req.body.token || req.query.token;
     const decoded = jwt.verify(token, secret);

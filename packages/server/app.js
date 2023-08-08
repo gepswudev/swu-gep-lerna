@@ -1,18 +1,17 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var dotenv  = require('dotenv').config();
-var cors = require('cors');
-var fileUpload = require("express-fileupload");
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const dotenv  = require('dotenv').config();
+const cors = require('cors');
+const fileUpload = require('express-fileupload');
 
-
-var { swaggerUi, swaggerSpec } = require('./docs/swagger');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users.router');
-var corouselsRouter = require('./routes/corousels.router');
-var activitiesRouter = require('./routes/activities.router');
+const { swaggerUi, swaggerSpec } = require('./docs/swagger');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users.router');
+const corouselsRouter = require('./routes/corousels.router');
+const activitiesRouter = require('./routes/activities.router');
 
 var app = express();
 
@@ -35,11 +34,13 @@ app.use(fileUpload());
 if(process.env.NODE_ENV !== 'production') app.use('/log', express.static(path.join(__dirname, 'log')));
 
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/corousels', corouselsRouter);
 app.use('/activities', activitiesRouter);
+
 
 //header middleware
 app.use((req, res, next) => {

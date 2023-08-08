@@ -9,7 +9,6 @@ const logger = require("../database/logger");
 exports.create = async (req, res) => {
   try {
     // Validate request
-    console.log(req.body);
     if (!req.body.username || !req.body.password) {
       return res.status(400).send({
         status: "error",

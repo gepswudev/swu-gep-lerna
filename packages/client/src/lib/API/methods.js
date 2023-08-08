@@ -25,7 +25,7 @@ export async function get(url, headers = {}) {
 
 export async function post(url, data, headers = {}) {
   try {
-    const response = await axios.post(API + url, data);
+    const response = await axios.post(API + url, data, {headers});
     log('POST', `${url} - ${response?.status} : ${response?.data?.message}`, 'info');
     return response?.data;
   } catch (error) {
@@ -54,9 +54,13 @@ export async function put(url, data, headers = {}) {
   }
 }
 
-export async function del(url, headers = {}) {
+export async function del(url) {
   try {
-    const response = await axios.delete(API + url, {headers});
+    const response = await axios.delete(API + url, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     log('DELETE', `${url} - ${response?.status} : ${response?.data?.message}`, 'info');
     return response?.data;
   } catch (error) {

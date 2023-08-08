@@ -1,11 +1,9 @@
 import Swal from 'sweetalert2';
 
-export default function swa ({title, text, icon, confirmButtonText}, handlers = null) {
+export default function swa (options, handlers = null) {
     Swal.fire({
-        title: title,
-        text: text,
-        icon: icon,
-        confirmButtonText: confirmButtonText
+        ...options,
+        confirmButtonColor: '#00A2E0',
     }).then((result) => {
         if (result.isConfirmed) {
             if(handlers) {
