@@ -1,4 +1,11 @@
-<!-- Hero Homepage -->
+<!-- Homepage -->
+<svelte:head>
+  <title>{medata.base.title}</title>
+  <meta property="og:title" content={medata.base.title} />
+  <meta property="og:description" content={medata.base.description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={window.location} />
+</svelte:head>
 <script>
   import medata from "../metadata.json";
   import Corousel from "../../components/Corousel.svelte";
@@ -11,14 +18,6 @@
   let activityData = get("activities");
   let corouselData = get("corousels");
 </script>
-
-<svelte:head>
-  <title>{medata.base.title}</title>
-  <meta property="og:title" content={medata.base.title} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={window.location} />
-</svelte:head>
-
 <!-- Hero -->
 <div class="min-h-screen bg-base-200">
   {#await corouselData}

@@ -55,7 +55,7 @@ exports.create = async (req, res) => {
     const newActivities = new Activities({
       title,
       desc,
-      img: `/images/activities/${renameFile}`,
+      img: `images/activities/${renameFile}`,
       href,
       badge,
     });

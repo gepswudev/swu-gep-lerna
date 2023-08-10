@@ -16,8 +16,7 @@ const CorouselsSchema = new Schema({
     },
     img: {
         type: String,
-        // default: APIpath + '/images/corousels/default.jpg'
-        default: 'https://picsum.photos/1920/800'
+        default: 'images/corousels/default.png'
     },
     url: {
         type: String,

@@ -69,13 +69,12 @@
       err = e.message || "Server Error";
     });
 
-
   $: log("App", `Go to ${currentPath}`);
 </script>
 
 <Router {basepath}>
   <Navbar active={currentPath} />
-  <main class="mx-auto pt-28 w-screen h-full">
+  <main class="mx-auto pt-24 w-screen h-full scroll-smooth">
     <Route path="/" component={Hero} />
     <Route path="/user" component={Login} />
     <Route path="/login" component={Login} />

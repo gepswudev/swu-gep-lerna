@@ -68,6 +68,8 @@
 
   //page handlers
   import logo from "../assets/Srinakharinwirot_University_Logo.png";
+  import tha from "../assets/flag/tha.png";
+  import usa from "../assets/flag/usa.png";
   import swa from "../lib/popalert";
   import log from "../lib/log";
   import ThemeSwitch from "./ThemeSwitch.svelte";
@@ -75,9 +77,9 @@
   let isNavbarTransparent = false;
   let nav;
   const navOnTop =
-    "fixed navbar h-28  bg-base-100 z-50 transition-transform transform duration-800";
+    "fixed navbar h-24  bg-base-100 z-50 transition-transform transform duration-800";
   const navScrolled =
-    "fixed navbar  bg-base-100/[.5] h-12 z-50 transition-transform transform duration-800";
+    "fixed navbar  bg-base-100/[.5] h-24 z-50 transition-transform transform duration-800";
   let navClass = navOnTop;
   function updateNavbar() {
     if (window.scrollY > 50) {
@@ -114,6 +116,12 @@
 
   import { user, logout, login } from "../store/user";
   import { get } from "../lib/API/methods";
+  import { IconFlag, IconSearch, IconUser } from "@tabler/icons-svelte";
+  let langSwitcher = false;
+  const toggleLangSwitcher = () => {
+    langSwitcher = !langSwitcher;
+  };
+
   //auth token
 </script>
 
@@ -177,7 +185,7 @@
       <a href="/"
         ><img
           src={logo}
-          class="hidden sm:flex w-16 m-4 pt-2"
+          class="hidden sm:flex w-10 m-4 pt-2"
           alt="_swu_logo"
         /></a
       >
@@ -186,7 +194,7 @@
         href="/">{navData?.nav?.title || navData?.title}</a
       >
     </div>
-    <img src={logo} class="navcenter sm:hidden w-16 m-4 pt-2" alt="_swu_logo" />
+    <img src={logo} class="navcenter sm:hidden w-10 m-4 pt-2" alt="_swu_logo" />
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
         {#if $user.role === "admin"}
@@ -197,9 +205,7 @@
               <ul class="p-2 z-50">
                 {#each navLink as menu, index ("md_" + menu + index)}
                   <li>
-                    <a id={"nav_" + menu.link} href={menu.link}
-                      >{menu.title}</a
-                    >
+                    <a id={"nav_" + menu.link} href={menu.link}>{menu.title}</a>
                   </li>
                 {/each}
               </ul>
@@ -208,7 +214,6 @@
           <li><a href="/files">File system</a></li>
           <li><a href="/viewactivities">Activities</a></li>
           <li><a href="/viewcorousels">Banner</a></li>
-          
         {:else}
           <li><a href="/user">You are not admin!</a></li>
         {/if}
@@ -277,7 +282,14 @@
                 </details>
               </li>
             {:else}
-              <li><a id={"nav_" + nav.link} href={nav.link}>{nav.title}</a></li>
+              <li>
+                <a
+                  id={"nav_" + nav.link}
+                  href={nav.link}
+                  class={active === nav.link ? "text-primary" : ""}
+                  >{nav.title}</a
+                >
+              </li>
             {/if}
           {/each}
           <li class="navbar-end flex flex-rows">
@@ -296,16 +308,16 @@
       <a href="/"
         ><img
           src={logo}
-          class="hidden sm:flex w-16 m-4 pt-2"
+          class="hidden sm:flex w-10 m-4 pt-2"
           alt="_swu_logo"
         /></a
       >
       <a
-        class="hidden md:flex md:flex-1 xl:flex-none btn btn-ghost px-0 normal-case text-xl"
+        class="hidden md:flex md:flex-1 xl:flex-none px-0 pt-1 normal-case text-xl"
         href="/">{navData?.nav?.title || navData?.title}</a
       >
     </div>
-    <img src={logo} class="navcenter sm:hidden w-16 m-4 pt-2" alt="_swu_logo" />
+    <img src={logo} class="navcenter sm:hidden w-10 m-4 pt-2" alt="_swu_logo" />
     <!-- <div class="navbar-center hidden lg:flex">
       
     </div> -->
@@ -321,8 +333,12 @@
                   <ul class="p-2 z-50">
                     {#each nav.submenu as menu, index ("dd_" + menu + index)}
                       <li>
-                        <a id={"nav_" + menu.link} href={menu.link}
-                          >{menu.title}</a
+                        <a
+                          id={"nav_" + menu.link}
+                          href={menu.link}
+                          class={active === menu.link
+                            ? "text-primary font-bold"
+                            : ""}>{menu.title}</a
                         >
                       </li>
                     {/each}
@@ -330,24 +346,55 @@
                 </details>
               </li>
             {:else}
-              <li><a id={"nav_" + nav.link} href={nav.link}>{nav.title}</a></li>
+              <li>
+                <a
+                  id={"nav_" + nav.link}
+                  href={nav.link}
+                  class={active === nav.link ? "text-primary font-bold" : ""}
+                  >{nav.title}</a
+                >
+              </li>
             {/if}
           {/each}
         </ul>
       </div>
       <!-- Languages Switcher -->
-      <button
-        class="hidden sm:block btn bg-transparent border-none"
-        on:click={languageChange}
-        bind:this={langButton}
-        >{@html lang() === "th" ? "<b>TH</b> / EN" : "<b>EN</b> / TH"}</button
+      <button on:click={toggleLangSwitcher} on:mouseenter={toggleLangSwitcher} class="mr-4 hover:animate-pulse"
+        ><IconFlag stroke=1 class="hover:stroke-2"/></button
       >
+      {#if langSwitcher}
+        <div
+          class="absolute flex top-24 mr-28 p-2 bg-base-100 border-none rounded-lg items-center align-baseline justify-center"
+          on:mouseleave={toggleLangSwitcher}
+          aria-hidden="true"
+          
+        >
+          <button
+            class={lang() === "th" ? "btn bg-base-200 border-none" : "btn bg-base-100 border-none"}
+            on:click={languageChange}
+            
+            bind:this={langButton}
+            ><img class="rounded w-6" src={tha} alt="tha_flag"></button
+          >
+          <button
+            class={lang() === "en" ? "btn bg-base-200  border-none" : "btn bg-base-100 border-none"}
+            on:click={languageChange}
+            bind:this={langButton}
+            
+            ><img class="rounded w-6" src={usa} alt="usa_flag"></button
+          >
+        </div>
+      {/if}
+      <button class="mr-4 hover:animate-bounce"
+        ><IconSearch stroke=1 class="hover:stroke-2"/></button
+      >
+
       <!-- Languages Switcher -->
 
       <!-- Theme Switcher -->
-      <ThemeSwitch />
+      <!-- <ThemeSwitch /> -->
       <!-- Theme Switcher -->
-      <a href="/login" class="btn btn-ghost border border-gray mr-2">Login</a>
+      <a href="/login" class="btn btn-ghost border border-gray mr-2"><IconUser stroke=2 size=16/>Login</a>
     </div>
   </div>
 {/if}
