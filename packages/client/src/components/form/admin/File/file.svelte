@@ -54,11 +54,9 @@
                 }).then(() => {
                   location.reload();
                 });
-
-                location.reload();
               } else {
                 Swal.fire({
-                  title: "Error!",
+                  title: res.status,
                   text: res.message,
                   icon: res.status,
                   confirmButtonText: "OK",

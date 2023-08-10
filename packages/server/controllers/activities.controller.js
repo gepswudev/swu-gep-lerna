@@ -1,10 +1,12 @@
 const logger = require("../database/logger");
+const fs = require("fs");
 const { log } = require("../logger");
 const Activities = require("../models/Activities");
 
 // Create a new activity
 exports.create = async (req, res) => {
-  const { title, desc, img, href, badge } = req.body;
+  const { title, desc,  href, badge } = req.body;
+  
   try {
     //Validate file input
     if (!req.files || Object.keys(req.files).length === 0) {
@@ -31,8 +33,10 @@ exports.create = async (req, res) => {
 
     const uploadedFile = req.files.img;
     const fileName = uploadedFile.name;
+    console.log(fileName);
     const fileExtension = fileName.split(".").pop();
-    const renameFile = `${title}_${Date.now()}.${fileExtension}`;
+    console.log(fileExtension);
+    const renameFile = `${title.trim()}_${Date.now()}.${fileExtension}`;
     const uploadPath = `${__dirname}/../public/images/activities/${renameFile}`;
     // Use the mv() method to place the file somewhere on your server
     // For simplicity, we'll save the file in the "uploads" directory in the project root
@@ -184,6 +188,20 @@ exports.delete = async (req, res) => {
         message: "Activities not found",
       });
     }
+
+    // Delete the image file from the server
+    const filePath = `${__dirname}/../public${activities.img}`;
+    fs.unlink(filePath, (err) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send({
+          status: "error",
+          message: "Error occurred while deleting the file.",
+        });
+      }
+      log(`Activities`,`File deleted successfully: ${filePath}`);
+    });
+
     logger.delete(`Activities ${activities.title} deleted by ${req.userData?.username}`);
     res.status(200).send({
       status: "success",

@@ -30,8 +30,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload({
   limits: { fileSize: 50 * 1024 * 1024 }, // Set the maximum file size 
-  safeFileNames: true, // Sanitize uploaded file names 
-  preserveExtension: true // Preserve original file extensions 
 }));
 
 

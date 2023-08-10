@@ -34,13 +34,13 @@
         "links": [
             {
                 "name": "Terms of use",
-                "link": "/"
+                "link": "/tou"
             },{
                 "name": "Privacy policy",
-                "link": "/"
+                "link": "/policy"
             },{
                 "name": "Cookie policy",
-                "link": "/"
+                "link": "/cookies"
             }
         ]
     }

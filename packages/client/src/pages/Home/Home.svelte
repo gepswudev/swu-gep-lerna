@@ -1,5 +1,6 @@
 <!-- Hero Homepage -->
 <script>
+  import medata from "../metadata.json";
   import Corousel from "../../components/Corousel.svelte";
   import HorizonCard from "../../components/HorizonCard.svelte";
   import HorizonCardSkeleton from "../../components/skeletons/HorizonCard_Skeleton.svelte";
@@ -12,11 +13,10 @@
 </script>
 
 <svelte:head>
-  <title>Home</title>
-  <meta property="og:title" content="SWU" />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="" />
-  <meta property="og:image" content="" />
+  <title>{medata.base.title}</title>
+  <meta property="og:title" content={medata.base.title} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={window.location} />
 </svelte:head>
 
 <!-- Hero -->

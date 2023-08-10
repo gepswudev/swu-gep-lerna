@@ -31,7 +31,7 @@
         if (result.isConfirmed) {
           del(`activities/${id}`)
             .then((res) => {
-              if (res.status === 200) {
+              if (res.status === "success") {
                 Swal.fire({
                   title: "Deleted!",
                   text: res.message,
@@ -39,13 +39,14 @@
                   confirmButtonText: "OK",
                   cancelButtonColor: "#00A2E0",
                 }).then(() => {
+                  
                   location.reload();
                 });
 
                 location.reload();
               } else {
                 Swal.fire({
-                  title: "Error!",
+                  title: res.status,
                   text: res.message + " as Admin",
                   icon: res.status,
                   confirmButtonText: "OK",
