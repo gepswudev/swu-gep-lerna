@@ -18,8 +18,9 @@
     const img = formData.get("img");
     const href = formData.get("href");
     const badge = formData.get("badge");
+    const tag = formData.get("tag");
 
-    err = { ...err, title: "", desc: "", img: "", href: "", badge: "" };
+    err = { ...err, title: "", desc: "", img: "", href: "", badge: "" , tag: ""};
     if (title === "") {
       err = { ...err, title: "Title is required" };
     }
@@ -66,12 +67,14 @@
     const img = formData.get("img");
     const href = formData.get("href");
     const badge = formData.get("badge");
+    const tag = formData.get("tag");
     const data = {
       title,
       desc,
       img,
       href,
       badge,
+      tag,
     };
     console.log(data);
     //change button while creating
@@ -172,6 +175,21 @@
     />
     {#if err.badge}
       <p class="text-red-500">{err.badge}</p>
+    {/if}
+  </div>
+
+  <div class="mb-4">
+    <label for="tag" class="label">Tag</label>
+    <input
+      type="text"
+      name="tag"
+      id="tag"
+      class="input input-bordered input-primary w-full"
+      placeholder="Enter activity tag for filter here. ex ใหม่, แนะนำ (Option)"
+    />
+    <p class="text-neutral text-md">* Tag must be a unique and split by comma (,) Ex. ใหม่, แนะนำ, สำคัญ</p>
+    {#if err.tag}
+      <p class="text-red-500">{err.tag}</p>
     {/if}
   </div>
 

@@ -37,6 +37,7 @@ if(process.env.NODE_ENV !== 'production') app.use('/log', express.static(path.jo
 
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 app.use('/files', express.static(path.join(__dirname, 'uploads')));
+app.use('/db', express.static(path.join(__dirname, 'log/database')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -49,7 +50,7 @@ app.use('/activities', activitiesRouter);
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Header', '*');
-  //res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Type', 'application/json');
   if(req.method === 'OPTIONS'){
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
     return res.status(200).json({});

@@ -1,12 +1,8 @@
 <script>
   import Carousel from "svelte-carousel";
+  import getImg from "../lib/getImg";
   export let data;
 
-  const getImg = (img) => {
-    if (img.startsWith("http")) return img;
-    if (window.location.hostname === "localhost") return `http://localhost:5001/${img}`;
-    return `https://gepswu-server.onrender.com/${img}`;
-  };
 </script>
 
 {#if data}

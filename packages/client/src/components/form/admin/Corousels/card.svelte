@@ -3,15 +3,10 @@
   import { navigate } from "svelte-routing";
   import { del } from "../../../../lib/API/methods";
   import Swal from "sweetalert2";
+  import getImg from "../../../../lib/getImg";
 
   export let data;
 
-  const getImg = () => {
-    if (data.img.startsWith("http")) return data.img;
-    if (window.location.hostname === "localhost")
-      return `http://localhost:5001/${data.img}`;
-    return `https://gepswu-server.onrender.com/${data.img}`;
-  };
   const deleteHandler = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -75,7 +70,7 @@
 <div
   class="flex flex-col w-96 md:w-[30rem] justify-center text-start p-4 border-2 border-base-300"
 >
-  <img src={getImg()} alt={`${data.name}_Banner`} />
+  <img src={getImg(data.img)} alt={`${data.name}_Banner`} />
   <p class="font-bold text-2xl my-4">
     Name : <span class="text-xl"> {data.name}</span>
   </p>

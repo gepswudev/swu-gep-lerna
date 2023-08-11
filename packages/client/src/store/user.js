@@ -48,6 +48,6 @@ export const logout = (redirect = "/") => {
             localStorage.removeItem("token");
             window.location.href = redirect;
             log("LOGOUT", `User ${user.username} logged out`, "info");
-        }
+        };
     });
 };

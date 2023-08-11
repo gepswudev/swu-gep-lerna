@@ -4,14 +4,11 @@
   import { navigate } from "svelte-routing";
   import { del } from "../../lib/API/methods";
   import Swal from "sweetalert2";
+  import getImg from "../../lib/getImg";
   export let data;
   export let id = "";
 
-  const getImg = () => {
-    if(data.img.startsWith("http")) return data.img;
-    if(window.location.hostname === "localhost") return `http://localhost:5001/${data.img}`;
-    return `https://gepswu-server.onrender.com/${data.img}`;
-  }
+  
 
   const editHandler = () => {
     navigate(`/admin/activities/update/${id}`);
@@ -88,7 +85,7 @@
   id={data.title}
   class="card w-[20rem] bg-base-100 border-none shadow-xl hover:shadow-2xl border hover:border-primary duration-500 transition-transform transform hover:scale-110"
 >
-  <figure><img class="h-52" src={getImg()} alt={data.title + "_IMG"} /></figure>
+  <figure><img class="h-52" src={getImg(data.img)} alt={data.title + "_IMG"} /></figure>
   <div class="card-body">
     <h2 class="card-title">
       {data.title ?? ""}

@@ -44,7 +44,7 @@ exports.create = async (req, res) => {
 
     // Use the mv() method to place the file somewhere on your server
     // For simplicity, we'll save the file in the "uploads" directory in the project root
-    uploadedFile.mv(uploadPath, (err) => {
+    uploadedFile.mv(uploadPath, async (err) => {
       if (err) {
         console.log(err);
         return res.status(500).send({
@@ -52,6 +52,7 @@ exports.create = async (req, res) => {
           message: "Error occurred while uploading the file.",
         });
       }
+      //validate the image size width must be 1440 and height must be between 600 and 650
       const dimensions = sizeOf(uploadPath);
       if (
         dimensions.width !== 1440 ||
@@ -76,22 +77,20 @@ exports.create = async (req, res) => {
         });
       }
       log(`Corousels`, `File uploaded successfully: ${uploadPath}`);
-    });
+      const newCorousels = new Corousels({
+        name,
+        img: `images/corousels/${renameFile}`,
+        url,
+      });
 
-    //validate the image size width must be 1440 and height must be between 600 and 650
+      // Save the new corousel to the database
+      const corousels = await newCorousels.save();
 
-    const newCorousels = new Corousels({
-      name,
-      img: `images/corousels/${renameFile}`,
-      url,
-    });
-
-    // Save the new corousel to the database
-    const corousels = await newCorousels.save();
-    res.status(201).send({
-      status: "success",
-      message: "Corousels created successfully",
-      data: corousels,
+      res.status(201).send({
+        status: "success",
+        message: "Corousels created successfully",
+        data: corousels,
+      });
     });
   } catch (error) {
     // Handle any errors that occur during the creation process

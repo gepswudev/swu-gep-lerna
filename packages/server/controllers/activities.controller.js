@@ -40,7 +40,7 @@ exports.create = async (req, res) => {
     const uploadPath = `${__dirname}/../public/images/activities/${renameFile}`;
     // Use the mv() method to place the file somewhere on your server
     // For simplicity, we'll save the file in the "uploads" directory in the project root
-    uploadedFile.mv(uploadPath, (err) => {
+    uploadedFile.mv(uploadPath, async (err) => {
       if (err) {
         console.log(err);
         return res.status(500).send({
@@ -49,7 +49,6 @@ exports.create = async (req, res) => {
         });
       }
       log(`Activities`,`File uploaded successfully: ${uploadPath}`);
-    });
 
     // Create a new instance of the Activities model
     const newActivities = new Activities({
@@ -70,6 +69,8 @@ exports.create = async (req, res) => {
       message: `Activities ${title} created successfully`,
       data: activities,
     });
+    });
+
   } catch (error) {
     // Handle any errors that occur during the creation process
     res.status(500).send({
