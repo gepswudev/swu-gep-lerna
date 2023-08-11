@@ -89,7 +89,7 @@
     <Route path="/files" component={FileManagement} />
     <Route path="/test" component={Test} />
 
-    <Route path="/history" component={History} />
+    <Route path="/about" component={History} />
 
     <Route path="/cookies" component={CookiesPage} />
     <Route path="*" component={Hero} />

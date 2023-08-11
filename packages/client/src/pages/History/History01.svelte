@@ -1,6 +1,7 @@
 <script>
     import Banner from "./HistoryBanner.png"
     import Logo from "./GepLogo.jpg"
+    import HeaderTitle from "./HeaderBgTitle.png"
 </script>
 
 <svelte:head>
@@ -15,7 +16,7 @@
         <div class="text-left md:text-justify max-w-sm py-8 md:max-w-3xl lg:max-w-6xl grid place-items-center">
             <img src={Banner} alt="" class="py-6 block md:hidden">
             <div class="flex place-items-center">
-                <img src={Logo} alt="" class="w-20 mr-4">
+                <img src={HeaderTitle} alt="">
                 <h2 class="text-3xl font-bold drop-shadow-md" >
                     ประวัติภาควิชาแนะแนวและจิตวิทยาการศึกษา
                 </h2>
