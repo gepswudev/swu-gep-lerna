@@ -16,7 +16,7 @@
 {#await activityData}
   <div />
 {:then rawdata}
-  <div class="mx-48 flex w-[80rem] text-neutral">
+  <div class="flex mx-auto my-32 w-[80rem] text-neutral">
     <div class="flex flex-none w-64 flex-col">
       <div class="mt-4 ml-3 flex flex-row align-start items-start">
         <IconAdjustmentsHorizontal stroke="1" size="28" />
