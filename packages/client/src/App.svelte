@@ -11,7 +11,9 @@
   import AdminActivities from "./pages/Admin/Activities/all.svelte";
   import AdminActivitiesCreate from "./pages/Admin/Activities/create.svelte";
   import AdminActivitiesUpdate from "./pages/Admin/Activities/update.svelte";
-  import AdminCorousels from "./pages/Admin/Corousels.svelte";
+  import AdminCorousels from "./pages/Admin/Corousels/all.svelte";
+  import AdminCorouselsCreate from "./pages/Admin/Corousels/create.svelte";
+  import AdminCorouselsUpdate from "./pages/Admin/Corousels/update.svelte";
   import FileManagement from "./pages/Admin/FileManagement.svelte";
 
 
@@ -81,6 +83,10 @@
     <Route path="/admin" component={AdminMain} />
     <Route path="/viewusers" component={AdminUsers} />
     <Route path="/viewcorousels" component={AdminCorousels} />
+    <Route path="/admin/corousels/create" component={AdminCorouselsCreate}/>
+    <Route path="/admin/corousels/update/:id" let:params>
+      <AdminCorouselsUpdate {...params} />
+    </Route>
     <Route path="/viewactivities" component={AdminActivities} />
     <Route path="/admin/activities/create" component={AdminActivitiesCreate}/> 
     <Route path="/admin/activities/update/:id" let:params>

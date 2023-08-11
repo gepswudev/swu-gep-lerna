@@ -5,7 +5,7 @@ const Activities = require("../models/Activities");
 
 // Create a new activity
 exports.create = async (req, res) => {
-  const { title, desc,  href, badge } = req.body;
+  const { title, desc, href, badge, tag } = req.body;
   
   try {
     //Validate file input
@@ -58,6 +58,7 @@ exports.create = async (req, res) => {
       img: `images/activities/${renameFile}`,
       href,
       badge,
+      tag,
     });
 
     // Save the new activity to the database
@@ -122,7 +123,7 @@ exports.findOne = async (req, res) => {
 
 // Update an existing activity by ID
 exports.update = async (req, res) => {
-  const { title, desc ,href, badge } = req.body;
+  const { title, desc ,href, badge, tag } = req.body;
   try {
     if(!title || title === "") {
       return res.status(400).send({
@@ -150,6 +151,7 @@ exports.update = async (req, res) => {
         href,
         badge,
         updateAt: Date.now(),
+        tag,
       },
       {
         new: true,
@@ -190,17 +192,20 @@ exports.delete = async (req, res) => {
     }
 
     // Delete the image file from the server
-    const filePath = `${__dirname}/../public${activities.img}`;
-    fs.unlink(filePath, (err) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).send({
-          status: "error",
-          message: "Error occurred while deleting the file.",
-        });
-      }
-      log(`Activities`,`File deleted successfully: ${filePath}`);
-    });
+    const uploadPath = `${__dirname}/../public${activities.img}`;
+    //check if the file exists
+    if (fs.existsSync(uploadPath) && !activities.img.includes("default.png")) {
+      fs.unlink(uploadPath, (err) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send({
+            status: "error",
+            message: "Error occurred while deleting the file.",
+          });
+        }
+        log(`Corousels`, `File deleted successfully: ${uploadPath}`);
+      });
+    }
 
     logger.delete(`Activities ${activities.title} deleted by ${req.userData?.username}`);
     res.status(200).send({
@@ -214,3 +219,36 @@ exports.delete = async (req, res) => {
     });
   }
 };
+
+//activities view count
+exports.view = async (req, res) => {
+  try {
+    // Find the activity by ID and update its properties
+    const activities = await Activities.findByIdAndUpdate(
+      req.params.id,
+      {
+        $inc: { views: 1 },
+      },
+      {
+        new: true,
+      }
+    );
+    if (!activities) {
+      // If the activity with the given ID is not found, return a 404 error
+      return res.status(404).send({
+        status: "error",
+        message: "Activities not found",
+      });
+    }
+    res.status(200).send({
+      status: "success",
+      message: "Activities updated successfully",
+      data: activities,
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: error.message,
+    });
+  }
+}

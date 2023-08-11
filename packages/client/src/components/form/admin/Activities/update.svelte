@@ -1,5 +1,5 @@
 <script>
-  import { get, post, put } from "../../../../lib/API/methods";
+  import { get, put } from "../../../../lib/API/methods";
   import swa from "../../../../lib/popalert";
   import log from "../../../../lib/log";
   import Loading from "../../../Loading.svelte";

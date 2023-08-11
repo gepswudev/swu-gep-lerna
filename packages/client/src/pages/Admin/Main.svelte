@@ -6,25 +6,24 @@
   const data = [
     {
       title: "File System",
-      desc: "Manage files",
+      desc: "Manage Files",
       img: "https://placeholder.pics/svg/500x200/DEDEDE/008000/File%20System",
       icon: "info",
       href: "/files",
     },
     {
       title: "Activities",
-      desc: "Manage activities",
+      desc: "Manage Ativities",
       img: "https://placeholder.pics/svg/500x200/DEDEDE/008000/Activities",
       icon: "info",
       href: "/viewactivities",
     },
     {
       title: "Corousels",
-      desc: "Manage corousels",
-      img: "https://placeholder.pics/svg/500x200/DEDEDE/FF1500/Disabled!",
+      desc: "Manage Banner Corousels",
+      img: "https://placeholder.pics/svg/500x200/DEDEDE/008000/Corousels!",
       icon: "info",
       href: "/viewcorousels",
-      disabled: true,
     },
   ];
 </script>
