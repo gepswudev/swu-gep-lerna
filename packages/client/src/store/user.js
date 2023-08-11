@@ -48,8 +48,6 @@ export const logout = (redirect = "/") => {
             localStorage.removeItem("token");
             window.location.href = redirect;
             log("LOGOUT", `User ${user.username} logged out`, "info");
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-            Swal.fire("Cancelled", `You are still logged in as ${user.username}`, "error");
         }
     });
 };

@@ -1,47 +1,15 @@
 <script>
   import { navigate } from "svelte-routing";
-  import { user } from "../../store/user";
-
-  const data = [
-    {
-      title: "Users",
-      desc: "Manage users",
-      img: "https://placeholder.pics/svg/500x200/DEDEDE/FF1500/Disabled",
-      icon: "info",
-      href: "/viewusers",
-      disabled: true,
-    },
-    {
-      title: "Corousels",
-      desc: "Manage corousels",
-      img: "https://placeholder.pics/svg/500x200/DEDEDE/FF1500/Disabled!",
-      icon: "info",
-      href: "/viewcorousels",
-      disabled: true,
-    },
-    {
-      title: "Activities",
-      desc: "Manage activities",
-      img: "https://placeholder.pics/svg/500x200/DEDEDE/008000/Activities",
-      icon: "info",
-      href: "/viewactivities",
-    },
-  ];
+  import UpdateForm from "../../../components/form/admin/Corousels/update.svelte";
+  import { user } from "../../../store/user";
+  export let id;
 </script>
 
 {#key $user}
   {#if $user !== null}
     {#if $user?.role === "admin"}
-      <div class="hero min-h-screen bg-base-200">
-        <div class="hero-content flex-col text-center">
-          <div class="max-w-xl">
-            <h1 class="text-5xl font-bold">This page is under development!</h1>
-            <button
-              class="btn btn-primary mt-12"
-              on:click={() => navigate("/admin")}>Back</button
-            >
-          </div>
-        </div>
+      <div class="m-24 justify-center">
+        <UpdateForm {id} />
       </div>
     {:else}
       <div class="hero min-h-screen bg-base-200">

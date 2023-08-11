@@ -10,6 +10,7 @@ router.get('/', activities.findAll);
 router.get('/:id', activities.findOne);
 router.put('/:id', activities.update);
 router.delete('/:id', tokenize, auth, activities.delete);
+router.get('/view/:id', activities.view);
 
 module.exports = router;
 

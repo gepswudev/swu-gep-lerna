@@ -30,6 +30,14 @@ const ActivitiesSchema = new Schema({
         type: String,
         default: ''
     },
+    tag:{
+        type: String,
+        default: ''
+    },
+    views:{
+        type: Number,
+        default: 0
+    } ,
     createAt : {
         type: Date,
         default: Date.now
