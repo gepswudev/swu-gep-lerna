@@ -1,6 +1,7 @@
 import { get, writable } from "svelte/store";
 import Swal from "sweetalert2";
 import log from "../lib/log";
+import { navigate } from "svelte-routing";
 
 export const user = writable(null);
 
@@ -46,7 +47,7 @@ export const logout = (redirect = "/") => {
             user.set(null);
             localStorage.removeItem("username");
             localStorage.removeItem("token");
-            window.location.href = redirect;
+            navigate(redirect);
             log("LOGOUT", `User ${user.username} logged out`, "info");
         };
     });

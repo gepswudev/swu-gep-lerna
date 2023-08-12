@@ -217,7 +217,7 @@
         </ul>
       </div>
       <!-- Languages Switcher -->
-      <button on:click={toggleLangSwitcher} on:mouseenter={toggleLangSwitcher} class="mr-4 hover:animate-pulse"
+      <button on:click={toggleLangSwitcher} on:mouseenter={toggleLangSwitcher} class="hidden xl:flex mr-4 hover:animate-pulse"
         ><IconFlag stroke=1 class="hover:stroke-2"/></button
       >
       {#if langSwitcher}
@@ -243,7 +243,7 @@
           >
         </div>
       {/if}
-      <button class="mr-4 hover:animate-bounce"
+      <button class="hidden xl:flex mr-4 hover:animate-bounce"
         ><IconSearch stroke=1 class="hover:stroke-2"/></button
       >
 

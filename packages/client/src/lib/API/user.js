@@ -14,6 +14,7 @@ export async function _login() {
     confirmButtonColor: "#3085d6",
     cancelButtonText: "Cancel",
     cancelButtonColor: "#d33",
+    showLoaderOnConfirm: true,
     preConfirm: () => {
       post("users/login", {
         username: document.getElementById("swal-input1").value,

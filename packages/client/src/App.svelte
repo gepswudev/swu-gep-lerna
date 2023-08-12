@@ -25,6 +25,7 @@
   import Test from "./pages/test.svelte";
   import CookiesPage from "./components/CookiesPage.svelte";
   import Cookies from "./components/Cookies.svelte";
+  import Loading from "./components/Loading.svelte";
 
   const defaultLang = "th";
   const lang = localStorage.getItem("lang") || defaultLang;
@@ -56,7 +57,7 @@
           },
           willClose: () => {
             clearInterval(timerInterval);
-            
+       
           },
         }).then((result) => {
           /* Read more about handling dismissals below */
@@ -72,8 +73,14 @@
     });
 
   $: log("App", `Go to ${currentPath}`);
+
+  let isServerAlive = checkConnection();
 </script>
 
+{#await isServerAlive}
+  <Loading title="Connect to Server" desc="It's may take a longtime cause Server is sleepy under development mode"/>
+{:then alive} 
+{#if alive}
 <Router {basepath}>
   <Navbar active={currentPath} />
   <main class="mx-auto pt-24 w-screen h-full scroll-smooth">
@@ -103,3 +110,9 @@
   </main>
   <Footer />
 </Router>
+{:else}
+<Loading title="Can't connect to server" desc={`Can't connect to server, Please contact the web developer!`} />
+{/if}
+{:catch err}
+<Loading title="Can't connect to server" desc={`Can't connect to server, Please contact the web developer!`} />
+{/await}
