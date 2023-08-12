@@ -6,6 +6,7 @@ export async function _login() {
   const { value: formValues } = await Swal.fire({
     title: "Login",
     html:
+      '<p>Please enter username and password.</p>' +
       '<input type="text" id="swal-input1" class="swal2-input" placeholder="Username">' +
       '<input type="password" id="swal-input2" class="swal2-input" placeholder="Password">',
     focusConfirm: false,
@@ -16,27 +17,36 @@ export async function _login() {
     cancelButtonColor: "#d33",
     showLoaderOnConfirm: true,
     preConfirm: () => {
-      post("users/login", {
+      return post("users/login", {
         username: document.getElementById("swal-input1").value,
         password: document.getElementById("swal-input2").value,
-      }).then((res) => {
-        console.log(res);
-        if (res.status == "success") {
-          login({
-            username: res.data.username,
-            token: res.data.token,
-            role: res.data.role,
-            loginAt: new Date().toLocaleString(),
-          });
-        } else {
-          Swal.fire({
-            title: "Login Failed",
-            text: res.message,
-            icon: "error",
-            confirmButtonText: "OK",
-          });
-        }
-      });
+      })
+        .then((res) => {
+          return res;
+        })
+        .catch((err) => {
+          Swal.showValidationMessage(`Request failed: ${err}`);
+        });
     },
+    allowOutsideClick: () => !Swal.isLoading(),
+  }).then((result) => {
+    console.log(result)
+    if (result.isConfirmed) {
+      if (result.value.status == "success") {
+        login({
+          username: result.value.data.username,
+          token: result.value.data.token,
+          role: result.value.data.role,
+          loginAt: new Date().toLocaleString(),
+        });
+      } else {
+        Swal.fire({
+          title: "Login Failed",
+          text: result.value.message,
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    }
   });
 }

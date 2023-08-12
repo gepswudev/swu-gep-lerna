@@ -1,4 +1,6 @@
 {
+    "mode": "development",
     "local":5001,
-    "deploy": "https://gepswu-server.onrender.com/"
+    "deploy": "https://gepswu-server.onrender.com/",
+    "_comment": "URL of the server to which the client will connect. Must be a valid URL with protocol (http/https) and port (if not 80/443). and must end with a slash (/)."
 }

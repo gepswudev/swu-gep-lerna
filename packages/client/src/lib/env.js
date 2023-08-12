@@ -1,10 +1,9 @@
 import log from "./log";
 import swa from "./popalert";
-import { get } from "./API/methods";
-import Swal from "sweetalert2";
+import config from "../config.json";
 
-export default function env(env) {
-  if (env == "dev") {
+export default function env() {
+  if (config.mode == "dev" || config.mode == "development") {
     swa(
       {
         title: "Under Development",

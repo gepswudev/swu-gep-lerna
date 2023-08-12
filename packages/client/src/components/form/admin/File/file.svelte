@@ -3,15 +3,16 @@
     import Swal from 'sweetalert2';
     import swa from '../../../../lib/popalert';
     import { del } from '../../../../lib/API/methods';
+    import Config from '../../../../config.json';
     
     export let data;
     export let index;
 
     const getURL = () => {
       if(window.location.hostname === "localhost"){
-        return `http://localhost:5001/files/${data.name}`;
+        return `http://localhost:${Config.local}/files/${data.name}`;
       }
-      return `https://gepswu-server.onrender.com/files/${data.name}`;
+      return `${Config.deploy}files/${data.name}`;
     };
 
     const handlerCopy = (e) => {

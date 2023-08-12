@@ -1,4 +1,4 @@
-import env from "./env";
+// Note: This is a simple log function that will log to the console if the environment is set to dev.
 
 export default function log (page, msg, type = 'log', important = false) {
     let status = localStorage.getItem('env') || 'prod';
