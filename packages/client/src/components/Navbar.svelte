@@ -252,7 +252,8 @@
       <!-- Theme Switcher -->
       <!-- <ThemeSwitch /> -->
       <!-- Theme Switcher -->
-      <a href="/login" class="btn btn-ghost border border-gray mr-2"><IconUser stroke=2 size=16/>Login</a>
+      <!-- <a href="/login" class="btn btn-ghost border border-gray mr-2"><IconUser stroke=2 size=16/>Login</a> -->
+      <button on:click={_login} class="btn btn-ghost border border-gray mr-2"><IconUser stroke=2 size=16/>Login</button>
     </div>
   </div>
 {/if}
@@ -378,6 +379,7 @@
   import { user, logout, login } from "../store/user";
   import { get } from "../lib/API/methods";
   import { IconFlag, IconSearch, IconUser } from "@tabler/icons-svelte";
+  import { _login } from "../lib/API/user";
   let langSwitcher = false;
   const toggleLangSwitcher = () => {
     langSwitcher = !langSwitcher;
