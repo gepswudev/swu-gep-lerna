@@ -31,8 +31,8 @@
     <Corousel data={data.data} />
   {/await}
 
-  <div class="hero bg-center items-center align-middle text-center py-8 ">
-    <div class="w-full mx-auto">
+  <div class="hero bg-center items-center align-middle text-center py-8">
+    <div class="w-screen mx-16 md:w-full md:mx-auto">
       <!-- YouTube -->
       <div class="flex flex-col w-[80rem] text-neutral mx-auto">
         <div class="w-full border-b-2 border-black py-4">
@@ -46,11 +46,12 @@
             <p class="flex-1 text-end">ก่อตั้งปี 2497</p>
           </div>
         </div>
-        <div class="p-8 flex flex-row border-b-2 text-start">
-          <div class="w-[55rem] grow">
+        <div class="py-8 md:p-8 flex flex-col  md:flex-row border-b-2 text-start">
+
+          <div class="flex md:block w-full grow">
             <Youtube id="jK89KESDWzU" altThumb={true} animations={false} />
           </div>
-          <div class=" w-[13rem] m-6 my-0 flex-none">
+          <div class="hidden md:block w-[13rem] m-6 my-0 flex-none">
             <h3 class="font-semibold">หลักสูตร</h3>
             <div class="mt-4 hover:underline hover:text-primary">
               <p>ระดับปริญญาตรี</p>
@@ -74,8 +75,8 @@
       <HorizonCard />
 
       <!-- WELLCENTER -->
-      <div class="flex w-[76rem] flex-row text-neutral mx-auto text-start">
-        <div class="w-[23.5rem] bg-gray">
+      <div class="flex w-[76rem] flex-col md:flex-row text-neutral mx-auto text-start">
+        <div class="hidden md:flex w-[23.5rem] bg-gray">
           <img class="h-full w-full" src={wellcenter} alt="wellcenterimg" />
         </div>
         <div class="flex w-[29.5rem] flex-col bg-gray p-12">
@@ -91,7 +92,7 @@
               <b>เวลา</b>
               <b>สถานที่</b>
             </div>
-            <div class="mx-2 flex flex-col">
+            <div class="mx-2 mt-4 flex flex-col">
               <p>วันจันทร์ - วันศุกร์</p>
               <p>10.00 - 16.30 น.</p>
               <p>มหาวิทยาลัยมหาวิทยาลัยศรีนครินทรวิโรฒ</p>
@@ -99,13 +100,13 @@
             </div>
           </div>
           <a
-            href="www.facebook.com/Well.Center.SWU"
+            href="https://www.facebook.com/Well.Center.SWU"
             class="text-primary mt-4 hover:underline"
             >ช่องทาง -&gt; www.facebook.com/Well.Center.SWU</a
           >
         </div>
         <div
-          class="flex flex-1 flex-col items-center justify-center text-center font-semibold p-3 align-baseline"
+          class="flex flex-1 flex-col items-start md:items-center justify-center text-center font-semibold p-3 align-baseline"
         >
           <img src={wellcenterQr} class="py-3" alt="wellcenterQR" />
           ติดต่อสอบถามข้อมูลได้โดยการแสกน QR Code นี้
@@ -125,7 +126,7 @@
           </div>
         </div>
         <div
-          class="grid grid-cols-2 px-24 pt-6 gap-4 justify-center items-center"
+          class="grid grid-cols-1 md:grid-cols-2 px-24 pt-6 gap-4 justify-center items-center"
         >
           <a
             class="hover:scale-105"

@@ -79,7 +79,7 @@
   <div
     class="flex mx-auto my-32 w-[90rem]  text-neutral"
   >
-    <div class="flex flex-none w-64 flex-col">
+    <div class="hidden md:flex flex-none w-64 flex-col">
       <div class="mt-4 ml-3 flex flex-row align-start items-start">
         <IconAdjustmentsHorizontal stroke="1" size="28" />
         <p class="ml-1 font-normal text-xl">คัดกรอง</p>
@@ -219,7 +219,7 @@
       <h2 class="mt-2 ml-3 text-3xl font-semibold text-black">
         ประมวลผลภาพกิจกรรม
       </h2>
-      <div class="grid grid-cols-3 grid-rows-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {#if sortType}
           {@const sortedData = sorter(rawdata.data, sortType)}
           {#each sortedData as data, i (data._id)}

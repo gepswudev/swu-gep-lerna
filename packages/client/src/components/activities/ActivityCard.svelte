@@ -31,7 +31,7 @@
 
 {#if display === "th"}
   <button
-    class="p-8 flex flex-col hover:shadow-2xl hover:rounded-xl bg-transparent text-start justify-between"
+    class="p-8 flex flex-col w-96 md:w-full hover:shadow-2xl hover:rounded-xl bg-transparent text-start justify-between"
     on:click={viewActivityHandler}
   >
     <img
