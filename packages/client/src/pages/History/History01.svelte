@@ -1,7 +1,8 @@
 <script>
     import Banner from "./HistoryBanner.png"
-    import Logo from "./GepLogo.jpg"
+    import Logo from "./GepLogo.png"
     import HeaderTitle from "./HeaderBgTitle.png"
+    import Building from "./EDU_building.png"
 </script>
 
 <svelte:head>
@@ -12,16 +13,29 @@
     <meta property="og:image" content="" />
 </svelte:head>
 
-<div class="min-h-full bg-base-200 grid place-items-center">
-        <div class="text-left md:text-justify max-w-sm py-8 md:max-w-3xl lg:max-w-6xl grid place-items-center">
-            <img src={Banner} alt="" class="py-6 block md:hidden">
-            <div class="flex place-items-center">
-                <img src={HeaderTitle} alt="">
-                <h2 class="text-3xl font-bold drop-shadow-md" >
-                    ประวัติภาควิชาแนะแนวและจิตวิทยาการศึกษา
+<div class="min-h-full bg-base-200">
+    <div class="md:flex justify-center">
+        <div class="ml-auto mr-auto py-8 max-w-sm block md:hidden">
+            <div class="bg-[#2B3440] h-20 flex items-center rounded-2xl max-w-sm mr-auto ml-auto">
+                <h2 class="text-[18px] md:text-3xl font-bold drop-shadow-md text-white ml-7 mr-7" >
+                ประวัติภาควิชาแนะแนวและจิตวิทยาการศึกษา
                 </h2>
             </div>
-            <img src={Banner} alt="" class="py-6 hidden md:block">
+            <h2 class="text-[16px] font-bold drop-shadow-md mt-6" >
+                คณาจารย์
+            </h2>
+            <img src={Banner} alt="" class="mt-6 block md:max-w-xl">
+            <h2 class="text-[16px] font-bold drop-shadow-md mt-12" >
+                สัญลักษณ์ประจำภาควิชา
+            </h2>
+            <img src={Logo} alt="" class="mt-6 block md:max-w-xl ml-auto mr-auto">
+        </div>
+        <div class="text-left md:text-justify max-w-sm py-8 md:max-w-md lg:max-w-3xl grid ml-auto mr-auto md:ml-0 md:mr-0">
+            <div class="bg-[#2B3440] h-20 md:flex items-center rounded-2xl hidden">
+                <h2 class="text-[18px] md:text-3xl font-bold drop-shadow-md text-white ml-7 mr-7" >
+                ประวัติภาควิชาแนะแนวและจิตวิทยาการศึกษา
+                </h2>
+            </div>
             <p class="py-6 indent-8 text-[16px]">
                 <b> ในอดีตเริ่มจากสถาบันการศึกษาเป็นวิทยาลัยวิชาการศึกษา
                 แผนกการแนะแนว </b> ปฏิบัติหน้าที่อยู่ในคณะวิชาการศึกษา
@@ -62,4 +76,18 @@
                 จึงกล่าวได้ว่าภาควิชา ฯ ได้ปฏิบัติหน้าที่ด้านวิชาการอย่างเต็มที่
             </p>
         </div>
+        <div class="md:ml-10 lg:ml-20 mt-24 max-w-xl md:max-w-md lg:max-w-xl hidden md:block">
+            <h2 class="text-3xl font-bold drop-shadow-md" >
+                คณาจารย์
+            </h2>
+            <img src={Banner} alt="" class="py-6 block md:max-w-md lg:max-w-xl">
+            <h2 class="text-3xl font-bold drop-shadow-md mt-12" >
+                สัญลักษณ์ประจำภาควิชา
+            </h2>
+            <img src={Logo} alt="" class="py-6 block md:max-w-md lg:max-w-xl ml-auto mr-auto">
+        </div>
+    </div>
+    <div>
+        <img src={Building} alt="" class="w-full">
+    </div>
 </div>
