@@ -1,72 +1,12 @@
-<!-- 
-  [
-        {
-            "views": 0,
-            "_id": "64cb5b46c21ec168fda0c45d",
-            "uid": "db18b395-b671-405d-b92c-f7c0bf7994ae",
-            "title": "กิจกรรม1",
-            "desc": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio ea cum totam nesciunt laudantium modi explicabo soluta libero corrupti repellat? Harum alias architecto, iste asperiores libero vitae neque placeat ea culpa repellendus ullam cumque mollitia maiores! Corrupti eligendi, doloremque incidunt eaque numquam explicabo minima doloribus voluptatem beatae pariatur qui hic!",
-            "img": "https://picsum.photos/500/200",
-            "href": "",
-            "badge": "ทดสอบ",
-            "tag": "กิจกรรม",
-            "view": 0,
-            "createAt": "2023-08-03T07:46:14.550Z",
-            "updateAt": "2023-08-03T08:29:04.451Z",
-            "__v": 0
-        },
-        {
-            "views": 0,
-            "_id": "64cb5b4ec21ec168fda0c462",
-            "uid": "db18b395-b671-405d-b92c-f7c0bf7994ae",
-            "title": "กิจกรรม2",
-            "desc": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio ea cum totam nesciunt laudantium modi explicabo soluta libero corrupti repellat? Harum alias architecto, iste asperiores libero vitae neque placeat ea culpa repellendus ullam cumque mollitia maiores! Corrupti eligendi, doloremque incidunt eaque numquam explicabo minima doloribus voluptatem beatae pariatur qui hic!",
-            "img": "https://picsum.photos/500/200",
-            "href": "",
-            "badge": "ใหม่",
-            "tag": "กิจกรรม",
-            "view": 0,
-            "createAt": "2023-08-03T07:46:22.521Z",
-            "updateAt": "2023-08-03T07:46:22.521Z",
-            "__v": 0
-        }
-        ]
- -->
-
 <script>
   import Card from "./ActivityCard.svelte";
   import { get } from "../../lib/API/methods";
   import { IconAdjustmentsHorizontal } from "@tabler/icons-svelte";
 
   let filter = "";
-  let search = "";
-  let bechelor = false;
-  let master = false;
-  let doctor = false;
-  let sortType = "new";
-
-  const sorter = (data, sort) => {
-    switch (sort) {
-      case "new":
-        return data.sort((a, b) => {
-          return b.createAt > a.createAt;
-        });
-      case "old":
-        return data.sort((a, b) => {
-          return a.createAt > b.createAt;
-        });
-      case "view":
-        return data.sort((a, b) => {
-          return b.view > a.view;
-        });
-      case "":
-        return data.sort((a, b) => {
-          return a.createAt > b.createAt;
-        });
-
-      default:
-        return data;
-    }
+  let postShow = 6;
+  const showMore = () => {
+    postShow += 6;
   };
 
   $: console.log(filter);
@@ -242,7 +182,18 @@
             {/if}
           {/each}
         {/if}
+      <div class="grid grid-cols-3 grid-rows-2">
+        {#each rawdata.data as data, i (data._id)}
+          {#if i < postShow}
+            {#if data.tag.includes(filter) || data.badge.includes(filter) || !filter}
+              <Card {data} />
+            {/if}
+          {/if}
+        {/each}
       </div>
+      <button class="self-end btn btn-ghost" on:click={showMore}
+        >Show more ...</button
+      >
     </div>
     <!-- Card section -->
   </div>

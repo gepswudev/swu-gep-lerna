@@ -14,17 +14,8 @@
   let badge;
   let tag;
   let submitButton;
-  let degreeSelect = [];
-
   let err = { title: "", desc: "", img: "", href: "", badge: "" };
   let validated = false;
-  
-  const selectCheck = (value) => {
-    if(degreeSelect.includes(value)){
-      return true;
-    }
-    return false;
-  }
 
   //form validation function
   const formValidate = () => {
@@ -33,19 +24,10 @@
     const desc = formData.get("desc");
     const img = formData.get("img");
     const href = formData.get("href");
-    const degree = degreeSelect;
     const badge = formData.get("badge");
     const tag = formData.get("tag");
 
-    err = {
-      ...err,
-      title: "",
-      desc: "",
-      img: "",
-      href: "",
-      badge: "",
-      tag: "",
-    };
+    err = { ...err, title: "", desc: "", img: "", href: "", badge: "" , tag: ""};
     if (title === "") {
       err = { ...err, title: "Title is required" };
     }
@@ -78,7 +60,6 @@
     const img = formData.get("img");
     const href = formData.get("href");
     const badge = formData.get("badge");
-    const degree = degreeSelect.toString();
     const tag = formData.get("tag");
 
     const data = {
@@ -86,8 +67,7 @@
       desc,
       href,
       badge,
-      degree,
-      tag,
+      tag
     };
     console.log(data);
     put(`activities/${id}`, data, {
@@ -123,7 +103,6 @@
     title = res.data.title;
     desc = res.data.desc;
     img = res.data.img;
-    degreeSelect = res.data.degree;
     href = res.data.href;
     badge = res.data.badge;
     return res.data;
@@ -207,46 +186,6 @@
     </div>
 
     <div class="mb-4">
-      <label for="badge" class="label">Degree</label>
-      <label class="cursor-pointer label justify-start gap-2">
-        <input
-          type="checkbox"
-          class="checkbox checkbox-primary"
-          name="degree"
-          bind:group={degreeSelect}
-          value="bechelor"
-          checked={selectCheck("bechelor")}
-        />
-        <span class="label-text">Bachelor Degree</span>
-      </label>
-      <label class="cursor-pointer label justify-start gap-2">
-        <input
-          type="checkbox"
-          class="checkbox checkbox-primary"
-          bind:group={degreeSelect}
-          value="master"
-          name="degree"
-          checked={selectCheck("master")}
-        />
-        <span class="label-text">Master Degree</span>
-      </label>
-      <label class="cursor-pointer label justify-start gap-2">
-        <input
-          type="checkbox"
-          class="checkbox checkbox-primary"
-          bind:group={degreeSelect}
-          value="doctor"
-          name="degree"
-          checked={selectCheck("docter")}
-        />
-        <span class="label-text">Docet Degree</span>
-      </label>
-      {#if err.degree}
-        <p class="text-red-500">{err.degree}</p>
-      {/if}
-    </div>
-
-    <div class="mb-4">
       <label for="badge" class="label">Badge</label>
       <input
         bind:value={badge}
@@ -264,16 +203,14 @@
     <div class="mb-4">
       <label for="tag" class="label">Tag</label>
       <input
-        bind:value={tag}
+      bind:value={tag}
         type="text"
         name="tag"
         id="tag"
         class="input input-bordered input-primary w-full"
         placeholder="Enter activity tag for filter here. ex ใหม่, แนะนำ (Option)"
       />
-      <p class="text-neutral text-md">
-        * Tag must be a unique and split by comma (,) Ex. ใหม่, แนะนำ, สำคัญ
-      </p>
+      <p class="text-neutral text-md">* Tag must be a unique and split by comma (,) Ex. ใหม่, แนะนำ, สำคัญ</p>
       {#if err.tag}
         <p class="text-red-500">{err.tag}</p>
       {/if}

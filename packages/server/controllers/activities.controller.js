@@ -6,10 +6,9 @@ const Activities = require("../models/Activities");
 // Create a new activity
 exports.create = async (req, res) => {
   const { title, desc, href, badge, tag } = req.body;
-
+  
   try {
     //Validate file input
-    const mydegree = req.body?.degree?.split(",");
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send({
         status: "error",
@@ -58,7 +57,6 @@ exports.create = async (req, res) => {
       img: `images/activities/${renameFile}`,
       href,
       badge,
-      degree:mydegree,
       tag,
     });
 
@@ -127,8 +125,6 @@ exports.findOne = async (req, res) => {
 // Update an existing activity by ID
 exports.update = async (req, res) => {
   const { title, desc ,href, badge, tag } = req.body;
-  let mydegree = req.body?.degree?.split(",");
-
   try {
     if(!title || title === "") {
       return res.status(400).send({
@@ -154,7 +150,6 @@ exports.update = async (req, res) => {
         title,
         desc,
         href,
-        degree: mydegree,
         badge,
         updateAt: Date.now(),
         tag,
@@ -229,11 +224,14 @@ exports.delete = async (req, res) => {
 //activities view count
 exports.view = async (req, res) => {
   try {
-    // Find the activity by ID and update its properties view += 1 
+    // Find the activity by ID and update its properties
     const activities = await Activities.findByIdAndUpdate(
-      {_id:req.params.id},
+      req.params.id,
       {
-        $inc: { view: 1 },
+        $inc: { views: 1 },
+      },
+      {
+        new: true,
       }
     );
     if (!activities) {
