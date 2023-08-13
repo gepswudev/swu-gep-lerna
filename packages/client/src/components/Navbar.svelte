@@ -172,7 +172,7 @@
       >
       <a
         class="hidden md:flex md:flex-1 xl:flex-none px-0 pt-1 normal-case text-xl"
-        href="/">{navData?.nav?.title || navData?.title}</a
+        href="/"><h1>{navData?.nav?.title || navData?.title}</h1></a
       >
     </div>
     <img src={logo} class="navcenter sm:hidden w-10 m-4 pt-2" alt="_swu_logo" />
