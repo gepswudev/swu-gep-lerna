@@ -34,7 +34,11 @@ const ActivitiesSchema = new Schema({
         type: String,
         default: ''
     },
-    views:{
+    degree:{
+        type: [String],
+        default: []
+    },
+    view:{
         type: Number,
         default: 0
     } ,

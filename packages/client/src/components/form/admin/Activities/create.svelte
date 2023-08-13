@@ -4,6 +4,7 @@
   import swa from "../../../../lib/popalert";
   export let sx = "";
   let form;
+  let degreeSelect = [];
   let submitButton;
   let err = { title: "", desc: "", img: "", href: "", badge: "" };
   let validated = false;
@@ -68,12 +69,14 @@
     const href = formData.get("href");
     const badge = formData.get("badge");
     const tag = formData.get("tag");
+    const degree = degreeSelect.toString();
     const data = {
       title,
       desc,
       img,
       href,
       badge,
+      degree,
       tag,
     };
     console.log(data);
@@ -161,6 +164,25 @@
     />
     {#if err.href}
       <p class="text-red-500">{err.href}</p>
+    {/if}
+  </div>
+
+  <div class="mb-4">
+    <label for="badge" class="label">Degree</label>
+    <label class="cursor-pointer label justify-start gap-2">
+      <input type="checkbox" class="checkbox checkbox-primary" bind:group={degreeSelect} value="bechelor"/>
+      <span class="label-text">Bachelor Degree</span>
+    </label>
+    <label class="cursor-pointer label justify-start gap-2">
+      <input type="checkbox" class="checkbox checkbox-primary" bind:group={degreeSelect} value="master"/>
+      <span class="label-text">Master Degree</span>
+    </label>
+    <label class="cursor-pointer label justify-start gap-2">
+      <input type="checkbox" class="checkbox checkbox-primary" bind:group={degreeSelect} value="doctor"/>
+      <span class="label-text">Docet Degree</span>
+    </label>
+    {#if err.degree}
+      <p class="text-red-500">{err.degree}</p>
     {/if}
   </div>
 
