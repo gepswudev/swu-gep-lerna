@@ -30,8 +30,8 @@
             </h2>
             <img src={Logo} alt="" class="mt-6 block md:max-w-xl ml-auto mr-auto">
         </div>
-        <div class="text-left md:text-justify max-w-sm py-8 md:max-w-md lg:max-w-3xl grid ml-auto mr-auto md:ml-0 md:mr-0">
-            <div class="bg-[#2B3440] h-20 md:flex items-center rounded-2xl hidden">
+        <div class="text-left max-w-sm py-8 md:max-w-md lg:max-w-3xl grid ml-auto mr-auto md:ml-0 md:mr-0">
+            <div class="bg-[#2B3440] h-20 md:flex items-center rounded-2xl hidden max-w-fit">
                 <h2 class="text-[18px] md:text-3xl font-bold drop-shadow-md text-white ml-7 mr-7" >
                 ประวัติภาควิชาแนะแนวและจิตวิทยาการศึกษา
                 </h2>
