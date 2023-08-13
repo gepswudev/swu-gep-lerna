@@ -20,7 +20,7 @@
 <div class="hero min-h-screen bg-base-200">
     <div class="hero-content flex-col text-center">
       <div class="max-w-xl">
-        <h1 class="text-5xl font-bold">Checking your access!</h1>
+        <h2 class="text-5xl font-bold">Checking your access!</h2>
         <p class="py-6">Please wait...</p>
         <!-- Loding animation -->
         <div

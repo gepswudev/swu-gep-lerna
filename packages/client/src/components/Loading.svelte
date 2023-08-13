@@ -8,7 +8,7 @@
 <div class={"hero min-h-screen bg-base-200 "+sx}>
   <div class="hero-content flex-col text-center">
     <div class="max-w-xl">
-      <h1 class="text-5xl font-bold">{title}</h1>
+      <h2 class="text-5xl font-bold">{title}</h2>
       <p class="py-6">{desc}</p>
       <!-- Loding animation -->
       <div

@@ -31,7 +31,7 @@
   <div class="hero min-h-screen">
     <div class="hero-content flex-col text-center">
       <div class="max-w-xl">
-        <h1 class="text-5xl font-bold">Admin panel</h1>
+        <h2 class="text-5xl font-bold">Admin panel</h2>
         <p class="py-6">Welcome to {$user?.username} Admin panel</p>
       </div>
       <div

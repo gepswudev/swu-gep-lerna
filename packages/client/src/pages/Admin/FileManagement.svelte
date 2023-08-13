@@ -24,7 +24,7 @@
 <AdminProtect>
   {#await files}
         <div class="m-24 justify-center">
-          <h1 class="my-4 text-4xl font-bold text-center">File Management</h1>
+          <h2 class="my-4 text-4xl font-bold text-center">File Management</h2>
           <FileUpload />
 
           <div class="mockup-window border bg-base-100">
@@ -51,7 +51,7 @@
         </div>
       {:then filedata}
         <div class="m-24 justify-center">
-          <h1 class="my-4 text-4xl font-bold text-center">File Management</h1>
+          <h2 class="my-4 text-4xl font-bold text-center">File Management</h2>
           <FileUpload />
           <div class="mockup-window border border-primary bg-base-100">
             <div
