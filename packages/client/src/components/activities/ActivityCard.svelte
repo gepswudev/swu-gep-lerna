@@ -2,7 +2,6 @@
   import lang from "../../lib/lang";
   import getImg from "../../lib/getImg";
   import { get } from "../../lib/API/methods";
-  import { navigate } from "svelte-routing";
   import swa from "../../lib/popalert";
 
   export let data;
@@ -51,8 +50,8 @@
           day: "numeric",
         })}
       </p>
-      {#if data.href}
-      <p class="text-neutral text-sm">{data.view} ผู้เข้าชม</p>
+      {#if data.href && data.views}
+      <p class="text-neutral text-sm">{data.views > 1 ? data.views + " ผู้เข้าชม" : "ไม่มีผู้เช้าชม"}</p>
       {/if}
     </div>
   </button>
@@ -77,9 +76,9 @@
           day: "numeric",
         })}
       </p>
-      {#if data.href}
+      {#if data.href && data.views}
       <p class="text-neutral text-sm">
-        {data.view > 1 ? data.view + " views" : data.view + " view"}
+        {data.views > 1 ? data.views + " views" : data.views + " view"}
       </p>
       {/if}
     </div>
