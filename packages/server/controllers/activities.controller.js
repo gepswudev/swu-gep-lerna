@@ -6,16 +6,17 @@ const Activities = require("../models/Activities");
 // Create a new activity
 exports.create = async (req, res) => {
   const { title, desc, href, badge, tag } = req.body;
-  
+
   try {
     //Validate file input
+    const degree = req.body?.degree.split(",");
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send({
         status: "error",
         message: "Image files were not uploaded.",
       });
     }
-    if(!title || title === "") {
+    if (!title || title === "") {
       return res.status(400).send({
         status: "error",
         message: "Title is required.",
@@ -48,29 +49,31 @@ exports.create = async (req, res) => {
           message: "Error occurred while uploading the file.",
         });
       }
-      log(`Activities`,`File uploaded successfully: ${uploadPath}`);
+      log(`Activities`, `File uploaded successfully: ${uploadPath}`);
 
-    // Create a new instance of the Activities model
-    const newActivities = new Activities({
-      title,
-      desc,
-      img: `images/activities/${renameFile}`,
-      href,
-      badge,
-      tag,
+      // Create a new instance of the Activities model
+      const newActivities = new Activities({
+        title,
+        desc,
+        img: `images/activities/${renameFile}`,
+        href,
+        badge,
+        tag,
+        degree,
+      });
+
+      // Save the new activity to the database
+      const activities = await newActivities.save();
+
+      logger.info(
+        `Activities ${title} created by ${req.userData?.username} with image ${renameFile}`
+      );
+      res.status(201).send({
+        status: "success",
+        message: `Activities ${title} created successfully`,
+        data: activities,
+      });
     });
-
-    // Save the new activity to the database
-    const activities = await newActivities.save();
-
-    logger.info(`Activities ${title} created by ${req.userData?.username} with image ${renameFile}`);
-    res.status(201).send({
-      status: "success",
-      message: `Activities ${title} created successfully`,
-      data: activities,
-    });
-    });
-
   } catch (error) {
     // Handle any errors that occur during the creation process
     res.status(500).send({
@@ -124,9 +127,10 @@ exports.findOne = async (req, res) => {
 
 // Update an existing activity by ID
 exports.update = async (req, res) => {
-  const { title, desc ,href, badge, tag } = req.body;
+  const { title, desc, href, badge, tag } = req.body;
   try {
-    if(!title || title === "") {
+    const degree = req.body?.degree.split(",");
+    if (!title || title === "") {
       return res.status(400).send({
         status: "error",
         message: "Title is required.",
@@ -134,14 +138,16 @@ exports.update = async (req, res) => {
     }
 
     //check if the activity with the given title already exists and not the same id
-    const isExist = await Activities.findOne({ title, _id: { $ne: req.params.id } });
+    const isExist = await Activities.findOne({
+      title,
+      _id: { $ne: req.params.id },
+    });
     if (isExist) {
       return res.status(400).send({
         status: "error",
         message: `Activities ${title} already exists`,
       });
     }
-
 
     // Find the activity by ID and update its properties
     const activities = await Activities.findByIdAndUpdate(
@@ -153,6 +159,7 @@ exports.update = async (req, res) => {
         badge,
         updateAt: Date.now(),
         tag,
+        degree,
       },
       {
         new: true,
@@ -165,7 +172,9 @@ exports.update = async (req, res) => {
         message: "Activities not found",
       });
     }
-    logger.update(`Activities ${activities.title} updated by ${req.userData?.username}`);
+    logger.update(
+      `Activities ${activities.title} updated by ${req.userData?.username}`
+    );
     res.status(200).send({
       status: "success",
       message: "Activities updated successfully",
@@ -208,7 +217,9 @@ exports.delete = async (req, res) => {
       });
     }
 
-    logger.delete(`Activities ${activities.title} deleted by ${req.userData?.username}`);
+    logger.delete(
+      `Activities ${activities.title} deleted by ${req.userData?.username}`
+    );
     res.status(200).send({
       status: "success",
       message: "Activities deleted successfully",
@@ -252,4 +263,4 @@ exports.view = async (req, res) => {
       message: error.message,
     });
   }
-}
+};

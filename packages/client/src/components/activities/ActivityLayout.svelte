@@ -4,40 +4,62 @@
   import { IconAdjustmentsHorizontal } from "@tabler/icons-svelte";
 
   let filter = "";
-  let postShow = 6;
-  const showMore = () => {
-    postShow += 6;
+  let search = "";
+  let bechelor = false;
+  let master = false;
+  let doctor = false;
+  let sortType = "new";
+
+  const sorter = (data, sort) => {
+    switch (sort) {
+      case "new":
+        return data.sort((a, b) => {
+          return b.createAt > a.createAt;
+        });
+      case "old":
+        return data.sort((a, b) => {
+          return a.createAt > b.createAt;
+        });
+      case "view":
+        return data.sort((a, b) => {
+          return b.view > a.view;
+        });
+      case "":
+        return data.sort((a, b) => {
+          return a.createAt > b.createAt;
+        });
+
+      default:
+        return data;
+    }
   };
 
-  $: console.log(filter);
   let activityData = get("activities");
 </script>
 
 {#await activityData}
   <div />
 {:then rawdata}
-  <div
-    class="flex mx-auto my-32 w-[90rem]  text-neutral"
-  >
-    <div class="hidden md:flex flex-none w-64 flex-col">
+  <div class="flex mx-auto my-32 w-[90rem] text-neutral">
+    <div class="hidden lg:flex flex-none w-64 flex-col">
       <div class="mt-4 ml-3 flex flex-row align-start items-start">
         <IconAdjustmentsHorizontal stroke="1" size="28" />
         <p class="ml-1 font-normal text-xl">คัดกรอง</p>
       </div>
 
       <!-- Filter Section -->
-      
-      <div class="form-control pb-8 justify-start text-start text-sm">
+
+      <div class=" form-control pb-8 justify-start text-start text-sm">
         <input
-            bind:value={search}
-            type="text"
-            name="search"
-            class="my-4 input input-bordered w-full h-8 focus:input-primary hover:input-primary"
-            placeholder="ค้นหากิจกรรมที่นี่"
-          />
+          bind:value={search}
+          type="text"
+          name="search"
+          class="my-4 input input-bordered w-full h-8 focus:input-primary hover:input-primary"
+          placeholder="ค้นหากิจกรรมที่นี่"
+        />
         <div class="m-6 mt-1">
           <b>คัดกรอง</b>
-          
+
           <div class="form-control">
             <label class="label cursor-pointer justify-normal">
               <input
@@ -155,45 +177,30 @@
       <!-- Filter Section -->
     </div>
     <!-- Card section -->
-    <div class="flex grow flex-col text-start h-[93vh] overflow-y-scroll">
+    <div
+      class="flex flex-col grow mx-auto text-start h-[93vh] overflow-y-scroll overflow-x-hidden"
+    >
       <h2 class="mt-2 ml-3 text-3xl font-semibold text-black">
         ประมวลผลภาพกิจกรรม
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <div class="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {#if sortType}
           {@const sortedData = sorter(rawdata.data, sortType)}
           {#each sortedData as data, i (data._id)}
-            {#if data.title.includes(search) || data.desc.includes(search) || !search}
+            {#if data.title
+              .toLowerCase()
+              .includes(search.toLowerCase()) || data.desc
+                .toLowerCase()
+                .includes(search.toLowerCase()) || !search}
               {#if data.tag.includes(filter) || data.badge.includes(filter) || !filter}
-                {#if (bechelor && data.degree.includes("bechelor")) || (master && data.degree.includes("master")) || (doctor && data.degree.includes("doctor")) || (!bechelor && !master && !doctor)}
-                  <Card {data} />
-                {/if}
+              {#if (data.degree.includes('bechelor') && bechelor) || (data.degree.includes('master') && master) || (data.degree.includes('doctor') && doctor) || (!bechelor && !master && !doctor)}
+                <Card {data} />
               {/if}
             {/if}
-          {/each}
-        {:else}
-          {#each rawdata.data as data, i (data._id)}
-            {#if data.title.includes(search) || data.desc.includes(search) || !search}
-              {#if data.tag.includes(filter) || data.badge.includes(filter) || !filter}
-                {#if (bechelor && data.degree.includes("bechelor")) || (master && data.degree.includes("master")) || (doctor && data.degree.includes("doctor")) || (!bechelor && !master && !doctor)}
-                  <Card {data} />
-                {/if}
-              {/if}
             {/if}
           {/each}
         {/if}
-      <div class="grid grid-cols-3 grid-rows-2">
-        {#each rawdata.data as data, i (data._id)}
-          {#if i < postShow}
-            {#if data.tag.includes(filter) || data.badge.includes(filter) || !filter}
-              <Card {data} />
-            {/if}
-          {/if}
-        {/each}
       </div>
-      <button class="self-end btn btn-ghost" on:click={showMore}
-        >Show more ...</button
-      >
     </div>
     <!-- Card section -->
   </div>
