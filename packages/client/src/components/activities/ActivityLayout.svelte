@@ -10,29 +10,34 @@
   let doctor = false;
   let sortType = "new";
 
-  const sorter = (data, sort) => {
-    switch (sort) {
-      case "new":
-        return data.sort((a, b) => {
-          return b.createAt > a.createAt;
-        });
-      case "old":
-        return data.sort((a, b) => {
-          return a.createAt > b.createAt;
-        });
-      case "view":
-        return data.sort((a, b) => {
-          return b.view > a.view;
-        });
-      case "":
-        return data.sort((a, b) => {
-          return a.createAt > b.createAt;
-        });
+  // Function to sort by newest
+  function sortByNewest(a, b) {
+    return new Date(b.createAt) - new Date(a.createAt);
+  }
 
+  // Function to sort by oldest
+  function sortByOldest(a, b) {
+    return new Date(a.createAt) - new Date(b.createAt);
+  }
+
+  // Function to sort by most views
+  function sortByMostViews(a, b) {
+    return b.views - a.views;
+  }
+
+  // Function to sort the data based on the given sort type
+  function sorter(data, sortType) {
+    switch (sortType) {
+      case "new":
+        return data.slice().sort(sortByNewest);
+      case "old":
+        return data.slice().sort(sortByOldest);
+      case "view":
+        return data.slice().sort(sortByMostViews);
       default:
-        return data;
+        return data.slice(); // Default to the original data if sortType is not recognized
     }
-  };
+  }
 
   let activityData = get("activities");
 </script>
@@ -185,18 +190,17 @@
       </h2>
       <div class="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {#if sortType}
-          {@const sortedData = sorter(rawdata.data, sortType)}
-          {#each sortedData as data, i (data._id)}
+          {#each sorter(rawdata.data, sortType) as data, i (data._id)}
             {#if data.title
               .toLowerCase()
               .includes(search.toLowerCase()) || data.desc
                 .toLowerCase()
                 .includes(search.toLowerCase()) || !search}
               {#if data.tag.includes(filter) || data.badge.includes(filter) || !filter}
-              {#if (data.degree.includes('bechelor') && bechelor) || (data.degree.includes('master') && master) || (data.degree.includes('doctor') && doctor) || (!bechelor && !master && !doctor)}
-                <Card {data} />
+                {#if (data.degree.includes("bechelor") && bechelor) || (data.degree.includes("master") && master) || (data.degree.includes("doctor") && doctor) || (!bechelor && !master && !doctor)}
+                  <Card {data} />
+                {/if}
               {/if}
-            {/if}
             {/if}
           {/each}
         {/if}

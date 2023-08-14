@@ -9,14 +9,14 @@
   let display = lang() || "th";
 
   const viewActivityHandler = () => {
-    if(!data.href) return;
+    if (!data.href) return;
     get("activities/view/" + data._id).then((res) => {
       console.log(res);
-      if(data.href){
+      if (data.href) {
         const redirect = window.open(data.href, "_blank");
-        try{
+        try {
           redirect.focus();
-        }catch(e){
+        } catch (e) {
           swa({
             icon: "error",
             title: "Pop-up blocked by browser!",
@@ -39,10 +39,9 @@
       class="h-[19.5rem] rounded-lg"
     />
     <p class="my-2 text-neutral">
-      
       {(data.desc === "" ? data.title : data.desc).substring(0, 80)}
     </p>
-    <div class="flex flex-row justify-between">
+    <div class="flex flex-row justify-between gap-32">
       <p class="text-neutral text-sm">
         {new Date(data.createAt).toLocaleDateString("th-TH", {
           year: "numeric",
@@ -51,7 +50,9 @@
         })}
       </p>
       {#if data.href && data.views}
-      <p class="text-neutral text-sm">{data.views > 1 ? data.views + " ผู้เข้าชม" : "ไม่มีผู้เช้าชม"}</p>
+        <p class="text-neutral text-sm">
+          {data.views > 1 ? data.views + " ผู้เข้าชม" : "ไม่มีผู้เช้าชม"}
+        </p>
       {/if}
     </div>
   </button>
@@ -77,9 +78,9 @@
         })}
       </p>
       {#if data.href && data.views}
-      <p class="text-neutral text-sm">
-        {data.views > 1 ? data.views + " views" : data.views + " view"}
-      </p>
+        <p class="text-neutral text-sm">
+          {data.views > 1 ? data.views + " views" : data.views + " view"}
+        </p>
       {/if}
     </div>
   </button>
