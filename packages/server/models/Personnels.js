@@ -24,6 +24,10 @@ const PersonnelsSchema = new Schema({
     type: String,
     default: ''
   },
+  img: {
+    type: String,
+    default: '',
+  },
   createAt : {
       type: Date,
       default: Date.now

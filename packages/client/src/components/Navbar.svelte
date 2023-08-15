@@ -36,9 +36,18 @@
             </ul>
           </details>
         </li>
-        <li><a href="/files">File system</a></li>
-        <li><a href="/viewactivities">Activities</a></li>
-        <li><a href="/viewcorousels">Banner</a></li>
+        <li tabindex="-1">
+          <details>
+            <summary>Admin Menu</summary>
+            <ul class="p-2 z-50">
+              <li><a href="/files">File system</a></li>
+              <li><a href="/viewactivities">Activities</a></li>
+              <li><a href="/viewcorousels">Banner</a></li>
+              <li><a href="/personnels">Personnels</a></li>
+            </ul>
+          </details>
+        </li>
+
       {:else}
         <li><a href="/user">You are not admin!</a></li>
       {/if}
@@ -83,9 +92,18 @@
               </ul>
             </details>
           </li>
-          <li><a href="/files">File system</a></li>
+          <li tabindex="-1">
+            <details>
+              <summary>Admin Menu</summary>
+              <ul class="p-2 z-50">
+                <li><a href="/files">File system</a></li>
           <li><a href="/viewactivities">Activities</a></li>
           <li><a href="/viewcorousels">Banner</a></li>
+          <li><a href="/personnels">Personnels</a></li>
+              </ul>
+            </details>
+          </li>
+          
         {:else}
           <li><a href="/user">You are not admin!</a></li>
         {/if}

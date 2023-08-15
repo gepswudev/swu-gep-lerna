@@ -5,6 +5,14 @@ const { log } = require("../logger");
 // POST /personnels
 exports.create = async (req, res) => {
   try {
+    //Validate file input
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send({
+        status: "error",
+        message: "No files were uploaded.",
+      });
+    }
+
     const { name, position, wellcenter } = req.body;
     if (!name || name === "") {
       return res.status(400).send({
@@ -19,18 +27,38 @@ exports.create = async (req, res) => {
         message: `Personnels ${name} already exists`,
       });
     }
-    const newPersonnels = new Personnels({
-      name,
-      position,
-      wellcenter,
-    });
-    await newPersonnels.save();
-    log(`Personnels`, `Created ${name}`);
-    logger.info(`Personnels`, `Created ${name}`);
-    return res.status(200).send({
-      status: "success",
-      message: `Created ${name}`,
-      data: newPersonnels,
+
+    const uploadedFile = req.files.img;
+    const fileName = uploadedFile.name;
+    const fileExtension = fileName.split(".").pop();
+    const renameFile = `${name
+      .replace(" ", "_")
+      .trim()}_profile.${fileExtension}`;
+      const uploadPath = `${__dirname}/../public/images/personnels/${renameFile}`;
+    uploadedFile.mv(uploadPath, async (err) => {
+      if (err) {
+        log(`Personnels`, err.message, "error");
+        return res.status(500).send({
+          status: "error",
+          message: err.message + " - " + err.stack,
+        });
+      }
+
+      const newPersonnels = new Personnels({
+        name,
+        position,
+        wellcenter,
+        img: `images/personnels/${renameFile}`,
+      });
+
+      const personnel = await newPersonnels.save();
+      log(`Personnels`, `Created ${name}`);
+      logger.info(`Personnels`, `Created ${name}`);
+      return res.status(200).send({
+        status: "success",
+        message: `Created ${name}`,
+        data: personnel,
+      });
     });
   } catch (error) {
     log(`Personnels`, error.message, "error");
@@ -40,6 +68,7 @@ exports.create = async (req, res) => {
       example: {
         name: "Firstname Lastname",
         position: "Professor",
+        img: "Image file",
         wellcenter: {
           status: true,
           position: "Professor",
@@ -65,7 +94,9 @@ exports.update = async (req, res) => {
     const changed = await Personnels.findByIdAndUpdate(
       id,
       {
-        ...req.body,
+        name,
+        position,
+        wellcenter,
         updateAt: Date.now(),
       },
       { new: true }

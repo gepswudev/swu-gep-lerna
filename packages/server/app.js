@@ -6,6 +6,7 @@ const logger = require('morgan');
 const dotenv  = require('dotenv').config();
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
+const { ensureDirectoriesExist } = require('./utils/dirValidate');
 
 const { swaggerUi, swaggerSpec } = require('./docs/swagger');
 const indexRouter = require('./routes/index');
@@ -18,6 +19,9 @@ var app = express();
 
 var connectDB = require('./database/connect');
 connectDB();
+
+//ensure directories exist
+ensureDirectoriesExist();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
