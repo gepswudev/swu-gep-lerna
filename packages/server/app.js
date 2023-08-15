@@ -12,6 +12,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users.router');
 const corouselsRouter = require('./routes/corousels.router');
 const activitiesRouter = require('./routes/activities.router');
+const personnelsRouter = require('./routes/personnels.router');
 
 var app = express();
 
@@ -44,6 +45,7 @@ app.use('/users', usersRouter);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/corousels', corouselsRouter);
 app.use('/activities', activitiesRouter);
+app.use('/personnels', personnelsRouter);
 
 
 //header middleware
@@ -75,5 +77,26 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+// const Personnels = require("./models/Personnels");
+// const createTest = async ( ) => { 
+//   try{
+//     const personnels = new Personnels({
+//       name: "Nguyen Van A",
+//       wellcenter: {
+//         status: true,
+//         position: "HCM",
+//         availableDate: ["2021-01-01", "2021-01-02"],
+//         availableTime: ["08:00", "09:00"],
+//       },
+//     });
+//     await personnels.save();
+//     console.log(`Created ${personnels.name}`);
+//   }catch(e){
+//     console.log(e);
+//   }
+// };
+// createTest();
 
 module.exports = app;

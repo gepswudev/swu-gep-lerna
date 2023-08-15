@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { v4: uuidv4 } = require('uuid');
-const connectDB = require('../database/connect');
-const APIpath = process.env.API || 'http://localhost:5001';
 
 const CorouselsSchema = new Schema({
     uid: {
