@@ -5,6 +5,8 @@
   import { navigate } from "svelte-routing";
   import { IconPlus } from "@tabler/icons-svelte";
 
+  let filtered = "";
+
   const personels = get("personnels");
 </script>
 
@@ -16,17 +18,22 @@
       <h1 class="text-4xl font-semibold text-gray-900">Personnels</h1>
       <p class="mt-1 text-sm text-gray-600">List of all personnels</p>
       <div
-        class="m-12 px-36 flex flex-row-reverse w-full justify-center md:justify-start"
+        class="m-12 px-36 flex flex-row w-full justify-center md:justify-start gap-4"
       >
+      <input type="text" bind:value={filtered} class="input input-bordered focus:input-primary w-full grow" placeholder="Search ">
         <button
-          class="btn btn-success w-full xl:max-w-[12rem] text-xl"
+          class="btn btn-success w-full max-w-[12rem] text-xl flex-none"
           on:click={() => navigate("/admin/personnels/create")}
           ><IconPlus /> New</button
         >
       </div>
-      <div class="grid grid-cols-3 text-start gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 text-start gap-4">
         {#each personelsData.data as data, index}
-          <PersonnelsCard {data} admin={true} {index} />
+          {#if filtered === "" || data.name.toLowerCase().includes(filtered.toLowerCase())}
+            <PersonnelsCard {data} admin={true} {index} />
+
+          {/if}
+
         {/each}
       </div>
     </div>

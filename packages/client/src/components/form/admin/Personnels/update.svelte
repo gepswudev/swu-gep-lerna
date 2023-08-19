@@ -1,18 +1,27 @@
 <script>
   import { navigate } from "svelte-routing";
-  import { get, post } from "../../../../lib/API/methods";
+  import { get, post, put } from "../../../../lib/API/methods";
   import swa from "../../../../lib/popalert";
   import Loading from "../../../Loading.svelte";
 
   export let sx;
+  export let id;
 
   let form = null;
+  let name = "";
+  let email = "";
+  let phone = "";
+  let img = "";
+  let position = "";
+  let wellcenterPosition = "";
+  let wellcenterTime = "";
   let wellcenter = null;
   let wellcenterDate = [];
   let submitButton;
   let err = {
     name: "",
     email: "",
+    phone: "",
     img: "",
     posiotion: "",
     wellcenter: "",
@@ -26,7 +35,7 @@
     const combindData = {
       name: data.name,
       email: data.email,
-      img: data.img,
+      phone: data.phone,
       position: data.position,
       wellcenter: {
         position: data["well-position"],
@@ -39,21 +48,7 @@
     } else {
       err.name = "";
     }
-    //img validate
-    if (combindData.img.length > 0 && combindData.img !== "") {
-      const img = combindData.img;
-      const imgSizeInMb = img.size / 1000000;
-      const imgExtension = img.name.substring(img.name.lastIndexOf("."));
-      if (!authorizedExtensions.includes(imgExtension)) {
-        err.img = "Image must be in format : .jpg, .jpeg, .png, .webp";
-      } else if (imgSizeInMb > imgSize) {
-        err.img = "Image must be less than 50MB";
-      } else {
-        err.img = "";
-      }
-    } else {
-      err.img = "";
-    }
+
     //email validate
     if (combindData.email.length > 0 && combindData.email !== "") {
       if (!combindData.email.includes("@")) {
@@ -64,7 +59,6 @@
     } else {
       err.email = "";
     }
-    console.log(combindData);
   };
 
   const handlerSubmit = () => {
@@ -73,76 +67,82 @@
     const combindData = {
       name: data.name,
       email: data.email,
-      img: data.img,
+      phone: data.phone,
       position: data.position,
       wellcenter: {
+        status: wellcenter,
         position: data["well-position"],
         date: wellcenterDate,
         time: data["well-time"],
       },
     };
+
     console.log(combindData);
     //change button while creating
-    submitButton.innerHTML = "Creating...";
-    submitButton.disabled = true;
+     submitButton.innerHTML = "Updating...";
+     submitButton.disabled = true;
     //send data to server
-    post("personnels", combindData, {
-      "Content-Type": "multipart/form-data",
-      Authorization: "Bearer " + localStorage.getItem("token"),
-    })
-      .then((res) => {
-        console.log(res);
-        swa(
-          {
-            icon: res.status,
-            title: res.status,
-            text: res.message,
-          },
-          () => {
-            //change button after creating
-            if (res.status === "success") {
-              submitButton.innerHTML = "Created";
-              submitButton.disabled = false;
-              navigate("/viewcorousels");
-            } else {
-              submitButton.innerHTML = "Create";
-              submitButton.disabled = false;
-              form.reset();
-            }
-          }
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+     put(`personnels/${id}`, combindData, {
+       Authorization: "Bearer " + localStorage.getItem("token"),
+     })
+       .then((res) => {
+         console.log(res);
+         swa(
+           {
+             icon: res.status,
+             title: res.status,
+             text: res.message,
+           },
+           () => {
+             //change button after creating
+             if (res.status === "success") {
+               submitButton.innerHTML = "Updated";
+               submitButton.disabled = false;
+               navigate("/personnels");
+             } else {
+               submitButton.innerHTML = "Update";
+               submitButton.disabled = false;
+               form.reset();
+             }
+           }
+         );
+       })
+       .catch((err) => {
+         console.log(err);
+       });
   };
 
-  const selfCheck = (data) = {
-    
+  const selfCheck = (value) => {
+    //if data is null or undefined
+    if (!wellcenterDate || wellcenterDate === null || wellcenterDate === undefined) return false;
+    //if data includes value return true
+    if (wellcenterDate.includes(value)) return true;
+
+    return false;
   }
 
-  let corousels = get("corousels").then((res) => {
-    if (res.status === "error")
-      return swa(
-        {
-          icon: res.status,
-          title: res.status,
-          text: res.message,
-        },
-        () => {
-          if (res.status === "error") navigate("/viewcorousels");
-        }
-      );
+  let personnels = get(`personnels/${id}`, {
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  }).then((res) => {
     console.log(res);
-    corousels = res.data;
+    name = res.data.name;
+    email = res.data.email;
+    phone = res.data.phone;
+    img = res.data.img;
+    position = res.data.position;
+    wellcenterPosition = res.data.wellcenter.position;
+    wellcenterTime = res.data.wellcenter.availableTime;
+    wellcenter = res.data.wellcenter.status;
+    wellcenterDate = res.data.wellcenter.availableDate;
+    personnels = res.data;
     return res.data;
   });
 </script>
 
-{#await corousels}
+{#await personnels}
   <Loading title="Loading personnels data" desc="Please wait..." />
   <form bind:this={form} />
-{:then corousel}
+{:then personnel}
   <form
     class={"form-control " + sx}
     bind:this={form}
@@ -150,7 +150,7 @@
     on:change={formValidate}
   >
     <h2 class="text-2xl font-semibold text-center">
-      Create New Personnels Data
+      Update Personnels Data : {personnel.name}
     </h2>
     <div class="mb-4">
       <label for="name" class="label justify-start"
@@ -163,6 +163,7 @@
         required
         class="input input-bordered input-primary w-full"
         placeholder="Enter name here (required)"
+        bind:value={name}
       />
       {#if err.name}
         <p class="text-red-500">{err.name}</p>
@@ -171,18 +172,36 @@
 
     <div class="mb-4">
       <label for="img" class="label justify-start">
-        Profile Picture<span class="text-red-500">*</span>
+        Profile Picture (To change this, Please delete and upload new one.)<span class="text-red-500">*</span>
       </label>
       <input
-        type="file"
-        name="img"
-        id="img"
-        required
-        accept={authorizedExtensions.join(",")}
-        class="file-input file-input-bordered file-input-primary w-full"
-        placeholder="Upload img here"
+        type="text"
+        name="imgReadOnly"
+        id="imgReadOnly"
+        readonly
+        class="input input-bordered input-primary w-full"
+        placeholder="Image path preview "
+        bind:value={img}
       />
     </div>
+
+    <div class="mb-4">
+      <label for="name" class="label justify-start"
+        >Phone</label
+      >
+      <input
+        type="tel"
+        name="phone"
+        id="phone"
+        class="input input-bordered input-primary w-full"
+        placeholder="Enter phone here"
+        bind:value={phone}
+      />
+      {#if err.phone}
+        <p class="text-red-500">{err.phone}</p>
+      {/if}
+    </div>
+
 
     <div class="mb-4">
       <label for="email" class="label justify-start">Email</label>
@@ -192,6 +211,7 @@
         id="email"
         class="input input-bordered input-primary w-full"
         placeholder="Enter email here"
+        bind:value={email}
       />
       {#if err.email}
         <p class="text-red-500">{err.email}</p>
@@ -206,6 +226,7 @@
         id="position"
         class="input input-bordered input-primary w-full"
         placeholder="Enter position here"
+        bind:value={position}
       />
       {#if err.position}
         <p class="text-red-500">{err.position}</p>
@@ -220,7 +241,6 @@
           type="checkbox"
           class="checkbox checkbox-primary"
           bind:checked={wellcenter}
-          
         />
         <span class="label-text">ADD WELL CENTER DATA (Optional)</span>
       </label>
@@ -235,9 +255,10 @@
           id="well-position"
           class="input input-bordered input-primary w-full"
           placeholder="Enter wellcenter-position here"
+          bind:value={wellcenterPosition}
         />
         <label for="well-data" class="label justify-start"
-          >WELL CENTER Date ({wellcenterDate.toString()})</label
+          >WELL CENTER Date</label
         >
         <div
           class="grid grid-cols-5 gap-2 max-w-xl justify-center items-center text-center"
@@ -250,6 +271,7 @@
               class="checkbox checkbox-primary"
               value="Monday"
               bind:group={wellcenterDate}
+              checked={selfCheck("Monday")}
             />
             <span class="label-text">Monday</span>
           </label>
@@ -261,6 +283,7 @@
               class="checkbox checkbox-primary"
               value="Tuesday"
               bind:group={wellcenterDate}
+              checked={selfCheck("Tuesday")}
             />
             <span class="label-text">Tuesday</span>
           </label>
@@ -272,6 +295,7 @@
               class="checkbox checkbox-primary"
               value="Wednesday"
               bind:group={wellcenterDate}
+              checked={selfCheck("Wednesday")}
             />
             <span class="label-text">Wednesday</span>
           </label>
@@ -283,6 +307,7 @@
               class="checkbox checkbox-primary"
               value="Thursday"
               bind:group={wellcenterDate}
+              checked={selfCheck("Thursday")}
             />
             <span class="label-text">Thursday</span>
           </label>
@@ -294,6 +319,7 @@
               class="checkbox checkbox-primary"
               value="Friday"
               bind:group={wellcenterDate}
+              checked={selfCheck("Friday")}
             />
             <span class="label-text">Friday</span>
           </label>
@@ -312,6 +338,7 @@
           id="well-time"
           class="input input-bordered input-primary w-full"
           placeholder="Enter wellcenter-time here <Please keep in format : 10.00-13.00,14.00-16.00>"
+          bind:value={wellcenterTime}
         />
       {/if}
 
@@ -324,7 +351,7 @@
         bind:this={submitButton}
         type="submit"
         class="btn btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50 disabled:btn-loading"
-        >Create</button
+        >Update</button
       >
     </div>
   </form>

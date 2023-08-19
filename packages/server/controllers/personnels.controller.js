@@ -87,6 +87,7 @@ exports.update = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, position, wellcenter, email, phone } = req.body;
+    console.log(req.body)
     if (!name || name === "") {
       return res.status(400).send({
         status: "error",
@@ -100,11 +101,17 @@ exports.update = async (req, res) => {
         position,
         email, 
         phone,
-        wellcenter,
+        wellcenter:{
+          status: wellcenter.status,
+          position: wellcenter.position,
+          availableDate: wellcenter.date,
+          availableTime: wellcenter.time,
+        },
         updateAt: Date.now(),
       },
       { new: true }
     );
+    console.log(changed)
     log(`Personnels`, `Updated ${name}`);
     logger.info(`Personnels`, `Updated ${name}`);
     return res.status(200).send({

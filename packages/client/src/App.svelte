@@ -1,6 +1,4 @@
 <script>
-// @ts-nocheck
-
   import Navbar from "./components/Navbar.svelte";
   import Footer from "./components/Footer.svelte";
   import Hero from "./pages/Home/Home.svelte";
@@ -19,9 +17,9 @@
 
   import AdminPersonnels from "./pages/Admin/Personnels/all.svelte";
   import AdminPersonnelsCreate from "./pages/Admin/Personnels/create.svelte";
+  import AdminPersonnelsUpdate from "./pages/Admin/Personnels/update.svelte";
 
   import FileManagement from "./pages/Admin/FileManagement.svelte";
-
 
   import { Route, Router } from "svelte-routing";
   import log from "./lib/log";
@@ -63,13 +61,12 @@
           },
           willClose: () => {
             clearInterval(timerInterval);
-       
           },
         }).then((result) => {
-          /* Read more about handling dismissals below */
           window.location.reload();
           if (result.dismiss === Swal.DismissReason.timer) {
-            console.log("I was closed by the timer");
+            //Timer expired and reload page to check connection again
+            window.location.reload();
           }
         });
       }
@@ -84,45 +81,84 @@
 </script>
 
 {#await isServerAlive}
-  <Loading title="Connect to Server" desc="It's may take a longtime cause Server is sleepy under development mode"/>
-{:then alive} 
-{#if alive}
-<Router {basepath}>
-  <Navbar active={currentPath} />
-  <main class="mx-auto pt-24 w-screen h-full scroll-smooth">
-    <Route path="/" component={Hero} />
-    <Route path="/user" component={Login} />
-    <Route path="/login" component={Login} />
-    <Route path="/admin" component={AdminMain} />
-    <Route path="/viewusers" component={AdminUsers} />
-    <Route path="/viewcorousels" component={AdminCorousels} />
-    <Route path="/admin/corousels/create" component={AdminCorouselsCreate}/>
-    <Route path="/admin/corousels/update/:id" let:params>
-      <AdminCorouselsUpdate {...params} />
-    </Route>
-    <Route path="/viewactivities" component={AdminActivities} />
-    <Route path="/admin/activities/create" component={AdminActivitiesCreate}/> 
-    <Route path="/admin/activities/update/:id" let:params>
-      <AdminActivitiesUpdate {...params} />
-    </Route>
-    <Route path="/personnels" component={AdminPersonnels} />
-    <Route path="/admin/personnels/create" component={AdminPersonnelsCreate}/>
+<!-- Preload while connecting to server -->
+  <Loading
+    title="Connect to Server"
+    desc="It's may take a longtime cause Server is sleepy under development mode"
+  />
+{:then alive}
+  {#if alive}
+    <Router {basepath}>
+      <Navbar active={currentPath} />
+      <main class="mx-auto pt-24 w-screen h-full scroll-smooth">
+        <!-- Homepage -->
+        <Route path="/" component={Hero} />
 
+        <!-- Login Test pages -->
+        <Route path="/user" component={Login} />
+        <Route path="/login" component={Login} />
 
-    <Route path="/files" component={FileManagement} />
-    <Route path="/test" component={Test} />
+        <!-- Admin pages -->
+        <Route path="/admin" component={AdminMain} />
+        <Route path="/viewusers" component={AdminUsers} />
 
-    <Route path="/about" component={History} />
+        <Route path="/viewcorousels" component={AdminCorousels} />
+        <Route
+          path="/admin/corousels/create"
+          component={AdminCorouselsCreate}
+        />
+        <Route path="/admin/corousels/update/:id" let:params>
+          <AdminCorouselsUpdate {...params} />
+        </Route>
 
-    <Route path="/cookies" component={CookiesPage} />
-    <Route path="*" component={Hero} />
-    <Cookies />
-  </main>
-  <Footer />
-</Router>
-{:else}
-<Loading title="Can't connect to server" desc={`Can't connect to server, Please contact the web developer!`} />
-{/if}
+        <Route path="/viewactivities" component={AdminActivities} />
+        <Route
+          path="/admin/activities/create"
+          component={AdminActivitiesCreate}
+        />
+        <Route path="/admin/activities/update/:id" let:params>
+          <AdminActivitiesUpdate {...params} />
+        </Route>
+
+        <Route path="/personnels" component={AdminPersonnels} />
+        <Route
+          path="/admin/personnels/create"
+          component={AdminPersonnelsCreate}
+        />
+        <Route path="/admin/personnels/update/:id" let:params>
+          <AdminPersonnelsUpdate {...params} />
+        </Route>
+
+        <Route path="/files" component={FileManagement} />
+        <Route path="/test" component={Test} />
+
+        <!-- About page -->
+        <Route path="/about" component={History} />
+
+        <!-- Cookies consent page -->
+        <Route path="/cookies" component={CookiesPage} />
+
+        <!-- 404 page = Return to home -->
+        <Route path="*" component={Hero} />
+
+        <!-- Cookies component popup -->
+        <Cookies />
+      </main>
+
+      <!-- Footer -->
+      <Footer />
+    </Router>
+  {:else}
+    <!-- Server connection error -->
+    <Loading
+      title="Can't connect to server"
+      desc={`Can't connect to server, Please contact the web developer!`}
+    />
+  {/if}
 {:catch err}
-<Loading title="Can't connect to server" desc={`Can't connect to server, Please contact the web developer!`} />
+  <!-- Server connection error -->
+  <Loading
+    title="Can't connect to server"
+    desc={`Can't connect to server, Please contact the web developer!`}
+  />
 {/await}

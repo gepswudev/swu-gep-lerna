@@ -8,18 +8,23 @@
   import Corousel from "../../../components/Corousel.svelte";
   import AdminProtect from "../../../components/admin/adminProtect.svelte";
 
+  let filtered = "";
   let corousels = get("corousels");
 </script>
 
 <AdminProtect>
   <h2 class="font-bold text-3xl text-center mt-12">
-    Banner Corousels Management
+    Banner Corousels Management {#await corousels} (Loding...)
+    {:then data}
+      ({data.data.length} {data.data.length > 1 ? "Banners" : "Banner"})
+    {/await}
   </h2>
   <div
-    class="mt-12 px-36 flex flex-row-reverse w-full justify-center md:justify-start"
+    class="mt-12 px-36 flex flex-row w-full justify-center md:justify-start gap-4"
   >
+  <input type="text" bind:value={filtered} class="input input-bordered focus:input-primary w-full grow" placeholder="Search ">
     <button
-      class="btn btn-success w-full xl:max-w-[12rem] text-xl"
+      class="btn btn-success w-full max-w-[12rem] text-xl flex-none"
       on:click={() => navigate("/admin/corousels/create")}
       ><IconPlus /> New</button
     >
@@ -32,8 +37,10 @@
       <Skeleton load={2} />
     {:then data}
       {#each data.data as corousel}
+      {#if filtered === "" || corousel.name.toLowerCase().includes(filtered.toLowerCase())}
         {@const id = corousel._id}
         <Card data={corousel} {id} />
+      {/if}
       {/each}
     {:catch error}
       <p>{error.message}</p>
