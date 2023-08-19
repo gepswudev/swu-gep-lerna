@@ -1,5 +1,5 @@
 <script>
-  import PersonnelsCard from "../../../components/PersonnelsCard.svelte";
+  import PersonnelsCard from "../../../components/admin/PersonnelsCard.svelte";
   import AdminProtect from "../../../components/admin/adminProtect.svelte";
   import { get } from "../../../lib/API/methods";
   import { navigate } from "svelte-routing";

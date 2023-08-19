@@ -5,6 +5,7 @@
   import Skeleton from "../../../components/skeletons/HorizonCard_Skeleton.svelte";
   import AdminProtect from "../../../components/admin/adminProtect.svelte";
   import { get } from "../../../lib/API/methods";
+  import Loading from "../../../components/Loading.svelte";
   
   let activities = get("activities");
 </script>
@@ -35,3 +36,12 @@
         {/await}
       </div>
 </AdminProtect>
+
+{#await activities}
+  <Loading />
+{:then data} 
+{#each data.data as activity}
+            {@const id = activity._id}
+            <Card data={activity} {id} />
+          {/each}
+{/await}

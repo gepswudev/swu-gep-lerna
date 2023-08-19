@@ -12,6 +12,7 @@
   let err = {
     name: "",
     email: "",
+    phone: "",
     img: "",
     posiotion: "",
     wellcenter: "",
@@ -25,6 +26,7 @@
     const combindData = {
       name: data.name,
       email: data.email,
+      phone: data.phone,
       img: data.img,
       position: data.position,
       wellcenter: {
@@ -63,6 +65,7 @@
     } else {
       err.email = "";
     }
+
     console.log(combindData);
   };
 
@@ -72,6 +75,7 @@
     const combindData = {
       name: data.name,
       email: data.email,
+      phone: data.phone,
       img: data.img,
       position: data.position,
       wellcenter: {
@@ -167,6 +171,20 @@
     />
     {#if err.email}
       <p class="text-red-500">{err.email}</p>
+    {/if}
+  </div>
+
+  <div class="mb-4">
+    <label for="phone" class="label justify-start">Phone</label>
+    <input
+      type="tel"
+      name="phone"
+      id="phone"
+      class="input input-bordered input-primary w-full"
+      placeholder="Enter phone here"
+    />
+    {#if err.phone}
+      <p class="text-red-500">{err.phone}</p>
     {/if}
   </div>
 

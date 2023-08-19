@@ -11,6 +11,14 @@ const PersonnelsSchema = new Schema({
     type: String,
     required: true,
   },
+  phone: {
+    type: String,
+    default: "",
+  },
+  email: {
+    type: String,
+    default: "",
+  },
   wellcenter: {
     type: Object,
     default: {

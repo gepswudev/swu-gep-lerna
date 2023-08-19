@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
       });
     }
 
-    const { name, position, wellcenter } = req.body;
+    const { name, position, wellcenter, email, phone } = req.body;
     if (!name || name === "") {
       return res.status(400).send({
         status: "error",
@@ -48,6 +48,8 @@ exports.create = async (req, res) => {
         name,
         position,
         wellcenter,
+        email,
+        phone,
         img: `images/personnels/${renameFile}`,
       });
 
@@ -84,7 +86,7 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, position, wellcenter } = req.body;
+    const { name, position, wellcenter, email, phone } = req.body;
     if (!name || name === "") {
       return res.status(400).send({
         status: "error",
@@ -96,6 +98,8 @@ exports.update = async (req, res) => {
       {
         name,
         position,
+        email, 
+        phone,
         wellcenter,
         updateAt: Date.now(),
       },
