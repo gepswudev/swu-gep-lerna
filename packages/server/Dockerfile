@@ -1,23 +1,24 @@
 # Use an official Node.js 18 runtime as the base image
-FROM node:18-alpine
+FROM node:16-alpine
 
 # Set the working directory within the container
-WORKDIR /app
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
 # Copy the package.json and pnpm-lock.yaml to the container
-COPY package.json .
-COPY pnpm-lock.yaml .
+COPY package.json /usr/src/app
+COPY pnpm-lock.yaml /usr/src/app
 
-# Install pnpm globally
+# Install nodemon
 RUN npm install -g pnpm
 
 # Install application dependencies using pnpm
-RUN pnpm install --force 
+RUN pnpm install 
 
 # Copy the rest of the application code to the container
 COPY . .
 
-# Set NODE_ENV to production
+# Set NODE_ENV to production or development
 ENV NODE_ENV=production
 
 # Expose the desired port (5001 in this case)

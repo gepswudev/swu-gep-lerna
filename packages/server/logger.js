@@ -10,7 +10,7 @@ module.exports.log = (page, msg, type = 'log', important = false) => {
         }else{
             console.info(`[Logger]: SWU SERVER | ${process.env.NODE_ENV} `.bgWhite.black, `\n- Server will not show type of ${type} message in production mode.`.bgBlack)
         }
-        return;
+        return ;
     }
 
     //Log everything in development mode

@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "start:prod": "NODE_ENV=production node ./bin/www",
-    "dev": "nodemon ./bin/www --host",
+    "dev": "pnpx nodemon ./bin/www",
     "dev:prod": "NODE_ENV=production nodemon ./bin/www"
   },
   "dependencies": {
@@ -36,5 +36,8 @@
     "swagger-ui-express": "^5.0.0",
     "uuid": "^9.0.0",
     "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
