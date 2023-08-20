@@ -37,7 +37,7 @@ exports.create = async (req, res) => {
     const fileExtension = fileName.split(".").pop();
     const renameFile = `${name
       .replace(" ", "_")
-      .trim().subsrt(0,20)}_profile.${fileExtension}`;
+      .trim().substring(0,20)}_profile.${fileExtension}`;
     const uploadPath = `${__dirname}/../public/images/personnels/${renameFile}`;
     uploadedFile.mv(uploadPath, async (err) => {
       if (err) {
@@ -147,7 +147,7 @@ exports.update = async (req, res) => {
       const fileExtension = fileName.split(".").pop();
       const renameFile = `${name
         .replace(" ", "_")
-        .trim().subsrt(0,20)}_profile.${fileExtension}`;
+        .trim().substring(0,20)}_profile.${fileExtension}`;
       const uploadPath = `${__dirname}/../public/images/personnels/${renameFile}`;
       uploadedFile.mv(uploadPath, async (err) => {
         if (err) {

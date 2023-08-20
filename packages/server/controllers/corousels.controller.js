@@ -41,7 +41,7 @@ exports.create = async (req, res) => {
     const uploadedFile = req.files.img;
     const fileName = uploadedFile.name;
     const fileExtension = fileName.split(".").pop();
-    const renameFile = `${name.trim().subsrt(0,20)}_${Date.now()}.${fileExtension}`;
+    const renameFile = `${name.trim().substring(0,20)}_${Date.now()}.${fileExtension}`;
     const uploadPath = `${__dirname}/../public/images/corousels/${renameFile}`;
 
     // Use the mv() method to place the file somewhere on your server
@@ -190,7 +190,7 @@ exports.update = async (req, res) => {
       const uploadedFile = req.files.img;
       const fileName = uploadedFile.name;
       const fileExtension = fileName.split(".").pop();
-      const renameFile = `${corousels.name.trim().subsrt(0,20)}_${Date.now()}.${fileExtension}`;
+      const renameFile = `${corousels.name.trim().substring(0,20)}_${Date.now()}.${fileExtension}`;
       const uploadPath = `${__dirname}/../public/images/corousels/${renameFile}`;
 
       // Move the uploaded file to the desired location
