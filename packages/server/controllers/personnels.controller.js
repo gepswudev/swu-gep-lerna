@@ -1,4 +1,6 @@
 const Personnels = require("../models/Personnels");
+const fs = require("fs");
+const path = require("path");
 const logger = require("../database/logger");
 const { log } = require("../logger");
 
@@ -34,7 +36,7 @@ exports.create = async (req, res) => {
     const renameFile = `${name
       .replace(" ", "_")
       .trim()}_profile.${fileExtension}`;
-      const uploadPath = `${__dirname}/../public/images/personnels/${renameFile}`;
+    const uploadPath = `${__dirname}/../public/images/personnels/${renameFile}`;
     uploadedFile.mv(uploadPath, async (err) => {
       if (err) {
         log(`Personnels`, err.message, "error");
@@ -87,7 +89,7 @@ exports.update = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, position, wellcenter, email, phone } = req.body;
-    console.log(req.body)
+
     if (!name || name === "") {
       return res.status(400).send({
         status: "error",
@@ -99,9 +101,9 @@ exports.update = async (req, res) => {
       {
         name,
         position,
-        email, 
+        email,
         phone,
-        wellcenter:{
+        wellcenter: {
           status: wellcenter.status,
           position: wellcenter.position,
           availableDate: wellcenter.date,
@@ -111,7 +113,7 @@ exports.update = async (req, res) => {
       },
       { new: true }
     );
-    console.log(changed)
+
     log(`Personnels`, `Updated ${name}`);
     logger.info(`Personnels`, `Updated ${name}`);
     return res.status(200).send({
@@ -149,6 +151,14 @@ exports.delete = async (req, res) => {
         message: "Personnels not found.",
       });
     }
+    //delete image
+    const imagePath = path.join(__dirname, `../public/${personnels.img}`);
+    fs.unlink(imagePath, async (err) => {
+      if (err) {
+        log(`Personnels`, err.message, "error");
+      }
+    });
+
     await Personnels.findByIdAndDelete(id);
     log(`Personnels`, `Deleted ${personnels.name}`);
     logger.info(`Personnels`, `Deleted ${personnels.name}`);

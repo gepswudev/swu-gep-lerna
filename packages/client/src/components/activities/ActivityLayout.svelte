@@ -182,13 +182,14 @@
       <!-- Filter Section -->
     </div>
     <!-- Card section -->
+    
     <div
-      class="flex flex-col grow mx-auto text-start h-[93vh] overflow-y-scroll overflow-x-hidden"
+      class="flex flex-col grow mx-auto text-start h-[93vh] "
     >
-      <h2 class="mt-2 ml-3 text-3xl font-semibold text-black">
-        ประมวลผลภาพกิจกรรม
-      </h2>
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+    <h2 class="mt-2 ml-3 text-3xl font-semibold text-neutral">
+      ประมวลผลภาพกิจกรรม
+    </h2>
+      <div class="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 overflow-y-scroll overflow-x-hidden no-scrollbar">
         {#if sortType}
           {#each sorter(rawdata.data, sortType) as data, i (data._id)}
             {#if data.title

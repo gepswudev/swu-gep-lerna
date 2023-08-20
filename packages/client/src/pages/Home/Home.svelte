@@ -30,8 +30,8 @@
   {:then data}
     <Corousel data={data.data} />
   {/await}
-
-  <div class="hero bg-center items-center align-middle text-center py-8 ">
+  <!-- Desktop Home page -->
+  <div class="hidden md:hero bg-center items-center align-middle text-center py-8 ">
     <div class="w-full mx-auto">
       <!-- YouTube -->
       <div class="flex flex-col w-[80rem] text-neutral mx-auto">
@@ -149,6 +149,11 @@
       </div>
       <!-- Facebook follow -->
     </div>
+  </div>
+
+  <!-- Mobile Home page -->
+  <div class="hero bg-center items-center align-middle text-center py-8 md:hidden">
+    <h1>HelloWorld</h1>
   </div>
 </div>
 <!-- Hero Homepage -->

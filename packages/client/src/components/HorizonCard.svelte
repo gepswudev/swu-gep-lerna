@@ -42,7 +42,7 @@
   href={"#" + data.title}
   on:click={showAllDesc}
 >
-  <figure><img class="h-52" src={getImg(data.img)} alt={data.title + "_IMG"} /></figure>
+  <figure><img class="h-52 object-cover max-w-md" src={getImg(data.img)} alt={data.title + "_IMG"}/></figure>
   <div class="card-body">
     <h2 class="card-title">
       {data.title ?? ""}

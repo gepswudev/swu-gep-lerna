@@ -30,7 +30,6 @@ export async function _login() {
     },
     allowOutsideClick: () => !Swal.isLoading(),
   }).then((result) => {
-    console.log(result)
     if (result.isConfirmed) {
       if (result.value.status == "success") {
         login({

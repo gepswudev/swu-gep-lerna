@@ -1,5 +1,6 @@
 <script>
   import { navigate } from "svelte-routing";
+  import PersonnelsCard from "../../../admin/PersonnelsCard.svelte";
   import { post } from "../../../../lib/API/methods";
   import swa from "../../../../lib/popalert";
 
@@ -19,6 +20,47 @@
   };
   const imgSize = 50000000;
   const authorizedExtensions = [".jpg", ".jpeg", ".png", ".webp"];
+  let previewData = {
+    name: "Personnels Preview",
+    img: "https://via.placeholder.com/500x500",
+    phone: "",
+    email: "",
+    position: "Position",
+    wellcenter: {
+      status: false,
+      position: "Wellcenter Position",
+      availableTime: "Wellcenter Time",
+      availableDate: [],
+    },
+  };
+
+  const loadPreview = () =>{
+    const formData = new FormData(form);
+    const name = formData.get("name");
+    const img = formData.get("img");
+    const phone = formData.get("phone");
+    const email = formData.get("email");
+    const position = formData.get("position");
+    const wellcenter = formData.get("wellcenter");
+    const wellcenterPosition = formData.get("well-position");
+    const wellcenterTime = formData.get("well-time");
+    const wellcenterDate = formData.get("well-date");
+
+    previewData = {
+      ...previewData,
+      name,
+      img: URL.createObjectURL(img),
+      phone,
+      email,
+      position,
+      wellcenter: {
+        status: wellcenter,
+        position: wellcenterPosition,
+        availableTime: wellcenterTime,
+        availableDate: wellcenterDate,
+      },
+    };
+  }
 
   const formValidate = () => {
     const formData = new FormData(form);
@@ -65,8 +107,7 @@
     } else {
       err.email = "";
     }
-
-    console.log(combindData);
+    loadPreview();
   };
 
   const handlerSubmit = () => {
@@ -84,7 +125,7 @@
         time: data["well-time"],
       },
     };
-    console.log(combindData);
+
     //change button while creating
     submitButton.innerHTML = "Creating...";
     submitButton.disabled = true;
@@ -94,7 +135,7 @@
       Authorization: "Bearer " + localStorage.getItem("token"),
     })
       .then((res) => {
-        console.log(res);
+
         swa(
           {
             icon: res.status,
@@ -106,7 +147,7 @@
             if (res.status === "success") {
               submitButton.innerHTML = "Created";
               submitButton.disabled = false;
-              navigate("/viewcorousels");
+              navigate("/personnels");
             } else {
               submitButton.innerHTML = "Create";
               submitButton.disabled = false;
@@ -121,11 +162,18 @@
   };
 </script>
 
+<div class="flex flex-col md:flex-row">
+  <div class="max-w-md flex-1 mx-16 my-4 gap-4">
+    <p class="text-center">Preview</p>
+    <PersonnelsCard data={previewData} />
+  </div>
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <form
-  class={"form-control " + sx}
+  class={"form-control flex-1 " + sx}
   bind:this={form}
   on:submit|preventDefault={handlerSubmit}
   on:change={formValidate}
+  on:keyup={loadPreview}
 >
   <h2 class="text-2xl font-semibold text-center">Create New Personnels Data</h2>
   <div class="mb-4">
@@ -316,3 +364,4 @@
     >
   </div>
 </form>
+</div>

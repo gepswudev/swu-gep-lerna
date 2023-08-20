@@ -13,14 +13,14 @@
 
 <AdminProtect>
   <h2 class="font-bold text-3xl text-center mt-12">
-    Horizon Activities Management {#await activities}
+    Activities Management {#await activities}
     (Loding...)
     {:then data}
-      ({data.data.length} {data.data.length > 1 ? "Activities" : "Activity"})
+      <p >({data.data.length} {data.data.length > 1 ? "Activities" : "Activity"})</p>
     {/await}
   </h2>
   <div
-    class="mt-12 px-24 flex flex-row w-full justify-center md:justify-start gap-4"
+    class="mt-12 px-24 flex flex-col md:flex-row w-full justify-center md:justify-start gap-4"
   >
     <input
       type="text"
@@ -29,14 +29,14 @@
       placeholder="Search "
     />
     <button
-      class="btn btn-primary w-full max-w-[12rem] text-xl flex-none"
+      class="btn btn-primary w-full max-w-md text-xl flex-none"
       on:click={() => navigate("/admin/activities/create")}
       ><IconPlus /> New</button
     >
   </div>
 
   <div
-    class="mx-16 justify-center items-start my-24 mt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2"
+    class="mx-16 justify-center items-start my-24 mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2"
   >
     {#await activities}
       <Skeleton load={4} />

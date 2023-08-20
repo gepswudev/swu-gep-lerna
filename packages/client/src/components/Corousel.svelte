@@ -3,7 +3,7 @@
   import getImg from "../lib/getImg";
   export let data;
 
-  const redirect = (url) => {
+  const goTo = (url) => {
     if(!url || url === "" || url === "#") return;
     var win = window.open(url, "_blank");
     win.focus();
@@ -11,7 +11,7 @@
 </script>
 
 {#if data}
-  <div>
+  <div >
     <Carousel
       autoplay
       autoplayDuration={5000}
@@ -19,10 +19,11 @@
       pauseOnFocus={false}
       arrows={false}
       loop
+      
     >
       {#each data as { name, img, url }, i ((name, i))}
       {@const c_img = getImg(img)}
-        <img src={c_img} alt={name} on:click={redirect(url)}/>
+        <img src={c_img} alt={name} on:click={goTo(url)} class="object-fill w-full h-auto"/>
       {/each}
     </Carousel>
   </div>

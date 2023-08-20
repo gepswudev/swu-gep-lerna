@@ -27,14 +27,14 @@
     
     //check is filename is english
     const format = /^[A-Za-z0-9_.,()\-\s]*$/;
-    console.log(!format.test(file.name))
+
      if (!format.test(file.name)) {
        err = {
          ...err,
          file: "File name must contain only English characters, digits, underscores, commas, parentheses, dashes, periods, and whitespaces., Please rename file follow the rules and try again",
        };
      }
-     console.log(file.name, err);
+
     //check file name
     if (file.name === "") {
       err = { ...err, file: "File is required" };
@@ -55,14 +55,14 @@
     //change button while creating
     submitButton.innerHTML = "Uploading...";
     submitButton.disabled = true;
-    console.log(fileupload);
+
     //send data to server
      post("filesys", {fileupload}, {
        "Content-Type": "multipart/form-data",
        Authorization: "Bearer " + localStorage.getItem("token"),
      })
        .then((res) => {
-         console.log(res);
+
          swa({
            icon: res.status,
            title: res.status,

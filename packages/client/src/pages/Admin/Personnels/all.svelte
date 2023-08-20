@@ -27,7 +27,7 @@
           ><IconPlus /> New</button
         >
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 text-start gap-4">
+      <div class="grid grid-cols-1  xl:grid-cols-4 text-start gap-4">
         {#each personelsData.data as data, index}
           {#if filtered === "" || data.name.toLowerCase().includes(filtered.toLowerCase())}
             <PersonnelsCard {data} admin={true} {index} />

@@ -3,8 +3,31 @@
 @tailwind utilities;
 
 @layer base {
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600;700;800;900&display=swap');
-    html {
-        font-family: 'Noto Sans Thai', sans-serif;
+  /*Load font */
+  @font-face {
+    font-family: "Noto Sans Thai";
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: url("/fonts/NotoSansThai-Light.ttf") format("truetype");
+  }
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600;700;800;900&display=swap");
+  html {
+    font-family: "Noto Sans Thai", sans-serif;
+  }
+}
+
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari, and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
     }
+
+    /* Hide scrollbar for IE, Edge, and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
 }

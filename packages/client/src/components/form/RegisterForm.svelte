@@ -47,7 +47,7 @@
     onSubmit: (values) => {
       post("users/register", values)
         .then((res) => {
-          console.log(res);
+
           if (res.status === "success") {
             alert(JSON.stringify(res.data));
           } else {

@@ -8,8 +8,6 @@
   export let data;
   export let id = "";
 
-  
-
   const editHandler = () => {
     navigate(`/admin/activities/update/${id}`);
   };
@@ -21,8 +19,8 @@
         text: `Do you want to delete ${data.title}?`,
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
@@ -34,13 +32,10 @@
                   text: res.message,
                   icon: "success",
                   confirmButtonText: "OK",
-                  cancelButtonColor: "#00A2E0",
-                }).then(() => {
-                  
+                  confirmButtonColor: "#00A2E0",
+                }).then((result) => {
                   location.reload();
                 });
-
-                location.reload();
               } else {
                 Swal.fire({
                   title: res.status,
@@ -61,12 +56,11 @@
                 confirmButtonText: "OK",
                 cancelButtonColor: "#00A2E0",
               }).then(() => {
-                  location.reload();
-                });
+                location.reload();
+              });
             });
         }
       });
-      
     } catch (error) {
       Swal.fire({
         title: "Error!",
@@ -85,7 +79,9 @@
   id={data.title}
   class="card w-[20rem] bg-base-100 border-none shadow-xl hover:shadow-2xl border hover:border-primary duration-500 transition-transform transform hover:scale-110"
 >
-  <figure><img class="h-52" src={getImg(data.img)} alt={data.title + "_IMG"} /></figure>
+  <figure>
+    <img class="h-52" src={getImg(data.img)} alt={data.title + "_IMG"} />
+  </figure>
   <div class="card-body">
     <h2 class="card-title">
       {data.title ?? ""}

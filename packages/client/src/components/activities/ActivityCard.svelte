@@ -5,13 +5,14 @@
   import swa from "../../lib/popalert";
 
   export let data;
+  export let sx = "";
 
   let display = lang() || "th";
 
   const viewActivityHandler = () => {
     if (!data.href) return;
     get("activities/view/" + data._id).then((res) => {
-      console.log(res);
+
       if (data.href) {
         const redirect = window.open(data.href, "_blank");
         try {
@@ -30,13 +31,13 @@
 
 {#if display === "th"}
   <button
-    class="p-8 flex flex-col hover:shadow-2xl hover:rounded-xl bg-transparent text-start justify-between"
+    class={"p-8 flex flex-col max-w-md hover:shadow-2xl hover:rounded-xl bg-transparent text-start justify-between" + " " + sx}
     on:click={viewActivityHandler}
   >
     <img
       src={getImg(data.img)}
       alt={data.title + "_IMG"}
-      class="h-[19.5rem] rounded-lg"
+      class="w-full rounded-lg object-cover"
     />
     <p class="my-2 text-neutral">
       {(data.desc === "" ? data.title : data.desc).substring(0, 80)}
@@ -51,7 +52,7 @@
       </p>
       {#if data.href && data.views}
         <p class="text-neutral text-sm">
-          {data.views > 1 ? data.views + " ผู้เข้าชม" : "ไม่มีผู้เช้าชม"}
+          {data.views >= 1 ? data.views + " ผู้เข้าชม" : "ไม่มีผู้เช้าชม"}
         </p>
       {/if}
     </div>
@@ -64,7 +65,7 @@
     <img
       src={getImg(data.img)}
       alt={data.title + "_IMG"}
-      class="h-[19.5rem] rounded-lg"
+      class="w-full rounded-lg object-cover"
     />
     <p class="my-2 text-neutral">
       {(data.desc === "" ? data.title : data.desc).substring(0, 80)}

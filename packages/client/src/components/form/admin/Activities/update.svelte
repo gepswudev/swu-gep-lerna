@@ -1,9 +1,11 @@
 <script>
   import { get, put } from "../../../../lib/API/methods";
+  import ActivityCard from "../../../activities/ActivityCard.svelte";
   import swa from "../../../../lib/popalert";
   import log from "../../../../lib/log";
   import Loading from "../../../Loading.svelte";
   import { navigate } from "svelte-routing";
+  import getImg from "../../../../lib/getImg";
   export let id;
   export let sx = "";
   let form;
@@ -15,9 +17,34 @@
   let tag;
   let submitButton;
   let degreeSelect = [];
+  
 
   let err = { title: "", desc: "", img: "", href: "", badge: "" };
   let validated = false;
+  let previewData = {
+    title: "Title",
+    desc: "Description",
+    img: "https://picsum.photos/seed/picsum/500/500",
+    href: "https://www.google.com",
+    badge: "Badge",
+    degree: "bechelor",
+    tag: "ใหม่, แนะนำ, สำคัญ",
+    createAt: Date.now(),
+    views: 10,
+  };
+
+  const loadPreview = () => {
+    previewData = {
+      ...previewData,
+      title,
+      desc,
+      img: getImg(img),
+      href,
+      badge,
+      tag,
+      degree: degreeSelect.toString(),
+    };
+  };
   
   const selectCheck = (value) => {
     if(degreeSelect.includes(value)){
@@ -89,19 +116,19 @@
       degree,
       tag,
     };
-    console.log(data);
+
     put(`activities/${id}`, data, {
       "Content-Type": "multipart/form-data",
       Authorization: "Bearer " + localStorage.getItem("token"),
     })
       .then((res) => {
-        console.log(res);
+
         swa({
           icon: res.status,
           title: res.status,
           text: res.message,
         });
-        console.log(res);
+
         navigate("/viewactivities");
       })
       .catch((err) => {
@@ -118,14 +145,16 @@
         text: res.message,
       });
     log("Edit activity", `Activity: ${res.data.title} (${res.data._id})`);
-    console.log(res);
+
     activity = res.data;
     title = res.data.title;
     desc = res.data.desc;
     img = res.data.img;
+    previewData.img = getImg(img);
     degreeSelect = res.data.degree;
     href = res.data.href;
     badge = res.data.badge;
+    loadPreview();
     return res.data;
   });
 </script>
@@ -134,11 +163,19 @@
   <Loading title="Loading activity data" desc="Please wait..." />
   <form bind:this={form} />
 {:then data}
+
+<div class="flex flex-col md:flex-row">
+  <div class="max-w-md flex-1 mx-16 my-4">
+    <p class="text-center">Preview</p>
+    <ActivityCard data={previewData} sx={"mx-auto border-primary "} />
+  </div>
+  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <form
-    class={"form-control" + sx}
+    class={"form-control flex-1 " + sx}
     bind:this={form}
     on:submit|preventDefault={handlerSubmit}
     on:change={formValidate}
+    on:keyup={loadPreview}
   >
     <h2 class="text-2xl font-semibold text-center">
       Update Activity : {data?.title}
@@ -288,4 +325,5 @@
       >
     </div>
   </form>
+</div>
 {/await}

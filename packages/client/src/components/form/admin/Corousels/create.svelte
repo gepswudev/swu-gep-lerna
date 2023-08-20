@@ -10,6 +10,27 @@
   const imgSize = 50000000;
   const authorizedExtensions = [".jpg", ".jpeg", ".png", ".webp"];
 
+  let previewData = {
+    name: "Banner Corousel Preview",
+    img: "https://via.placeholder.com/1440x650",
+    url: "#",
+  };
+
+  //preview data function
+  const loadPreview = () => {
+    const formData = new FormData(form);
+    const name = formData.get("name");
+    const img = formData.get("img");
+    const url = formData.get("url");
+
+    previewData = {
+      ...previewData,
+      name,
+      img: URL.createObjectURL(img),
+      url,
+    };
+  };
+
   //form validation function
   const formValidate = () => {
     const formData = new FormData(form);
@@ -62,7 +83,7 @@
       img,
       url,
     };
-    console.log(data);
+
     //change button while creating
     submitButton.innerHTML = "Creating...";
     submitButton.disabled = true;
@@ -72,7 +93,7 @@
       Authorization: "Bearer " + localStorage.getItem("token"),
     })
       .then((res) => {
-        console.log(res);
+
         swa(
           {
             icon: res.status,
@@ -81,16 +102,15 @@
           },
           () => {
             //change button after creating
-            if(res.status === "success"){
-                submitButton.innerHTML = "Created";
-            submitButton.disabled = false;
-            navigate("/viewcorousels");
-            }else{
-                submitButton.innerHTML = "Create";
-            submitButton.disabled = false;
-            form.reset();
+            if (res.status === "success") {
+              submitButton.innerHTML = "Created";
+              submitButton.disabled = false;
+              navigate("/viewcorousels");
+            } else {
+              submitButton.innerHTML = "Create";
+              submitButton.disabled = false;
+              form.reset();
             }
-            
           }
         );
       })
@@ -100,69 +120,83 @@
   };
 </script>
 
-<form
-  class={"form-control" + sx}
-  bind:this={form}
-  on:submit|preventDefault={handlerSubmit}
-  on:change={formValidate}
->
-  <h2 class="text-2xl font-semibold text-center">
-    Create New Banner Corousels
-  </h2>
-  <div class="mb-4">
-    <label for="name" class="label justify-start"
-      >Name<span class="text-red-500">*</span></label
-    >
-    <input
-      type="text"
-      name="name"
-      id="name"
-      required
-      class="input input-bordered input-primary w-full"
-      placeholder="Enter corousel name here (required)"
-    />
-    {#if err.name}
-      <p class="text-red-500">{err.name}</p>
-    {/if}
+<div class="flex flex-col md:flex-row">
+  <div class="max-w-md flex-1 mx-16 my-4 gap-4">
+    <p class="text-center">Preview</p>
+    <a href={previewData.url} class="flex justify-center hover:tooltip-open" tooltip={`Go to ${previewData.url}`} target="_blank">
+      <img
+        src={previewData.img}
+        alt={previewData.name+"_Banner"}
+        class="w-full"
+      />
+    </a>
   </div>
+  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+  <form
+    class={"form-control flex-1 " + sx}
+    bind:this={form}
+    on:submit|preventDefault={handlerSubmit}
+    on:change={formValidate}
+    on:keyup={loadPreview}
+  >
+    <h2 class="text-2xl font-semibold text-center">
+      Create New Banner Corousels
+    </h2>
+    <div class="mb-4">
+      <label for="name" class="label justify-start"
+        >Name<span class="text-red-500">*</span></label
+      >
+      <input
+        type="text"
+        name="name"
+        id="name"
+        required
+        class="input input-bordered input-primary w-full"
+        placeholder="Enter corousel name here (required)"
+      />
+      {#if err.name}
+        <p class="text-red-500">{err.name}</p>
+      {/if}
+    </div>
 
-  <div class="mb-4">
-    <label for="img" class="label justify-start"
-      >Image<span class="text-red-500">*</span></label
-    >
-    <input
-      class="file-input file-input-bordered file-input-primary w-full"
-      type="file"
-      name="img"
-      id="img"
-      accept={authorizedExtensions.join(",")}
-      required
-    />
-    {#if err.img}
-      <p class="text-red-500">{err.img}</p>
-    {/if}
-  </div>
+    <div class="mb-4">
+      <label for="img" class="label justify-start"
+        >Image<span class="text-red-500">*</span></label
+      >
+      <input
+        class="file-input file-input-bordered file-input-primary w-full"
+        type="file"
+        name="img"
+        id="img"
+        accept={authorizedExtensions.join(",")}
+        required
+      />
+      {#if err.img}
+        <p class="text-red-500">{err.img}</p>
+      {/if}
+    </div>
 
-  <div class="mb-4">
-    <label for="url" class="label">Link</label>
-    <input
-      type="url"
-      name="url"
-      id="url"
-      class="input input-bordered input-primary w-full"
-      placeholder="Enter banner reference link here. (Option)"
-    />
-    {#if err.url}
-      <p class="text-red-500">{err.url}</p>
-    {/if}
-  </div>
+    <div class="mb-4">
+      <label for="url" class="label">Link</label>
+      <input
+        type="url"
+        name="url"
+        id="url"
+        class="input input-bordered input-primary w-full"
+        placeholder="Enter banner reference link here. (Option)"
+      />
+      {#if err.url}
+        <p class="text-red-500">{err.url}</p>
+      {/if}
+    </div>
 
-  <div class="mt-6">
-    <button
-      bind:this={submitButton}
-      type="submit"
-      class="btn btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50 disabled:btn-loading"
-      >Create</button
-    >
-  </div>
-</form>
+    <div class="mt-6">
+      <button
+        bind:this={submitButton}
+        type="submit"
+        class="btn btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50 disabled:btn-loading"
+        >Create</button
+      >
+    </div>
+  </form>
+</div>

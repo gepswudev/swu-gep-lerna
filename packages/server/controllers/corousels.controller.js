@@ -52,11 +52,10 @@ exports.create = async (req, res) => {
           message: "Error occurred while uploading the file.",
         });
       }
-      //validate the image size width must be 1440 and height must be between 600 and 650
+      //validate the image size width must be 1080 - 1440 and height must be between 400 and 650
       const dimensions = sizeOf(uploadPath);
       if (
-        dimensions.width !== 1440 ||
-        (dimensions.height < 600 && dimensions.height > 650)
+        dimensions.width < 1080 || dimensions.width > 1440 || dimensions.height < 400 || dimensions.height > 650
       ) {
         fs.unlink(uploadPath, (err) => {
           if (err) {
@@ -73,7 +72,7 @@ exports.create = async (req, res) => {
         });
         return res.status(400).send({
           status: "error",
-          message: "Image size must be 1440x600-650",
+          message: `Image size must be between 1080x400 and 1440x650, Your current image size is ${dimensions.width}x${dimensions.height}`,
         });
       }
       log(`Corousels`, `File uploaded successfully: ${uploadPath}`);

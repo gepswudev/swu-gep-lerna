@@ -34,9 +34,9 @@ exports.create = async (req, res) => {
 
     const uploadedFile = req.files.img;
     const fileName = uploadedFile.name;
-    console.log(fileName);
+
     const fileExtension = fileName.split(".").pop();
-    console.log(fileExtension);
+
     const renameFile = `${title.trim()}_${Date.now()}.${fileExtension}`;
     const uploadPath = `${__dirname}/../public/images/activities/${renameFile}`;
     // Use the mv() method to place the file somewhere on your server
@@ -202,7 +202,7 @@ exports.delete = async (req, res) => {
     }
 
     // Delete the image file from the server
-    const uploadPath = `${__dirname}/../public${activities.img}`;
+    const uploadPath = `${__dirname}/../public/${activities.img}`;
     //check if the file exists
     if (fs.existsSync(uploadPath) && !activities.img.includes("default.png")) {
       fs.unlink(uploadPath, (err) => {

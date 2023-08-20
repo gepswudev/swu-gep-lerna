@@ -4,6 +4,7 @@
   import log from "../../../../lib/log";
   import Loading from "../../../Loading.svelte";
   import swa from "../../../../lib/popalert";
+  import getImg from "../../../../lib/getImg";
   export let id;
   export let sx = "";
   let form;
@@ -13,6 +14,26 @@
   let name;
   let img;
   let url;
+  let previewData = {
+    name: "Banner Corousel Preview",
+    img: "https://via.placeholder.com/1440x650",
+    url: "#",
+  };
+
+  //preview data function
+  const loadPreview = () => {
+    const formData = new FormData(form);
+    const name = formData.get("name");
+    const img = formData.get("img");
+    const url = formData.get("url");
+
+    previewData = {
+      ...previewData,
+      name,
+      img: getImg(img),
+      url,
+    };
+  };
 
   //form validation function
   const formValidate = () => {
@@ -47,7 +68,7 @@
       name,
       url,
     };
-    console.log(data);
+
     //change button while creating
     submitButton.innerHTML = "Updating...";
     submitButton.disabled = true;
@@ -57,7 +78,7 @@
       Authorization: "Bearer " + localStorage.getItem("token"),
     })
       .then((res) => {
-        console.log(res);
+
         swa({
           icon: res.status,
           title: res.status,
@@ -68,7 +89,7 @@
             submitButton.innerHTML = "Update";
             submitButton.disabled = false;
             navigate("/viewcorousels");
-            console.log(res);
+
           });
       })
       .catch((err) => {
@@ -90,10 +111,14 @@
         }
       );
     log("Edit corousel", `Corousel: ${res.data.name} (${res.data._id})`);
-    console.log(res);
+    
+
     name = res.data.name;
+    previewData.name = name;
     img = res.data.img;
+    previewData.img = getImg(img);
     url = res.data.url;
+    previewData.url = url;
     corousel = res.data;
     return res.data;
   });
@@ -103,6 +128,17 @@
   <Loading title="Loading activity data" desc="Please wait..." />
   <form bind:this={form} />
 {:then data}
+<div class="flex flex-col md:flex-row">
+  <div class="max-w-md flex-1 mx-16 my-4 gap-4">
+    <p class="text-center">Preview</p>
+    <a href={previewData.url} class="flex justify-center hover:tooltip-open" tooltip={`Go to ${previewData.url}`} target="_blank">
+      <img
+        src={previewData.img}
+        alt={previewData.name+"_Banner"}
+        class="w-full"
+      />
+    </a>
+  </div>
   <form
     class={"form-control" + sx}
     bind:this={form}
@@ -174,4 +210,5 @@
       >
     </div>
   </form>
+</div>
 {/await}

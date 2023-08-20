@@ -82,25 +82,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-// const Personnels = require("./models/Personnels");
-// const createTest = async ( ) => { 
-//   try{
-//     const personnels = new Personnels({
-//       name: "Nguyen Van A",
-//       wellcenter: {
-//         status: true,
-//         position: "HCM",
-//         availableDate: ["2021-01-01", "2021-01-02"],
-//         availableTime: ["08:00", "09:00"],
-//       },
-//     });
-//     await personnels.save();
-//     console.log(`Created ${personnels.name}`);
-//   }catch(e){
-//     console.log(e);
-//   }
-// };
-// createTest();
-
 module.exports = app;

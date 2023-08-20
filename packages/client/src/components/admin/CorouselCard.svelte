@@ -1,9 +1,9 @@
 <script>
   import { IconEdit, IconTrash } from "@tabler/icons-svelte";
   import { navigate } from "svelte-routing";
-  import { del } from "../../../../lib/API/methods";
+  import { del } from "../../lib/API/methods";
   import Swal from "sweetalert2";
-  import getImg from "../../../../lib/getImg";
+  import getImg from "../../lib/getImg";
 
   export let data;
 
@@ -16,6 +16,7 @@
       confirmButtonText: "Yes, delete it!",
       cancelButtonText: "No, cancel!",
       reverseButtons: true,
+      confirmButtonColor: "#d33",
     }).then((result) => {
       if (result.isConfirmed) {
         del(`corousels/${data._id}`)
@@ -26,7 +27,7 @@
                 text: res.message,
                 icon: "success",
                 confirmButtonText: "OK",
-                cancelButtonColor: "#00A2E0",
+                confirmButtonColor: "#00A2E0",
               }).then(() => {
                 location.reload();
               });
@@ -36,7 +37,7 @@
                 text: res.message + " as Admin",
                 icon: res.status,
                 confirmButtonText: "OK",
-                cancelButtonColor: "#00A2E0",
+                confirmButtonColor: "#00A2E0",
               }).then(() => {
                 location.reload();
               });
@@ -48,6 +49,7 @@
               text: e.message,
               icon: "error",
               confirmButtonText: "OK",
+              
               cancelButtonColor: "#00A2E0",
             }).then(() => {
               location.reload();
@@ -74,8 +76,8 @@
   <p class="font-bold text-2xl my-4">
     Name : <span class="text-xl"> {data.name}</span>
   </p>
-  <p class="font-semibold text-xl">
-    URL : <a href={data.url} class="text-xl">{data.url}</a>
+  <p class="text-md">
+    URL : <a href={data.url} class="text-md underline">{data.url}</a>
   </p>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-center">
     <button

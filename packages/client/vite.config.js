@@ -5,4 +5,7 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 export default defineConfig({
   plugins: [svelte()],
   base: './',
+  optimizeDeps: {
+    include: ['lodash.get', 'lodash.isequal', 'lodash.clonedeep']
+  },
 })
