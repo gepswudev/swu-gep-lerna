@@ -99,7 +99,7 @@
             </div>
           </div>
           <a
-            href="www.facebook.com/Well.Center.SWU"
+            href="https://www.facebook.com/Well.Center.SWU"
             class="text-primary mt-4 hover:underline"
             >ช่องทาง -&gt; www.facebook.com/Well.Center.SWU</a
           >
