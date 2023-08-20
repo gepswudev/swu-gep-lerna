@@ -3,7 +3,9 @@ import log from "../log";
 import { API } from "./baseapi";
 
 
-export async function get(url, headers = {}) {
+export async function get(url, headers = {
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+}) {
   try {
     const response = await axios.get(API + url, {headers});
     log(
@@ -23,7 +25,9 @@ export async function get(url, headers = {}) {
   }
 };
 
-export async function post(url, data, headers = {}) {
+export async function post(url, data, headers = {
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+}) {
   try {
     const response = await axios.post(API + url, data, {headers});
     log('POST', `${url} - ${response?.status} : ${response?.data?.message}`, 'info');
@@ -39,7 +43,9 @@ export async function post(url, data, headers = {}) {
 };
 
 
-export async function put(url, data, headers = {}) {
+export async function put(url, data, headers = {
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+}) {
   try {
     const response = await axios.put(API + url, data , {headers});
     log('PUT', `${url} - ${response?.status} : ${response?.data?.message}`, 'info');
