@@ -58,9 +58,9 @@ exports.create = async (req, res) => {
       const dimensions = sizeOf(uploadPath);
       if (
         dimensions.width < 1080 ||
-        dimensions.width > 1440 ||
-        dimensions.height < 400 ||
-        dimensions.height > 700
+        //dimensions.width > 1440 ||
+        dimensions.height < 400 //||
+        //dimensions.height > 700
       ) {
         fs.unlink(uploadPath, (err) => {
           if (err) {
@@ -77,7 +77,7 @@ exports.create = async (req, res) => {
         });
         return res.status(400).send({
           status: "error",
-          message: `Image size must be between 1080x400 and 1440x700, Your current image size is ${dimensions.width}x${dimensions.height}`,
+          message: `Image size must be at least 1080x400, Your current image size is ${dimensions.width}x${dimensions.height}`,
         });
       }
       log(`Corousels`, `File uploaded successfully: ${uploadPath}`);
@@ -200,14 +200,14 @@ exports.update = async (req, res) => {
       const dimensions = sizeOf(uploadPath);
       if (
         dimensions.width < 1080 ||
-        dimensions.width > 1440 ||
-        dimensions.height < 400 ||
-        dimensions.height > 700
+        //dimensions.width > 1440 ||
+        dimensions.height < 400 //||
+        //dimensions.height > 700
       ) {
         fs.unlinkSync(uploadPath); // Delete the uploaded file
         return res.status(400).send({
           status: "error",
-          message: `Image size must be between 1080x400 and 1440x700. Your current image size is ${dimensions.width}x${dimensions.height}`,
+          message: `Image size must be at least 1080x400. Your current image size is ${dimensions.width}x${dimensions.height}`,
         });
       }
 
