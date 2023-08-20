@@ -38,7 +38,7 @@ exports.create = async (req, res) => {
 
     const fileExtension = fileName.split(".").pop();
 
-    const renameFile = `${title.trim()}_${Date.now()}.${fileExtension}`;
+    const renameFile = `${title.trim().subsrt(0,20)}_${Date.now()}.${fileExtension}`;
     const uploadPath = `${__dirname}/../public/images/activities/${renameFile}`;
     // Use the mv() method to place the file somewhere on your server
     // For simplicity, we'll save the file in the "uploads" directory in the project root
@@ -179,7 +179,7 @@ exports.update = async (req, res) => {
       const uploadedFile = req.files.img;
       const fileName = uploadedFile.name;
       const fileExtension = fileName.split(".").pop();
-      const renameFile = `${title.trim()}_${Date.now()}.${fileExtension}`;
+      const renameFile = `${title.trim().subsrt(0,20)}_${Date.now()}.${fileExtension}`;
       const uploadPath = `${__dirname}/../public/images/activities/${renameFile}`;
       uploadedFile.mv(uploadPath, async (err) => {
         if (err) {
