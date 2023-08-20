@@ -4,10 +4,10 @@ const corousels = require('../controllers/corousels.controller');
 const { tokenize } = require('../middlewares/tokenize');
 const auth = require('../middlewares/auth');
 
-router.post('/', corousels.create);
+router.post('/', tokenize, auth, corousels.create);
 router.get('/', corousels.findAll);
 router.get('/:id', corousels.findOne);
-router.put('/:id', corousels.update);
+router.put('/:id', tokenize, auth, corousels.update);
 router.delete('/:id', tokenize, auth, corousels.delete);
 
 module.exports = router;

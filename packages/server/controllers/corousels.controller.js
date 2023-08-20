@@ -4,6 +4,7 @@ const Corousels = require("../models/Corousels");
 const sizeOf = require("image-size");
 const fs = require("fs");
 const path = require("path");
+const Users = require("../models/Users");
 
 // Create a new corousel
 exports.create = async (req, res) => {
@@ -80,10 +81,17 @@ exports.create = async (req, res) => {
         });
       }
       log(`Corousels`, `File uploaded successfully: ${uploadPath}`);
+
+      //find who created the activity
+      const createdBy = req.userData?.username;
+      //find _id of the user who created the activity
+      const modifiedBy = Users.findOne({ username: createdBy });
+
       const newCorousels = new Corousels({
         name,
         img: `images/corousels/${renameFile}`,
         url,
+        modifiedBy: modifiedBy._id,
       });
 
       // Save the new corousel to the database
@@ -164,11 +172,17 @@ exports.update = async (req, res) => {
     if (req.body.__v) delete req.body.__v;
     if (req.body.img) delete req.body.img;
 
+    //find who created the activity
+    const createdBy = req.userData?.username;
+    //find _id of the user who created the activity
+    const modifiedBy = Users.findOne({ username: createdBy });
+
     // Update the carousel data
     const updatedCorousels = {
       ...corousels.toObject(),
       ...req.body,
       updatedAt: Date.now(),
+      modifiedBy: modifiedBy._id,
     };
 
     // If image is included in the request, process it
@@ -205,6 +219,8 @@ exports.update = async (req, res) => {
       updatedCorousels.img = `images/corousels/${renameFile}`;
     }
 
+    
+    
     // Save the updated data to the database
     const updatedData = await Corousels.findByIdAndUpdate(
       req.params.id,

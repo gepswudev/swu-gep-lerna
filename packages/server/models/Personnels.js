@@ -43,6 +43,10 @@ const PersonnelsSchema = new Schema({
   updateAt : {
       type: Date,
       default: Date.now
+  },
+  modifiedBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'Users'
   }
 });
 

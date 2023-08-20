@@ -1,13 +1,14 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { tokenize } = require('../middlewares/tokenize');
-const personnels = require('../controllers/personnels.controller');
+const { tokenize } = require("../middlewares/tokenize");
+const auth = require("../middlewares/auth");
+const personnels = require("../controllers/personnels.controller");
 
-router.get('/', personnels.findAll);
-router.get('/:id', personnels.findOne);
-router.post('/', personnels.create);
-router.put('/:id', tokenize, personnels.update);
-router.delete('/:id', tokenize, personnels.delete);
+router.get("/", personnels.findAll);
+router.get("/:id", personnels.findOne);
+router.post("/", tokenize, auth, personnels.create);
+router.put("/:id", tokenize, auth, personnels.update);
+router.delete("/:id", tokenize, auth, personnels.delete);
 
 module.exports = router;
 

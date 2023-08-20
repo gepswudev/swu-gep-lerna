@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { log } = require("../logger");
 const Activities = require("../models/Activities");
+const Users = require("../models/Users");
 
 // Create a new activity
 exports.create = async (req, res) => {
@@ -52,6 +53,11 @@ exports.create = async (req, res) => {
       }
       log(`Activities`, `File uploaded successfully: ${uploadPath}`);
 
+      //find who created the activity
+      const createdBy = req.userData?.username;
+      //find _id of the user who created the activity
+      const modifiedBy = Users.findOne({ username: createdBy });
+
       // Create a new instance of the Activities model
       const newActivities = new Activities({
         title,
@@ -61,7 +67,9 @@ exports.create = async (req, res) => {
         badge,
         tag,
         degree,
+        modifiedBy: modifiedBy._id,
       });
+      
 
       // Save the new activity to the database
       const activities = await newActivities.save();
@@ -150,6 +158,11 @@ exports.update = async (req, res) => {
       });
     }
 
+    //find who created the activity
+    const createdBy = req.userData?.username;
+    //find _id of the user who created the activity
+    const modifiedBy = Users.findOne({ username: createdBy });
+
     // Find the activity by ID and update its properties
     const activities = await Activities.findByIdAndUpdate(
       req.params.id,
@@ -161,6 +174,7 @@ exports.update = async (req, res) => {
         updateAt: Date.now(),
         tag,
         degree,
+        modifiedBy: modifiedBy._id,
       },
       {
         new: true,

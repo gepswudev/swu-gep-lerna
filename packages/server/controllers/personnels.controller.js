@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const logger = require("../database/logger");
 const { log } = require("../logger");
+const Users = require("../models/Users");
 
 // POST /personnels
 exports.create = async (req, res) => {
@@ -55,6 +56,12 @@ exports.create = async (req, res) => {
         availableTime: Time,
       };
 
+      //find who created the activity
+    const createdBy = req.userData?.username;
+    //find _id of the user who created the activity
+    const modifiedBy = Users.findOne({ username: createdBy });
+
+
       const newPersonnels = new Personnels({
         name,
         position,
@@ -62,6 +69,7 @@ exports.create = async (req, res) => {
         email,
         phone,
         img: `images/personnels/${renameFile}`,
+        modifiedBy: modifiedBy._id,
       });
 
       const personnel = await newPersonnels.save();
@@ -113,6 +121,11 @@ exports.update = async (req, res) => {
       availableDate: WDate,
       availableTime: Time,
     };
+    //find who created the activity
+    const createdBy = req.userData?.username;
+    //find _id of the user who created the activity
+    const modifiedBy = Users.findOne({ username: createdBy });
+
     const changed = await Personnels.findByIdAndUpdate(
       id,
       {
@@ -122,6 +135,7 @@ exports.update = async (req, res) => {
         phone,
         wellcenter,
         updateAt: Date.now(),
+        modifiedBy: modifiedBy._id,
       },
       { new: true }
     );
