@@ -10,11 +10,11 @@
     let display = lang() || "th";
 </script>
 
-<div class="w-[414px] h-[175px] mt-4 flex">
+<div class="w-[350px] md:w-[414px] h-[175px] mt-4 flex border-b-2 pb-8 border-red-500">
     <img
     src={getImg(data.img)}
     alt={data.email + "_IMG"}
-    class="max-h-[175px] w-[153px] object-cover"
+    class="max-h-[175px] w-[120px] md:w-[153px] object-cover"
     />
     <div class="pl-4 pt-2">
         <!-- Thai Name -->
