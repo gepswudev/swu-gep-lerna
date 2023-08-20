@@ -47,7 +47,7 @@ exports.create = async (req, res) => {
         console.log(err);
         return res.status(500).send({
           status: "error",
-          message: "Error occurred while uploading the file.",
+          message: err.message,
         });
       }
       log(`Activities`, `File uploaded successfully: ${uploadPath}`);
