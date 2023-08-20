@@ -13,19 +13,20 @@
     <meta property="og:image" content="" />
 </svelte:head>
 
-<div class="min-h-full">
-    <h2 class="text-xl md:text-3xl font-bold drop-shadow-md text-[#00A2E0] ml-12" >
+<div class="grid justify-center w-screen">
+    <h2 class="text-xl md:text-[30px] font-bold drop-shadow-md text-[#00A2E0]" >
         บุคลากร
     </h2>
-    <p class="text-base ml-20">
+    <p class="text-[16px] ml-12 pt-4">
         อาจารย์ภาควิชาการแนะแนวและจิตวิทยาการศึกษา
     </p>
-
-    {#await personnelsData}
-        <div />
-    {:then personnelData} 
-        {#each personnelData.data as data}
-            <PersonelProfile {data}/>
-        {/each}
-    {/await}
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pt-8">
+        {#await personnelsData}
+            <div />
+        {:then personnelData} 
+            {#each personnelData.data as data}
+                <PersonelProfile {data}/>
+            {/each}
+        {/await}
+    </div>
 </div>
