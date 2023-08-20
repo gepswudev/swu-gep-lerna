@@ -1,6 +1,7 @@
 const Personnels = require("../models/Personnels");
 const fs = require("fs");
 const path = require("path");
+const { v4: uuidv4 } = require('uuid');
 const logger = require("../database/logger");
 const { log } = require("../logger");
 const Users = require("../models/Users");
@@ -35,10 +36,8 @@ exports.create = async (req, res) => {
     const uploadedFile = req.files.img;
     const fileName = uploadedFile.name;
     const fileExtension = fileName.split(".").pop();
-    const renameFile = `${name
-      .replace(" ", "_")
-      .trim().substring(0,20)}_profile.${fileExtension}`;
-    const uploadPath = `${__dirname}/../public/images/personnels/${renameFile}`;
+    const renameFile = `${uuidv4()}_${Date.now()}_profile.${fileExtension}`;
+    const uploadPath = path.join(`${__dirname}/../public/images/personnels/${renameFile}`);
     uploadedFile.mv(uploadPath, async (err) => {
       if (err) {
         log(`Personnels`, err.message, "error");
@@ -140,15 +139,15 @@ exports.update = async (req, res) => {
       { new: true }
     );
 
+    console.log(req.files);
     //if image is included in request replace old image with new image with same name
     if (req.files) {
       const uploadedFile = req.files.img;
       const fileName = uploadedFile.name;
       const fileExtension = fileName.split(".").pop();
-      const renameFile = `${name
-        .replace(" ", "_")
-        .trim().substring(0,20)}_profile.${fileExtension}`;
-      const uploadPath = `${__dirname}/../public/images/personnels/${renameFile}`;
+      const renameFile = `${uuidv4()}_${Date.now()}_profile.${fileExtension}`;
+      const uploadPath = path.join(`${__dirname}/../public/images/personnels/${renameFile}`);
+      console.log(uploadPath);
       uploadedFile.mv(uploadPath, async (err) => {
         if (err) {
           log(`Personnels`, err.message, "error");
@@ -175,7 +174,6 @@ exports.update = async (req, res) => {
         );
       });
     }
-
     log(`Personnels`, `Updated ${name}`);
     logger.info(`Personnels`, `Updated ${name}`);
     return res.status(200).send({
