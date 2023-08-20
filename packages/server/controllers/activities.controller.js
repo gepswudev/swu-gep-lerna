@@ -1,5 +1,6 @@
 const logger = require("../database/logger");
 const fs = require("fs");
+const path = require("path");
 const { log } = require("../logger");
 const Activities = require("../models/Activities");
 
@@ -172,6 +173,41 @@ exports.update = async (req, res) => {
         message: "Activities not found",
       });
     }
+
+    //if image is included in request replace old image with new image with same name
+    if (req.files) {
+      const uploadedFile = req.files.img;
+      const fileName = uploadedFile.name;
+      const fileExtension = fileName.split(".").pop();
+      const renameFile = `${title.trim()}_${Date.now()}.${fileExtension}`;
+      const uploadPath = `${__dirname}/../public/images/activities/${renameFile}`;
+      uploadedFile.mv(uploadPath, async (err) => {
+        if (err) {
+          log(`Activities`, err.message, "error");
+          return res.status(500).send({
+            status: "error",
+            message: err.message + " - " + err.stack,
+          });
+        }
+        //delete old image
+        const activities = await Activities.findById(req.params.id);
+        const imagePath = path.join(__dirname, `../public/${activities.img}`);
+        fs.unlink(imagePath, async (err) => {
+          if (err) {
+            log(`Activities`, err.message, "error");
+          }
+        });
+        //update new image
+        await Activities.findByIdAndUpdate(
+          req.params.id,
+          {
+            img: `images/activities/${renameFile}`,
+          },
+          { new: true }
+        );
+      });
+    }
+
     logger.update(
       `Activities ${activities.title} updated by ${req.userData?.username}`
     );

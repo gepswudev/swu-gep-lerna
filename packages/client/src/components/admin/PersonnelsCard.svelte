@@ -3,6 +3,7 @@
   import { navigate } from "svelte-routing";
   import { del } from "../../lib/API/methods";
   import getImg from "../../lib/getImg";
+  import { IconCalendar, IconClock, IconMail, IconPhone, IconUser } from "@tabler/icons-svelte";
 
   export let data;
   export let index;
@@ -68,34 +69,34 @@
     <img
       src={getImg(data.img)}
       alt={data.name + "_ProfilePic"}
-      class="w-full object-cover"
+      class="w-[30rem] h-auto object-cover"
     />
   </figure>
   <div class="card-body text-sm">
-    <div class="grid grid-cols-2">
-      <div class="flex flex-wrap">
+    <div class="flex flex-col text-start justify-start">
+      <div class="flex flex-col">
         <h2 class="card-title">{data.name}</h2>
         {#if data.position}
-          <p>{data.position}</p>
+          <p class="label text-start justify-start"><span><IconUser/></span>  {data.position}</p>
         {/if}
         {#if data.email}
-          <p>{data?.email}</p>
+          <p class="label text-start justify-start"><span><IconMail/></span>  {data?.email}</p>
         {/if}
         {#if data.phone}
-          <p>{data?.phone}</p>
+          <p class="label text-start justify-start"><span><IconPhone/></span>  {data?.phone}</p>
         {/if}
       </div>
       {#if data.wellcenter.status}
-        <div class="break-words">
-          <h2 class="card-title">Well Center</h2>
+        <div class="break-words border-2 rounded-lg px-4 py-2 my-4">
+          <h2 class="card-title text-lg">Well Center</h2>
           {#if data.wellcenter?.position}
-            <p>{data.wellcenter?.position}</p>
+            <p class="label text-start justify-start"><span><IconUser/></span> {data.wellcenter?.position}</p>
           {/if}
           {#if data.wellcenter?.availableDate}
-            <p>{data.wellcenter?.availableDate.toString()}</p>
+            <p class="label text-start justify-start break-words"><span><IconCalendar/></span>  {data.wellcenter?.availableDate.toString()}</p>
           {/if}
           {#if data.wellcenter?.availableTime}
-            <p>{data.wellcenter?.availableTime}</p>
+            <p class="label text-start justify-start"><span><IconClock/></span>  {data.wellcenter?.availableTime}</p>
           {/if}
         </div>
       {/if}

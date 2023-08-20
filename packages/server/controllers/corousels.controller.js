@@ -3,6 +3,7 @@ const { log } = require("../logger");
 const Corousels = require("../models/Corousels");
 const sizeOf = require("image-size");
 const fs = require("fs");
+const path = require("path");
 
 // Create a new corousel
 exports.create = async (req, res) => {
@@ -52,10 +53,13 @@ exports.create = async (req, res) => {
           message: "Error occurred while uploading the file.",
         });
       }
-      //validate the image size width must be 1080 - 1440 and height must be between 400 and 650
+      //validate the image size width must be 1080 - 1440 and height must be between 400 and 700
       const dimensions = sizeOf(uploadPath);
       if (
-        dimensions.width < 1080 || dimensions.width > 1440 || dimensions.height < 400 || dimensions.height > 650
+        dimensions.width < 1080 ||
+        dimensions.width > 1440 ||
+        dimensions.height < 400 ||
+        dimensions.height > 700
       ) {
         fs.unlink(uploadPath, (err) => {
           if (err) {
@@ -72,7 +76,7 @@ exports.create = async (req, res) => {
         });
         return res.status(400).send({
           status: "error",
-          message: `Image size must be between 1080x400 and 1440x650, Your current image size is ${dimensions.width}x${dimensions.height}`,
+          message: `Image size must be between 1080x400 and 1440x700, Your current image size is ${dimensions.width}x${dimensions.height}`,
         });
       }
       log(`Corousels`, `File uploaded successfully: ${uploadPath}`);
@@ -142,38 +146,80 @@ exports.findOne = async (req, res) => {
 };
 
 // Update a corousel by ID
+
 exports.update = async (req, res) => {
   try {
-    // Find the corousel with the given ID
-    if (req.body.createdAt) delete req.body.createdAt;
-    if (req.body.updateAt) delete req.body.updateAt;
-    if (req.body._id) delete req.body._id;
-    if (req.body.__v) delete req.body.__v;
-    if (req.body.img) delete req.body.img;
+    const corousels = await Corousels.findById(req.params.id);
 
-    const corousels = await Corousels.findByIdAndUpdate(
-      req.params.id,
-      {
-        ...req.body,
-        updateAt: Date.now(),
-      },
-      {
-        new: true,
-      }
-    );
     if (!corousels) {
       return res.status(404).send({
         status: "error",
         message: "Corousels not found",
       });
     }
-    logger.update(
-      `Corousels ${corousels.name} updated by ${req.userData?.username}`
+
+    if (req.body.createdAt) delete req.body.createdAt;
+    if (req.body.updatedAt) delete req.body.updatedAt;
+    if (req.body._id) delete req.body._id;
+    if (req.body.__v) delete req.body.__v;
+    if (req.body.img) delete req.body.img;
+
+    // Update the carousel data
+    const updatedCorousels = {
+      ...corousels.toObject(),
+      ...req.body,
+      updatedAt: Date.now(),
+    };
+
+    // If image is included in the request, process it
+    if (req.files && req.files.img) {
+      const uploadedFile = req.files.img;
+      const fileName = uploadedFile.name;
+      const fileExtension = fileName.split(".").pop();
+      const renameFile = `${corousels.name.trim()}_${Date.now()}.${fileExtension}`;
+      const uploadPath = `${__dirname}/../public/images/corousels/${renameFile}`;
+
+      // Move the uploaded file to the desired location
+      await uploadedFile.mv(uploadPath);
+
+      // Validate image dimensions
+      const dimensions = sizeOf(uploadPath);
+      if (
+        dimensions.width < 1080 ||
+        dimensions.width > 1440 ||
+        dimensions.height < 400 ||
+        dimensions.height > 700
+      ) {
+        fs.unlinkSync(uploadPath); // Delete the uploaded file
+        return res.status(400).send({
+          status: "error",
+          message: `Image size must be between 1080x400 and 1440x700. Your current image size is ${dimensions.width}x${dimensions.height}`,
+        });
+      }
+
+      // Delete old image
+      const imagePath = `${__dirname}/../public/${corousels.img}`;
+      fs.unlinkSync(imagePath);
+
+      // Update the image path in the updated data
+      updatedCorousels.img = `images/corousels/${renameFile}`;
+    }
+
+    // Save the updated data to the database
+    const updatedData = await Corousels.findByIdAndUpdate(
+      req.params.id,
+      updatedCorousels,
+      { new: true }
     );
+
+    logger.update(
+      `Corousels ${updatedData.name} updated by ${req.userData?.username}`
+    );
+
     res.status(200).send({
       status: "success",
       message: "Corousels updated successfully",
-      data: corousels,
+      data: updatedData,
     });
   } catch (error) {
     res.status(500).send({

@@ -14,8 +14,9 @@ exports.create = async (req, res) => {
         message: "No files were uploaded.",
       });
     }
+    console.log(req.body);
 
-    const { name, position, wellcenter, email, phone } = req.body;
+    const { name, position, wellcenterStatus,wellcenterDate, wellcenterPosition, wellcenterTime, email, phone } = req.body;
     if (!name || name === "") {
       return res.status(400).send({
         status: "error",
@@ -45,6 +46,14 @@ exports.create = async (req, res) => {
           message: err.message + " - " + err.stack,
         });
       }
+      const WDate = wellcenterDate?.split(",");
+      const Time = wellcenterTime?.split(",");
+      const wellcenter = {
+        status: wellcenterStatus,
+        position: wellcenterPosition,
+        availableDate: WDate,
+        availableTime: Time,
+      };
 
       const newPersonnels = new Personnels({
         name,
@@ -56,6 +65,7 @@ exports.create = async (req, res) => {
       });
 
       const personnel = await newPersonnels.save();
+      console.log(personnel);
       log(`Personnels`, `Created ${name}`);
       logger.info(`Personnels`, `Created ${name}`);
       return res.status(200).send({
@@ -88,14 +98,21 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, position, wellcenter, email, phone } = req.body;
-
+    const { name, position, wellcenterStatus, wellcenterPosition, wellcenterDate, wellcenterTime, email, phone } = req.body;
     if (!name || name === "") {
       return res.status(400).send({
         status: "error",
         message: "Name is required.",
       });
     }
+    const WDate = wellcenterDate.split(",");
+    const Time = wellcenterTime.split(",");
+    const wellcenter = {
+      status: wellcenterStatus,
+      position: wellcenterPosition,
+      availableDate: WDate,
+      availableTime: Time,
+    };
     const changed = await Personnels.findByIdAndUpdate(
       id,
       {
@@ -103,16 +120,47 @@ exports.update = async (req, res) => {
         position,
         email,
         phone,
-        wellcenter: {
-          status: wellcenter.status,
-          position: wellcenter.position,
-          availableDate: wellcenter.date,
-          availableTime: wellcenter.time,
-        },
+        wellcenter,
         updateAt: Date.now(),
       },
       { new: true }
     );
+
+    //if image is included in request replace old image with new image with same name
+    if (req.files) {
+      const uploadedFile = req.files.img;
+      const fileName = uploadedFile.name;
+      const fileExtension = fileName.split(".").pop();
+      const renameFile = `${name
+        .replace(" ", "_")
+        .trim()}_profile.${fileExtension}`;
+      const uploadPath = `${__dirname}/../public/images/personnels/${renameFile}`;
+      uploadedFile.mv(uploadPath, async (err) => {
+        if (err) {
+          log(`Personnels`, err.message, "error");
+          return res.status(500).send({
+            status: "error",
+            message: err.message + " - " + err.stack,
+          });
+        }
+        //delete old image
+        const personnels = await Personnels.findById(id);
+        const imagePath = path.join(__dirname, `../public/${personnels.img}`);
+        fs.unlink(imagePath, async (err) => {
+          if (err) {
+            log(`Personnels`, err.message, "error");
+          }
+        });
+        //update new image
+        await Personnels.findByIdAndUpdate(
+          id,
+          {
+            img: `images/personnels/${renameFile}`,
+          },
+          { new: true }
+        );
+      });
+    }
 
     log(`Personnels`, `Updated ${name}`);
     logger.info(`Personnels`, `Updated ${name}`);
@@ -122,10 +170,10 @@ exports.update = async (req, res) => {
       data: changed,
     });
   } catch (error) {
-    log(`Personnels`, error.message, "error");
+   console.log(error)
     return res.status(500).send({
       status: "error",
-      message: error.message + " - " + error.stack,
+      message: error.message,
       example: {
         name: "Firstname Lastname",
         position: "Professor",

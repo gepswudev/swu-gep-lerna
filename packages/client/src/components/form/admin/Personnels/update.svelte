@@ -17,7 +17,7 @@
   let position = "";
   let wellcenterPosition = "";
   let wellcenterTime = "";
-  let wellcenter = null;
+  let wellcenter = false;
   let wellcenterDate = [];
   let submitButton;
   let err = {
@@ -115,13 +115,13 @@
       name: data.name,
       email: data.email,
       phone: data.phone,
+      img: data.newimg,
       position: data.position,
-      wellcenter: {
-        status: wellcenter,
-        position: data["well-position"],
-        date: wellcenterDate,
-        time: data["well-time"],
-      },
+      wellcenterStatus: wellcenter,
+      wellcenterPosition: data["well-position"],
+      wellcenterDate: wellcenterDate.toString(),
+      wellcenterTime: data["well-time"],
+
     };
 
     //change button while creating
@@ -130,6 +130,7 @@
     //send data to server
     put(`personnels/${id}`, combindData, {
       Authorization: "Bearer " + localStorage.getItem("token"),
+      "Content-Type": "multipart/form-data",
     })
       .then((res) => {
 
@@ -242,7 +243,7 @@
 
       <div class="mb-4">
         <label for="img" class="label justify-start">
-          Profile Picture (To change this, Please delete and upload new one.)<span
+          Profile Picture<span
             class="text-red-500">*</span
           >
         </label>
@@ -255,6 +256,13 @@
           placeholder="Image path preview "
           bind:value={img}
         />
+        <label for="newimg" class="label justify-start"
+        >Upload new image</label
+      >
+      <input type="file" name="newimg" id="newimg" class="file-input file-input-primary file-input-bordered w-full">
+      {#if err.img}
+        <p class="text-red-500">{err.img}</p>
+      {/if}
       </div>
 
       <div class="mb-4">

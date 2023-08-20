@@ -103,6 +103,7 @@
     const title = formData.get("title");
     const desc = formData.get("desc");
     const img = formData.get("img");
+    const newimg = formData.get("newimg");
     const href = formData.get("href");
     const badge = formData.get("badge");
     const degree = degreeSelect.toString();
@@ -112,6 +113,7 @@
       title,
       desc,
       href,
+      img: newimg,
       badge,
       degree,
       tag,
@@ -211,7 +213,7 @@
 
     <div class="mb-4">
       <label for="img" class="label justify-start"
-        >Image (Image can't edit, Please delete and create new one!)<span
+        >Image <span
           class="text-red-500">*</span
         ></label
       >
@@ -223,6 +225,10 @@
         bind:value={img}
         readonly
       />
+      <label for="newimg" class="label justify-start"
+        >Upload new image</label
+      >
+      <input type="file" name="newimg" id="newimg" class="file-input file-input-primary file-input-bordered w-full">
       {#if err.img}
         <p class="text-red-500">{err.img}</p>
       {/if}

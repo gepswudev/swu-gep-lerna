@@ -63,10 +63,12 @@
     //get form data
     const formData = new FormData(form);
     const name = formData.get("name");
+    const newimg = formData.get("newimg");
     const url = formData.get("url");
     const data = {
       name,
       url,
+      img:newimg,
     };
 
     //change button while creating
@@ -140,7 +142,7 @@
     </a>
   </div>
   <form
-    class={"form-control" + sx}
+    class={"form-control flex-1 " + sx}
     bind:this={form}
     on:submit|preventDefault={handlerSubmit}
     on:change={formValidate}
@@ -168,7 +170,7 @@
 
     <div class="mb-4">
       <label for="img" class="label justify-start"
-        >Image (Image can't edit, Please delete and create new one!)<span
+        >Image<span
           class="text-red-500">*</span
         ></label
       >
@@ -181,6 +183,10 @@
         readonly
         value={img}
       />
+      <label for="newimg" class="label justify-start"
+        >Upload new image</label
+      >
+      <input type="file" name="newimg" id="newimg" class="file-input file-input-primary file-input-bordered w-full">
       {#if err.img}
         <p class="text-red-500">{err.img}</p>
       {/if}

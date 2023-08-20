@@ -7,7 +7,7 @@
   export let sx;
 
   let form = null;
-  let wellcenter = null;
+  let wellcenter = false;
   let wellcenterDate = [];
   let submitButton;
   let err = {
@@ -119,11 +119,10 @@
       phone: data.phone,
       img: data.img,
       position: data.position,
-      wellcenter: {
-        position: data["well-position"],
-        date: wellcenterDate,
-        time: data["well-time"],
-      },
+      wellcenterStatus: wellcenter,
+      wellcenterPosition: data["well-position"],
+      wellcenterDate: wellcenterDate.toString(),
+      wellcenterTime: data["well-time"],
     };
 
     //change button while creating
