@@ -1,0 +1,57 @@
+extends layout
+
+block content
+  h1= title
+  h2 Welcome to #{title}
+  p.dpText 
+    | Go to&nbsp;
+    a(href='https://swu-gep.pages.dev/') Website
+  p.dpText 
+    | Go to&nbsp;
+    a(href='/docs') API Document
+  b Connection MetaData
+  div.connetionMeta
+    if userAgent
+      p
+        span.title Connection from:
+        | #{userAgent}
+    if ip
+      p
+        span.title IP:
+        | #{ip}
+    if org
+      p
+        span.title Provider:
+        | #{org}
+    if hostname
+      p
+        span.title Hostname:
+        | #{hostname}
+    if timezone
+      p
+        span.title TimeZone:
+        | #{timezone}
+    if city || region || country || postal || loc
+      p
+        span.title Location:
+        | #{city ? city : ''}, #{region ? region : ''}, #{country ? country : ''} #{postal ? postal : ''} at #{loc ? loc : ''}
+    if ua.name
+      p
+        span.title Browser:
+        | #{ua.name}
+    if ua.version
+      p
+        span.title Browser Version:
+        | #{ua.version}
+    if ua.layout
+      p
+        span.title Browser Layout:
+        | #{ua.layout}
+    if ua.os
+      p
+        span.title OS:
+        | #{ua.os}
+    if ua.description
+      p
+        span.title Identifier:
+        | #{ua.description}

@@ -1,7 +1,7 @@
 const Personnels = require("../models/Personnels");
 const fs = require("fs");
 const path = require("path");
-const { v4: uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require('uuid');
 const logger = require("../database/logger");
 const { log } = require("../logger");
 const Users = require("../models/Users");
@@ -18,16 +18,7 @@ exports.create = async (req, res) => {
     }
     console.log(req.body);
 
-    const {
-      name,
-      position,
-      wellcenterStatus,
-      wellcenterDate,
-      wellcenterPosition,
-      wellcenterTime,
-      email,
-      phone,
-    } = req.body;
+    const { name, position, wellcenterStatus,wellcenterDate, wellcenterPosition, wellcenterTime, email, phone } = req.body;
     if (!name || name === "") {
       return res.status(400).send({
         status: "error",
@@ -46,9 +37,7 @@ exports.create = async (req, res) => {
     const fileName = uploadedFile.name;
     const fileExtension = fileName.split(".").pop();
     const renameFile = `${uuidv4()}_${Date.now()}_profile.${fileExtension}`;
-    const uploadPath = path.join(
-      `${__dirname}/../public/images/personnels/${renameFile}`
-    );
+    const uploadPath = path.join(`${__dirname}/../public/images/personnels/${renameFile}`);
     uploadedFile.mv(uploadPath, async (err) => {
       if (err) {
         log(`Personnels`, err.message, "error");
@@ -57,27 +46,20 @@ exports.create = async (req, res) => {
           message: err.message + " - " + err.stack,
         });
       }
-      let wellcenter = {
-        status: false,
-        position: "",
-        availableDate: [],
-        availableTime: [],
+      const WDate = wellcenterDate?.split(",");
+      const Time = wellcenterTime?.split(",");
+      const wellcenter = {
+        status: wellcenterStatus,
+        position: wellcenterPosition,
+        availableDate: WDate,
+        availableTime: Time,
       };
-      if (wellcenterStatus) {
-        const WDate = wellcenterDate?.split(",");
-        const Time = wellcenterTime?.split(",");
-        wellcenter = {
-          status: wellcenterStatus,
-          position: wellcenterPosition,
-          availableDate: WDate,
-          availableTime: Time,
-        };
-      }
 
       //find who created the activity
-      const createdBy = req.userData?.username;
-      //find _id of the user who created the activity
-      const modifiedBy = Users.findOne({ username: createdBy });
+    const createdBy = req.userData?.username;
+    //find _id of the user who created the activity
+    const modifiedBy = Users.findOne({ username: createdBy });
+
 
       const newPersonnels = new Personnels({
         name,
@@ -123,38 +105,21 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     const { id } = req.params;
-    const {
-      name,
-      position,
-      wellcenterStatus,
-      wellcenterPosition,
-      wellcenterDate,
-      wellcenterTime,
-      email,
-      phone,
-    } = req.body;
+    const { name, position, wellcenterStatus, wellcenterPosition, wellcenterDate, wellcenterTime, email, phone } = req.body;
     if (!name || name === "") {
       return res.status(400).send({
         status: "error",
         message: "Name is required.",
       });
     }
-    let wellcenter = {
-      status: false,
-      position: "",
-      availableDate: [],
-      availableTime: [],
+    const WDate = wellcenterDate.split(",");
+    const Time = wellcenterTime.split(",");
+    const wellcenter = {
+      status: wellcenterStatus,
+      position: wellcenterPosition,
+      availableDate: WDate,
+      availableTime: Time,
     };
-    if (wellcenterStatus) {
-      const WDate = wellcenterDate?.split(",");
-      const Time = wellcenterTime?.split(",");
-      wellcenter = {
-        status: wellcenterStatus,
-        position: wellcenterPosition,
-        availableDate: WDate,
-        availableTime: Time,
-      };
-    }
     //find who created the activity
     const createdBy = req.userData?.username;
     //find _id of the user who created the activity
@@ -181,9 +146,7 @@ exports.update = async (req, res) => {
       const fileName = uploadedFile.name;
       const fileExtension = fileName.split(".").pop();
       const renameFile = `${uuidv4()}_${Date.now()}_profile.${fileExtension}`;
-      const uploadPath = path.join(
-        `${__dirname}/../public/images/personnels/${renameFile}`
-      );
+      const uploadPath = path.join(`${__dirname}/../public/images/personnels/${renameFile}`);
       console.log(uploadPath);
       uploadedFile.mv(uploadPath, async (err) => {
         if (err) {
@@ -219,7 +182,7 @@ exports.update = async (req, res) => {
       data: changed,
     });
   } catch (error) {
-    console.log(error);
+   console.log(error)
     return res.status(500).send({
       status: "error",
       message: error.message,
