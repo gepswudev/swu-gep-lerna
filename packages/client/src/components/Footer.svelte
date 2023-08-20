@@ -41,12 +41,12 @@
   });
 </script>
 
-<footer class="bg-gray text-neutral">
-  <div class="footer p-10 border-none md:border-b-2 md:border-white m-4">
+<footer class="bg-gray text-neutral w-full">
+  <div class="footer p-10 border-b-0 md:border-b-2 border-white m-4 ">
     <div class="w-72">
       <img src={GEPLOGO} alt="GEPLOGO" class="w-36" />
-      <p>ภาควิชาการแนะแนวและ</p>
-      <p>จิตวิทยาการศึกษาคณะศึกษาศาสตร์</p>
+      <p class="text-lg">ภาควิชาการแนะแนวและ</p>
+      <p class="text-lg">จิตวิทยาการศึกษาคณะศึกษาศาสตร์</p>
       <div class="grid grid-cols-3 gap-3">
         <a href="mailto:ed.swu@g.swu.ac.th"
           ><IconPhone
@@ -68,53 +68,53 @@
         >
       </div>
     </div>
-    <div class="w-64">&nbsp;</div>
+    <div class="hidden md:block w-96">&nbsp;</div>
     <div>
       <span
-        class="footer-title text-xl font-extrabold text-primary border-b-2 border-primary md:border-none w-full mb-4"
+        class="footer-title text-xl font-extrabold text-red-500 border-b-2 border-red-500 opacity-100 md:border-none w-full mb-4"
         >เกี่ยวกับเรา</span
       >
-      <a class="link link-hover" href="/about"
+      <a class="link link-hover text-lg" href="/about"
         >สถาบันการศึกษาด้านศักยภาพมนุษย์นำไปสู่เป้าหมายของการพัฒนามนุษย์และสังคมอย่าง
         สมบูรณ์</a
       >
     </div>
     <div>
       <span
-        class="footer-title text-xl font-extrabold text-primary border-b-2 border-primary md:border-none w-full mb-4"
+        class="footer-title text-xl font-extrabold text-red-500 border-b-2 border-red-500 opacity-100 md:border-none w-full mb-4"
         >ติดต่อเรา</span
       >
-      <a class="link link-hover" href="/contact"
+      <a class="link link-hover text-lg" href="/contact"
         >ภาควิชาการแนะแนวและ จิตวิทยาการศึกษา ชั้น 4 คณะศึกษาศาสตร์
         มหาวิทยาลัยศรีนครินทรวิโรฒ ประสานมิตร</a
       >
     </div>
     <div>
       <span
-        class="footer-title text-xl font-extrabold text-primary border-b-2 border-primary md:border-none w-full mb-4 pr-44 md:pr-0"
+        class="footer-title text-xl font-extrabold text-red-500 border-b-2 border-red-500 opacity-100 md:border-none w-full mb-4 pr-44 md:pr-0"
         >หน่วยงานที่เกี่ยวข้อง</span
       >
-      <a class="link link-hover" href="https://edu.swu.ac.th/"
+      <a class="link link-hover text-lg" href="https://edu.swu.ac.th/"
         >คณะศึกษาศาสตร์
       </a>
-      <a class="link link-hover" href="https://swu.ac.th"
+      <a class="link link-hover text-lg" href="https://swu.ac.th"
         >มหาวิทยาลัยศรีนครินทรวิโรฒ</a
       >
-      <a class="link link-hover" href="https://swu.ac.th">SWU</a>
-      <a class="link link-hover" href="https://grad.swu.ac.th">บัณฑิตวิทยาลัย</a
+      <a class="link link-hover text-lg" href="https://swu.ac.th">SWU</a>
+      <a class="link link-hover text-lg" href="https://grad.swu.ac.th">บัณฑิตวิทยาลัย</a
       >
     </div>
   </div>
   <div
     class="flex flex-col md:flex-row justify-center md:justify-between p-4 pb-6 text-base-100 font-semibold bg-neutral md:bg-gray  "
   >
-    <a href="https://swu.ac.th" class="hover:underline"
+    <a href="https://swu.ac.th" class="hover:underline hover:text-primary"
       >Copyright 2023 by Srinakharinwirot University</a
     >
     <p>
-      <a href="/privacy" class="hover:underline">Privacy Policy</a> |
-      <a href="/terms" class="hover:underline">Terms of Use</a>
-      | <a href="/cookies" class="hover:underline">Cookie Policy</a>
+      <a href="/privacy" class="hover:underline hover:text-primary">Privacy Policy</a> |
+      <a href="/terms" class="hover:underline hover:text-primary">Terms of Use</a>
+      | <a href="/cookies" class="hover:underline hover:text-primary">Cookie Policy</a>
     </p>
   </div>
 </footer>
