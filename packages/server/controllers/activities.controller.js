@@ -193,8 +193,9 @@ exports.update = async (req, res) => {
       const uploadedFile = req.files.img;
       const fileName = uploadedFile.name;
       const fileExtension = fileName.split(".").pop();
-      const renameFile = `${title.trim().substring(0,20)}_${Date.now()}.${fileExtension}`;
+      const renameFile = `${title.trim().replace(/\s/g, '_').substring(0,20)}_${Date.now()}.${fileExtension}`;
       const uploadPath = `${__dirname}/../public/images/activities/${renameFile}`;
+      console.log(uploadPath);
       uploadedFile.mv(uploadPath, async (err) => {
         if (err) {
           log(`Activities`, err.message, "error");
@@ -203,6 +204,7 @@ exports.update = async (req, res) => {
             message: err.message + " - " + err.stack,
           });
         }
+        log(`Activities`, `File uploaded successfully: ${uploadPath}`);
         //delete old image
         const activities = await Activities.findById(req.params.id);
         const imagePath = path.join(__dirname, `../public/${activities.img}`);
