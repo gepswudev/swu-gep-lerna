@@ -3,6 +3,7 @@
   import Footer from "./components/Footer.svelte";
   import Hero from "./pages/Home/Home.svelte";
   import History from "./pages/History/History01.svelte";
+  import PersonelPage from "./pages/Personel/Personel.svelte";
 
   import AdminMain from "./pages/Admin/Main.svelte";
   import AdminUsers from "./pages/Admin/User.svelte";
@@ -134,6 +135,9 @@
 
         <!-- About page -->
         <Route path="/about" component={History} />
+
+        <!-- Personel Page -->
+        <Route path="/personnel" component={PersonelPage}/>
 
         <!-- Cookies consent page -->
         <Route path="/cookies" component={CookiesPage} />
