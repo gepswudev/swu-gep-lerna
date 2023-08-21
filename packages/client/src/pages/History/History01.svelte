@@ -98,15 +98,8 @@
 </div>
 
 <!-- 
-  Hover Banner Image Test
-  let Switch = false;
-  const HoverSwitch = (state = false) => (state ? Banner : Building);
-
-    <img
-      src={HoverSwitch(Switch)}
-      alt=""
-      class="w-full transition-all duration-500 transition-opacity"
-      on:mouseenter={() => Switch = !Switch}
-      on:mouseleave={() => Switch = !Switch}
-    />
+  <div class="swap hover:swap-active">
+  <img src={Img1} alt="" class="swap-off" />
+  <img src={Img2} alt="" class="swap-on" />
+</div>
  -->
