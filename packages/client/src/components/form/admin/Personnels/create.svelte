@@ -126,7 +126,6 @@
       wellcenterDate: wellcenterDate.toString(),
       wellcenterTime: data["well-time"],
     };
-
     //change button while creating
     submitButton.innerHTML = "Creating...";
     submitButton.disabled = true;

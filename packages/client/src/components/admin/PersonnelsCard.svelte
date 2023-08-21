@@ -86,7 +86,7 @@
           <p class="label text-start justify-start"><span><IconPhone/></span>  {data?.phone}</p>
         {/if}
       </div>
-      {#if data.wellcenter.status}
+      {#if data.wellcenter?.status == "true"}
         <div class="break-words border-2 rounded-lg px-4 py-2 my-4">
           <h2 class="card-title text-lg">Well Center</h2>
           {#if data.wellcenter?.position}

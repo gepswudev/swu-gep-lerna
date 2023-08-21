@@ -18,7 +18,7 @@
   let position = "";
   let wellcenterPosition = "";
   let wellcenterTime = "";
-  let wellcenter = false;
+  let wellcenter = true;
   let wellcenterDate = [];
   let submitButton;
   let err = {
@@ -40,7 +40,7 @@
     email: "",
     position: "Position",
     wellcenter: {
-      status: false,
+      status: true,
       position: "Wellcenter Position",
       availableTime: "Wellcenter Time",
       availableDate: [],
@@ -70,7 +70,7 @@
       phone: combindData.phone,
       email: combindData.email,
       wellcenter: {
-        status: wellcenter,
+        status: eval(wellcenter),
         position: combindData.wellcenter.position,
         availableTime: combindData.wellcenter.time,
         availableDate: combindData.wellcenter.date,
@@ -128,7 +128,6 @@
       wellcenterTime: data["well-time"],
 
     };
-
     //change button while creating
     submitButton.innerHTML = "Updating...";
     submitButton.disabled = true;
