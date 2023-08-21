@@ -20,6 +20,7 @@ exports.create = async (req, res) => {
 
     const {
       name,
+      engName,
       position,
       wellcenterStatus,
       wellcenterDate,
@@ -81,6 +82,7 @@ exports.create = async (req, res) => {
 
       const newPersonnels = new Personnels({
         name,
+        engName,
         position,
         wellcenter,
         email,
@@ -125,6 +127,7 @@ exports.update = async (req, res) => {
     const { id } = req.params;
     const {
       name,
+      engName,
       position,
       wellcenterStatus,
       wellcenterPosition,
@@ -164,6 +167,7 @@ exports.update = async (req, res) => {
       id,
       {
         name,
+        engName,
         position,
         email,
         phone,

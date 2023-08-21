@@ -11,6 +11,10 @@ const PersonnelsSchema = new Schema({
     type: String,
     required: true,
   },
+  engName: {
+    type: String,
+    default: "",
+  },
   phone: {
     type: String,
     default: "",
