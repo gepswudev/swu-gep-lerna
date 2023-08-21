@@ -5,9 +5,9 @@ const { tokenize } = require('../middlewares/tokenize');
 const auth = require('../middlewares/auth');
 
 // Create a new activity
-router.post('/', tokenize, auth, activities.create);
 router.get('/', activities.findAll);
 router.get('/:id', activities.findOne);
+router.post('/', tokenize, auth, activities.create);
 router.put('/:id', tokenize, auth, activities.update);
 router.delete('/:id', tokenize, auth, activities.delete);
 router.get('/view/:id', activities.view);

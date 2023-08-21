@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const saltRound = Number(process.env.SALTROUND);
+
 const Users = require("../models/Users.js");
 const { log } = require("../logger.js");
 const { generateToken, tokenize } = require("../middlewares/tokenize.js");

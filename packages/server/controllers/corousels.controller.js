@@ -1,9 +1,10 @@
-const logger = require("../database/logger");
-const { log } = require("../logger");
-const Corousels = require("../models/Corousels");
 const sizeOf = require("image-size");
 const fs = require("fs");
 const path = require("path");
+
+const logger = require("../database/logger");
+const { log } = require("../logger");
+const Corousels = require("../models/Corousels");
 const Users = require("../models/Users");
 
 // Create a new corousel
@@ -45,7 +46,7 @@ exports.create = async (req, res) => {
     const uploadPath = `${__dirname}/../public/images/corousels/${renameFile}`;
 
     // Use the mv() method to place the file somewhere on your server
-    // For simplicity, we'll save the file in the "uploads" directory in the project root
+    // For simplicity, we'll save the file in the "files" directory in the project root
     uploadedFile.mv(uploadPath, async (err) => {
       if (err) {
         console.log(err);

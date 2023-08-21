@@ -1,3 +1,7 @@
+/*
+  This file is used to set the environment of the website.
+*/
+
 import log from "./log";
 import swa from "./popalert";
 import config from "../config.json";

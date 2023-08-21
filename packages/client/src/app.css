@@ -4,6 +4,7 @@
 
 @layer base {
   /*Load font */
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600;700;800;900&display=swap");
   @font-face {
     font-family: "Noto Sans Thai";
     font-style: normal;
@@ -11,9 +12,9 @@
     font-display: swap;
     src: url("/fonts/NotoSansThai-Light.ttf") format("truetype");
   }
-  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600;700;800;900&display=swap");
   html {
     font-family: "Noto Sans Thai", sans-serif;
+    @apply bg-base-100;
   }
 }
 

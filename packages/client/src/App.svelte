@@ -1,12 +1,11 @@
 <script>
   import Navbar from "./components/Navbar.svelte";
   import Footer from "./components/Footer.svelte";
-  import Hero from "./pages/Home/Home.svelte";
-  import History from "./pages/History/History01.svelte";
+  import HomePage from "./pages/Home/Home.svelte";
+  import HistoryPage from "./pages/History/History01.svelte";
   import PersonelPage from "./pages/Personel/Personel.svelte";
 
-  import AdminMain from "./pages/Admin/Main.svelte";
-  import AdminUsers from "./pages/Admin/User.svelte";
+  import AdminMain from "./pages/Admin/AdminMainPage.svelte";
 
   import AdminActivities from "./pages/Admin/Activities/all.svelte";
   import AdminActivitiesCreate from "./pages/Admin/Activities/create.svelte";
@@ -20,17 +19,18 @@
   import AdminPersonnelsCreate from "./pages/Admin/Personnels/create.svelte";
   import AdminPersonnelsUpdate from "./pages/Admin/Personnels/update.svelte";
 
-  import FileManagement from "./pages/Admin/FileManagement.svelte";
+  import FileManagement from "./pages/Admin/FileManagementPage.svelte";
 
   import { Route, Router } from "svelte-routing";
+  import Swal from "sweetalert2";
   import log from "./lib/log";
   import { checkConnection } from "./lib/API/checkConnection";
-  import Swal from "sweetalert2";
   import Login from "./pages/User/UserTest.svelte";
   import Test from "./pages/test.svelte";
   import CookiesPage from "./components/CookiesPage.svelte";
   import Cookies from "./components/Cookies.svelte";
   import Loading from "./components/Loading.svelte";
+  import ActivityPage from "./pages/Activity/ActivityPage.svelte";
 
   const defaultLang = "th";
   const lang = localStorage.getItem("lang") || defaultLang;
@@ -82,7 +82,7 @@
 </script>
 
 {#await isServerAlive}
-<!-- Preload while connecting to server -->
+  <!-- Preload while connecting to server -->
   <Loading
     title="Connect to Server"
     desc="It's may take a longtime cause Server is sleepy under development mode"
@@ -91,17 +91,28 @@
   {#if alive}
     <Router {basepath}>
       <Navbar active={currentPath} />
-      <main class="mx-auto pt-24 w-screen h-full scroll-smooth">
+      <main
+        class="mx-auto pt-24 w-screen h-full scroll-smooth overflow-x-hidden bg-base-100"
+      >
+<!--======================== Common pages ========================-->
         <!-- Homepage -->
-        <Route path="/" component={Hero} />
+        <Route path="/" component={HomePage} />
+        <!-- About page -->
+        <Route path="/about" component={HistoryPage} />
+        <!-- Personel Page -->
+        <Route path="/personnel" component={PersonelPage} />
+        <!-- Activity Page -->
+        <Route path="/activity" component={ActivityPage} />
+<!--======================== Common pages ========================-->
 
+
+<!--======================== Admin pages ========================-->
         <!-- Login Test pages -->
         <Route path="/user" component={Login} />
         <Route path="/login" component={Login} />
 
         <!-- Admin pages -->
         <Route path="/admin" component={AdminMain} />
-        <Route path="/viewusers" component={AdminUsers} />
 
         <Route path="/viewcorousels" component={AdminCorousels} />
         <Route
@@ -133,20 +144,22 @@
         <Route path="/files" component={FileManagement} />
         <Route path="/test" component={Test} />
 
-        <!-- About page -->
-        <Route path="/about" component={History} />
-
-        <!-- Personel Page -->
-        <Route path="/personnel" component={PersonelPage}/>
-
         <!-- Cookies consent page -->
         <Route path="/cookies" component={CookiesPage} />
+<!--======================== Admin pages ========================-->
 
+
+
+<!--======================== Error page ========================-->
         <!-- 404 page = Return to home -->
-        <Route path="*" component={Hero} />
+        <Route path="*" component={HomePage} />
+<!--======================== Error page ========================-->
 
-        <!-- Cookies component popup -->
+
+<!--======================== Untils component ========================-->
+        <!-- Cookies consent popup -->
         <Cookies />
+<!--======================== Untils component ========================-->
       </main>
 
       <!-- Footer -->

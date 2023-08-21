@@ -1,7 +1,8 @@
-const Personnels = require("../models/Personnels");
 const fs = require("fs");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
+
+const Personnels = require("../models/Personnels");
 const logger = require("../database/logger");
 const { log } = require("../logger");
 const Users = require("../models/Users");

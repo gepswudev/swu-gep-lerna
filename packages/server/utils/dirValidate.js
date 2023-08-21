@@ -2,12 +2,14 @@ const fs = require('fs').promises;
 const path = require('path');
 const { log } = require('../logger');
 
+// Define the directories to be validated and created if they don't exist
 const dir = [
   "../public/images/",
   "../public/images/activities/",
   "../public/images/corousels/",
   "../public/images/personnels/",
-  "../uploads/"
+  "../files/",
+  "../log/"
 ];
 
 async function ensureDirectoriesExist(directories = dir) {

@@ -6,9 +6,8 @@ import { navigate } from "svelte-routing";
 export const user = writable(null);
 
 export const login = (data) => {
-
     Swal.fire({
-        title: "Login Success",
+        title: "Authurized!",
         text: `Welcome back, ${data.username}`,
         icon: "success",
         toast: true,
@@ -23,6 +22,7 @@ export const login = (data) => {
         log("LOGIN", `User ${data.username} logged in`, "info");
     });
 };
+
 export const logout = (redirect = "/") => {
     Swal.fire({
         title: "Are you sure?",
@@ -40,7 +40,7 @@ export const logout = (redirect = "/") => {
                 icon: "success",
                 toast: true,
                 position: "top-end",
-                timer: 3000,
+                timer: 1000,
                 timerProgressBar: true,
                 showConfirmButton: false,
             });

@@ -6,7 +6,9 @@ const logger = require('morgan');
 const dotenv  = require('dotenv').config();
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
+
 const { ensureDirectoriesExist } = require('./utils/dirValidate');
+const config = require('./config');
 
 const { swaggerUi, swaggerSpec } = require('./docs/swagger');
 const indexRouter = require('./routes/index');
@@ -27,8 +29,9 @@ ensureDirectoriesExist();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(cors({origin: '*'}));
-app.use(logger('dev'));
+//allow connection from any origin
+app.use(cors({origin:config.origin}));
+app.use(logger(config.requestLogger));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -41,7 +44,7 @@ app.use(fileUpload({
 if(process.env.NODE_ENV !== 'production') app.use('/log', express.static(path.join(__dirname, 'log')));
 
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
-app.use('/files', express.static(path.join(__dirname, 'uploads')));
+app.use('/files', express.static(path.join(__dirname, 'files')));
 app.use('/db', express.static(path.join(__dirname, 'log/database')));
 
 app.use('/', indexRouter);
@@ -52,17 +55,17 @@ app.use('/activities', activitiesRouter);
 app.use('/personnels', personnelsRouter);
 
 
-//header middleware
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Header', '*');
-  res.setHeader('Content-Type', 'application/json');
-  if(req.method === 'OPTIONS'){
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-    return res.status(200).json({});
-  }
-  next();
-});
+//custom header middleware
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Header', '*');
+//   res.setHeader('Content-Type', 'application/json');
+//   if(req.method === 'OPTIONS'){
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+//     return res.status(200).json({});
+//   }
+//   next();
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

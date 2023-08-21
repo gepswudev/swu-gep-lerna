@@ -1,6 +1,6 @@
 <script>
   import FileUpload from "../../components/form/admin/File/create.svelte";
-  import File from "../../components//form/admin/File/file.svelte";
+  import File from "../../components/form/admin/File/file.svelte";
   import { get } from "../../lib/API/methods";
   import AdminProtect from "../../components/admin/adminProtect.svelte";
 

@@ -1,6 +1,5 @@
 const colors = require('colors');
 module.exports.log = (page, msg, type = 'log', important = false) => {
-
     //Log only info in production mode
     if(!important && process.env.NODE_ENV === 'production') {
         if(type === 'info'){
