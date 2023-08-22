@@ -1,16 +1,26 @@
 <script>
+  import Carousel from "svelte-carousel";
+  import Youtube from "svelte-youtube-embed";
+
   import medata from "../metadata.json";
   import wellcenter from "../../assets/wellcenter.png";
   import wellcenterQr from "../../assets/wellcenter_qr.png";
-  import fb1 from "../../assets/fb1.png";
-  import fb2 from "../../assets/fb2.png";
-  import fb3 from "../../assets/fb3.png";
-  import fb4 from "../../assets/fb4.png";
-  import Corousel from "../../components/Corousel.svelte";
+  import fb1 from "../../assets/fb/fb1.jpg";
+  import fb2 from "../../assets/fb/fb2.jpg";
+  import fb3 from "../../assets/fb/fb3.jpg";
+  import fb4 from "../../assets/fb/fb4.jpg";
+  import CorouselBanner from "../../components/Corousel.svelte";
   import HorizonCard from "../../components/activities/ActivityLayout.svelte";
   import HorizonCardSkeleton from "../../components/skeletons/HorizonCard_Skeleton.svelte";
-  import Youtube from "svelte-youtube-embed";
   import { get } from "../../lib/API/methods";
+  import FbPageCard from "../../components/FbPageCard.svelte";
+  import ActivityMobileLayout from "../../components/activities/ActivityMobileLayout.svelte";
+  import FbPageCardMobile from "../../components/FbPageCardMobile.svelte";
+
+  let corouselWellcenter;
+  const handleNextClick = () => {
+    corouselWellcenter.goToNext();
+  };
 
   let corouselData = get("corousels");
 </script>
@@ -20,7 +30,7 @@
   {#await corouselData}
     <div />
   {:then data}
-    <Corousel data={data.data} />
+    <CorouselBanner data={data.data} />
   {/await}
   <!-- Desktop Home page -->
   <div
@@ -74,8 +84,8 @@
         </div>
         <div class="flex w-[29.5rem] flex-col bg-gray p-12">
           <strong class=" text-3xl font-semibold">W.E.L.L Center</strong>
-          <b>"You Are Note Alone"</b>
-          <div class="mt-6">
+          <b>"You Are Not Alone"</b>
+          <div class="my-6">
             <b>ศูนย์ให้คำปรึกษา คณะศึกษาศาสตร์ มศว</b>
             <p>The mental health counselors are ready to hear you</p>
           </div>
@@ -118,27 +128,30 @@
             <p class="grow text-start">ช่องทางการติดตามและสอบถามเพิ่มเติม</p>
           </div>
         </div>
-        <div
-          class="grid grid-cols-2 px-24 pt-6 gap-4 justify-center items-center"
-        >
-          <a
-            class="hover:scale-105"
+        <div class="grid grid-cols-4 gap-16 justify-center items-center mt-6">
+          <FbPageCard
+            line1="คณะศึกษาศาสตร์"
+            line2="มหาวิทยาลัยศรีนครินทรวิโรฒ"
             href="https://www.facebook.com/EDUCATIONSWU/"
-            ><img src={fb1} alt="FBLINK1" /></a
-          >
-          <a
-            class="hover:scale-105"
+            img={fb1}
+          />
+          <FbPageCard
+            line1="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา มศว"
             href="https://www.facebook.com/profile.php?id=100057497767786"
-            ><img src={fb2} alt="FBLINK2" /></a
-          >
-          <a
-            class="hover:scale-105"
+            img={fb2}
+          />
+          <FbPageCard
+            line1="ED Internship"
+            line2=" "
             href="https://www.facebook.com/edinternship/?locale=th_TH"
-            ><img src={fb3} alt="FBLINK3" /></a
-          >
-          <a class="hover:scale-105" href="https://www.facebook.com/eduswu/"
-            ><img src={fb4} alt="FBLINK4" /></a
-          >
+            img={fb3}
+          />
+          <FbPageCard
+            line1="สโมสรนิสิตคณะศึกษาศาสตร์ มศว"
+            line2=" "
+            href="https://www.facebook.com/eduswu/"
+            img={fb4}
+          />
         </div>
       </div>
       <!-- Facebook follow -->
@@ -149,43 +162,60 @@
   <div
     class="flex flex-col bg-center items-center align-middle text-center py-8 lg:hidden"
   >
-    <div class="w-full px-12 grow">
-      <div class="mb-8 pb-4 border-b-2">
-        <p class="text-3xl font-semibold text-center">แนะนำหลักสูตร</p>
-        <h1>ภาควิชาการแนะแนวและจิตวิทยาการศึกษาคณะศึกษาศาสตร์</h1>
+    <div class="w-full px-12 grow text-start">
+      <div class="mb-4 pb-4 border-b-2">
+        <p class="text-3xl font-semibold">แนะนำหลักสูตร</p>
+        <h1 class="">ภาควิชาการแนะแนวและจิตวิทยา</h1>
+        <p>การศึกษาคณะศึกษาศาสตร์</p>
       </div>
 
-      <Youtube id="jK89KESDWzU" altThumb={true} animations={false} />
-      <div class="mx-auto mt-8 w-full border-b-2 pb-4">
-        <h4 class="font-semibold mb-2 text-2xl">หลักสูตร</h4>
-        <ul class="text-start list-disc pl-12">
-          <li>
-            <a href="/course" class="hover:underline hover:text-primary"
-              >ระดับปริญญาตรี การศึกษาบัณฑิต (กศ.บ)</a
-            >
-          </li>
-          <li>
-            <a href="/course" class="hover:underline hover:text-primary"
-              >ระดับปริญญาโท การศึกษามหาบัณฑิต (กศ.ม.)</a
-            >
-          </li>
-          <li>
-            <a href="/course" class="hover:underline hover:text-primary"
-              >ระดับปริญญาเอก การศึกษาดุษฎีบัณฑิต (กศ.ด.)</a
-            >
-          </li>
-        </ul>
+      <div class="mx-auto mt-3 w-full border-b-2 pb-4">
+        <Youtube id="jK89KESDWzU" altThumb={true} animations={false} />
       </div>
     </div>
     <div class="w-full mx-auto">
-      <p class="mt-10 text-2xl font-bold">ประมวลภาพกิจกรรม</p>
-      <HorizonCard
-        sx="mt-4 ml-6 mb-4 items-center"
-        title={false}
-        showFilter={false}
-      />
+      <ActivityMobileLayout />
     </div>
-    <div class="flex w-[29.5rem] flex-col bg-gray p-12">
+    <div class="w-screen h-64">
+      <p class="text-start text-xl font-bold my-4 pl-12">W.E.L.L Center</p>
+      <Carousel
+      bind:this={corouselWellcenter}
+      arrows={false}
+      dots={false}
+      >
+        <div>
+          <div class="w-full h-32 md:h-48 flex flex-row overflow-hidden">
+            <img class="w-32 md:w-48 h-32 md:h-48 flex-1 object-fill" src={wellcenter} alt="wellcenterimg" />
+            <div class="grow bg-gray flex flex-col justify-center items-center text-start px-12 py-10">
+              <p class="text-sm md:text-xl font-bold">“You Are Not Alone”</p>
+              <p>The mental health counselors are ready to hear you</p>
+            </div>
+            <div>
+              <button class="flex-none h-full w-12 bg-gray flex flex-col justify-center items-center" on:click={handleNextClick}><p class="text-xl">&gt;</p></button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="w-full h-32 md:h-48 flex flex-row overflow-hidden">
+            <img class="w-24 md:w-48 h-32 md:h-48 flex-1 object-fit" src={wellcenterQr} alt="wellcenterimg" />
+            
+            <div class="grow bg-gray flex flex-row justify-center items-start text-start px-12 py-4">
+              <div class="text-[0.6rem] md:text-xl flex flex-col justify-center  text-start">
+                <p><b>เปิดให้บริการ</b>วันจันทร์ - วันศุกร์</p>
+                <p><b>เวลา</b>10.00 - 16.00 น.</p>
+                <p><b>สถานที่</b> มหาวิทยาลัยศรีนครินทรวิโรฒ อาคารคณะศึกษาศาสตร์ ห้อง 408 ชั้น 4</p>
+
+              </div>
+            </div>
+            <div>
+              <button class="flex-none h-full w-12 bg-gray flex flex-col justify-center items-center" on:click={handleNextClick}><p class="text-xl">&gt;</p></button>
+            </div>
+          </div>
+        </div>
+      </Carousel>
+    </div>
+    
+    <!-- <div class="flex w-[29.5rem] flex-col bg-gray p-12">
       <strong class=" text-3xl font-semibold">W.E.L.L Center</strong>
       <b>"You Are Note Alone"</b>
       <div class="my-6">
@@ -216,35 +246,35 @@
         <img src={wellcenterQr} class="py-3" alt="wellcenterQR" />
         ติดต่อสอบถามข้อมูลได้โดยการแสกน QR Code นี้
       </div>
-    </div>
+    </div> -->
 
-    <div class="w-full px-12 my-12 mb-0 grow">
+    <div class="w-full px-6 my-12 mb-0 grow">
       <div class="mb-8 pb-4 border-b-2">
         <p class="text-3xl font-semibold text-center">ติดตาม</p>
         <p>ช่องทางการติดตามและสอบถามเพิ่มเติม</p>
       </div>
-      <div
-          class="grid grid-rows-4 px-6  gap-4 justify-center items-center"
-        >
-          <a
-            class="hover:scale-105"
-            href="https://www.facebook.com/EDUCATIONSWU/"
-            ><img src={fb1} alt="FBLINK1" /></a
-          >
-          <a
-            class="hover:scale-105"
-            href="https://www.facebook.com/profile.php?id=100057497767786"
-            ><img src={fb2} alt="FBLINK2" /></a
-          >
-          <a
-            class="hover:scale-105"
-            href="https://www.facebook.com/edinternship/?locale=th_TH"
-            ><img src={fb3} alt="FBLINK3" /></a
-          >
-          <a class="hover:scale-105" href="https://www.facebook.com/eduswu/"
-            ><img src={fb4} alt="FBLINK4" /></a
-          >
-        </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-12 justify-center md:justify-start items-center mt-6">
+        <FbPageCardMobile
+          line1="คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+          href="https://www.facebook.com/EDUCATIONSWU/"
+          img={fb1}
+        />
+        <FbPageCardMobile
+          line1="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา มศว"
+          href="https://www.facebook.com/profile.php?id=100057497767786"
+          img={fb2}
+        />
+        <FbPageCardMobile
+          line1="ED Internship"
+          href="https://www.facebook.com/edinternship/?locale=th_TH"
+          img={fb3}
+        />
+        <FbPageCardMobile
+          line1="สโมสรนิสิตคณะศึกษาศาสตร์ มศว"
+          href="https://www.facebook.com/eduswu/"
+          img={fb4}
+        />
+      </div>
     </div>
   </div>
 </div>
