@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@tabler/icons-svelte": "^2.29.0",
     "@sveltejs/vite-plugin-svelte": "^2.4.2",
     "autoprefixer": "^10.4.14",
     "daisyui": "^3.3.1",
@@ -18,7 +19,6 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
-    "@tabler/icons-svelte": "^2.29.0",
     "@tailwindcss/typography": "^0.5.9",
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
