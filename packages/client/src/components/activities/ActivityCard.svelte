@@ -31,7 +31,7 @@
 
 {#if display === "th"}
   <button
-    class={"p-8 flex flex-col max-w-md hover:shadow-2xl hover:rounded-xl bg-transparent text-start justify-between" + " " + sx}
+    class={"p-4 md:p-8 flex flex-col max-w-md hover:shadow-2xl hover:rounded-xl bg-transparent text-start justify-between" + " " + sx}
     on:click={viewActivityHandler}
   >
     <img
@@ -40,7 +40,7 @@
       class="w-full rounded-lg object-cover"
     />
     <p class="md:hidden my-2 text-neutral">
-      {(data.desc === "" ? data.title : data.desc).substring(0, 30)}
+      {(data.desc === "" ? data.title : data.desc).substring(0, 40)}
     </p>
     <p class="hidden md:block my-2 text-neutral">
       {(data.desc === "" ? data.title : data.desc).substring(0, 80)}
