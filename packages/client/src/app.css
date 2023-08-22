@@ -13,7 +13,7 @@
   }
   html {
     font-family: "Noto Sans Thai", sans-serif;
-    @apply bg-base-100 w-screen;
+    @apply bg-base-100 w-screen overflow-x-hidden;
   }
 }
 
