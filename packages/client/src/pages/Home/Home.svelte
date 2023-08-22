@@ -15,14 +15,6 @@
   let corouselData = get("corousels");
 </script>
 
-<!-- Homepage -->
-<svelte:head>
-  <title>{medata.base.title}</title>
-  <meta property="og:title" content={medata.base.title} />
-  <meta property="og:description" content={medata.base.description} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={window.location} />
-</svelte:head>
 <!-- Hero -->
 <div class="min-h-screen bg-base-100 pb-28">
   {#await corouselData}
@@ -71,7 +63,7 @@
       </div>
       <!-- YouTube -->
 
-      <HorizonCard />
+      <HorizonCard showTagFilter={false}/>
 
       <!-- WELLCENTER -->
       <div class="flex w-[76rem] flex-row text-neutral mx-auto text-start">

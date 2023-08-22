@@ -31,6 +31,8 @@
   import Cookies from "./components/Cookies.svelte";
   import Loading from "./components/Loading.svelte";
   import ActivityPage from "./pages/Activity/ActivityPage.svelte";
+  import HeaderMetadata from "./components/HeaderMetadata.svelte";
+  import MapPage from "./pages/Contact/Map.svelte";
 
   const defaultLang = "th";
   const lang = localStorage.getItem("lang") || defaultLang;
@@ -103,6 +105,8 @@
         <Route path="/personnel" component={PersonelPage} />
         <!-- Activity Page -->
         <Route path="/activity" component={ActivityPage} />
+        <!-- Map Page -->
+        <Route path="/map" component={MapPage} />
 <!--======================== Common pages ========================-->
 
 
@@ -157,8 +161,11 @@
 
 
 <!--======================== Untils component ========================-->
+        <!-- Header Controller -->
+        <HeaderMetadata basepath={currentPath} />
         <!-- Cookies consent popup -->
         <Cookies />
+        
 <!--======================== Untils component ========================-->
       </main>
 

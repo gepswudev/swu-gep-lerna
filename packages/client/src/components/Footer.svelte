@@ -84,7 +84,7 @@
         class="footer-title text-xl font-extrabold text-red-500 border-b-2 border-red-500 opacity-100 md:border-none w-full mb-4"
         >ติดต่อเรา</span
       >
-      <a class="link link-hover text-lg" href="/contact"
+      <a class="link link-hover text-lg" href="/map"
         >ภาควิชาการแนะแนวและ จิตวิทยาการศึกษา ชั้น 4 คณะศึกษาศาสตร์
         มหาวิทยาลัยศรีนครินทรวิโรฒ ประสานมิตร</a
       >

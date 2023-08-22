@@ -10,7 +10,6 @@
     font-style: normal;
     font-weight: 100;
     font-display: swap;
-    src: url("/fonts/NotoSansThai-Light.ttf") format("truetype");
   }
   html {
     font-family: "Noto Sans Thai", sans-serif;

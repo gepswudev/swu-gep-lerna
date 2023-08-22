@@ -6,14 +6,6 @@
 
 </script>
 
-<svelte:head>
-  <title>History</title>
-  <meta property="og:title" content="SWU" />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="" />
-  <meta property="og:image" content="" />
-</svelte:head>
-
 <div class="min-h-full bg-base-200">
   <div class="md:flex justify-center">
     <div class="ml-auto mr-auto py-8 max-w-sm block md:hidden">
