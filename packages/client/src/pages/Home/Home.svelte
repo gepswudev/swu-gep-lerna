@@ -24,7 +24,7 @@
   {/await}
   <!-- Desktop Home page -->
   <div
-    class="hidden md:hero bg-center items-center align-middle text-center py-8"
+    class="hidden lg:hero bg-center items-center align-middle text-center py-8"
   >
     <div class="w-full mx-auto">
       <!-- YouTube -->
@@ -147,7 +147,7 @@
 
   <!-- Mobile Home page -->
   <div
-    class="flex flex-col bg-center items-center align-middle text-center py-8 md:hidden"
+    class="flex flex-col bg-center items-center align-middle text-center py-8 lg:hidden"
   >
     <div class="w-full px-12 grow">
       <div class="mb-8 pb-4 border-b-2">
@@ -177,7 +177,7 @@
         </ul>
       </div>
     </div>
-    <div class="w-full">
+    <div class="w-full mx-auto">
       <p class="mt-10 text-2xl font-bold">ประมวลภาพกิจกรรม</p>
       <HorizonCard
         sx="mt-4 ml-6 mb-4 items-center"

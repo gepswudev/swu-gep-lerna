@@ -90,8 +90,9 @@
 </div>
 
 <!-- 
-  <div class="swap hover:swap-active">
-  <img src={Img1} alt="" class="swap-off" />
-  <img src={Img2} alt="" class="swap-on" />
-</div>
+ 
+  <div class="swap hover:swap-active transition-opacity duration-1000 ">
+    <img src={Building} alt="gep swu building 1" class="swap-off w-screen object-cover" />
+    <img src={Banner} alt="gep swu building 2" class="swap-on w-screen object-cover" />
+  </div>
  -->

@@ -54,7 +54,7 @@
 {#await activityData}
   <div />
 {:then rawdata}
-  <div class={"flex mx-auto my-32 w-[90rem] text-neutral" + " " + sx}>
+  <div class={"flex mx-auto my-32 w-full xl:w-[90rem] text-neutral" + " " + sx}>
     {#if showFilter}
       <div class="hidden lg:flex flex-none w-64 flex-col">
         <div class="mt-4 ml-3 flex flex-row align-start items-start">
@@ -210,7 +210,7 @@
         </h2>
       {/if}
       <div
-        class="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 overflow-y-scroll overflow-x-hidden no-scrollbar"
+        class="flex flex-col xl:grid xl:grid-cols-3 items-start overflow-y-scroll overflow-x-hidden no-scrollbar"
       >
         {#if sortType}
           {#each sorter(rawdata.data, sortType) as data, i (data._id)}
