@@ -271,7 +271,8 @@
       <!-- <ThemeSwitch /> -->
       <!-- Theme Switcher -->
       <!-- <a href="/login" class="btn btn-ghost border border-gray mr-2"><IconUser stroke=2 size=16/>Login</a> -->
-      <button on:click={_login} class="btn btn-ghost border border-gray mr-2"><IconUser stroke=2 size=16/>Login</button>
+      <button on:click={_login} class="md:hidden btn btn-ghost mr-2"><IconUser stroke=2 size=24/></button>
+      <button on:click={_login} class="hidden md:flex btn btn-ghost border border-gray mr-2"><IconUser stroke=2 size=16/>Login</button>
     </div>
   </div>
 {/if}

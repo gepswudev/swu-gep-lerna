@@ -23,7 +23,9 @@
     <Corousel data={data.data} />
   {/await}
   <!-- Desktop Home page -->
-  <div class="hidden md:hero bg-center items-center align-middle text-center py-8 ">
+  <div
+    class="hidden md:hero bg-center items-center align-middle text-center py-8"
+  >
     <div class="w-full mx-auto">
       <!-- YouTube -->
       <div class="flex flex-col w-[80rem] text-neutral mx-auto">
@@ -63,7 +65,7 @@
       </div>
       <!-- YouTube -->
 
-      <HorizonCard showTagFilter={false}/>
+      <HorizonCard showTagFilter={false} />
 
       <!-- WELLCENTER -->
       <div class="flex w-[76rem] flex-row text-neutral mx-auto text-start">
@@ -144,8 +146,106 @@
   </div>
 
   <!-- Mobile Home page -->
-  <div class="hero bg-center items-center align-middle text-center py-8 md:hidden">
-    <h1>HelloWorld</h1>
+  <div
+    class="flex flex-col bg-center items-center align-middle text-center py-8 md:hidden"
+  >
+    <div class="w-full px-12 grow">
+      <div class="mb-8 pb-4 border-b-2">
+        <p class="text-3xl font-semibold text-center">แนะนำหลักสูตร</p>
+        <h1>ภาควิชาการแนะแนวและจิตวิทยาการศึกษาคณะศึกษาศาสตร์</h1>
+      </div>
+
+      <Youtube id="jK89KESDWzU" altThumb={true} animations={false} />
+      <div class="mx-auto mt-8 w-full border-b-2 pb-4">
+        <h4 class="font-semibold mb-2 text-2xl">หลักสูตร</h4>
+        <ul class="text-start list-disc pl-12">
+          <li>
+            <a href="/course" class="hover:underline hover:text-primary"
+              >ระดับปริญญาตรี การศึกษาบัณฑิต (กศ.บ)</a
+            >
+          </li>
+          <li>
+            <a href="/course" class="hover:underline hover:text-primary"
+              >ระดับปริญญาโท การศึกษามหาบัณฑิต (กศ.ม.)</a
+            >
+          </li>
+          <li>
+            <a href="/course" class="hover:underline hover:text-primary"
+              >ระดับปริญญาเอก การศึกษาดุษฎีบัณฑิต (กศ.ด.)</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="w-full">
+      <p class="mt-10 text-2xl font-bold">ประมวลภาพกิจกรรม</p>
+      <HorizonCard
+        sx="mt-4 ml-6 mb-4 items-center"
+        title={false}
+        showFilter={false}
+      />
+    </div>
+    <div class="flex w-[29.5rem] flex-col bg-gray p-12">
+      <strong class=" text-3xl font-semibold">W.E.L.L Center</strong>
+      <b>"You Are Note Alone"</b>
+      <div class="my-6">
+        <b>ศูนย์ให้คำปรึกษา คณะศึกษาศาสตร์ มศว</b>
+        <p>The mental health counselors are ready to hear you</p>
+      </div>
+      <div class="flex flex-row text-start">
+        <div class="flex flex-col">
+          <b>เปิดให้บริการ</b>
+          <b>เวลา</b>
+          <b>สถานที่</b>
+        </div>
+        <div class="mx-2 flex flex-col">
+          <p>วันจันทร์ - วันศุกร์</p>
+          <p>10.00 - 16.30 น.</p>
+          <p>มหาวิทยาลัยมหาวิทยาลัยศรีนครินทรวิโรฒ</p>
+          <p>อาคารคณะศึกษาศาสตร์ ห้อง 408 ชั้น 4</p>
+        </div>
+      </div>
+      <a
+        href="https://www.facebook.com/Well.Center.SWU"
+        class="text-primary mt-4 hover:underline"
+        >ช่องทาง -&gt; www.facebook.com/Well.Center.SWU</a
+      >
+      <div
+        class="flex flex-1 flex-col items-center justify-center text-center font-semibold p-3 align-baseline"
+      >
+        <img src={wellcenterQr} class="py-3" alt="wellcenterQR" />
+        ติดต่อสอบถามข้อมูลได้โดยการแสกน QR Code นี้
+      </div>
+    </div>
+
+    <div class="w-full px-12 my-12 mb-0 grow">
+      <div class="mb-8 pb-4 border-b-2">
+        <p class="text-3xl font-semibold text-center">ติดตาม</p>
+        <p>ช่องทางการติดตามและสอบถามเพิ่มเติม</p>
+      </div>
+      <div
+          class="grid grid-rows-4 px-6  gap-4 justify-center items-center"
+        >
+          <a
+            class="hover:scale-105"
+            href="https://www.facebook.com/EDUCATIONSWU/"
+            ><img src={fb1} alt="FBLINK1" /></a
+          >
+          <a
+            class="hover:scale-105"
+            href="https://www.facebook.com/profile.php?id=100057497767786"
+            ><img src={fb2} alt="FBLINK2" /></a
+          >
+          <a
+            class="hover:scale-105"
+            href="https://www.facebook.com/edinternship/?locale=th_TH"
+            ><img src={fb3} alt="FBLINK3" /></a
+          >
+          <a class="hover:scale-105" href="https://www.facebook.com/eduswu/"
+            ><img src={fb4} alt="FBLINK4" /></a
+          >
+        </div>
+    </div>
   </div>
 </div>
 <!-- Hero Homepage -->
