@@ -106,7 +106,7 @@
         <!-- Activity Page -->
         <Route path="/activity" component={ActivityPage} />
         <!-- Map Page -->
-        <Route path="/map" component={MapPage} />
+        <Route path="/contact" component={MapPage} />
 <!--======================== Common pages ========================-->
 
 

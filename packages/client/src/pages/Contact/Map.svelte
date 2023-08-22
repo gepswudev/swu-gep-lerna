@@ -10,11 +10,11 @@
 </script>
 
 <div>
-  <div class="grid grid-cols-2 grid-flow-row-dense h-full p-16 pb-64">
+  <div class="flex flex-col-reverse md:grid md:grid-cols-2 grid-flow-row-dense h-full pt-0 md:p-16 md:pb-56">
     <div class="hover:shadow-sm hover:shadow-primary">
       <Map {marker} --map-height="25rem" />
     </div>
-    <div class="mx-10 flex flex-col gap-4 justify-center">
+    <div class="mx-10 flex flex-col gap-4 justify-center py-12">
       <h3 class="text-2xl font-bold">ติดต่อเรา</h3>
       <p class="text-xl font-small">ภาควิชาการแนะแนวและ จิตวิทยาการศึกษา</p>
       <p class="text-xl font-small">ชั้น 4 คณะศึกษาศาสตร์</p>

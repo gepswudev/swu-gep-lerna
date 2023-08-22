@@ -72,7 +72,7 @@
         href="/">{navData?.nav?.title || navData?.title}</a
       >
     </div>
-    <img src={logo} class="navcenter md:hidden w-10 m-4 pt-2" alt="_swu_logo" />
+    <a href="/"><img src={logo} class="navcenter md:hidden w-10 m-4 pt-2" alt="_swu_logo" /></a>
     <div class="navbar-center hidden lg:flex">
       
     </div>
@@ -193,7 +193,7 @@
         href="/"><h1>{navData?.nav?.title || navData?.title}</h1></a
       >
     </div>
-    <img src={logo} class="navcenter sm:hidden w-10 m-4 pt-2" alt="_swu_logo" />
+    <a href="/"><img src={logo} class="navcenter sm:hidden w-10 m-4 pt-2" alt="_swu_logo" /></a>
     <!-- <div class="navbar-center hidden lg:flex">
       
     </div> -->
@@ -261,9 +261,9 @@
           >
         </div>
       {/if}
-      <button class="hidden xl:flex mr-4 hover:animate-bounce"
+      <!-- <button class="hidden xl:flex mr-4 hover:animate-bounce"
         ><IconSearch stroke=1 class="hover:stroke-2"/></button
-      >
+      > -->
 
       <!-- Languages Switcher -->
 
