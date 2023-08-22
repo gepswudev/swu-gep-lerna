@@ -357,9 +357,9 @@
   let isNavbarTransparent = false;
   let nav;
   const navOnTop =
-    "fixed navbar h-24  bg-base-100 z-50 transition-transform transform duration-800";
+    "fixed navbar w-screen h-24  bg-base-100 z-50 transition-transform transform duration-800";
   const navScrolled =
-    "fixed navbar  bg-base-100/[.5] h-24 z-50 transition-transform transform duration-800";
+    "fixed navbar w-screen  bg-base-100/[.5] h-24 z-50 transition-transform transform duration-800";
   let navClass = navOnTop;
   function updateNavbar() {
     if (window.scrollY > 50) {
