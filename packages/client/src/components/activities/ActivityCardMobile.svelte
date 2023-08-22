@@ -7,8 +7,6 @@
   export let data;
   export let sx = "";
 
-  console.log(data)
-
   let display = lang() || "th";
 
   const viewActivityHandler = () => {

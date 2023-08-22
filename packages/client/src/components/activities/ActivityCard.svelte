@@ -39,10 +39,13 @@
       alt={data.title + "_IMG"}
       class="w-full rounded-lg object-cover"
     />
-    <p class="my-2 text-neutral">
+    <p class="md:hidden my-2 text-neutral">
+      {(data.desc === "" ? data.title : data.desc).substring(0, 30)}
+    </p>
+    <p class="hidden md:block my-2 text-neutral">
       {(data.desc === "" ? data.title : data.desc).substring(0, 80)}
     </p>
-    <div class="flex flex-row justify-between gap-32">
+    <div class="hidden md:flex flex-row justify-between gap-32">
       <p class="text-neutral text-sm">
         {new Date(data.createAt).toLocaleDateString("th-TH", {
           year: "numeric",
@@ -67,7 +70,10 @@
       alt={data.title + "_IMG"}
       class="w-full rounded-lg object-cover"
     />
-    <p class="my-2 text-neutral">
+    <p class="md:hidden my-2 text-neutral">
+      {(data.desc === "" ? data.title : data.desc).substring(0, 30)}
+    </p>
+    <p class="hidden md:block my-2 text-neutral">
       {(data.desc === "" ? data.title : data.desc).substring(0, 80)}
     </p>
     <div class="flex flex-row justify-between">
