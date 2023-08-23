@@ -3,12 +3,50 @@
   import { get } from "../../lib/API/methods";
   import { IconAdjustmentsHorizontal } from "@tabler/icons-svelte";
 
+  export let title = true;
+  export let showFilter = true;
+  export let showSearchFilter = true;
+  export let showTagFilter = true;
+  export let showSortFilter = true;
+  export let showDegreeFilter = true;
+
+  export let sx = "";
+
   let filter = "";
   let search = "";
   let bechelor = false;
   let master = false;
   let doctor = false;
   let sortType = "new";
+
+  const setSortType = (e) => {
+    const type = e.target.value;
+    switch (type) {
+      case "ใหม่":
+        sortType = "new";
+        break;
+      case "เก่า":
+        sortType = "old";
+        break;
+      case "การเข้าชม":
+        sortType = "view";
+        break;
+      default:
+        sortType = "new";
+        break;
+    }
+  };
+
+  const activeBechelor = () => {
+    bechelor = !bechelor;
+  };
+  const activeMaster = () => {
+    master = !master;
+  };
+
+  const activeDoctor = () => {
+    doctor = !doctor;
+  };
 
   // Function to sort by newest
   function sortByNewest(a, b) {
@@ -45,151 +83,188 @@
 {#await activityData}
   <div />
 {:then rawdata}
-  <div class="flex mx-auto my-32 w-[90rem] text-neutral">
-    <div class="hidden lg:flex flex-none w-64 flex-col">
-      <div class="mt-4 ml-3 flex flex-row align-start items-start">
-        <IconAdjustmentsHorizontal stroke="1" size="28" />
-        <p class="ml-1 font-normal text-xl">คัดกรอง</p>
-      </div>
-
-      <!-- Filter Section -->
-
-      <div class=" form-control pb-8 justify-start text-start text-sm">
-        <input
-          bind:value={search}
-          type="text"
-          name="search"
-          class="my-4 input input-bordered w-full h-8 focus:input-primary hover:input-primary"
-          placeholder="ค้นหากิจกรรมที่นี่"
-        />
-        <div class="m-6 mt-1">
-          <b>คัดกรอง</b>
-
-          <div class="form-control">
-            <label class="label cursor-pointer justify-normal">
-              <input
-                type="radio"
-                name="radio-1"
-                class="radio radio-primary"
-                bind:group={filter}
-                value=""
-                checked
-              />
-              <span class="label-text mx-2">ทั้งหมด</span>
-            </label>
-          </div>
-          <div class="form-control">
-            <label class="label cursor-pointer justify-normal">
-              <input
-                type="radio"
-                name="radio-1"
-                class="radio radio-primary"
-                bind:group={filter}
-                value="แนะนำ"
-              />
-              <span class="label-text mx-2">แนะนำ</span>
-            </label>
-          </div>
-          <div class="form-control">
-            <label class="label cursor-pointer justify-normal">
-              <input
-                type="radio"
-                name="radio-1"
-                class="radio radio-primary"
-                bind:group={filter}
-                value="ใหม่"
-              />
-              <span class="label-text mx-2">ใหม่</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="m-6 mt-1">
-          <b>เรียบเรียง</b>
-          <div class="form-control">
-            <label class="label cursor-pointer justify-normal">
-              <input
-                type="radio"
-                name="radio-2"
-                class="radio radio-primary"
-                bind:group={sortType}
-                value="new"
-                checked
-              />
-              <span class="label-text mx-2">ใหม่</span>
-            </label>
-          </div>
-          <div class="form-control">
-            <label class="label cursor-pointer justify-normal">
-              <input
-                type="radio"
-                name="radio-2"
-                class="radio radio-primary"
-                bind:group={sortType}
-                value="old"
-              />
-              <span class="label-text mx-2">เก่า</span>
-            </label>
-          </div>
-          <div class="form-control">
-            <label class="label cursor-pointer justify-normal">
-              <input
-                type="radio"
-                name="radio-2"
-                class="radio radio-primary"
-                bind:group={sortType}
-                value="view"
-              />
-              <span class="label-text mx-2">การเข้าชม</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="m-6 mt-1">
-          <b>ระดับการศึกษา</b>
-          <div class="form-control">
-            <label class="label cursor-pointer justify-normal">
-              <input
-                type="checkbox"
-                class="checkbox checkbox-primary"
-                bind:checked={bechelor}
-              />
-              <span class="label-text mx-2">ระดับปริญญาตรี</span>
-            </label>
-          </div>
-          <div class="form-control">
-            <label class="label cursor-pointer justify-normal">
-              <input
-                type="checkbox"
-                class="checkbox checkbox-primary"
-                bind:checked={master}
-              />
-              <span class="label-text mx-2">ระดับปริญญาโท</span>
-            </label>
-          </div>
-          <div class="form-control">
-            <label class="label cursor-pointer justify-normal">
-              <input
-                type="checkbox"
-                class="checkbox checkbox-primary"
-                bind:checked={doctor}
-              />
-              <span class="label-text mx-2">ระดับปริญญาเอก</span>
-            </label>
-          </div>
-        </div>
-      </div>
-      <!-- Filter Section -->
+<!-- mobile filer section -->
+<div class="flex flex-col justify-center items-center md:hidden mx-auto ">
+  <div class="grid grid-cols-1 grid-row-2 gap-2">
+    <div class="join flex flex-row justify-between text-center">
+      <input type="button" class={sortType === 'new' ? "btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-primary text-primary":"btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-neutral text-neutral"} on:click={setSortType} value="ใหม่" />
+      <div class="text-black flex justify-center items-center text-center">|</div>
+      <input type="button" class={sortType === 'old' ? "btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-primary text-primary":"btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-neutral text-neutral"}  on:click={setSortType} value="เก่า" />
+      <div class="text-black flex justify-center items-center text-center">|</div>
+      <input type="button" class={sortType === 'view' ? "btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-primary text-primary":"btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-neutral text-neutral"}  on:click={setSortType} value="การเข้าชม" />
     </div>
-    <!-- Card section -->
+    <div class="flex flex-row justify-between text-center">
+      <button on:click={activeBechelor} class={bechelor ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>ปริญญาตรี</button>
+      <button on:click={activeMaster}   class={master ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>ปริญญาโท</button>
+      <button on:click={activeDoctor}   class={doctor ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>ปริญญาเอก</button>  
+    </div>
+    </div>
+</div>
+<!-- mobile filer section -->
+
+
+  <div class={"flex mx-auto my-32 w-full xl:w-[90rem] text-neutral" + " " + sx}>
+
     
-    <div
-      class="flex flex-col grow mx-auto text-start h-[93vh] "
-    >
-    <h2 class="mt-2 ml-3 text-3xl font-semibold text-neutral">
-      ประมวลผลภาพกิจกรรม
-    </h2>
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 overflow-y-scroll overflow-x-hidden no-scrollbar">
+
+    {#if showFilter}
+      <div class="hidden lg:flex flex-none w-64 flex-col">
+        <div class="mt-4 ml-3 flex flex-row align-start items-start">
+          <IconAdjustmentsHorizontal stroke="1" size="28" />
+          <p class="ml-1 font-normal text-xl">คัดกรอง</p>
+        </div>
+
+        <!-- Filter Section -->
+
+        <div class=" form-control pb-8 justify-start text-start text-sm">
+          {#if showSearchFilter}
+          <input
+            bind:value={search}
+            type="text"
+            name="search"
+            class="my-4 input input-bordered w-full h-8 focus:input-primary hover:input-primary"
+            placeholder="ค้นหากิจกรรมที่นี่"
+          />
+          {/if}
+
+          {#if showTagFilter}
+          <div class="m-6 mt-1">
+            <b>คัดกรอง</b>
+
+            <div class="form-control">
+              <label class="label cursor-pointer justify-normal">
+                <input
+                  type="radio"
+                  name="radio-1"
+                  class="radio radio-primary"
+                  bind:group={filter}
+                  value=""
+                  checked
+                />
+                <span class="label-text mx-2">ทั้งหมด</span>
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer justify-normal">
+                <input
+                  type="radio"
+                  name="radio-1"
+                  class="radio radio-primary"
+                  bind:group={filter}
+                  value="แนะนำ"
+                />
+                <span class="label-text mx-2">แนะนำ</span>
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer justify-normal">
+                <input
+                  type="radio"
+                  name="radio-1"
+                  class="radio radio-primary"
+                  bind:group={filter}
+                  value="ใหม่"
+                />
+                <span class="label-text mx-2">ใหม่</span>
+              </label>
+            </div>
+          </div>
+          {/if}
+
+          {#if showSortFilter}
+          <div class="m-6 mt-1">
+            <b>เรียบเรียง</b>
+            <div class="form-control">
+              <label class="label cursor-pointer justify-normal">
+                <input
+                  type="radio"
+                  name="radio-2"
+                  class="radio radio-primary"
+                  bind:group={sortType}
+                  value="new"
+                  checked
+                />
+                <span class="label-text mx-2">ใหม่</span>
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer justify-normal">
+                <input
+                  type="radio"
+                  name="radio-2"
+                  class="radio radio-primary"
+                  bind:group={sortType}
+                  value="old"
+                />
+                <span class="label-text mx-2">เก่า</span>
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer justify-normal">
+                <input
+                  type="radio"
+                  name="radio-2"
+                  class="radio radio-primary"
+                  bind:group={sortType}
+                  value="view"
+                />
+                <span class="label-text mx-2">การเข้าชม</span>
+              </label>
+            </div>
+          </div>
+          {/if}
+
+          {#if showDegreeFilter}
+          <div class="m-6 mt-1">
+            <b>ระดับการศึกษา</b>
+            <div class="form-control">
+              <label class="label cursor-pointer justify-normal">
+                <input
+                  type="checkbox"
+                  class="checkbox checkbox-primary"
+                  bind:checked={bechelor}
+                />
+                <span class="label-text mx-2">ระดับปริญญาตรี</span>
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer justify-normal">
+                <input
+                  type="checkbox"
+                  class="checkbox checkbox-primary"
+                  bind:checked={master}
+                />
+                <span class="label-text mx-2">ระดับปริญญาโท</span>
+              </label>
+            </div>
+            <div class="form-control">
+              <label class="label cursor-pointer justify-normal">
+                <input
+                  type="checkbox"
+                  class="checkbox checkbox-primary"
+                  bind:checked={doctor}
+                />
+                <span class="label-text mx-2">ระดับปริญญาเอก</span>
+              </label>
+            </div>
+          </div>
+          {/if}
+        </div>
+        <!-- Filter Section -->
+      </div>
+    {/if}
+    <!-- Card section -->
+
+    <div class="flex flex-col grow mx-auto text-start h-[93vh]">
+      {#if title}
+        <h2 class="mt-2 ml-3 text-3xl font-semibold text-neutral">
+          ประมวลภาพกิจกรรม
+        </h2>
+      {/if}
+      {#key sortType}
+      <div
+        class="grid grid-cols-2 xl:grid-cols-3 items-start overflow-y-scroll overflow-x-hidden no-scrollbar"
+      >
         {#if sortType}
           {#each sorter(rawdata.data, sortType) as data, i (data._id)}
             {#if data.title
@@ -206,7 +281,9 @@
           {/each}
         {/if}
       </div>
+      {/key}
     </div>
     <!-- Card section -->
   </div>
+
 {/await}

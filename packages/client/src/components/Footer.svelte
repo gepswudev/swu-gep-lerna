@@ -1,10 +1,12 @@
 <!-- Footer -->
 <script>
-     //muti-lang handlers
-  import { onMount } from 'svelte';
-  import lang from '../lib/lang'
-  import swa from '../lib/popalert';
-  import log from '../lib/log';
+  //muti-lang handlers
+  import { onMount } from "svelte";
+  import lang from "../lib/lang";
+  import swa from "../lib/popalert";
+  import log from "../lib/log";
+  import GEPLOGO from "../assets/GEPSWU_Logo.png";
+  import { IconBrandFacebook, IconMail, IconPhone } from "@tabler/icons-svelte";
   let data = [];
   onMount(async () => {
     try {
@@ -13,46 +15,107 @@
       data = module.default;
       log("Footer", `Language loaded : ${lang().toLocaleUpperCase()}`);
     } catch (error) {
-      log("Footer", `Language ${lang().toLocaleUpperCase()} is not supported`, "error");
-        swa({
+      log(
+        "Footer",
+        `Language ${lang().toLocaleUpperCase()} is not supported`,
+        "error"
+      );
+      swa(
+        {
           title: "Error",
           text: `Language ${lang().toLocaleUpperCase()} is not supported`,
           icon: "error",
           confirmButtonText: "Change to default language",
-          
-        }, () => {
+        },
+        () => {
           localStorage.setItem("lang", "th");
           window.location.reload();
-        });
-        log("Footer", `Language ${lang().toLocaleUpperCase()} is not supported`, "error");
+        }
+      );
+      log(
+        "Footer",
+        `Language ${lang().toLocaleUpperCase()} is not supported`,
+        "error"
+      );
     }
   });
 </script>
 
-<footer class="footer p-10 bg-base-100">
-
-    {#each data as { title, links } (title)}
-    <div>
-        <span class="footer-title">{title}</span> 
-
-        {#each links as {name, link} (name)}
-        <a href={link} class="link link-hover">{name}</a> 
-        {/each}
-
-      </div> 
-    {/each}
-    
-    <div>
-      <span class="footer-title">Newsletter</span> 
-      <div class="form-control w-80">
-        <p class="label">
-          <span class="label-text">Enter your email address</span>
-        </p> 
-        <div class="relative">
-          <input type="text" placeholder="username@site.com" class="input input-bordered w-full pr-16" /> 
-          <button class="btn btn-primary absolute top-0 right-0 rounded-l-none">Subscribe</button>
-        </div>
+<footer class="bg-gray text-neutral w-full">
+  <div class="footer p-10 border-b-0 md:border-b-2 border-white m-4 ">
+    <div class="w-72">
+      <img src={GEPLOGO} alt="GEPLOGO" class="w-36" />
+      <p class="text-lg">ภาควิชาการแนะแนวและ</p>
+      <p class="text-lg">จิตวิทยาการศึกษาคณะศึกษาศาสตร์</p>
+      <div class="grid grid-cols-3 gap-3">
+        <a href="mailto:ed.swu@g.swu.ac.th"
+          ><IconPhone
+            size={24}
+            class={"w-7 h-7 bg-dark-gray rounded-full p-1 stroke-gray"}
+          /></a
+        >
+        <a href="tel:026495000"
+          ><IconMail
+            size={24}
+            class={"w-7 h-7 bg-dark-gray rounded-full p-1 stroke-gray"}
+          /></a
+        >
+        <a href="https://www.facebook.com/profile.php?id=100057497767786"
+          ><IconBrandFacebook
+            size={24}
+            class={"w-7 h-7 bg-dark-gray rounded-full p-1 stroke-gray"}
+          /></a
+        >
       </div>
     </div>
-  </footer>
-  <!-- Footer -->
+    <div class="hidden md:block w-96">&nbsp;</div>
+    <div>
+      <span
+        class="footer-title text-xl font-extrabold text-red-500 border-b-2 border-red-500 opacity-100 md:border-none w-full mb-4"
+        >เกี่ยวกับเรา</span
+      >
+      <a class="link link-hover text-lg" href="/about"
+        >สถาบันการศึกษาด้านศักยภาพมนุษย์นำไปสู่เป้าหมายของการพัฒนามนุษย์และสังคมอย่าง
+        สมบูรณ์</a
+      >
+    </div>
+    <div>
+      <span
+        class="footer-title text-xl font-extrabold text-red-500 border-b-2 border-red-500 opacity-100 md:border-none w-full mb-4"
+        >ติดต่อเรา</span
+      >
+      <a class="link link-hover text-lg" href="/map"
+        >ภาควิชาการแนะแนวและ จิตวิทยาการศึกษา ชั้น 4 คณะศึกษาศาสตร์
+        มหาวิทยาลัยศรีนครินทรวิโรฒ ประสานมิตร</a
+      >
+    </div>
+    <div>
+      <span
+        class="footer-title text-xl font-extrabold text-red-500 border-b-2 border-red-500 opacity-100 md:border-none w-full mb-4 pr-44 md:pr-0"
+        >หน่วยงานที่เกี่ยวข้อง</span
+      >
+      <a class="link link-hover text-lg" href="https://edu.swu.ac.th/"
+        >คณะศึกษาศาสตร์
+      </a>
+      <a class="link link-hover text-lg" href="https://swu.ac.th"
+        >มหาวิทยาลัยศรีนครินทรวิโรฒ</a
+      >
+      <a class="link link-hover text-lg" href="https://swu.ac.th">SWU</a>
+      <a class="link link-hover text-lg" href="https://grad.swu.ac.th">บัณฑิตวิทยาลัย</a
+      >
+    </div>
+  </div>
+  <div
+    class="flex flex-col md:flex-row justify-center md:justify-between p-4 pb-6 text-base-100 font-semibold bg-neutral md:bg-gray  "
+  >
+    <a href="https://swu.ac.th" class="hover:underline hover:text-primary"
+      >Copyright 2023 by Srinakharinwirot University</a
+    >
+    <p>
+      <a href="/privacy" class="hover:underline hover:text-primary">Privacy Policy</a> |
+      <a href="/terms" class="hover:underline hover:text-primary">Terms of Use</a>
+      | <a href="/cookies" class="hover:underline hover:text-primary">Cookie Policy</a>
+    </p>
+  </div>
+</footer>
+<!-- Footer -->

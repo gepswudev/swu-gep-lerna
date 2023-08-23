@@ -5,14 +5,6 @@
     let personnelsData = get("personnels");
 </script>
 
-<svelte:head>
-    <title>Personel</title>
-    <meta property="og:title" content="SWU" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
-</svelte:head>
-
 <div class="grid justify-center w-screen">
     <h2 class="text-xl md:text-[30px] font-bold drop-shadow-md text-[#00A2E0]" >
         บุคลากร

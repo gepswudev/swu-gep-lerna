@@ -1,7 +1,8 @@
-const Personnels = require("../models/Personnels");
 const fs = require("fs");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
+
+const Personnels = require("../models/Personnels");
 const logger = require("../database/logger");
 const { log } = require("../logger");
 const Users = require("../models/Users");
@@ -20,6 +21,7 @@ exports.create = async (req, res) => {
 
     const {
       name,
+      engName,
       position,
       wellcenterStatus,
       wellcenterDate,
@@ -81,6 +83,7 @@ exports.create = async (req, res) => {
 
       const newPersonnels = new Personnels({
         name,
+        engName,
         position,
         wellcenter,
         email,
@@ -125,6 +128,7 @@ exports.update = async (req, res) => {
     const { id } = req.params;
     const {
       name,
+      engName,
       position,
       wellcenterStatus,
       wellcenterPosition,
@@ -164,6 +168,7 @@ exports.update = async (req, res) => {
       id,
       {
         name,
+        engName,
         position,
         email,
         phone,

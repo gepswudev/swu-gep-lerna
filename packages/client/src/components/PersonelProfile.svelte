@@ -23,7 +23,7 @@
         </p>
         <!-- Eng Name -->
         <p class="text-[14px] text-[#00A2E0]">
-            {data.name}
+            {data?.engName}
         </p>
         <!-- Position -->
         <p class="text-[14px]">

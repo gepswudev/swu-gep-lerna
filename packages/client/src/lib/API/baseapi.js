@@ -5,11 +5,13 @@
 //       This is also to prevent the client from crashing when the server is running
 //       but the API is not working
 
+import config from "../../config.json"
+
 const getAvailableAPI = () => {
     if(window.location.hostname === "localhost") {
-        return "http://localhost:5001/";
+        return `http://localhost:${config.local??5001}/`;
     }
-    return "https://gepswu-server.onrender.com/";
+    return config?.deploy;
 };
 
 export const API = getAvailableAPI();

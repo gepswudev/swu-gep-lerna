@@ -1,6 +1,10 @@
 {
-    "mode": "development",
-    "local":5001,
-    "deploy": "https://gepswu-server.onrender.com/",
-    "_comment": "URL of the server to which the client will connect. Must be a valid URL with protocol (http/https) and port (if not 80/443). and must end with a slash (/)."
+  "mode": "development",
+  "_comment_mode": "Mode is setting up for development, If you want to public this website please set it to production.",
+
+  "local": 5001,
+  "_comment_local": "This is port for localhost server on development process,Port on which the server will listen for incoming connections. Must be a valid port number.",
+
+  "deploy": "https://gepswu-server.onrender.com/",
+  "_comment_deploy": "URL of the server to which the client will connect. Must be a valid URL with protocol (http/https) and port (if not 80/443). and must end with a slash (/)."
 }

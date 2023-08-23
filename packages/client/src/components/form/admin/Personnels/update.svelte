@@ -11,17 +11,19 @@
 
   let form = null;
   let name = "";
+  let engName = "";
   let email = "";
   let phone = "";
   let img = "";
   let position = "";
   let wellcenterPosition = "";
   let wellcenterTime = "";
-  let wellcenter = false;
+  let wellcenter = true;
   let wellcenterDate = [];
   let submitButton;
   let err = {
     name: "",
+    engName: "",
     email: "",
     phone: "",
     img: "",
@@ -38,7 +40,7 @@
     email: "",
     position: "Position",
     wellcenter: {
-      status: false,
+      status: true,
       position: "Wellcenter Position",
       availableTime: "Wellcenter Time",
       availableDate: [],
@@ -49,6 +51,7 @@
     const data = Object.fromEntries(formData.entries());
     const combindData = {
       name: data.name,
+      engName: data.engName,
       email: data.email,
       phone: data.phone,
       position: data.position,
@@ -62,11 +65,12 @@
     previewData = {
       ...previewData,
       name: combindData.name,
+      engName: combindData.engName,
       position: combindData.position,
       phone: combindData.phone,
       email: combindData.email,
       wellcenter: {
-        status: wellcenter,
+        status: eval(wellcenter),
         position: combindData.wellcenter.position,
         availableTime: combindData.wellcenter.time,
         availableDate: combindData.wellcenter.date,
@@ -113,6 +117,7 @@
     const data = Object.fromEntries(formData.entries());
     const combindData = {
       name: data.name,
+      engName: data.engName,
       email: data.email,
       phone: data.phone,
       img: data.newimg,
@@ -123,7 +128,6 @@
       wellcenterTime: data["well-time"],
 
     };
-
     //change button while creating
     submitButton.innerHTML = "Updating...";
     submitButton.disabled = true;
@@ -178,6 +182,7 @@
   }).then((res) => {
 
     name = res.data.name;
+    engName = res.data.engName;
     email = res.data.email;
     phone = res.data.phone;
     img = res.data.img;
@@ -190,6 +195,7 @@
     previewData = {
       ...previewData,
       name,
+      engName,
       img: getImg(img),
       position,
       wellcenter: {
@@ -238,6 +244,23 @@
         />
         {#if err.name}
           <p class="text-red-500">{err.name}</p>
+        {/if}
+      </div>
+
+      <div class="mb-4">
+        <label for="name" class="label justify-start"
+          >Name in English<span class="text-red-500">*</span></label
+        >
+        <input
+          type="text"
+          name="engName"
+          id="engName"
+          class="input input-bordered input-primary w-full"
+          placeholder="Enter name in English here"
+          bind:value={engName}
+        />
+        {#if err.engName}
+          <p class="text-red-500">{err.engName}</p>
         {/if}
       </div>
 

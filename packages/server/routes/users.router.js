@@ -4,14 +4,18 @@ const userController = require('../controllers/users.controller');
 const { tokenize } = require('../middlewares/tokenize');
 const identifyIP = require('../middlewares/ipidentify');
 
-router.post('/register', userController.create); 
-router.get('/', userController.findAll); 
 router.post('/login', userController.login); 
-router.put('/:userId', userController.update); 
-router.delete('/:userId', userController.delete); 
 router.get('/auth', identifyIP ,tokenize ,userController.auth); 
 
 module.exports = router;
+
+/*
+DEVELOPMENT ONLY
+router.post('/register', userController.create); 
+router.get('/', userController.findAll); 
+router.put('/:userId', userController.update); 
+router.delete('/:userId', userController.delete); 
+*/
 
 /**
  * @swagger

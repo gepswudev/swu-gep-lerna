@@ -1,7 +1,7 @@
+/*
+  This function is used to get the image from the server
+*/
 import config from "../config";
-
-const placeholder = "https://picsum.photos/seed/picsum/500/500";
-
 export default function getImg(img) {
   if (img.startsWith("http") || img.startsWith("blob")) return img;
   if (window.location.hostname === "localhost") {
