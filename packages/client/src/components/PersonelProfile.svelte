@@ -10,7 +10,7 @@
     let display = lang() || "th";
 </script>
 
-<div class="w-[350px] md:w-[414px] h-[175px] mt-4 flex border-b-2 pb-8 border-red-500">
+<div class="w-[350px] md:w-[414px] h-[175px] mt-4 flex border-b-2 pb-8 border-red-500 md:border-none">
     <img
     src={getImg(data.img)}
     alt={data.email + "_IMG"}
