@@ -18,11 +18,11 @@
     />
     <div class="pl-4 pt-2">
         <!-- Thai Name -->
-        <p class="text-[14px] text-[#00A2E0] font-bold">
+        <p class="text-[14px] text-primary font-bold">
             {data.name}
         </p>
         <!-- Eng Name -->
-        <p class="text-[14px] text-[#00A2E0]">
+        <p class="text-[14px] text-primary">
             {data?.engName}
         </p>
         <!-- Position -->
@@ -43,7 +43,7 @@
             <div class="bg-[#b3b3b3] h-[18px] w-[18px] rounded-full">
                 <IconMail class="py-1 h-[18px] w-[18px] stroke-white"/>
             </div>
-            <a href="mailto:{data?.email}" class="text-[14px] pl-2 hover:text-[#00A2E0]"> {data?.email} </a>
+            <a href="mailto:{data?.email}" class="text-[14px] pl-2 hover:text-primary"> {data?.email} </a>
         </div>
 
     </div>

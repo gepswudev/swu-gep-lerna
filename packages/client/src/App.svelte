@@ -34,6 +34,7 @@
   import HeaderMetadata from "./components/HeaderMetadata.svelte";
   import MapPage from "./pages/Contact/Map.svelte";
   import CoursePage from "./pages/Course/Course.svelte";
+  import WellCenter from "./pages/WellCenter/WellCenter.svelte";
 
   const defaultLang = "th";
   const lang = localStorage.getItem("lang") || defaultLang;
@@ -108,6 +109,8 @@
         <Route path="/activity" component={ActivityPage} />
         <!-- Course Page -->
         <Route path="/course" component={CoursePage} />
+        <!-- Well Center -->
+        <Route path="/wellcenter" component={WellCenter} />
         <!-- Map Page -->
         <Route path="/contact" component={MapPage} />
 <!--======================== Common pages ========================-->
