@@ -33,6 +33,7 @@
   import ActivityPage from "./pages/Activity/ActivityPage.svelte";
   import HeaderMetadata from "./components/HeaderMetadata.svelte";
   import MapPage from "./pages/Contact/Map.svelte";
+  import CoursePage from "./pages/Course/Course.svelte";
 
   const defaultLang = "th";
   const lang = localStorage.getItem("lang") || defaultLang;
@@ -105,6 +106,8 @@
         <Route path="/personnel" component={PersonelPage} />
         <!-- Activity Page -->
         <Route path="/activity" component={ActivityPage} />
+        <!-- Course Page -->
+        <Route path="/course" component={CoursePage} />
         <!-- Map Page -->
         <Route path="/contact" component={MapPage} />
 <!--======================== Common pages ========================-->
