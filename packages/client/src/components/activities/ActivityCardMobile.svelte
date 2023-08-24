@@ -30,11 +30,15 @@
 </script>
 
 {#if display === "th"}
-<button class="btn btn-ghost w-48 h-full mx-0">
+<button class={"btn btn-ghost w-48 h-full mx-0 "+" "+sx}>
   <img src={getImg(data.img)} alt={`${data.title} Image preview`} class="w-48 h-32 object-cover rounded-xl">
   <p class="text-neutral text-start my-2 font-normal text-">{(data.desc === "" ? data.title : data.desc).substring(0, 40)}</p>
 
 </button>
 {:else}
- <button></button>
+<button class={"btn btn-ghost w-48 h-full mx-0 "+" "+sx}>
+  <img src={getImg(data.img)} alt={`${data.title} Image preview`} class="w-48 h-32 object-cover rounded-xl">
+  <p class="text-neutral text-start my-2 font-normal text-">{(data.desc === "" ? data.title : data.desc).substring(0, 40)}</p>
+
+</button>
 {/if}
