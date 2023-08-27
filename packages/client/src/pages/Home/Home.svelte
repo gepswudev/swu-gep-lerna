@@ -59,18 +59,18 @@
           <div class=" w-[13rem] m-6 my-0 flex-none">
             <h3 class="font-semibold">{lang()=== 'th' ? "หลักสูตร" : "Course"}</h3>
             <a href="/course" class="mt-4 hover:underline hover:text-primary">
-              <p>ระดับปริญญาตรี</p>
-              <p>การศึกษาบัณฑิต (กศ.บ)</p>
+              <p>{lang() === "th" ? "ระดับปริญญาตรี": "Bechelor Degree"}</p>
+              <p>{lang() === "th" ? "การศึกษาบัณฑิต (กศ.บ)": "Bachelor of Education (B.Ed.)"}</p>
             </a>
 
             <a href="/course" class="mt-4 hover:underline hover:text-primary">
-              <p>ระดับปริญญาโท</p>
-              <p>การศึกษามหาบัณฑิต (กศ.ม.)</p>
+              <p>{lang() === "th" ? "ระดับปริญญาโท": "Master Degree"}</p>
+              <p>{lang() === "th" ? "การศึกษามหาบัณฑิต (กศ.ม.)": "Master of Education (M.Ed.)"}</p>
             </a>
 
             <a href="/course" class="mt-4 hover:underline hover:text-primary">
-              <p>ระดับปริญญาเอก</p>
-              <p>การศึกษาดุษฎีบัณฑิต (กศ.ด.)</p>
+              <p>{lang() === "th" ? "ระดับปริญญาเอก": "Doctoral Degree"}</p>
+              <p>{lang() === "th" ? "การศึกษาดุษฎีบัณฑิต (กศ.ด.)": "Doctor of Education (Ed.D.)"}</p>
             </a>
           </div>
         </div>
@@ -88,7 +88,7 @@
           <strong class=" text-3xl font-semibold">W.E.L.L Center</strong>
           <b>"You Are Not Alone"</b>
           <div class="my-6">
-            <b>ศูนย์ให้คำปรึกษา คณะศึกษาศาสตร์ มศว</b>
+            <b>{lang() === "th" ? "ศูนย์ให้คำปรึกษา คณะศึกษาศาสตร์ มศว": "Counseling Center Faculty of Education, SWU"}</b>
             <p>The mental health counselors are ready to hear you</p>
           </div>
           <div class="flex flex-row">
