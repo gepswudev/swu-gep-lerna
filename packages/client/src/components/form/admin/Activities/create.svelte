@@ -286,7 +286,7 @@
       {/if}
     </div>
 
-    <div class="hidden mb-4">
+    <div class="mb-4">
       <label for="badge" class="label">Badge</label>
       <input
         type="text"
@@ -300,7 +300,7 @@
       {/if}
     </div>
 
-    <div class="hidden mb-4">
+    <div class="mb-4">
       <label for="tag" class="label">Tag</label>
       <input
         type="text"

@@ -322,11 +322,11 @@
       {/if}
     </div>
 
-    <div class="hidden mb-4">
+    <div class="mb-4">
       <label for="badge" class="label">Badge</label>
       <input
         bind:value={badge}
-        type="hidden"
+        type="text"
         name="badge"
         id="badge"
         class="input input-bordered input-primary w-full"
@@ -337,11 +337,11 @@
       {/if}
     </div>
 
-    <div class="hidden mb-4">
+    <div class="mb-4">
       <label for="tag" class="label">Tag</label>
       <input
         bind:value={tag}
-        type="hidden"
+        type="text"
         name="tag"
         id="tag"
         class="input input-bordered input-primary w-full"
