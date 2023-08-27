@@ -28,7 +28,7 @@
     const title = formData.get("title");
     const engTitle = formData.get("engTitle");
     const desc = formData.get("desc");
-    const engDesc = formData.get("engDesc");
+
     const img = formData.get("img");
     const href = formData.get("href");
     const badge = formData.get("badge");
@@ -111,7 +111,7 @@
     const title = formData.get("title");
     const engTitle = formData.get("engTitle");
     const desc = formData.get("desc");
-    const engDesc = formData.get("engDesc");
+    const engDesc = formData.get("engdesc");
     const img = formData.get("img");
     const href = formData.get("href");
     const badge = formData.get("badge");
@@ -188,13 +188,13 @@
     </div>
 
     <div class="mb-4">
-      <label for="engTitle" class="label justify-start"
+      <label for="engtitle" class="label justify-start"
         >Title in English</label
       >
       <input
         type="text"
-        name="engTitle"
-        id="engTitle"
+        name="engtitle"
+        id="engtitle"
         class="input input-bordered input-primary w-full"
         placeholder="Enter activity title in English here"
       />
@@ -212,10 +212,10 @@
     </div>
 
     <div class="mb-4">
-      <label for="engDesc" class="label">Description in English</label>
+      <label for="engdesc" class="label">Description in English</label>
       <textarea
-        name="engDesc"
-        id="engDesc"
+        name="engdesc"
+        id="engdesc"
         class="textarea textarea-primary w-full"
         placeholder="Enter activity description here. (Option)"
       />

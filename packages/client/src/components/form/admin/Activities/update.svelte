@@ -10,9 +10,9 @@
   export let sx = "";
   let form;
   let title;
-  let engTitle;
+  let engtitle = "";
   let desc;
-  let engDesc;
+  let engdesc = "";
   let img;
   let href;
   let badge = "";
@@ -59,9 +59,7 @@
   const formValidate = () => {
     const formData = new FormData(form);
     const title = formData.get("title");
-    const engTitle = formData.get("engTitle");
     const desc = formData.get("desc");
-    const engDesc = formData.get("engDesc");
     const img = formData.get("img");
     const href = formData.get("href");
     const degree = degreeSelect;
@@ -105,9 +103,9 @@
     //get form data
     const formData = new FormData(form);
     const title = formData.get("title");
-    const engTitle = formData.get("engTitle");
+    const engTitle = formData.get("engtitle");
     const desc = formData.get("desc");
-    const engDesc = formData.get("engDesc");
+    const engDesc = formData.get("engdesc");
     const img = formData.get("img");
     const newimg = formData.get("newimg");
     const href = formData.get("href");
@@ -158,9 +156,9 @@
 
     activity = res.data;
     title = res.data.title;
-    engTitle = res.data.engTitle;
+    engtitle = res.data.engTitle;
     desc = res.data.desc;
-    engDesc = res.data?.engDesc;
+    engdesc = res.data?.engDesc;
     img = res.data.img;
     previewData.img = getImg(img);
     degreeSelect = res.data.degree;
@@ -211,14 +209,14 @@
     </div>
 
     <div class="mb-4">
-      <label for="engTitle" class="label justify-start"
+      <label for="engtitle" class="label justify-start"
         >Title in English</label
       >
       <input
-        bind:value={engTitle}
+        bind:value={engtitle}
         type="text"
-        name="engTitle"
-        id="engTitle"
+        name="engtitle"
+        id="engtitle"
         class="input input-bordered input-primary w-full"
         placeholder="Enter activity title in English here"
       />
@@ -236,11 +234,11 @@
     </div>
 
     <div class="mb-4">
-      <label for="engDesc" class="label">Description in English</label>
+      <label for="engdesc" class="label">Description in English</label>
       <textarea
-        bind:value={engDesc}
-        name="engDesc"
-        id="engDesc"
+        bind:value={engdesc}
+        name="engdesc"
+        id="engdesc"
         class="textarea textarea-primary w-full"
         placeholder="Enter activity description in English here. (Option)"
       />
