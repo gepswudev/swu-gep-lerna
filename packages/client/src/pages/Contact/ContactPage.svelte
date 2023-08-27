@@ -1,5 +1,6 @@
 <script>
   import Map from "../../components/Map.svelte";
+  import lang from "../../lib/lang";
   import metadata from "../metadata.json";
 
   let marker = {
@@ -16,18 +17,18 @@
       <Map {marker} --map-height="30rem" />
     </div>
     <div class="mx-10 flex flex-col gap-4 justify-center py-12">
-      <h3 class="text-2xl font-bold">ติดต่อเรา</h3>
-      <p class="text-xl font-small">ภาควิชาการแนะแนวและ จิตวิทยาการศึกษา</p>
-      <p class="text-xl font-small">ชั้น 4 คณะศึกษาศาสตร์</p>
-      <p class="text-xl font-small">มหาวิทยาลัยศรีนครินทรวิโรฒ ประสานมิตร</p>
+      <h3 class="text-2xl font-bold">{lang() === "th" ? "ติดต่อเรา" : "Contact us"}</h3>
+      <p class="text-xl font-small">{lang() === "th" ? "ภาควิชาการแนะแนวและจิตวิทยาการศึกษา" : "Department of Guidance and Educational Psychology."}</p>
+      <p class="text-xl font-small">{lang() === "th" ? "ชั้น 4 คณะศึกษาศาสตร์" : "Floor 4, Faculty of Education"}</p>
+      <p class="text-xl font-small">{lang() === "th" ? "มหาวิทยาลัยศรีนครินทรวิโรฒ ประสานมิตร" : "Srinakharinwirot University, Prasarnmit"}</p>
       <p class="text-xl font-small">
-        <span />เลขที่ 114 ซอยสุขุมวิท 23 ถนนสุขุมวิท แขวงคลองเตยเหนือ เขตวัฒนา
-        กรุงเทพมหานคร 10110
+        <span />{lang() === "th" ? "เลขที่ 114 ซอยสุขุมวิท 23 ถนนสุขุมวิท แขวงคลองเตยเหนือ เขตวัฒนากรุงเทพมหานคร 10110" 
+        : "114 Sukhumvit Soi 23, Sukhumvit Road, Klongtoey Nua Sub-district, Wattana District, Bangkok 10110, Thailand"}
       </p>
       <a
         class="btn btn-primary text-xl"
         href={marker.navigate}
-        >นำทาง</a
+        >{lang() === "th" ? "นำทาง" : "Navigate"}</a
       >
     </div>
   </div>

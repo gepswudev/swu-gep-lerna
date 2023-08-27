@@ -47,7 +47,7 @@
         <span class="footer-title text-xl font-extrabold text-red-500 border-b-2 border-red-500 opacity-100 md:border-none w-full mb-4">
           {lang() === "th" ? "ติดต่อเรา" : "Contact us"}
         </span>
-        <a class="link link-hover text-lg" href="/{lang()}/contact">
+        <a class="link link-hover text-lg" href="/contact">
           {lang() === "th" ? "มหาวิทยาลัยศรีนครินทรวิโรฒ" : "Srinakharinwirot University"}
         </a>
       </div>
