@@ -2,11 +2,12 @@
   import Card from "./ActivityCard.svelte";
   import { get } from "../../lib/API/methods";
   import { IconAdjustmentsHorizontal } from "@tabler/icons-svelte";
+  import lang from "../../lib/lang";
 
   export let title = true;
   export let showFilter = true;
   export let showSearchFilter = true;
-  export let showTagFilter = true;
+  export let showTagFilter = false;
   export let showSortFilter = true;
   export let showDegreeFilter = true;
 
@@ -111,7 +112,7 @@
       <div class="hidden lg:flex flex-none w-64 flex-col">
         <div class="mt-4 ml-3 flex flex-row align-start items-start">
           <IconAdjustmentsHorizontal stroke="1" size="28" />
-          <p class="ml-1 font-normal text-xl">คัดกรอง</p>
+          <p class="ml-1 font-normal text-xl">{lang() === "th" ? "คัดกรอง" : "Filter"}</p>
         </div>
 
         <!-- Filter Section -->
@@ -123,13 +124,13 @@
             type="text"
             name="search"
             class="my-4 input input-bordered w-full h-8 focus:input-primary hover:input-primary"
-            placeholder="ค้นหากิจกรรมที่นี่"
+            placeholder={lang() === "th" ? "ค้นหากิจกรรมที่นี่" : "Search an activity here!"}
           />
           {/if}
 
           {#if showTagFilter}
           <div class="m-6 mt-1">
-            <b>คัดกรอง</b>
+            <b>{lang() === "th" ? "คัดกรอง" : "Filter"}</b>
 
             <div class="form-control">
               <label class="label cursor-pointer justify-normal">
@@ -153,7 +154,7 @@
                   bind:group={filter}
                   value="แนะนำ"
                 />
-                <span class="label-text mx-2">แนะนำ</span>
+                <span class="label-text mx-2">{lang() === "th" ? "แนะนำ" : "Recommend"}</span>
               </label>
             </div>
             <div class="form-control">
@@ -165,7 +166,7 @@
                   bind:group={filter}
                   value="ใหม่"
                 />
-                <span class="label-text mx-2">ใหม่</span>
+                <span class="label-text mx-2">{lang() === "th" ? "ใหม่" : "New"}</span>
               </label>
             </div>
           </div>
@@ -184,7 +185,7 @@
                   value="new"
                   checked
                 />
-                <span class="label-text mx-2">ใหม่</span>
+                <span class="label-text mx-2">{lang() === "th" ? "ใหม่" : "New"}</span>
               </label>
             </div>
             <div class="form-control">
@@ -196,7 +197,7 @@
                   bind:group={sortType}
                   value="old"
                 />
-                <span class="label-text mx-2">เก่า</span>
+                <span class="label-text mx-2">{lang() === "th" ? "เก่า" : "Old"}</span>
               </label>
             </div>
             <div class="form-control">
@@ -208,7 +209,7 @@
                   bind:group={sortType}
                   value="view"
                 />
-                <span class="label-text mx-2">การเข้าชม</span>
+                <span class="label-text mx-2">{lang() === "th" ? "การเข้าชม" : "Most view"}</span>
               </label>
             </div>
           </div>
@@ -224,7 +225,7 @@
                   class="checkbox checkbox-primary"
                   bind:checked={bechelor}
                 />
-                <span class="label-text mx-2">ระดับปริญญาตรี</span>
+                <span class="label-text mx-2">{lang() === "th" ? "ระดับปริญญาตรี" : "Bechelor"}</span>
               </label>
             </div>
             <div class="form-control">
@@ -234,7 +235,7 @@
                   class="checkbox checkbox-primary"
                   bind:checked={master}
                 />
-                <span class="label-text mx-2">ระดับปริญญาโท</span>
+                <span class="label-text mx-2">{lang() === "th" ? "ระดับปริญญาโท" : "Master"}</span>
               </label>
             </div>
             <div class="form-control">
@@ -244,7 +245,7 @@
                   class="checkbox checkbox-primary"
                   bind:checked={doctor}
                 />
-                <span class="label-text mx-2">ระดับปริญญาเอก</span>
+                <span class="label-text mx-2">{lang() === "th" ? "ระดับปริญญาเอก" : "Doctoral"}</span>
               </label>
             </div>
           </div>
@@ -258,7 +259,7 @@
     <div class="flex flex-col grow mx-auto text-start h-[93vh]">
       {#if title}
         <h2 class="mt-2 ml-3 text-3xl font-semibold text-neutral">
-          ประมวลภาพกิจกรรม
+          {lang() === "th" ? "ประมวลภาพกิจกรรม" : "Activities"}
         </h2>
       {/if}
       {#key sortType}

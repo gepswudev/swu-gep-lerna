@@ -1,8 +1,9 @@
 [
-  { "title": "NavEN1", "link": "/" },
-  { "title": "NavEN2", "link": "/about" },
-  { "title": "NavEN3", "link": "/personnel" },
-  { "title": "NavEN4", "link": "/course" },
-  { "title": "NavEN5", "link": "/activity" },
-  { "title": "WELL CENTER", "link": "/wellcenter" }
+  { "title": "Home", "link": "/" },
+  { "title": "History", "link": "/about" },
+  { "title": "Personnels", "link": "/personnel" },
+  { "title": "Courses", "link": "/course" },
+  { "title": "Activities", "link": "/activity" },
+  { "title": "WELL CENTER", "link": "/wellcenter" },
+  { "title": "Contact Us", "link": "/contact" }
 ]

@@ -2,6 +2,7 @@
   import Card from "./ActivityCardMobile.svelte";
   import { get } from "../../lib/API/methods";
   import { IconAdjustmentsHorizontal } from "@tabler/icons-svelte";
+  import lang from "../../lib/lang";
 
   export let sx = "";
 
@@ -40,8 +41,8 @@
 {#await activityData}
   <div />
 {:then rawdata}
-  <div class="h-64 mt-10 mx-12">
-    <p class="text-start text-xl font-bold my-4 pl-2">ประมวลภาพกิจกรรม (ล่าสุด)</p>
+  <div class={"h-64 mt-10 mx-12" + " " +sx}>
+    <p class="text-start text-xl font-bold my-4 pl-2">{lang() === "th" ? "ประมวลภาพกิจกรรม (ล่าสุด)" : "Activities (Recently)"}</p>
     <div class="flex flex-row overflow-y-scroll justify-start">
       {#each sorter(rawdata.data, "new") as data}
         <Card {data} sx={"w-12"}/>

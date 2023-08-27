@@ -1,42 +1,41 @@
 <script>
+  //Module import and setup here
+  import { Route, Router } from "svelte-routing";
+  import { checkConnection } from "./lib/API/checkConnection";
+  import Swal from "sweetalert2";
+  import log from "./lib/log";
   import Navbar from "./components/Navbar.svelte";
   import Footer from "./components/Footer.svelte";
   import HomePage from "./pages/Home/Home.svelte";
   import HistoryPage from "./pages/History/History01.svelte";
   import PersonelPage from "./pages/Personel/Personel.svelte";
-
-  import AdminMain from "./pages/Admin/AdminMainPage.svelte";
-
-  import AdminActivities from "./pages/Admin/Activities/all.svelte";
-  import AdminActivitiesCreate from "./pages/Admin/Activities/create.svelte";
-  import AdminActivitiesUpdate from "./pages/Admin/Activities/update.svelte";
-
-  import AdminCorousels from "./pages/Admin/Corousels/all.svelte";
-  import AdminCorouselsCreate from "./pages/Admin/Corousels/create.svelte";
-  import AdminCorouselsUpdate from "./pages/Admin/Corousels/update.svelte";
-
-  import AdminPersonnels from "./pages/Admin/Personnels/all.svelte";
-  import AdminPersonnelsCreate from "./pages/Admin/Personnels/create.svelte";
-  import AdminPersonnelsUpdate from "./pages/Admin/Personnels/update.svelte";
-
-  import FileManagement from "./pages/Admin/FileManagementPage.svelte";
-
-  import { Route, Router } from "svelte-routing";
-  import Swal from "sweetalert2";
-  import log from "./lib/log";
-  import { checkConnection } from "./lib/API/checkConnection";
   import Login from "./pages/User/UserTest.svelte";
   import Test from "./pages/test.svelte";
-  import CookiesPage from "./components/CookiesPage.svelte";
+  import CookiesPage from "./pages/Cookies/CookiesPage.svelte";
   import Cookies from "./components/Cookies.svelte";
   import Loading from "./components/Loading.svelte";
   import ActivityPage from "./pages/Activity/ActivityPage.svelte";
   import HeaderMetadata from "./components/HeaderMetadata.svelte";
   import MapPage from "./pages/Contact/Map.svelte";
   import CoursePage from "./pages/Course/Course.svelte";
+  import AdminMain from "./pages/Admin/AdminMainPage.svelte";
+  import AdminActivities from "./pages/Admin/Activities/all.svelte";
+  import AdminActivitiesCreate from "./pages/Admin/Activities/create.svelte";
+  import AdminActivitiesUpdate from "./pages/Admin/Activities/update.svelte";
+  import AdminCorousels from "./pages/Admin/Corousels/all.svelte";
+  import AdminCorouselsCreate from "./pages/Admin/Corousels/create.svelte";
+  import AdminCorouselsUpdate from "./pages/Admin/Corousels/update.svelte";
+  import AdminPersonnels from "./pages/Admin/Personnels/all.svelte";
+  import AdminPersonnelsCreate from "./pages/Admin/Personnels/create.svelte";
+  import AdminPersonnelsUpdate from "./pages/Admin/Personnels/update.svelte";
+  import FileManagement from "./pages/Admin/FileManagementPage.svelte";
+  import PrivacyPolicyPage from "./pages/Privacy/PrivacyPolicyPage.svelte";
+  import TermsOfUsePage from "./pages/Terms/TermsOfUsePage.svelte";
 
   const defaultLang = "th";
   const lang = localStorage.getItem("lang") || defaultLang;
+
+  //set default lang to browser
   localStorage.setItem("lang", lang);
 
   let basepath = "/";
@@ -87,7 +86,7 @@
 {#await isServerAlive}
   <!-- Preload while connecting to server -->
   <Loading
-    title="Connect to Server"
+    title="Connecting to server ..."
     desc="It's may take a longtime cause Server is sleepy under development mode"
   />
 {:then alive}
@@ -110,6 +109,12 @@
         <Route path="/course" component={CoursePage} />
         <!-- Map Page -->
         <Route path="/contact" component={MapPage} />
+        <!-- Privacy Policy page -->
+        <Route path="/privacy" component={PrivacyPolicyPage} />
+        <!-- Terms of Use page -->
+        <Route path="/terms" component={TermsOfUsePage} />
+        <!-- Cookies consent page -->
+        <Route path="/cookies" component={CookiesPage} />
 <!--======================== Common pages ========================-->
 
 
@@ -151,8 +156,7 @@
         <Route path="/files" component={FileManagement} />
         <Route path="/test" component={Test} />
 
-        <!-- Cookies consent page -->
-        <Route path="/cookies" component={CookiesPage} />
+        
 <!--======================== Admin pages ========================-->
 
 
