@@ -217,7 +217,7 @@
 
           {#if showDegreeFilter}
           <div class="m-6 mt-1">
-            <b>{lang() ? "ระดับการศึกษา" : "Level"}</b>
+            <b>{lang() === "th" ? "ระดับการศึกษา" : "Level"}</b>
             <div class="form-control">
               <label class="label cursor-pointer justify-normal">
                 <input
