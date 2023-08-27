@@ -1,23 +1,12 @@
 <script>
-  //Module import and setup here
+//====================================| Import Pagekages and Modules |====================================//
   import { Route, Router } from "svelte-routing";
   import { checkConnection } from "./lib/API/checkConnection";
   import Swal from "sweetalert2";
   import log from "./lib/log";
-  import Navbar from "./components/Navbar.svelte";
-  import Footer from "./components/Footer.svelte";
-  import HomePage from "./pages/Home/Home.svelte";
-  import HistoryPage from "./pages/History/History01.svelte";
-  import PersonelPage from "./pages/Personel/Personel.svelte";
-  import Login from "./pages/User/UserTest.svelte";
-  import Test from "./pages/test.svelte";
-  import CookiesPage from "./pages/Cookies/CookiesPage.svelte";
-  import Cookies from "./components/Cookies.svelte";
-  import Loading from "./components/Loading.svelte";
-  import ActivityPage from "./pages/Activity/ActivityPage.svelte";
-  import HeaderMetadata from "./components/HeaderMetadata.svelte";
-  import MapPage from "./pages/Contact/Map.svelte";
-  import CoursePage from "./pages/Course/Course.svelte";
+//====================================| Import Pagekages and Modules |====================================//
+
+//====================================| Import Admin Pages |====================================//
   import AdminMain from "./pages/Admin/AdminMainPage.svelte";
   import AdminActivities from "./pages/Admin/Activities/all.svelte";
   import AdminActivitiesCreate from "./pages/Admin/Activities/create.svelte";
@@ -29,21 +18,42 @@
   import AdminPersonnelsCreate from "./pages/Admin/Personnels/create.svelte";
   import AdminPersonnelsUpdate from "./pages/Admin/Personnels/update.svelte";
   import FileManagement from "./pages/Admin/FileManagementPage.svelte";
+//====================================| Import Admin Pages |====================================//
+
+//====================================| Import Common Pages |====================================//
+  import Navbar from "./components/Navbar.svelte";
+  import Footer from "./components/Footer.svelte";
+  import HomePage from "./pages/Home/Home.svelte";
+  import HistoryPage from "./pages/History/History01.svelte";
+  import PersonelPage from "./pages/Personel/Personel.svelte";
+  import Login from "./pages/User/UserTest.svelte";
+  import Test from "./pages/Playground.svelte";
+  import CookiesPage from "./pages/Cookies/CookiesPage.svelte";
+  import Cookies from "./components/Cookies.svelte";
+  import Loading from "./components/Loading.svelte";
+  import ActivityPage from "./pages/Activity/ActivityPage.svelte";
+  import HeaderMetadata from "./components/HeaderMetadata.svelte";
+  import ContactPage from "./pages/Contact/ContactPage.svelte";
+  import CoursePage from "./pages/Course/Course.svelte";
   import PrivacyPolicyPage from "./pages/Privacy/PrivacyPolicyPage.svelte";
   import TermsOfUsePage from "./pages/Terms/TermsOfUsePage.svelte";
   import WellCenter from "./pages/WellCenter/WellCenter.svelte";
 
+//====================================| Import Common Pages |====================================//
+
+//====================================| Languages |====================================//
   const defaultLang = "th";
   const lang = localStorage.getItem("lang") || defaultLang;
-
-  //set default lang to browser
   localStorage.setItem("lang", lang);
+//====================================| Languages |====================================//
 
+//====================================| Navbar Config |====================================//
   let basepath = "/";
   let currentPath = window.location.pathname;
   let err = "";
+//====================================| Navbar Config |====================================//
 
-  //server connection checker
+//====================================| Server Connection Checking |====================================//
   checkConnection()
     .then((connected) => {
       if (connected) {
@@ -79,21 +89,26 @@
       err = e.message || "Server Error";
     });
 
-  $: log("App", `Go to ${currentPath}`);
+    let isServerAlive = checkConnection();
+//====================================| Server Connection Checking |====================================//
 
-  let isServerAlive = checkConnection();
+  $: log("App", `Go to ${currentPath}`);  
 </script>
 
 {#await isServerAlive}
-  <!-- Preload while connecting to server -->
+<!--======================== Loading page ========================-->
   <Loading
     title="Connecting to server ..."
     desc="It's may take a longtime cause Server is sleepy under development mode"
   />
+<!--======================== Loading page ========================-->
 {:then alive}
   {#if alive}
     <Router {basepath}>
+<!--======================== Navbar ========================-->
       <Navbar active={currentPath} />
+<!--======================== Navbar ========================-->
+
       <main
         class="mx-auto pt-24 w-screen h-full scroll-smooth overflow-x-hidden bg-base-100"
       >
@@ -111,7 +126,7 @@
         <!-- Well Center -->
         <Route path="/wellcenter" component={WellCenter} />
         <!-- Map Page -->
-        <Route path="/contact" component={MapPage} />
+        <Route path="/contact" component={ContactPage} />
         <!-- Privacy Policy page -->
         <Route path="/privacy" component={PrivacyPolicyPage} />
         <!-- Terms of Use page -->
@@ -179,8 +194,9 @@
 <!--======================== Untils component ========================-->
       </main>
 
-      <!-- Footer -->
+<!--======================== Footer ========================-->
       <Footer />
+<!--======================== Footer ========================-->
     </Router>
   {:else}
     <!-- Server connection error -->
