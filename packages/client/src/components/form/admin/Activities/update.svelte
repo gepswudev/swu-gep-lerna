@@ -15,8 +15,8 @@
   let engDesc;
   let img;
   let href;
-  let badge;
-  let tag;
+  let badge = "";
+  let tag = "";
   let submitButton;
   let degreeSelect = [];
   
@@ -328,7 +328,7 @@
       <label for="badge" class="label">Badge</label>
       <input
         bind:value={badge}
-        type="text"
+        type="hidden"
         name="badge"
         id="badge"
         class="input input-bordered input-primary w-full"
@@ -343,7 +343,7 @@
       <label for="tag" class="label">Tag</label>
       <input
         bind:value={tag}
-        type="text"
+        type="hidden"
         name="tag"
         id="tag"
         class="input input-bordered input-primary w-full"
