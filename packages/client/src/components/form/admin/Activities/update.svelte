@@ -160,7 +160,7 @@
     title = res.data.title;
     engTitle = res.data.engTitle;
     desc = res.data.desc;
-    engDesc = res.data.engDesc;
+    engDesc = res.data?.engDesc;
     img = res.data.img;
     previewData.img = getImg(img);
     degreeSelect = res.data.degree;

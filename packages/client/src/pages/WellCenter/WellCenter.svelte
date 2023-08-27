@@ -15,17 +15,17 @@
     let personnelsData = get("personnels");
 </script>
 
-<div>
+<div class="">
     {#await personnelsData}
         <Loading />
     {:then personnelData} 
         <!-- Header -->
-        <img src={Header} alt="" class="lg:bg-cover w-[250vw] overflow-hidden">
         
+        <img src={Header} alt="" class="absolute md:relative lg:bg-cover object-fill scale-[2.5] scale-x-[3.5] md:scale-125 w-[250vw] overflow-x-clip z-0">
         <!-- WELL CENTER ICON ON MOBILE -->
-        <div class="flex flex-col items-center text-[12px] font-bold lg:hidden">
+        <div class="z-100 relative top-8  flex flex-col items-center text-[12px] font-bold md:hidden ">
             <div class="flex justify-center items-center bg-[#7bd7ff] rounded-full w-[90px] h-[90px] mb-2">
-                <IconHeartHandshake class="stroke-1 w-[72px] h-[72px]"/>
+                <IconHeartHandshake class="stroke-1 w-[15rem] h-[15rem]"/>
             </div>
             <p> {lang() === "th" ? "ศูนย์ให้คำปรึกษา" : "Consultation Center"}  </p>
             <p> {lang() === "th" ? "W.E.L.L CENTER" : "W.E.L.L CENTER"} </p>
@@ -142,7 +142,7 @@
         </div>
 
         <!-- จุดประสงค์ -->
-        <div class="flex flex-col items-center bg-cover bg-center w-full py-24" style="background-image: url({ObjectiveBg});"> 
+        <div class="flex flex-col items-center py-24 w-screen bg-gradient-to-b from-primary/5" > 
             <p class="text-[36px] my-8">
                 {lang() === "th" ? "จุดประสงค์" : "Objective"}
             </p>
