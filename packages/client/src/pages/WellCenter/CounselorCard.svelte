@@ -11,7 +11,7 @@
         <img
             src={getImg(data.img)}
             alt=""
-            class="object-cover w-64 rounded-full"
+            class="object-cover w-56 rounded-full"
         />
     </div>
     <div class="pl-3 flex flex-col gap-1">
@@ -27,7 +27,7 @@
             <IconClock class="stroke-primary" size=23/>
             <div class="flex flex-col gap-1 ml-2 mt-1">
                 {#each data.wellcenter.availableTime as counsultTime }
-                <p class="text-black"> {counsultTime} </p>
+                <p class="text-neutral text-sm"> {counsultTime} </p>
                 {/each}
             </div>
         </div>
