@@ -15,8 +15,8 @@
     <div />
   {:then personelsData}
     <div class="mx-auto p-12 justify-center text-center">
-      <h1 class="text-4xl font-semibold text-gray-900">Personnels</h1>
-      <p class="mt-1 text-sm text-gray-600">List of all personnels</p>
+      <h1 class="text-4xl font-semibold text-gray-900">Personnel ({personelsData.data.length} people)</h1>
+      <p class="mt-1 text-sm text-gray-600">List of all personnel</p>
       <div
         class="m-12 px-36 flex flex-row w-full justify-center md:justify-start gap-4"
       >
@@ -29,7 +29,7 @@
       </div>
       <div class="grid grid-cols-1  xl:grid-cols-3 text-start gap-4">
         {#each personelsData.data as data, index}
-          {#if filtered === "" || data.name.toLowerCase().includes(filtered.toLowerCase())}
+          {#if filtered === "" || data.name.toLowerCase().includes(filtered.toLowerCase()) || data.engName.toLowerCase().includes(filtered.toLowerCase())}
             <PersonnelsCard {data} admin={true} {index} />
 
           {/if}

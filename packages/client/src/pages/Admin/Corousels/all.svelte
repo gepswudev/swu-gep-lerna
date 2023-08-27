@@ -14,7 +14,7 @@
 
 <AdminProtect>
   <h2 class="font-bold text-3xl text-center mt-12">
-    Banner Corousels Management {#await corousels} (Loding...)
+    Banner Carousels Management {#await corousels} (Loding...)
     {:then data}
       ({data.data.length} {data.data.length > 1 ? "Banners" : "Banner"})
     {/await}

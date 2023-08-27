@@ -76,6 +76,9 @@
     <div class="flex flex-col text-start justify-start">
       <div class="flex flex-col">
         <h2 class="card-title">{data.name}</h2>
+        {#if data.engName}
+        <h2 class="card-title">{data.engName}</h2>
+        {/if}
         {#if data.position}
           <p class="label text-start justify-start"><span><IconUser/></span>  {data.position}</p>
         {/if}

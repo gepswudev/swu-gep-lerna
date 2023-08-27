@@ -1,6 +1,6 @@
 <script>
   import metadata from "../pages/metadata.json";
-  import logo from "../../public/Srinakharinwirot_University_Logo.png";
+  import logo from "../assets/Srinakharinwirot_University_Logo.png";
   export let basepath = "/";
 
   const pathDataVerify = (path) => {

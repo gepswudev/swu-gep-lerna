@@ -1,5 +1,6 @@
 <script>
     import { get } from "../../lib/API/methods";
+    import getFile from "../../lib/getFile";
     import CounselorCard from "./CounselorCard.svelte";
     import Loading from "../../components/Loading.svelte"
     import Carousel from "svelte-carousel";
@@ -62,7 +63,7 @@
         
         <!-- PC Carousel -->
         <div class="hidden lg:flex w-full justify-between pr-8 pl-8"> 
-                <div class="flex flex-col flex-wrap gap-7 justify-start items-center py-5">
+                <div class="flex flex-col flex-wrap gap-7 px-2 rounded-md justify-start items-center py-5 hover:bg-primary/5 hover:px-32 duration-500">
                     <p class="text-[24px] text-neutral"> วันจันทร์ </p>
                     {#each personnelData.data as data, i ("Monday" + i)}
                         {#if data.wellcenter.availableDate.includes("Monday")}
@@ -70,7 +71,7 @@
                         {/if}
                     {/each}
                 </div>
-                <div class="flex flex-col flex-wrap gap-7 justify-start items-center py-5">
+                <div class="flex flex-col flex-wrap gap-7 px-2 rounded-md justify-start items-center py-5 hover:bg-primary/5 hover:px-32 duration-500">
                     <p class="text-[24px] text-neutral"> วันอังคาร </p>
                     {#each personnelData.data as data, i ("Tuesday" + i)}
                         {#if data.wellcenter.availableDate.includes("Tuesday")}
@@ -78,7 +79,7 @@
                         {/if}
                     {/each}
                 </div>
-                <div class="flex flex-col flex-wrap gap-7 justify-start items-center py-5">
+                <div class="flex flex-col flex-wrap gap-7 px-2 rounded-md justify-start items-center py-5 hover:bg-primary/5 hover:px-32 duration-500">
                     <p class="text-[24px] text-neutral"> วันพุธ </p>
                     {#each personnelData.data as data, i ("Wednesday" + i)}
                         {#if data.wellcenter.availableDate.includes("Wednesday")}
@@ -86,7 +87,7 @@
                         {/if}
                     {/each}
                 </div>
-                <div class="flex flex-col flex-wrap gap-7 justify-start items-center py-5">
+                <div class="flex flex-col flex-wrap gap-7 px-2 rounded-md justify-start items-center py-5 hover:bg-primary/5 hover:px-32 duration-500">
                     <p class="text-[24px] text-neutral"> วันพฤหัสบดี </p>
                     {#each personnelData.data as data, i ("Thursday" + i)}
                         {#if data.wellcenter.availableDate.includes("Thursday")}
@@ -94,7 +95,7 @@
                         {/if}
                     {/each}
                 </div>
-                <div class="flex flex-col flex-wrap gap-7 justify-start items-center py-5">
+                <div class="flex flex-col flex-wrap gap-7 px-2 rounded-md justify-start items-center py-5 hover:bg-primary/5 hover:px-32 duration-500">
                     <p class="text-[24px] text-neutral"> วันศุกร์ </p>
                     {#each personnelData.data as data, i ("Friday" + i)}
                         {#if data.wellcenter.availableDate.includes("Friday")}
@@ -109,7 +110,7 @@
             <p class="text-[36px] my-8"> จุดประสงค์ </p>
             <div class="grid grid-cols-2 lg:grid-cols-5 gap-12">
                 <div class="flex flex-col w-[200px] h-fit justify-center items-center">
-                    <div class="flex bg-gray w-[82px] h-[82px] rounded-3xl py-2 px-2 justify-center items-center">
+                    <div class="flex bg-gray w-[82px] h-[82px] rounded-3xl py-2 px-2 justify-center items-center hover:bg-primary duration-1000">
                         <IconUsers size=42/>
                     </div>
                     <p class="text-[16px] text-center pt-8">
@@ -118,7 +119,7 @@
                     </p>
                 </div>
                 <div class="flex flex-col w-[200px] h-fit justify-center items-center">
-                    <div class="flex bg-gray w-[82px] h-[82px] rounded-3xl py-2 px-2 justify-center items-center">
+                    <div class="flex bg-gray w-[82px] h-[82px] rounded-3xl py-2 px-2 justify-center items-center hover:bg-primary duration-1000">
                         <IconHeartbeat size=42/>
                     </div>
                     <p class="text-[16px] text-center pt-8">
@@ -127,7 +128,7 @@
                     </p>
                 </div>
                 <div class="flex flex-col w-[200px] h-fit justify-center items-center">
-                    <div class="flex bg-gray w-[82px] h-[82px] rounded-3xl py-2 px-2 justify-center items-center">
+                    <div class="flex bg-gray w-[82px] h-[82px] rounded-3xl py-2 px-2 justify-center items-center hover:bg-primary duration-1000">
                         <IconWorld size=42/>
                     </div>
                     <p class="text-[16px] text-center pt-8">
@@ -135,7 +136,7 @@
                     </p>
                 </div>
                 <div class="flex flex-col w-[200px] h-fit justify-center items-center">
-                    <div class="flex bg-gray w-[82px] h-[82px] rounded-3xl py-2 px-2 justify-center items-center">
+                    <div class="flex bg-gray w-[82px] h-[82px] rounded-3xl py-2 px-2 justify-center items-center hover:bg-primary duration-1000">
                         <IconSchool size=42/>
                     </div>
                     <p class="text-[16px] text-center pt-8">
@@ -146,7 +147,7 @@
                     </p>
                 </div>
                 <div class="flex flex-col w-[200px] h-fit justify-center items-center">
-                    <div class="flex bg-gray w-[82px] h-[82px] rounded-3xl py-2 px-2 justify-center items-center">
+                    <div class="flex bg-gray w-[82px] h-[82px] rounded-3xl py-2 px-2 justify-center items-center hover:bg-primary duration-1000">
                         <IconMessage size=42/>
                     </div>
                     <p class="text-[16px] text-center pt-8">
@@ -168,63 +169,63 @@
                         <p class="text-[36px] text-neutral my-8"> เริ่มรับคำปรึกษากับเรา </p>
                     </div>
                     <div class="flex flex-col border-dashed border-2 w-[360px] pl-7 py-7 gap-6 justify-center rounded-xl border-[#9747FF]">
-                        <div class="flex items-center">
+                        <div class="flex items-center hover:bg-neutral/5 hover:py-4 hover:px-2 hover:rounded-xl duration-500">
                             <div class="flex items-center justify-center rounded-full w-[38px] h-[38px] bg-white border-black border-2 text-[14px]"> 1 </div>
-                            <p class="text-[16px] ml-6"> อ่านสิทธิของผู้มาปรึกษา  </p>
+                            <p class="text-[16px] ml-6 hover:underline hover:scale-105  duration-700"> อ่านสิทธิของผู้มาปรึกษา  </p>
                         </div>
-                        <div class="flex items-center">
+                        <div class="flex items-center hover:bg-neutral/5 hover:py-4 hover:px-2 hover:rounded-xl duration-500">
                             <div class="flex items-center justify-center rounded-full w-[38px] h-[38px] bg-white border-black border-2 text-[14px]"> 2 </div>
-                            <p class="text-[16px] ml-6"> ดูตารางวันเวลาที่สะดวกเข้ารับปรึกษา </p>
+                            <p class="text-[16px] ml-6 hover:underline hover:scale-105  duration-700"> ดูตารางวันเวลาที่สะดวกเข้ารับปรึกษา </p>
                         </div>
-                        <div class="flex items-center">
+                        <div class="flex items-center hover:bg-neutral/5 hover:py-4 hover:px-2 hover:rounded-xl duration-500">
                             <div class="flex items-center justify-center rounded-full w-[38px] h-[38px] bg-white border-black border-2 text-[14px]"> 3 </div>
-                            <p class="text-[16px] ml-6"> Scan ลงทะเบียนเข้ารับปรึกษา </p>
+                            <p class="text-[16px] ml-6 hover:underline hover:scale-105  duration-700"> Scan ลงทะเบียนเข้ารับปรึกษา </p>
                         </div>
-                        <div class="flex items-center">
+                        <div class="flex items-center hover:bg-neutral/5 hover:py-4 hover:px-2 hover:rounded-xl duration-500">
                             <div class="flex items-center justify-center rounded-full w-[38px] h-[38px] bg-white border-black border-2 text-[14px]"> 4 </div>
-                            <p class="text-[16px] ml-6"> เข้ารับการปรึกษา </p>
+                            <p class="text-[16px] ml-6 hover:underline hover:scale-105  duration-700"> เข้ารับการปรึกษา </p>
                         </div>
-                        <div class="flex items-center">
+                        <div class="flex items-center hover:bg-neutral/5 hover:py-4 hover:px-2 hover:rounded-xl duration-500">
                             <div class="flex items-center justify-center rounded-full w-[38px] h-[38px] bg-white border-black border-2 text-[14px]"> 5 </div>
-                            <p class="text-[16px] ml-6"> Scan แบบประเมินผลเข้ารับการปรึกษา </p>
+                            <p class="text-[16px] ml-6 hover:underline hover:scale-105  duration-700"> Scan แบบประเมินผลเข้ารับการปรึกษา </p>
                         </div>
                     </div>
                 </div>
                 <div class="mt-64">
-                    <div class="flex flex-row w-[595px] h-[120px] bg-info rounded-3xl justify-center items-center relative">
+                    <a href={getFile('WELLCENTER_CONSENT.pdf')} class="flex flex-row w-[595px] h-[120px] bg-info rounded-3xl justify-center items-center relative hover:scale-105 duration-500">
                         <div class="flex flex-col text-neutral justify-center items-center text-[8px] font-bold absolute left-8">
                             <IconHeartHandshake size=72 class="stroke-1"/>
                             <p> ศูนย์ให้คำปรึกษา </p>
                             <p> W.E.L.L. Center </p>
                             <p> มศว </p>
                         </div>
-                        <div class="flex flex-col text-center ">
+                        <div  class="flex flex-col text-center">
                             <p class="text-neutral text-[20px] font-bold"> เอกสารสำคัญ </p>
                             <p class="text-neutral text-[28px] font-bold"> สิทธิของผู้มาปรึกษา </p>
                             <p class="text-neutral text-[20px] font-bold"> โปรดอ่าน </p>
                         </div>
-                    </div>
+                    </a>
                     <div class="flex flex-row justify-between items-center mx-8 mt-8">
-                        <div class="flex flex-col items-center">
+                        <a href="https://web.facebook.com/W.E.L.L.Center.SWU/?locale=th_TH&_rdc=1&_rdr" class="flex flex-col items-center hover:scale-110 duration-500">
                             <img src={FacebookIcon} alt="" class="mb-4">
                             <p> ศูนย์ให้คำปรึกษา </p>
                             <p> W.E.L.L. Center มศว </p>
-                        </div>
+                        </a>
                         <div>
-                            <div class="flex bg-[#FF7171] w-[180px] h-[180px] justify-center items-center rounded-xl">
+                            <a href="https://goo.gl/forms/1yc3zS2CFVndvoJt1" class="flex bg-[#FF7171] w-[180px] h-[180px] justify-center items-center rounded-xl hover:scale-110 duration-500">
                                 <img src={RegisQr} alt="" class="w-[156px] h-[156px] ">
-                            </div>
-                            <div class="flex bg-[#FF7171] w-[180px] h-fit justify-center items-center rounded-full mt-4">
+                            </a>
+                            <a href="https://goo.gl/forms/1yc3zS2CFVndvoJt1" class="flex bg-[#FF7171] w-[180px] h-fit justify-center items-center rounded-full mt-4 hover:scale-110 duration-500">
                                 <p class="text-[16px] text-base-100"> ลงทะเบียน Click </p>
-                            </div>
+                            </a>
                         </div>
                         <div>
-                            <div class="flex bg-[#FFBE71] w-[180px] h-[180px] justify-center items-center rounded-xl">
+                            <a href="https://goo.gl/forms/Qs69vJln1HmhFnqM2" class="flex bg-[#FFBE71] w-[180px] h-[180px] justify-center items-center rounded-xl hover:scale-110 duration-500">
                                 <img src={EvaluateQr} alt="" class="w-[156px] h-[156px] ">
-                            </div>
-                            <div class="flex bg-[#FFBE71] w-[180px] h-fit justify-center items-center rounded-full mt-4">
+                            </a>
+                            <a href="https://goo.gl/forms/Qs69vJln1HmhFnqM2" class="flex bg-[#FFBE71] w-[180px] h-fit justify-center items-center rounded-full mt-4 hover:scale-110 duration-500">
                                 <p class="text-[16px] text-base-100"> ประเมิน Click </p>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

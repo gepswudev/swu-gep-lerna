@@ -43,7 +43,7 @@
               <li><a href="/files">File system</a></li>
               <li><a href="/viewactivities">Activities</a></li>
               <li><a href="/viewcorousels">Banner</a></li>
-              <li><a href="/personnels">Personnels</a></li>
+              <li><a href="/personnels">Personnel</a></li>
             </ul>
           </details>
         </li>
@@ -99,7 +99,7 @@
                 <li><a href="/files">File system</a></li>
           <li><a href="/viewactivities">Activities</a></li>
           <li><a href="/viewcorousels">Banner</a></li>
-          <li><a href="/personnels">Personnels</a></li>
+          <li><a href="/personnels">Personnel</a></li>
               </ul>
             </details>
           </li>

@@ -140,7 +140,7 @@
     on:keyup={loadPreview}
   >
     <h2 class="text-2xl font-semibold text-center">
-      Create New Banner Corousels
+      Create New Banner Carousels
     </h2>
     <div class="mb-4">
       <label for="name" class="label justify-start"

@@ -1,18 +1,17 @@
 <script>
     import { IconMail, IconPhone } from "@tabler/icons-svelte";
-    import { Draggable } from "leaflet";
     import { IconUser, IconClock } from "@tabler/icons-svelte";
     import getImg from "../../lib/getImg";
 
     export let data;
 </script>
 
-<div class="bg-white h-fit w-[275px] rounded-[20px] shadow-xl flex py-6 p-3">
-    <div class="">
+<div class="bg-white h-fit w-80 rounded-[20px] shadow-xl flex py-6 p-3 hover:scale-105 hover:shadow-2xl duration-1000">
+    <div class="items-center self-center">
         <img
             src={getImg(data.img)}
             alt=""
-            class="object-cover w-[75px] h-[75px] rounded-full"
+            class="object-cover w-64 rounded-full"
         />
     </div>
     <div class="pl-3 flex flex-col gap-1">
