@@ -6,8 +6,6 @@
     import {IconMail, IconPhone} from "@tabler/icons-svelte";
 
     export let data;
-
-    let display = lang() || "th";
 </script>
 
 <div class="w-[350px] md:w-[414px] h-[175px] mt-4 flex border-b-2 pb-8 border-red-500 md:border-none">
@@ -17,14 +15,28 @@
     class="max-h-[175px] w-[120px] md:w-[153px] object-cover"
     />
     <div class="pl-4 pt-2">
-        <!-- Thai Name -->
-        <p class="text-[14px] text-primary font-bold">
-            {data.name}
-        </p>
-        <!-- Eng Name -->
-        <p class="text-[14px] text-primary">
-            {data?.engName}
-        </p>
+        {#if lang() === "th"}
+            <!-- In Thai Lang -->
+            <!-- Thai Name -->
+            <p class="text-[14px] text-primary font-bold">
+                {data.name}
+            </p>
+            <!-- Eng Name -->
+            <p class="text-[14px] text-primary">
+                {data?.engName}
+            </p>
+        {:else}
+            <!-- In Eng Lang -->
+            <!-- Eng Name -->
+            <p class="text-[14px] text-primary font-bold">
+                {data?.engName}
+            </p>
+            <!-- Thai Name -->
+            <p class="text-[14px] text-primary ">
+                {data.name}
+            </p>
+        {/if}   
+       
         <!-- Position -->
         <p class="text-[14px]">
             {#if lang() === "th"}
