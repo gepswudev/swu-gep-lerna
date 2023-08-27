@@ -16,6 +16,7 @@
   import FbPageCard from "../../components/FbPageCard.svelte";
   import ActivityMobileLayout from "../../components/activities/ActivityMobileLayout.svelte";
   import FbPageCardMobile from "../../components/FbPageCardMobile.svelte";
+  import lang from "../../lib/lang";
 
   let corouselWellcenter;
   const handleNextClick = () => {
@@ -40,36 +41,37 @@
       <!-- YouTube -->
       <div class="flex flex-col w-[80rem] text-neutral mx-auto">
         <div class="w-full border-b-2 border-black py-4">
-          <p class="text-3xl font-semibold text-start">แนะนำหลักสูตร</p>
+          <p class="text-3xl font-semibold text-start">{lang() === "th" ? "แนะนำหลักสูตร" : "Course Introduction"}</p>
           <div
             class="mt-1 flex flex-row items-center justify-between align-baseline"
           >
             <p class="grow text-start">
-              ภาควิชาการแนะแนวและจิตวิทยาการศึกษาคณะศึกษาศาสตร์
+              {lang() === "th" ? "ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์" : "Department of Guidance Psychology, Faculty of Education"}
             </p>
-            <p class="flex-1 text-end">ก่อตั้งปี 2497</p>
+            <p class="flex-1 text-end">{lang() === "th" ? "ก่อตั้งปี 2497" : "Since 1954"}</p>
           </div>
         </div>
+
         <div class="p-8 flex flex-row border-b-2 text-start">
           <div class="w-[55rem] grow">
             <Youtube id="jK89KESDWzU" altThumb={true} animations={false} />
           </div>
           <div class=" w-[13rem] m-6 my-0 flex-none">
-            <h3 class="font-semibold">หลักสูตร</h3>
-            <div class="mt-4 hover:underline hover:text-primary">
+            <h3 class="font-semibold">{lang()=== 'th' ? "หลักสูตร" : "Course"}</h3>
+            <a href="/course" class="mt-4 hover:underline hover:text-primary">
               <p>ระดับปริญญาตรี</p>
               <p>การศึกษาบัณฑิต (กศ.บ)</p>
-            </div>
+            </a>
 
-            <div class="mt-4 hover:underline hover:text-primary">
+            <a href="/course" class="mt-4 hover:underline hover:text-primary">
               <p>ระดับปริญญาโท</p>
               <p>การศึกษามหาบัณฑิต (กศ.ม.)</p>
-            </div>
+            </a>
 
-            <div class="mt-4 hover:underline hover:text-primary">
+            <a href="/course" class="mt-4 hover:underline hover:text-primary">
               <p>ระดับปริญญาเอก</p>
               <p>การศึกษาดุษฎีบัณฑิต (กศ.ด.)</p>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -91,28 +93,28 @@
           </div>
           <div class="flex flex-row">
             <div class="flex flex-col">
-              <b>เปิดให้บริการ</b>
-              <b>เวลา</b>
-              <b>สถานที่</b>
+              <b>{lang() === "th" ? "เปิดให้บริการ" : "Service Hours"}</b>
+              <b>{lang() === "th" ? "เวลา" : "Time"}</b>
+              <b>{lang() === "th" ? "สถานที่" : "Location"}</b>
             </div>
             <div class="mx-2 flex flex-col">
-              <p>วันจันทร์ - วันศุกร์</p>
-              <p>10.00 - 16.30 น.</p>
-              <p>มหาวิทยาลัยมหาวิทยาลัยศรีนครินทรวิโรฒ</p>
-              <p>อาคารคณะศึกษาศาสตร์ ห้อง 408 ชั้น 4</p>
+              <p>{lang() === "th" ? "วันจันทร์ - วันศุกร์" : "Monday - Friday"}</p>
+              <p>{lang() === "th" ? "10.00 - 16.00 น." : "10.00 AM - 4.00 PM"}</p>
+              <p>{lang() === "th" ? "มหาวิทยาลัยศรีนครินทรวิโรฒ" : "Srinakharinwirot University"}</p>
+              <p>{lang() === "th" ? "อาคารคณะศึกษาศาสตร์ ห้อง 408 ชั้น 4" : "Faculty of Education Building, Room 408, 4th Floor"}</p>
             </div>
           </div>
           <a
             href="https://www.facebook.com/Well.Center.SWU"
             class="text-primary mt-4 hover:underline"
-            >ช่องทาง -&gt; www.facebook.com/Well.Center.SWU</a
+            >{lang()=== 'th' ? "ช่องทาง" : "Contact"}  -&gt; www.facebook.com/Well.Center.SWU</a
           >
         </div>
         <div
           class="flex flex-1 flex-col items-center justify-center text-center font-semibold p-3 align-baseline"
         >
           <img src={wellcenterQr} class="py-3" alt="wellcenterQR" />
-          ติดต่อสอบถามข้อมูลได้โดยการแสกน QR Code นี้
+          {lang() === "th" ? "ติดต่อสอบถามข้อมูลได้โดยการแสกน QR Code นี้" : "You can contact us for inquiries by scanning this QR code."}
         </div>
         &nbsp;
       </div>
@@ -121,11 +123,11 @@
       <!-- Facebook follow -->
       <div class="text-neutral mx-auto my-24 flex w-[80rem] flex-col">
         <div class="w-full border-b-2 border-black py-4">
-          <p class="text-start text-2xl font-semibold">ติดตาม</p>
+          <p class="text-start text-2xl font-semibold">{lang()=== 'th' ? "ติดตาม" : "Follow"}</p>
           <div
             class="mt-1 flex flex-row items-center justify-between align-baseline"
           >
-            <p class="grow text-start">ช่องทางการติดตามและสอบถามเพิ่มเติม</p>
+            <p class="grow text-start">{lang() === "th" ? "ช่องทางการติดตามและสอบถามเพิ่มเติม": "Additional ways to follow up and inquire"}</p>
           </div>
         </div>
         <div class="grid grid-cols-4 gap-16 justify-center items-center mt-6">
@@ -164,9 +166,11 @@
   >
     <div class="w-full px-12 grow text-start">
       <div class="mb-4 pb-4 border-b-2">
-        <p class="text-3xl font-semibold">แนะนำหลักสูตร</p>
-        <h1 class="">ภาควิชาการแนะแนวและจิตวิทยา</h1>
-        <p>การศึกษาคณะศึกษาศาสตร์</p>
+        <p class="text-3xl font-semibold">{lang() === "th" ? "แนะนำหลักสูตร" : "Course Introduction"}</p>
+        <h1 class="">{lang() === "th" ? "ภาควิชาการแนะแนวและจิตวิทยา" : "Department of Guidance Psychology"}</h1>
+        <p>
+          {lang() === "th" ? "การศึกษาคณะศึกษาศาสตร์" : "Faculty of Education"}
+        </p>
       </div>
 
       <div class="mx-auto mt-3 w-full border-b-2 pb-4">
@@ -201,9 +205,9 @@
             
             <div class="grow bg-gray flex flex-row justify-center items-start text-start px-12 py-4">
               <div class="text-[0.6rem] md:text-xl flex flex-col justify-center  text-start">
-                <p><b>เปิดให้บริการ</b>วันจันทร์ - วันศุกร์</p>
-                <p><b>เวลา</b>10.00 - 16.00 น.</p>
-                <p><b>สถานที่</b> มหาวิทยาลัยศรีนครินทรวิโรฒ อาคารคณะศึกษาศาสตร์ ห้อง 408 ชั้น 4</p>
+                <p><b>{lang() === "th" ? "เปิดให้บริการ" : "Service Hours"}</b>{lang() === "th" ? "วันจันทร์ - วันศุกร์" : "Monday - Friday"}</p>
+                <p><b>{lang() === "th" ? "เวลา" : "Time"}</b>{lang() === "th" ? "10.00 - 16.00 น." : "10.00 AM - 4.00 PM"}</p>
+                <p><b>{lang() === "th" ? "สถานที่" : "Location"}</b>{lang() === "th" ? "มหาวิทยาลัยศรีนครินทรวิโรฒ อาคารคณะศึกษาศาสตร์ ห้อง 408 ชั้น 4" : "Srinakharinwirot University, Faculty of Education Building, Room 408, 4th Floor"}</p>
 
               </div>
             </div>
@@ -214,53 +218,20 @@
         </div>
       </Carousel>
     </div>
-    
-    <!-- <div class="flex w-[29.5rem] flex-col bg-gray p-12">
-      <strong class=" text-3xl font-semibold">W.E.L.L Center</strong>
-      <b>"You Are Note Alone"</b>
-      <div class="my-6">
-        <b>ศูนย์ให้คำปรึกษา คณะศึกษาศาสตร์ มศว</b>
-        <p>The mental health counselors are ready to hear you</p>
-      </div>
-      <div class="flex flex-row text-start">
-        <div class="flex flex-col">
-          <b>เปิดให้บริการ</b>
-          <b>เวลา</b>
-          <b>สถานที่</b>
-        </div>
-        <div class="mx-2 flex flex-col">
-          <p>วันจันทร์ - วันศุกร์</p>
-          <p>10.00 - 16.30 น.</p>
-          <p>มหาวิทยาลัยมหาวิทยาลัยศรีนครินทรวิโรฒ</p>
-          <p>อาคารคณะศึกษาศาสตร์ ห้อง 408 ชั้น 4</p>
-        </div>
-      </div>
-      <a
-        href="https://www.facebook.com/Well.Center.SWU"
-        class="text-primary mt-4 hover:underline"
-        >ช่องทาง -&gt; www.facebook.com/Well.Center.SWU</a
-      >
-      <div
-        class="flex flex-1 flex-col items-center justify-center text-center font-semibold p-3 align-baseline"
-      >
-        <img src={wellcenterQr} class="py-3" alt="wellcenterQR" />
-        ติดต่อสอบถามข้อมูลได้โดยการแสกน QR Code นี้
-      </div>
-    </div> -->
 
     <div class="w-full px-6 my-12 mb-0 grow">
       <div class="mb-8 pb-4 border-b-2">
         <p class="text-3xl font-semibold text-center">ติดตาม</p>
-        <p>ช่องทางการติดตามและสอบถามเพิ่มเติม</p>
+        <p>{lang() === "th" ? "ช่องทางการติดตามและสอบถามเพิ่มเติม": "Additional ways to follow up and inquire"}</p>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-12 justify-center md:justify-start items-center mt-6">
         <FbPageCardMobile
-          line1="คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+          line1={lang() === "th" ? "คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ" : "Faculty of Education Srinakharinwirot University"}
           href="https://www.facebook.com/EDUCATIONSWU/"
           img={fb1}
         />
         <FbPageCardMobile
-          line1="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา มศว"
+          line1={lang() === "th" ? "ภาควิชาการแนะแนวและจิตวิทยาการศึกษา มศว" : "Department of Guidance Psychology, SWU"}
           href="https://www.facebook.com/profile.php?id=100057497767786"
           img={fb2}
         />
@@ -270,7 +241,7 @@
           img={fb3}
         />
         <FbPageCardMobile
-          line1="สโมสรนิสิตคณะศึกษาศาสตร์ มศว"
+          line1={lang()==='th'? "สโมสรนิสิตคณะศึกษาศาสตร์ มศว" : "Faculty of Education Student Club SWU"}
           href="https://www.facebook.com/eduswu/"
           img={fb4}
         />
