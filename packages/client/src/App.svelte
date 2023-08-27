@@ -31,6 +31,7 @@
   import FileManagement from "./pages/Admin/FileManagementPage.svelte";
   import PrivacyPolicyPage from "./pages/Privacy/PrivacyPolicyPage.svelte";
   import TermsOfUsePage from "./pages/Terms/TermsOfUsePage.svelte";
+  import WellCenter from "./pages/WellCenter/WellCenter.svelte";
 
   const defaultLang = "th";
   const lang = localStorage.getItem("lang") || defaultLang;
@@ -107,6 +108,8 @@
         <Route path="/activity" component={ActivityPage} />
         <!-- Course Page -->
         <Route path="/course" component={CoursePage} />
+        <!-- Well Center -->
+        <Route path="/wellcenter" component={WellCenter} />
         <!-- Map Page -->
         <Route path="/contact" component={MapPage} />
         <!-- Privacy Policy page -->
