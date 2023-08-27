@@ -27,7 +27,11 @@
         </p>
         <!-- Position -->
         <p class="text-[14px]">
+            {#if lang() === "th"}
             {data?.position}
+            {:else}
+            {data?.engPosition}
+            {/if}
         </p>
         <!-- Phone -->
         <div class="flex items-center">

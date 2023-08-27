@@ -2,6 +2,7 @@
     import { IconMail, IconPhone } from "@tabler/icons-svelte";
     import { IconUser, IconClock } from "@tabler/icons-svelte";
     import getImg from "../../lib/getImg";
+    import lang from "../../lib/lang";
 
     export let data;
 </script>
@@ -15,11 +16,23 @@
         />
     </div>
     <div class="pl-3 flex flex-col gap-1">
-        <p class="text-black">{data.name}</p>
+        <p class="text-black">
+            {#if lang() === "th"}
+            {data.name}
+            {:else}
+            {data.engName}
+            {/if}
+        </p>
         <div class="flex flex-row items-center">
             <IconUser class="stroke-primary" />
             <div class="bg-[#00A2E014] h-fit w-fit px-[13px] rounded-xl py-2">
-                <p class="text-primary">{data.wellcenter.position}</p>
+                <p class="text-primary">
+                    {#if lang() === "th"}
+                    {data.wellcenter.position}
+                    {:else}
+                    {data.wellcenter.engPosition}
+                    {/if}
+                </p>
             </div>
         </div>
         <div class="flex flex-row border-t pt-1 mt-1">

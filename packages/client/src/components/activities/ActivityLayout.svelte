@@ -95,9 +95,9 @@
       <input type="button" class={sortType === 'view' ? "btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-primary text-primary":"btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-neutral text-neutral"}  on:click={setSortType} value="การเข้าชม" />
     </div>
     <div class="flex flex-row justify-between text-center">
-      <button on:click={activeBechelor} class={bechelor ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>ปริญญาตรี</button>
-      <button on:click={activeMaster}   class={master ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>ปริญญาโท</button>
-      <button on:click={activeDoctor}   class={doctor ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>ปริญญาเอก</button>  
+      <button on:click={activeBechelor} class={bechelor ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>{lang() === "th" ? "ปริญญาตรี" : "Bechelor Degree"}</button>
+      <button on:click={activeMaster}   class={master ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>{lang() === "th" ? "ปริญญาโท":"Master Degree"}</button>
+      <button on:click={activeDoctor}   class={doctor ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>{lang()=== "th" ? "ปริญญาเอก":"Doctoral Degree"}</button>  
     </div>
     </div>
 </div>
@@ -174,7 +174,7 @@
 
           {#if showSortFilter}
           <div class="m-6 mt-1">
-            <b>เรียบเรียง</b>
+            <b>{lang() === "th" ? "เรียบเรียง":"Sort by"}</b>
             <div class="form-control">
               <label class="label cursor-pointer justify-normal">
                 <input
@@ -185,7 +185,7 @@
                   value="new"
                   checked
                 />
-                <span class="label-text mx-2">{lang() === "th" ? "ใหม่" : "New"}</span>
+                <span class="label-text mx-2">{lang() === "th" ? "ใหม่" : "Newest"}</span>
               </label>
             </div>
             <div class="form-control">
@@ -197,7 +197,7 @@
                   bind:group={sortType}
                   value="old"
                 />
-                <span class="label-text mx-2">{lang() === "th" ? "เก่า" : "Old"}</span>
+                <span class="label-text mx-2">{lang() === "th" ? "เก่า" : "Oldest"}</span>
               </label>
             </div>
             <div class="form-control">
@@ -217,7 +217,7 @@
 
           {#if showDegreeFilter}
           <div class="m-6 mt-1">
-            <b>ระดับการศึกษา</b>
+            <b>{lang() ? "ระดับการศึกษา" : "Level"}</b>
             <div class="form-control">
               <label class="label cursor-pointer justify-normal">
                 <input
@@ -225,7 +225,7 @@
                   class="checkbox checkbox-primary"
                   bind:checked={bechelor}
                 />
-                <span class="label-text mx-2">{lang() === "th" ? "ระดับปริญญาตรี" : "Bechelor"}</span>
+                <span class="label-text mx-2">{lang() === "th" ? "ระดับปริญญาตรี" : "Bechelor Degree"}</span>
               </label>
             </div>
             <div class="form-control">
@@ -235,7 +235,7 @@
                   class="checkbox checkbox-primary"
                   bind:checked={master}
                 />
-                <span class="label-text mx-2">{lang() === "th" ? "ระดับปริญญาโท" : "Master"}</span>
+                <span class="label-text mx-2">{lang() === "th" ? "ระดับปริญญาโท" : "Master Degree"}</span>
               </label>
             </div>
             <div class="form-control">
@@ -245,7 +245,7 @@
                   class="checkbox checkbox-primary"
                   bind:checked={doctor}
                 />
-                <span class="label-text mx-2">{lang() === "th" ? "ระดับปริญญาเอก" : "Doctoral"}</span>
+                <span class="label-text mx-2">{lang() === "th" ? "ระดับปริญญาเอก" : "Doctoral Degree"}</span>
               </label>
             </div>
           </div>

@@ -132,13 +132,13 @@
         </div>
         <div class="grid grid-cols-4 gap-16 justify-center items-center mt-6">
           <FbPageCard
-            line1="คณะศึกษาศาสตร์"
-            line2="มหาวิทยาลัยศรีนครินทรวิโรฒ"
+            line1={lang()==="th" ? "คณะศึกษาศาสตร์" : "Faculty of Education"}
+            line2={lang()==="th" ? "มหาวิทยาลัยศรีนครินทรวิโรฒ" : "Srinakharinwirot University"}
             href="https://www.facebook.com/EDUCATIONSWU/"
             img={fb1}
           />
           <FbPageCard
-            line1="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา มศว"
+            line1={lang() === "th" ? "ภาควิชาการแนะแนวและจิตวิทยาการศึกษา มศว" : "Department of Guidance Psychology, SWU"}
             href="https://www.facebook.com/profile.php?id=100057497767786"
             img={fb2}
           />
@@ -149,7 +149,7 @@
             img={fb3}
           />
           <FbPageCard
-            line1="สโมสรนิสิตคณะศึกษาศาสตร์ มศว"
+            line1={lang()==='th'? "สโมสรนิสิตคณะศึกษาศาสตร์ มศว" : "Faculty of Education Student Club SWU"}
             line2=" "
             href="https://www.facebook.com/eduswu/"
             img={fb4}
@@ -221,7 +221,7 @@
 
     <div class="w-full px-6 my-12 mb-0 grow">
       <div class="mb-8 pb-4 border-b-2">
-        <p class="text-3xl font-semibold text-center">ติดตาม</p>
+        <p class="text-3xl font-semibold text-center">{lang() === "th" ? "ติดตาม" : "Follow"}</p>
         <p>{lang() === "th" ? "ช่องทางการติดตามและสอบถามเพิ่มเติม": "Additional ways to follow up and inquire"}</p>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-12 justify-center md:justify-start items-center mt-6">
