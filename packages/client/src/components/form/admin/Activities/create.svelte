@@ -26,7 +26,9 @@
   const loadPreview = () => {
     const formData = new FormData(form);
     const title = formData.get("title");
+    const engTitle = formData.get("engTitle");
     const desc = formData.get("desc");
+    const engDesc = formData.get("engDesc");
     const img = formData.get("img");
     const href = formData.get("href");
     const badge = formData.get("badge");
@@ -107,7 +109,9 @@
     //get form data
     const formData = new FormData(form);
     const title = formData.get("title");
+    const engTitle = formData.get("engTitle");
     const desc = formData.get("desc");
+    const engDesc = formData.get("engDesc");
     const img = formData.get("img");
     const href = formData.get("href");
     const badge = formData.get("badge");
@@ -115,7 +119,9 @@
     const degree = degreeSelect.toString();
     const data = {
       title,
+      engTitle,
       desc,
+      engDesc,
       img,
       href,
       badge,
@@ -182,10 +188,34 @@
     </div>
 
     <div class="mb-4">
+      <label for="engTitle" class="label justify-start"
+        >Title in English</label
+      >
+      <input
+        type="text"
+        name="engTitle"
+        id="engTitle"
+        class="input input-bordered input-primary w-full"
+        placeholder="Enter activity title in English here"
+      />
+      
+    </div>
+
+    <div class="mb-4">
       <label for="desc" class="label">Description</label>
       <textarea
         name="desc"
         id="desc"
+        class="textarea textarea-primary w-full"
+        placeholder="Enter activity description here. (Option)"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="engDesc" class="label">Description in English</label>
+      <textarea
+        name="engDesc"
+        id="engDesc"
         class="textarea textarea-primary w-full"
         placeholder="Enter activity description here. (Option)"
       />
@@ -256,7 +286,7 @@
       {/if}
     </div>
 
-    <div class="mb-4">
+    <div class="hidden mb-4">
       <label for="badge" class="label">Badge</label>
       <input
         type="text"
@@ -270,7 +300,7 @@
       {/if}
     </div>
 
-    <div class="mb-4">
+    <div class="hidden mb-4">
       <label for="tag" class="label">Tag</label>
       <input
         type="text"

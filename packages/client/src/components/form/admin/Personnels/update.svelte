@@ -16,7 +16,9 @@
   let phone = "";
   let img = "";
   let position = "";
+  let engPosition = "";
   let wellcenterPosition = "";
+  let wellcenterEngPosition = "";
   let wellcenterTime = "";
   let wellcenter = true;
   let wellcenterDate = [];
@@ -122,8 +124,10 @@
       phone: data.phone,
       img: data.newimg,
       position: data.position,
+      engPosition: data.engPosition,
       wellcenterStatus: wellcenter,
       wellcenterPosition: data["well-position"],
+      wellcenterEngPosition: data["well-engposition"],
       wellcenterDate: wellcenterDate.toString(),
       wellcenterTime: data["well-time"],
 
@@ -187,7 +191,9 @@
     phone = res.data.phone;
     img = res.data.img;
     position = res.data.position;
+    engPosition = res.data.engPosition;
     wellcenterPosition = res.data.wellcenter.position;
+    wellcenterEngPosition = res.data.wellcenter.engPosition;
     wellcenterTime = res.data.wellcenter.availableTime;
     wellcenter = res.data.wellcenter.status;
     wellcenterDate = res.data.wellcenter.availableDate;
@@ -334,6 +340,18 @@
       </div>
 
       <div class="mb-4">
+        <label for="engPosition" class="label justify-start">Position in English</label>
+        <input
+          type="text"
+          name="engPosition"
+          id="engPosition"
+          class="input input-bordered input-primary w-full"
+          placeholder="Enter position in English here"
+          bind:value={engPosition}
+        />
+      </div>
+
+      <div class="mb-4">
         <label
           class="label cursor-pointer justify-start items-center align-middle gap-2"
         >
@@ -357,6 +375,19 @@
             placeholder="Enter wellcenter-position here"
             bind:value={wellcenterPosition}
           />
+
+          <label for="well-engposition" class="label justify-start"
+            >WELL CENTER position in English</label
+          >
+          <input
+            type="text"
+            name="well-engposition"
+            id="well-engposition"
+            class="input input-bordered input-primary w-full"
+            placeholder="Enter wellcenter-position in English here"
+            bind:value={wellcenterEngPosition}
+          />
+
           <label for="well-data" class="label justify-start"
             >WELL CENTER Date</label
           >

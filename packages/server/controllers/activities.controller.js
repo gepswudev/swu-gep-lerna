@@ -8,7 +8,7 @@ const Users = require("../models/Users");
 
 // Create a new activity
 exports.create = async (req, res) => {
-  const { title, desc, href, badge, tag } = req.body;
+  const { title, engTitle, desc, engDesc, href, badge, tag } = req.body;
 
   try {
     //Validate file input
@@ -62,7 +62,9 @@ exports.create = async (req, res) => {
       // Create a new instance of the Activities model
       const newActivities = new Activities({
         title,
+        engTitle,
         desc,
+        engDesc,
         img: `images/activities/${renameFile}`,
         href,
         badge,
@@ -137,7 +139,7 @@ exports.findOne = async (req, res) => {
 
 // Update an existing activity by ID
 exports.update = async (req, res) => {
-  const { title, desc, href, badge, tag } = req.body;
+  const { title,engTitle, desc, engDesc, href, badge, tag } = req.body;
   try {
     const degree = req.body?.degree.split(",");
     if (!title || title === "") {
@@ -169,7 +171,9 @@ exports.update = async (req, res) => {
       req.params.id,
       {
         title,
+        engTitle,
         desc,
+        engDesc,
         href,
         badge,
         updateAt: Date.now(),

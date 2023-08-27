@@ -121,8 +121,10 @@
       phone: data.phone,
       img: data.img,
       position: data.position,
+      engPosition: data.engPosition,
       wellcenterStatus: wellcenter,
       wellcenterPosition: data["well-position"],
+      wellcenterEngPosiotion: data["well-engposition"],
       wellcenterDate: wellcenterDate.toString(),
       wellcenterTime: data["well-time"],
     };
@@ -267,6 +269,20 @@
   </div>
 
   <div class="mb-4">
+    <label for="engPosition" class="label justify-start">Position in English</label>
+    <input
+      type="text"
+      name="engPosition"
+      id="engPosition"
+      class="input input-bordered input-primary w-full"
+      placeholder="Enter position in English here"
+    />
+    {#if err.position}
+      <p class="text-red-500">{err.position}</p>
+    {/if}
+  </div>
+
+  <div class="mb-4">
     <label
       class="label cursor-pointer justify-start items-center align-middle gap-2"
     >
@@ -289,6 +305,18 @@
         class="input input-bordered input-primary w-full"
         placeholder="Enter wellcenter-position here"
       />
+
+      <label for="well-engposition" class="label justify-start"
+        >WELL CENTER position in English</label
+      >
+      <input
+        type="text"
+        name="well-engposition"
+        id="well-engposition"
+        class="input input-bordered input-primary w-full"
+        placeholder="Enter wellcenter-position in English here"
+      />
+
       <label for="well-data" class="label justify-start"
         >WELL CENTER Date ({wellcenterDate.toString()})</label
       >

@@ -28,11 +28,16 @@ const PersonnelsSchema = new Schema({
     default: {
       status: false,
       position: "",
+      engPosition: "",
       availableDate: [],
       availableTime: [],
     },
   },
   position:{
+    type: String,
+    default: ''
+  },
+  engPosition:{
     type: String,
     default: ''
   },

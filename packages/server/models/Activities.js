@@ -11,7 +11,15 @@ const ActivitiesSchema = new Schema({
         type: String,
         required: true
     },
+    engTitle: {
+        type: String,
+        default: ''
+    },
     desc: {
+        type: String,
+        default: ''
+    },
+    engDesc: {
         type: String,
         default: ''
     },
