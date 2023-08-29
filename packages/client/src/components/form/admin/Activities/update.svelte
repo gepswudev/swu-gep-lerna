@@ -10,11 +10,13 @@
   export let sx = "";
   let form;
   let title;
+  let engtitle = "";
   let desc;
+  let engdesc = "";
   let img;
   let href;
-  let badge;
-  let tag;
+  //let badge = "";
+  //let tag = "";
   let submitButton;
   let degreeSelect = [];
   
@@ -40,8 +42,8 @@
       desc,
       img: getImg(img),
       href,
-      badge,
-      tag,
+      //badge,
+      //tag,
       degree: degreeSelect.toString(),
     };
   };
@@ -61,8 +63,8 @@
     const img = formData.get("img");
     const href = formData.get("href");
     const degree = degreeSelect;
-    const badge = formData.get("badge");
-    const tag = formData.get("tag");
+    //const badge = formData.get("badge");
+    //const tag = formData.get("tag");
 
     err = {
       ...err,
@@ -70,8 +72,8 @@
       desc: "",
       img: "",
       href: "",
-      badge: "",
-      tag: "",
+      //badge: "",
+      //tag: "",
     };
     if (title === "") {
       err = { ...err, title: "Title is required" };
@@ -84,11 +86,11 @@
       };
     }
     //check badge must be at most 8 characters
-    if (badge !== "") {
-      if (badge.length > 8) {
-        err = { ...err, badge: "Badge must be at most 8 characters" };
-      }
-    }
+    //if (badge !== "") {
+    //  if (badge.length > 8) {
+    //    err = { ...err, badge: "Badge must be at most 8 characters" };
+    //  }
+    //}
     //check if form is validated
     validated = Object.values(err).every((e) => e === "");
 
@@ -101,20 +103,26 @@
     //get form data
     const formData = new FormData(form);
     const title = formData.get("title");
+    const engTitle = formData.get("engtitle");
     const desc = formData.get("desc");
+    const engDesc = formData.get("engdesc");
     const img = formData.get("img");
+    const newimg = formData.get("newimg");
     const href = formData.get("href");
-    const badge = formData.get("badge");
+    //const badge = formData.get("badge");
     const degree = degreeSelect.toString();
-    const tag = formData.get("tag");
+    //const tag = formData.get("tag");
 
     const data = {
       title,
+      engTitle,
       desc,
+      engDesc,
       href,
-      badge,
+      img: newimg,
+      //badge,
       degree,
-      tag,
+      //tag,
     };
 
     put(`activities/${id}`, data, {
@@ -148,12 +156,14 @@
 
     activity = res.data;
     title = res.data.title;
+    engtitle = res.data.engTitle;
     desc = res.data.desc;
+    engdesc = res.data?.engDesc;
     img = res.data.img;
     previewData.img = getImg(img);
     degreeSelect = res.data.degree;
     href = res.data.href;
-    badge = res.data.badge;
+    //badge = res.data.badge;
     loadPreview();
     return res.data;
   });
@@ -199,6 +209,20 @@
     </div>
 
     <div class="mb-4">
+      <label for="engtitle" class="label justify-start"
+        >Title in English</label
+      >
+      <input
+        bind:value={engtitle}
+        type="text"
+        name="engtitle"
+        id="engtitle"
+        class="input input-bordered input-primary w-full"
+        placeholder="Enter activity title in English here"
+      />
+    </div>
+
+    <div class="mb-4">
       <label for="desc" class="label">Description</label>
       <textarea
         bind:value={desc}
@@ -210,8 +234,19 @@
     </div>
 
     <div class="mb-4">
+      <label for="engdesc" class="label">Description in English</label>
+      <textarea
+        bind:value={engdesc}
+        name="engdesc"
+        id="engdesc"
+        class="textarea textarea-primary w-full"
+        placeholder="Enter activity description in English here. (Option)"
+      />
+    </div>
+
+    <div class="mb-4">
       <label for="img" class="label justify-start"
-        >Image (Image can't edit, Please delete and create new one!)<span
+        >Image <span
           class="text-red-500">*</span
         ></label
       >
@@ -223,6 +258,10 @@
         bind:value={img}
         readonly
       />
+      <label for="newimg" class="label justify-start"
+        >Upload new image</label
+      >
+      <input type="file" name="newimg" id="newimg" class="file-input file-input-primary file-input-bordered w-full">
       {#if err.img}
         <p class="text-red-500">{err.img}</p>
       {/if}
@@ -244,7 +283,7 @@
     </div>
 
     <div class="mb-4">
-      <label for="badge" class="label">Degree</label>
+      <label for="degree" class="label">Degree</label>
       <label class="cursor-pointer label justify-start gap-2">
         <input
           type="checkbox"
@@ -283,7 +322,7 @@
       {/if}
     </div>
 
-    <div class="mb-4">
+    <!-- <div class="mb-4">
       <label for="badge" class="label">Badge</label>
       <input
         bind:value={badge}
@@ -314,7 +353,7 @@
       {#if err.tag}
         <p class="text-red-500">{err.tag}</p>
       {/if}
-    </div>
+    </div> -->
 
     <div class="mt-6">
       <button

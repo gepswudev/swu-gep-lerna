@@ -71,12 +71,21 @@
       alt={data.title + "_IMG"}
       class="w-full rounded-lg object-cover"
     />
+    {#if data.engDesc && data.engDesc !== "" && data.engDesc !== " " || data.engTitle && data.engTitle !== "" && data.engTitle !== " "}
     <p class="md:hidden my-2 text-neutral">
       {(data.engDesc === "" ? data.engTitle : data.engDesc).substring(0, 30)}
     </p>
     <p class="hidden md:block my-2 text-neutral">
       {(data.engDesc === "" ? data.engTitle : data.engDesc).substring(0, 80)}
     </p>
+    {:else}
+    <p class="md:hidden my-2 text-neutral">
+      {(data.desc === "" ? data.title : data.desc).substring(0, 30)}
+    </p>
+    <p class="hidden md:block my-2 text-neutral">
+      {(data.desc === "" ? data.title : data.desc).substring(0, 80)}
+    </p>
+    {/if}
     <div class="flex flex-row justify-between">
       <p class="text-neutral text-sm">
         {new Date(data.createAt).toLocaleDateString("en-US", {
