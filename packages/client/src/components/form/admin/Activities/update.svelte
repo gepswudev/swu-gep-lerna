@@ -15,8 +15,8 @@
   let engdesc = "";
   let img;
   let href;
-  //let badge = "";
-  //let tag = "";
+  let badge = "";
+  let tag = "";
   let submitButton;
   let degreeSelect = [];
   
@@ -42,8 +42,8 @@
       desc,
       img: getImg(img),
       href,
-      //badge,
-      //tag,
+      badge,
+      tag,
       degree: degreeSelect.toString(),
     };
   };
@@ -63,8 +63,8 @@
     const img = formData.get("img");
     const href = formData.get("href");
     const degree = degreeSelect;
-    //const badge = formData.get("badge");
-    //const tag = formData.get("tag");
+    const badge = formData.get("badge");
+    const tag = formData.get("tag");
 
     err = {
       ...err,
@@ -72,8 +72,8 @@
       desc: "",
       img: "",
       href: "",
-      //badge: "",
-      //tag: "",
+      badge: "",
+      tag: "",
     };
     if (title === "") {
       err = { ...err, title: "Title is required" };
@@ -86,11 +86,11 @@
       };
     }
     //check badge must be at most 8 characters
-    //if (badge !== "") {
-    //  if (badge.length > 8) {
-    //    err = { ...err, badge: "Badge must be at most 8 characters" };
-    //  }
-    //}
+    if (badge !== "") {
+      if (badge.length > 8) {
+        err = { ...err, badge: "Badge must be at most 8 characters" };
+      }
+    }
     //check if form is validated
     validated = Object.values(err).every((e) => e === "");
 
@@ -109,9 +109,9 @@
     const img = formData.get("img");
     const newimg = formData.get("newimg");
     const href = formData.get("href");
-    //const badge = formData.get("badge");
+    const badge = formData.get("badge");
     const degree = degreeSelect.toString();
-    //const tag = formData.get("tag");
+    const tag = formData.get("tag");
 
     const data = {
       title,
@@ -120,9 +120,9 @@
       engDesc,
       href,
       img: newimg,
-      //badge,
+      badge,
       degree,
-      //tag,
+      tag,
     };
 
     put(`activities/${id}`, data, {
@@ -163,7 +163,8 @@
     previewData.img = getImg(img);
     degreeSelect = res.data.degree;
     href = res.data.href;
-    //badge = res.data.badge;
+    badge = res.data.badge;
+    tag = res.data.tag;
     loadPreview();
     return res.data;
   });
@@ -322,7 +323,7 @@
       {/if}
     </div>
 
-    <!-- <div class="mb-4">
+    <div class="mb-4">
       <label for="badge" class="label">Badge</label>
       <input
         bind:value={badge}
@@ -353,7 +354,7 @@
       {#if err.tag}
         <p class="text-red-500">{err.tag}</p>
       {/if}
-    </div> -->
+    </div>
 
     <div class="mt-6">
       <button

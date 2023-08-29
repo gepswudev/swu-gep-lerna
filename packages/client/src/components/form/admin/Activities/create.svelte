@@ -31,8 +31,8 @@
 
     const img = formData.get("img");
     const href = formData.get("href");
-    // const badge = formData.get("badge");
-    //const tag = formData.get("tag");
+     const badge = formData.get("badge");
+    const tag = formData.get("tag");
 
     previewData = {
       ...previewData,
@@ -40,8 +40,8 @@
       desc,
       img: URL.createObjectURL(img),
       href,
-      //badge,
-      //tag,
+      badge,
+      tag,
       degree: degreeSelect.toString(),
     };
   };
@@ -53,8 +53,8 @@
     const desc = formData.get("desc");
     const img = formData.get("img");
     const href = formData.get("href");
-    // const badge = formData.get("badge");
-    //const tag = formData.get("tag");
+     const badge = formData.get("badge");
+    const tag = formData.get("tag");
 
     err = {
       ...err,
@@ -90,11 +90,11 @@
       err = { ...err, href: "Link must be url: https://example.com" };
     }
     //check badge must be at most 8 characters
-    //if (badge !== "") {
-    //  if (badge.length > 8) {
-    //    err = { ...err, badge: "Badge must be at most 8 characters" };
-    //  }
-    //}
+    if (badge !== "") {
+      if (badge.length > 8) {
+        err = { ...err, badge: "Badge must be at most 8 characters" };
+      }
+    }
     //check if form is validated
     validated = Object.values(err).every((e) => e === "");
 
@@ -114,8 +114,8 @@
     const engDesc = formData.get("engdesc");
     const img = formData.get("img");
     const href = formData.get("href");
-    //const badge = formData.get("badge");
-    //const tag = formData.get("tag");
+    const badge = formData.get("badge");
+    const tag = formData.get("tag");
     const degree = degreeSelect.toString();
     const data = {
       title,
@@ -124,9 +124,9 @@
       engDesc,
       img,
       href,
-      //badge,
+      badge,
       degree,
-      //tag,
+      tag,
     };
 
     //change button while creating
@@ -286,7 +286,7 @@
       {/if}
     </div>
 
-    <!-- <div class="mb-4">
+    <div class="mb-4">
       <label for="badge" class="label">Badge</label>
       <input
         type="text"
@@ -315,7 +315,7 @@
       {#if err.tag}
         <p class="text-red-500">{err.tag}</p>
       {/if}
-    </div> -->
+    </div>
 
     <div class="mt-6">
       <button
