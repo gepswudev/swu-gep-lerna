@@ -10,13 +10,11 @@
   export let sx = "";
   let form;
   let title;
-  let engtitle = "";
   let desc;
-  let engdesc = "";
   let img;
   let href;
-  let badge = "";
-  let tag = "";
+  let badge;
+  let tag;
   let submitButton;
   let degreeSelect = [];
   
@@ -103,11 +101,8 @@
     //get form data
     const formData = new FormData(form);
     const title = formData.get("title");
-    const engTitle = formData.get("engtitle");
     const desc = formData.get("desc");
-    const engDesc = formData.get("engdesc");
     const img = formData.get("img");
-    const newimg = formData.get("newimg");
     const href = formData.get("href");
     const badge = formData.get("badge");
     const degree = degreeSelect.toString();
@@ -115,11 +110,8 @@
 
     const data = {
       title,
-      engTitle,
       desc,
-      engDesc,
       href,
-      img: newimg,
       badge,
       degree,
       tag,
@@ -156,15 +148,12 @@
 
     activity = res.data;
     title = res.data.title;
-    engtitle = res.data.engTitle;
     desc = res.data.desc;
-    engdesc = res.data?.engDesc;
     img = res.data.img;
     previewData.img = getImg(img);
     degreeSelect = res.data.degree;
     href = res.data.href;
     badge = res.data.badge;
-    tag = res.data.tag;
     loadPreview();
     return res.data;
   });
@@ -210,20 +199,6 @@
     </div>
 
     <div class="mb-4">
-      <label for="engtitle" class="label justify-start"
-        >Title in English</label
-      >
-      <input
-        bind:value={engtitle}
-        type="text"
-        name="engtitle"
-        id="engtitle"
-        class="input input-bordered input-primary w-full"
-        placeholder="Enter activity title in English here"
-      />
-    </div>
-
-    <div class="mb-4">
       <label for="desc" class="label">Description</label>
       <textarea
         bind:value={desc}
@@ -235,19 +210,8 @@
     </div>
 
     <div class="mb-4">
-      <label for="engdesc" class="label">Description in English</label>
-      <textarea
-        bind:value={engdesc}
-        name="engdesc"
-        id="engdesc"
-        class="textarea textarea-primary w-full"
-        placeholder="Enter activity description in English here. (Option)"
-      />
-    </div>
-
-    <div class="mb-4">
       <label for="img" class="label justify-start"
-        >Image <span
+        >Image (Image can't edit, Please delete and create new one!)<span
           class="text-red-500">*</span
         ></label
       >
@@ -259,10 +223,6 @@
         bind:value={img}
         readonly
       />
-      <label for="newimg" class="label justify-start"
-        >Upload new image</label
-      >
-      <input type="file" name="newimg" id="newimg" class="file-input file-input-primary file-input-bordered w-full">
       {#if err.img}
         <p class="text-red-500">{err.img}</p>
       {/if}
@@ -284,7 +244,7 @@
     </div>
 
     <div class="mb-4">
-      <label for="degree" class="label">Degree</label>
+      <label for="badge" class="label">Degree</label>
       <label class="cursor-pointer label justify-start gap-2">
         <input
           type="checkbox"

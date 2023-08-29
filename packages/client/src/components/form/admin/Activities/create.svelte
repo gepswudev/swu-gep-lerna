@@ -26,12 +26,10 @@
   const loadPreview = () => {
     const formData = new FormData(form);
     const title = formData.get("title");
-    const engTitle = formData.get("engTitle");
     const desc = formData.get("desc");
-
     const img = formData.get("img");
     const href = formData.get("href");
-     const badge = formData.get("badge");
+    const badge = formData.get("badge");
     const tag = formData.get("tag");
 
     previewData = {
@@ -53,7 +51,7 @@
     const desc = formData.get("desc");
     const img = formData.get("img");
     const href = formData.get("href");
-     const badge = formData.get("badge");
+    const badge = formData.get("badge");
     const tag = formData.get("tag");
 
     err = {
@@ -109,9 +107,7 @@
     //get form data
     const formData = new FormData(form);
     const title = formData.get("title");
-    const engTitle = formData.get("engTitle");
     const desc = formData.get("desc");
-    const engDesc = formData.get("engdesc");
     const img = formData.get("img");
     const href = formData.get("href");
     const badge = formData.get("badge");
@@ -119,9 +115,7 @@
     const degree = degreeSelect.toString();
     const data = {
       title,
-      engTitle,
       desc,
-      engDesc,
       img,
       href,
       badge,
@@ -188,34 +182,10 @@
     </div>
 
     <div class="mb-4">
-      <label for="engtitle" class="label justify-start"
-        >Title in English</label
-      >
-      <input
-        type="text"
-        name="engtitle"
-        id="engtitle"
-        class="input input-bordered input-primary w-full"
-        placeholder="Enter activity title in English here"
-      />
-      
-    </div>
-
-    <div class="mb-4">
       <label for="desc" class="label">Description</label>
       <textarea
         name="desc"
         id="desc"
-        class="textarea textarea-primary w-full"
-        placeholder="Enter activity description here. (Option)"
-      />
-    </div>
-
-    <div class="mb-4">
-      <label for="engdesc" class="label">Description in English</label>
-      <textarea
-        name="engdesc"
-        id="engdesc"
         class="textarea textarea-primary w-full"
         placeholder="Enter activity description here. (Option)"
       />
