@@ -51,7 +51,7 @@
       {:else}
         <li><a href="/user">You are not admin!</a></li>
       {/if}
-      <li><a href="/admin">{$user.username.toUpperCase()}</a></li>
+      <li class="text-error font-bold"><a href="/admin">{$user.username.toUpperCase()}</a></li>
       <li>
         <button
           on:click={logout}>Logout</button
@@ -107,9 +107,10 @@
         {:else}
           <li><a href="/user">You are not admin!</a></li>
         {/if}
-        <li><a href="/admin">{$user.username.toUpperCase()}</a></li>
+        <li class="text-error font-bold"><a href="/admin">{$user.username.toUpperCase()}  ( {$user.role.toLocaleUpperCase()} )</a></li>
         <li>
           <button
+          class="hover:font-bold hover:text-error"
             on:click={logout}>Logout</button
           >
         </li>

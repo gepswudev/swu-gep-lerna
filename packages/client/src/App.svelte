@@ -38,6 +38,7 @@
   import PrivacyPolicyPage from "./pages/Privacy/PrivacyPolicyPage.svelte";
   import TermsOfUsePage from "./pages/Terms/TermsOfUsePage.svelte";
   import WellCenter from "./pages/WellCenter/WellCenter.svelte";
+  import License from "./pages/LICENSE/LICENSE.svelte";
 
 //====================================| Import Common Pages |====================================//
 
@@ -170,7 +171,7 @@
         <Route path="/admin/personnels/update/:id" let:params>
           <AdminPersonnelsUpdate {...params} />
         </Route>
-
+        <Route path="/license" component={License} />
         <Route path="/files" component={FileManagement} />
         <Route path="/test" component={Test} />
 
@@ -190,6 +191,7 @@
         <HeaderMetadata basepath={currentPath} />
         <!-- Cookies consent popup -->
         <Cookies />
+
         
 <!--======================== Untils component ========================-->
       </main>

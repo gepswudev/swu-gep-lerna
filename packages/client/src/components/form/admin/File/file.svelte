@@ -91,7 +91,7 @@
       <td>{data.ext === "" ? "No extention" : data.ext.replace(".","").toUpperCase()}</td>
       <td>{new Date(data.created).toLocaleString()}</td>
       <td class="px-0 p-0">
-        <button class="btn btn-primary" use:copy={getURL()} on:svelte-copy={handlerCopy}>Copy URL</button>
+        <button class="btn btn-primary" use:copy={getURL()} on:svelte-copy={handlerCopy}>Copy Link</button>
         <button class="btn btn-primary" on:click={downloadFile}>Download</button>
       </td>
       <td><button class="btn btn-error" on:click={deleteFile}>Delete</button></td>
