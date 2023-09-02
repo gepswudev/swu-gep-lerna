@@ -204,7 +204,7 @@
             <img class="w-24 md:w-48 h-32 md:h-48 flex-1 object-fit" src={wellcenterQr} alt="wellcenterimg" />
             
             <div class="grow bg-gray flex flex-row justify-center items-start text-start px-12 py-4">
-              <div class="text-[0.6rem] md:text-xl flex flex-col justify-center  text-start">
+              <div class="text-[0.8rem] md:text-xl flex flex-col justify-center  text-start">
                 <p><b>{lang() === "th" ? "เปิดให้บริการ" : "Service Hours"}</b>{lang() === "th" ? "วันจันทร์ - วันศุกร์" : "Monday - Friday"}</p>
                 <p><b>{lang() === "th" ? "เวลา" : "Time"}</b>{lang() === "th" ? "10.00 - 16.00 น." : "10.00 AM - 4.00 PM"}</p>
                 <p><b>{lang() === "th" ? "สถานที่" : "Location"}</b>{lang() === "th" ? "มหาวิทยาลัยศรีนครินทรวิโรฒ อาคารคณะศึกษาศาสตร์ ห้อง 408 ชั้น 4" : "Srinakharinwirot University, Faculty of Education Building, Room 408, 4th Floor"}</p>
