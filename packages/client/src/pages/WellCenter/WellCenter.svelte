@@ -21,9 +21,9 @@
     {:then personnelData} 
         <!-- Header -->
         
-        <img src={Header} alt="" class="absolute md:relative lg:bg-cover object-fill scale-[2.5] scale-x-[3.5] md:scale-125 w-[250vw] overflow-x-clip z-0">
+        <img src={Header} alt="" class="relative lg:bg-cover object-fill scale-[2.5] scale-x-[3.5] md:scale-125 w-[250vw] overflow-hidden z-0">
         <!-- WELL CENTER ICON ON MOBILE -->
-        <div class="z-100 relative top-8  flex flex-col items-center text-[12px] font-bold md:hidden ">
+        <div class="z-50 flex flex-col items-center text-[12px] font-bold md:hidden ">
             <div class="flex justify-center items-center bg-[#7bd7ff] rounded-full w-[90px] h-[90px] mb-2">
                 <IconHeartHandshake class="stroke-1 w-[15rem] h-[15rem]"/>
             </div>
@@ -147,7 +147,7 @@
                 {lang() === "th" ? "จุดประสงค์" : "Objective"}
             </p>
             
-            <div class="grid grid-cols-2 lg:grid-cols-5 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
                 <div class="flex flex-col w-[200px] h-fit justify-center items-center">
                     <div class="flex bg-gray w-[82px] h-[82px] rounded-3xl py-2 px-2 justify-center items-center hover:bg-primary duration-1000">
                         <IconUsers size=42/>
@@ -163,7 +163,7 @@
                     </div>
                     <p class="text-[16px] text-center pt-8">
                         {lang() === "th" ? "เพื่อช่วยให้ผู้รับบริการ สามารถแก้ไข ปัญหาเกี่ยวกับสุขภาพจิต สัมพันธภาพ ความเครียด" : 
-                        "To provide help our service recipients solve problems related to mental health, relationships, stress, study, work, family and etc."}
+                        "To help our service recipients solve problems related to mental health, relationships, stress, study, work, family, etc."}
                     </p>
                 </div>
                 <div class="flex flex-col w-[200px] h-fit justify-center items-center">
@@ -190,7 +190,7 @@
                     </div>
                     <p class="text-[16px] text-center pt-8">
                         {lang() === "th" ? "เพื่อเผยแพร่ความรู้เกี่ยวกับจิตวิทยาการปรึกษาและความรู้เกี่ยวกับทักษะในการนําเทคนิคต่าง ๆ ไปปฏิบัติงานให้เกิด ประสิทธิภาพมากขึ้น" : 
-                        "To share knowledge about psychology, consultation, and knowledge of skills in adapting techniques with work more efficiently."}
+                        "To share knowledge about psychology, consultation, and knowledge skills in adapting techniques with work more efficiently."}
                     </p>
                 </div>
             </div>
@@ -209,31 +209,31 @@
                         <div class="flex items-center hover:bg-neutral/5 hover:py-4 hover:px-2 hover:rounded-xl duration-500">
                             <div class="flex items-center justify-center rounded-full w-[38px] h-[38px] bg-white border-black border-2 text-[14px]"> 1 </div>
                             <p class="text-[16px] ml-6 hover:underline hover:scale-105  duration-700"> 
-                                {lang() === "" ? "อ่านสิทธิของผู้มาปรึกษา" : "Reviewing Advisor's Rights."}
+                                {lang() === "th" ? "อ่านสิทธิของผู้มาปรึกษา" : "Reviewing Advisor's Rights."}
                             </p>
                         </div>
                         <div class="flex items-center hover:bg-neutral/5 hover:py-4 hover:px-2 hover:rounded-xl duration-500">
                             <div class="flex items-center justify-center rounded-full min-w-[38px] w-[38px] h-[38px] bg-white border-black border-2 text-[14px]"> 2 </div>
                             <p class="text-[16px] ml-6 hover:underline hover:scale-105  duration-700"> 
-                                {lang() === "" ? "ดูตารางวันเวลาที่สะดวกเข้ารับปรึกษา" : "Check a convenient schedule for consultation."}
+                                {lang() === "th" ? "ดูตารางวันเวลาที่สะดวกเข้ารับปรึกษา" : "Check a convenient schedule for consultation."}
                             </p>
                         </div>
                         <div class="flex items-center hover:bg-neutral/5 hover:py-4 hover:px-2 hover:rounded-xl duration-500">
                             <div class="flex items-center justify-center rounded-full w-[38px] h-[38px] bg-white border-black border-2 text-[14px]"> 3 </div>
                             <p class="text-[16px] ml-6 hover:underline hover:scale-105  duration-700"> 
-                                {lang() === "" ? "สแกนลงทะเบียนเข้ารับปรึกษา" : "Scan qr code for consult."}
+                                {lang() === "th" ? "สแกนลงทะเบียนเข้ารับปรึกษา" : "Scan qr code for consult."}
                             </p>
                         </div>
                         <div class="flex items-center hover:bg-neutral/5 hover:py-4 hover:px-2 hover:rounded-xl duration-500">
                             <div class="flex items-center justify-center rounded-full w-[38px] h-[38px] bg-white border-black border-2 text-[14px]"> 4 </div>
                             <p class="text-[16px] ml-6 hover:underline hover:scale-105  duration-700"> 
-                                {lang() === "" ? "เข้ารับการปรึกษา" : "Receive Counseling."}
+                                {lang() === "th" ? "เข้ารับการปรึกษา" : "Receive Counseling."}
                             </p>
                         </div>
                         <div class="flex items-center hover:bg-neutral/5 hover:py-4 hover:px-2 hover:rounded-xl duration-500">
                             <div class="flex items-center justify-center rounded-full w-[38px] h-[38px] bg-white border-black border-2 text-[14px]"> 5 </div>
                             <p class="text-[16px] ml-6 hover:underline hover:scale-105  duration-700"> 
-                                {lang() === "" ? "สแกนแบบประเมินผลเข้ารับการปรึกษา" : "Scan for evaluated for consultation."} 
+                                {lang() === "th" ? "สแกนแบบประเมินผลเข้ารับการปรึกษา" : "Scan for evaluated for consultation."} 
                             </p>
                         </div>
                     </div>

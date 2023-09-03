@@ -221,11 +221,11 @@
         </p>
         <h1 class="">
           {lang() === "th"
-            ? "ภาควิชาการแนะแนวและจิตวิทยา"
+            ? "ภาควิชาการแนะแนวและจิตวิทยาการศึกษา"
             : "Department of Guidance Psychology"}
         </h1>
         <p>
-          {lang() === "th" ? "การศึกษาคณะศึกษาศาสตร์" : "Faculty of Education"}
+          {lang() === "th" ? "คณะศึกษาศาสตร์" : "Faculty of Education"}
         </p>
       </div>
 
