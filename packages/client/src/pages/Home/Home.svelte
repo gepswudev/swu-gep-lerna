@@ -70,7 +70,7 @@
               <p>{lang() === "th" ? "ระดับปริญญาตรี" : "Bechelor Degree"}</p>
               <p>
                 {lang() === "th"
-                  ? "การศึกษาบัณฑิต (กศ.บ)"
+                  ? "การศึกษาบัณฑิต (กศ.บ.)"
                   : "Bachelor of Education (B.Ed.)"}
               </p>
             </a>

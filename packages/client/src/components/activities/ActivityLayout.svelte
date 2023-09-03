@@ -88,16 +88,16 @@
 <div class="flex flex-col justify-center items-center md:hidden mx-auto ">
   <div class="grid grid-cols-1 grid-row-2 gap-2">
     <div class="join flex flex-row justify-between text-center">
-      <input type="button" class={sortType === 'new' ? "btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-primary text-primary":"btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-neutral text-neutral"} on:click={setSortType} value="ใหม่" />
+      <input type="button" class={sortType === 'new' ? "btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-primary text-primary":"btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-neutral text-neutral"} on:click={setSortType} value={lang()==="th" ? "ใหม่":"Newest"} />
       <div class="text-black flex justify-center items-center text-center">|</div>
-      <input type="button" class={sortType === 'old' ? "btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-primary text-primary":"btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-neutral text-neutral"}  on:click={setSortType} value="เก่า" />
+      <input type="button" class={sortType === 'old' ? "btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-primary text-primary":"btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-neutral text-neutral"}  on:click={setSortType} value={lang()==="th" ? "เก่า":"Oldest"} />
       <div class="text-black flex justify-center items-center text-center">|</div>
-      <input type="button" class={sortType === 'view' ? "btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-primary text-primary":"btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-neutral text-neutral"}  on:click={setSortType} value="การเข้าชม" />
+      <input type="button" class={sortType === 'view' ? "btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-primary text-primary":"btn btn-ghost rounded-none flex-1 border-0 border-b-2 border-neutral text-neutral"}  on:click={setSortType} value={lang()==="th" ? "การเข้าชม":"Most view"} />
     </div>
     <div class="flex flex-row justify-between text-center">
-      <button on:click={activeBechelor} class={bechelor ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>{lang() === "th" ? "ปริญญาตรี" : "Bechelor Degree"}</button>
-      <button on:click={activeMaster}   class={master ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>{lang() === "th" ? "ปริญญาโท":"Master Degree"}</button>
-      <button on:click={activeDoctor}   class={doctor ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>{lang()=== "th" ? "ปริญญาเอก":"Doctoral Degree"}</button>  
+      <button on:click={activeBechelor} class={bechelor ? "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>{lang() === "th" ? "ปริญญาตรี" : "Bechelor"}</button>
+      <button on:click={activeMaster}   class={master ?   "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>{lang() === "th" ? "ปริญญาโท":"Master"}</button>
+      <button on:click={activeDoctor}   class={doctor ?   "btn btn-outline btn-primary flex-1 rounded-none":"btn btn-ghost"}>{lang()=== "th" ? "ปริญญาเอก":"Doctoral"}</button>  
     </div>
     </div>
 </div>

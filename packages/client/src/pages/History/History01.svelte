@@ -1,6 +1,6 @@
 <script>
   import Banner from "./HistoryBanner.png";
-  import Logo from "./GepLogo.png";
+  import Logo from "../../assets/GEPSWU_Logo.png";
   import HeaderTitle from "./HeaderBgTitle.png";
   import Building from "./EDU_building.png";
   import BuildingHover from "./EDU_building_hover.jpg";
@@ -8,7 +8,7 @@
   import lang from "../../lib/lang";
 </script>
 
-<div class="min-h-full bg-base-200">
+<div class="min-h-full px-8 bg-base-200">
   <div class="md:flex justify-center">
     <!-- Mobile Header -->
     <div class="ml-auto mr-auto py-8 max-w-sm block md:hidden">
@@ -30,7 +30,7 @@
       <h2 class="text-[16px] font-bold drop-shadow-md mt-12">
         {lang() === "th" ? "สัญลักษณ์ประจำภาควิชา" : "Department Symbol"}
       </h2>
-      <img src={Logo} alt="" class="mt-6 block md:max-w-xl ml-auto mr-auto" />
+      <img src={Logo} alt="" class="mt-6 object-fill w-64 block md:max-w-xl ml-auto mr-auto" />
     </div>
     <div
       class="text-left max-w-sm py-8 md:max-w-md lg:max-w-3xl grid ml-auto mr-auto md:ml-0 md:mr-0"
