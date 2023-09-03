@@ -4,7 +4,7 @@
     export let title = "";
     export let desc = "";
     export let sx = "";
-    export let placeholder = config.loading_placeholder;
+    export let placeholder = config.loading_placeholder_msg;
     
 </script>
 
