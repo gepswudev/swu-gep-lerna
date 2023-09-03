@@ -4,6 +4,7 @@
   import { checkConnection } from "./lib/API/checkConnection";
   import Swal from "sweetalert2";
   import log from "./lib/log";
+  import config from "./config";
 //====================================| Import Pagekages and Modules |====================================//
 
 //====================================| Import Admin Pages |====================================//
@@ -43,7 +44,7 @@
 //====================================| Import Common Pages |====================================//
 
 //====================================| Languages |====================================//
-  const defaultLang = "th";
+  const defaultLang = config.default_lang;
   const lang = localStorage.getItem("lang") || defaultLang;
   localStorage.setItem("lang", lang);
 //====================================| Languages |====================================//
@@ -99,8 +100,8 @@
 {#await isServerAlive}
 <!--======================== Loading page ========================-->
   <Loading
-    title="Connecting to server ..."
-    desc="It's may take a longtime cause Server is sleepy under development mode"
+    title={config.loading_title_msg}
+    desc={config.loading_desc_msg}
   />
 <!--======================== Loading page ========================-->
 {:then alive}
@@ -204,13 +205,13 @@
     <!-- Server connection error -->
     <Loading
       title="Can't connect to server"
-      desc={`Can't connect to server, Please contact the web developer!`}
+      desc={config.load_err_msg}
     />
   {/if}
 {:catch err}
   <!-- Server connection error -->
   <Loading
     title="Can't connect to server"
-    desc={`Can't connect to server, Please contact the web developer!`}
+    desc={config.load_err_msg}
   />
 {/await}

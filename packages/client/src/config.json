@@ -6,5 +6,16 @@
   "_comment_local": "This is port for localhost server on development process,Port on which the server will listen for incoming connections. Must be a valid port number.",
 
   "deploy": "https://gepswu-server.onrender.com/",
-  "_comment_deploy": "URL of the server to which the client will connect. Must be a valid URL with protocol (http/https) and port (if not 80/443). and must end with a slash (/)."
+  "_comment_deploy": "URL of the server to which the client will connect. Must be a valid URL with protocol (http/https) and port (if not 80/443). and must end with a slash (/).",
+
+  "default_lang": "th",
+  "_comment_default_lang": "This is default language of the website.",
+  
+  "homepage_vid":"jK89KESDWzU",
+  "_comment_homepage_vid":"This is the video id of the video that will be played on the homepage. You can find the video id in the url of the video. For example, the video id of https://www.youtube.com/watch?v=jK89KESDWzU is jK89KESDWzU",
+
+  "load_err_msg":"Can't connect to server, Please contact the web developer or Try again later.",
+  "loading_title_msg":"Connecting to server ...",
+  "loading_desc_msg":"It's may take a longtime cause Server is sleepy under development mode",
+  "loading_placeholder_msg":"ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
 }

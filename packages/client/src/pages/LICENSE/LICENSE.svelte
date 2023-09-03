@@ -38,7 +38,6 @@
         - Nutnaree Chungrua (PASSION FRUIT TEAM)
         - Weeraphan Janthapa (PASSION FRUIT TEAM)
         - Ownership
-        
     </pre>
   </div>
 </main>

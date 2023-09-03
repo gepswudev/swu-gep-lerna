@@ -1,8 +1,11 @@
 <script>
+    import config from "../config";
+
     export let title = "";
     export let desc = "";
     export let sx = "";
-
+    export let placeholder = config.loading_placeholder;
+    
 </script>
 
 <div class={"hero min-h-screen bg-base-200 "+sx}>
@@ -17,7 +20,6 @@
       />
       
     </div>
-    <h1 class="mt-64 text-xl font-bold">ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์
-      มหาวิทยาลัยศรีนครินทรวิโรฒ</h1>
+    <h1 class="mt-64 text-xl font-bold">{placeholder}</h1>
   </div>
 </div>
