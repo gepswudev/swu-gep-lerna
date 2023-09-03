@@ -192,7 +192,7 @@
       <a href="/"
         ><img
           src={logo}
-          class="hidden md:flex w-10 m-4 pt-2"
+          class="hidden md:flex w-32 m-4 pt-2"
           alt="_swu_logo"
         /></a
       >
@@ -204,7 +204,7 @@
     <a href="/"
       ><img
         src={logo}
-        class="navcenter md:hidden w-10 m-4 pt-2"
+        class="navcenter md:hidden w-32 m-4 pt-2"
         alt="_swu_logo"
       /></a
     >
@@ -320,7 +320,7 @@
       <a href="/"
         ><img
           src={logo}
-          class="hidden sm:flex w-10 m-4 pt-2"
+          class="hidden sm:flex w-32 m-4 pt-2"
           alt="_swu_logo"
         /></a
       >
@@ -332,7 +332,7 @@
     <a href="/"
       ><img
         src={logo}
-        class="navcenter sm:hidden w-10 m-4 pt-2"
+        class="navcenter sm:hidden w-32 m-4 pt-2"
         alt="_swu_logo"
       /></a
     >
@@ -348,7 +348,7 @@
               <li tabindex="-1">
                 <details>
                   <summary>{nav.title}</summary>
-                  <ul class="p-2 px-1 z-50">
+                  <ul class="p-2 px-1 z-50 flex flex-row gap-1">
                     {#each nav.submenu as menu, index ("dd_" + menu + index)}
                       <li>
                         <a
