@@ -5,6 +5,7 @@
   import Swal from "sweetalert2";
   import log from "./lib/log";
   import config from "./config";
+
 //====================================| Import Pagekages and Modules |====================================//
 
 //====================================| Import Admin Pages |====================================//
@@ -176,7 +177,7 @@
         <Route path="/files" component={FileManagement} />
         <Route path="/test" component={Test} />
 
-        
+
 <!--======================== Admin pages ========================-->
 
 
