@@ -23,13 +23,13 @@
   const setSortType = (e) => {
     const type = e.target.value;
     switch (type) {
-      case "ใหม่":
+      case "ใหม่" || "Newest":
         sortType = "new";
         break;
-      case "เก่า":
+      case "เก่า" || "Oldest":
         sortType = "old";
         break;
-      case "การเข้าชม":
+      case "การเข้าชม" || "Most view":
         sortType = "view";
         break;
       default:

@@ -19,7 +19,7 @@
           class="text-[18px] md:text-3xl font-bold drop-shadow-md text-white ml-7 mr-7"
         >
           {lang() === "th"
-            ? "ประวัติภาควิชาแนะแนวและจิตวิทยาการศึกษา"
+            ? "ประวัติภาควิชาการแนะแนวและจิตวิทยาการศึกษา"
             : "History of the Department of Guidance and Educational Psychology"}
         </p>
       </div>
@@ -43,7 +43,7 @@
           class="text-[18px] md:text-3xl font-bold drop-shadow-md text-white ml-7 mr-7"
         >
           {lang() === "th"
-            ? "ประวัติภาควิชาแนะแนวและจิตวิทยาการศึกษา"
+            ? "ประวัติภาควิชาการแนะแนวและจิตวิทยาการศึกษา"
             : "History of the Department of Guidance and Educational Psychology"}
         </h2>
       </div>
