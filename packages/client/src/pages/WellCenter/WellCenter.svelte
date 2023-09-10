@@ -88,7 +88,7 @@
         </div>
         
         <!-- PC Carousel -->
-        <div class="hidden lg:flex w-full justify-center gap-8"> 
+        <div class="hidden lg:flex w-full justify-center gap-8 mx-4 mr-8"> 
                 <div class="flex flex-col flex-wrap gap-7 px-2 rounded-md justify-start items-center py-5 hover:bg-primary/5 hover:px-32 duration-500">
                     <p class="text-[24px] text-neutral">
                         {lang() === "th" ? "วันจันทร์" : "Monday"}

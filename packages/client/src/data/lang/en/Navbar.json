@@ -4,6 +4,5 @@
   { "title": "Personnels", "link": "/personnel" },
   { "title": "Courses", "link": "/course" },
   { "title": "Activities", "link": "/activity" },
-  { "title": "W.E.L.L CENTER", "link": "/wellcenter" },
-  { "title": "Contact Us", "link": "/contact" }
+  { "title": "W.E.L.L CENTER", "link": "/wellcenter" }
 ]

@@ -77,9 +77,9 @@
   let isNavbarTransparent = false;
   let nav;
   const navOnTop =
-    "fixed navbar w-screen h-24  bg-base-100 z-50 transition-transform transform duration-800";
+    "fixed navbar w-screen h-24  bg-base-100 z-50 transition-opacity transform duration-800 px-4";
   const navScrolled =
-    "fixed navbar w-screen  bg-base-100/[.5] h-24 z-50 transition-transform transform duration-800";
+    "fixed navbar w-screen  bg-base-100/[.5] h-16 z-50 transition-opacity transform duration-800 px-4";
   let navClass = navOnTop;
   function updateNavbar() {
     if (window.scrollY > 50) {
@@ -385,7 +385,7 @@
       >
       {#if langSwitcher}
         <div
-          class="absolute flex top-24 mr-28 p-2 bg-base-100 border-none rounded-lg items-center align-baseline justify-center"
+          class="absolute flex top-20 mr-20 p-2 bg-base-100  rounded-lg items-center align-baseline justify-center border-base-200 border-2"
           on:mouseleave={toggleLangSwitcher}
           aria-hidden="true"
         >

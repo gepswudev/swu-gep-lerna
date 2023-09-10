@@ -8,7 +8,7 @@
   import lang from "../../lib/lang";
 </script>
 
-<div class="min-h-full px-8 bg-base-200">
+<div class="min-h-full px-8 bg-base-100">
   <div class="md:flex justify-center">
     <!-- Mobile Header -->
     <div class="ml-auto mr-auto py-8 max-w-sm block md:hidden">

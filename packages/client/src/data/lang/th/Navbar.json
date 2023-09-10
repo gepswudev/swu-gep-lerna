@@ -4,6 +4,5 @@
   { "title": "บุคลากร", "link": "/personnel" },
   { "title": "หลักสูตร", "link": "/course" },
   { "title": "กิจกรรมนิสิต", "link": "/activity" },
-  { "title": "W.E.L.L CENTER", "link": "/wellcenter" },
-  { "title": "ติดต่อเรา", "link": "/contact" }
+  { "title": "W.E.L.L CENTER", "link": "/wellcenter" }
 ]

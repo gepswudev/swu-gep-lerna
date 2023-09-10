@@ -39,6 +39,7 @@
       src={getImg(data.img)}
       alt={data.title + "_IMG"}
       class="w-full rounded-lg object-cover"
+      loading="lazy"
     />
     <p class="md:hidden my-2 text-neutral">
       {(data.desc === "" ? data.title : data.desc).substring(0, 40)}
@@ -70,6 +71,7 @@
       src={getImg(data.img)}
       alt={data.title + "_IMG"}
       class="w-full rounded-lg object-cover"
+      loading="lazy"
     />
     {#if data.engDesc && data.engDesc !== "" && data.engDesc !== " " || data.engTitle && data.engTitle !== "" && data.engTitle !== " "}
     <p class="md:hidden my-2 text-neutral">

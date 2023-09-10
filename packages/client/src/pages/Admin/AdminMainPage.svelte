@@ -42,7 +42,7 @@
         <p class="py-6">Welcome to {$user?.username} Admin panel</p>
       </div>
       <div
-        class="grid grid-cols-3 gap-16 align-middle items-center self-auto text-center"
+        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-16 align-middle items-center self-auto text-center"
       >
         {#each data as d}
           <HorizonCard data={d} style="" popup={false} disabled={d.disabled} />
