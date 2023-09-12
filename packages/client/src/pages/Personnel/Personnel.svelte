@@ -1,5 +1,5 @@
 <script>
-    import PersonelProfile from "../../components/PersonelProfile.svelte";
+    import PersonelProfile from "../../components/PersonnelProfile.svelte";
     import { get } from "../../lib/API/methods";
     import Loading from "../../components/Loading.svelte"
     import lang from "../../lib/lang";

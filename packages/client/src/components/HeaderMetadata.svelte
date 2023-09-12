@@ -4,12 +4,12 @@
   export let basepath = "/";
 
   const pathDataVerify = (path) => {
-    basepath = basepath.replace("/", "");
-    if(basepath === "") basepath = "base";
-    if (eval(`metadata?.${basepath}?.title`) === undefined || eval(`metadata?.${basepath}?.description`) === undefined) {
-      return "base";
+    path = path.replace("/", "");
+    if(path === "" || path.includes("/")) path = "base";
+    if (eval(`metadata?.${path}?.title`) === undefined || eval(`metadata?.${path}?.description`) === undefined) {
+      return basepath = "base";
     } else {
-      return path;
+      return basepath = path;
     }
   };
   pathDataVerify(basepath);

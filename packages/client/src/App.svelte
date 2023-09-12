@@ -27,7 +27,8 @@
   import Footer from "./components/Footer.svelte";
   import HomePage from "./pages/Home/Home.svelte";
   import HistoryPage from "./pages/History/History01.svelte";
-  import PersonelPage from "./pages/Personel/Personel.svelte";
+  import PersonnelPage from "./pages/Personnel/Personnel.svelte";
+  import PersonnelProfilePage from "./pages/PersonnelProfile/PersonnelProfilePage.svelte";
   import Login from "./pages/User/UserTest.svelte";
   import Test from "./pages/Playground.svelte";
   import CookiesPage from "./pages/Cookies/CookiesPage.svelte";
@@ -41,6 +42,7 @@
   import TermsOfUsePage from "./pages/Terms/TermsOfUsePage.svelte";
   import WellCenter from "./pages/WellCenter/WellCenter.svelte";
   import License from "./pages/LICENSE/LICENSE.svelte";
+  
 
 //====================================| Import Common Pages |====================================//
 
@@ -120,8 +122,10 @@
         <Route path="/" component={HomePage} />
         <!-- About page -->
         <Route path="/about" component={HistoryPage} />
-        <!-- Personel Page -->
-        <Route path="/personnel" component={PersonelPage} />
+        <!-- Personnel Page -->
+        <Route path="/personnel" component={PersonnelPage} />
+        <!-- Personnel Profile Page -->
+        <Route path="/personnel/:id" let:params><PersonnelProfilePage {...params}/></Route>
         <!-- Activity Page -->
         <Route path="/activity" component={ActivityPage} />
         <!-- Course Page -->

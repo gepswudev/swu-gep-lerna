@@ -24,7 +24,7 @@ router.get('/getfile', (req, res) => {
   const directoryPath = path.join(__dirname, '../files');
   fs.readdir(directoryPath, (err, files) => {
     if (err) {
-      console.log(err);
+      console.log(err); 
       return res.status(500).json({ status:"error",message: 'Unable to scan files!' });
     }
     files.forEach((file) => {
