@@ -89,7 +89,20 @@ router.delete('/filesys/:filename', tokenize, (req, res) => {
     res.status(200).json({status:"success", message: `${filename} was deleted!` });
   });
 });
-  
+
+router.put('/md/edit/:id', tokenize, (req, res) => {
+  const id = req.params.id;
+  const md = req.body.md;
+
+  fs.writeFile(`${__dirname}/../public/markdown/${id}.md`, md, (err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ status:"error",message: 'Error occurred while editing the file.' });
+    }
+    res.status(200).json({status:"success", message: `${id}.md was edited!` });
+  }
+  );
+});
 
 module.exports = router;
 
