@@ -127,7 +127,7 @@
         <!-- Personnel Page -->
         <Route path="/personnel" component={PersonnelPage} />
         <!-- Personnel Profile Page -->
-        <Route path="/personnel/:id" let:params><PersonnelProfilePage {...params}/></Route>
+        <Route path="/personnel/id/:id" let:params><PersonnelProfilePage {...params}/></Route>
         <!-- Activity Page -->
         <Route path="/activity" component={ActivityPage} />
         <!-- Course Page -->
