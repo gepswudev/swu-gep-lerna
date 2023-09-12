@@ -8,7 +8,7 @@
     
 </script>
 
-<div class={"hero min-h-screen bg-base-200 "+sx}>
+<div class={"hero min-h-screen "+sx}>
   <div class="hero-content flex-col text-center">
     <div class="max-w-xl">
       
