@@ -4,7 +4,6 @@
     import { link } from "svelte-routing";
     import getImg from "../../lib/getImg";
     import lang from "../../lib/lang";
-  import Editor from "../Editor.svelte";
 
     export let data;
 </script>
