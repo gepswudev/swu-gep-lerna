@@ -20,6 +20,7 @@
   import AdminPersonnelsCreate from "./pages/Admin/Personnels/create.svelte";
   import AdminPersonnelsUpdate from "./pages/Admin/Personnels/update.svelte";
   import FileManagement from "./pages/Admin/FileManagementPage.svelte";
+  import MarkdownEditor from "./pages/Editor.svelte";
 //====================================| Import Admin Pages |====================================//
 
 //====================================| Import Common Pages |====================================//
@@ -29,6 +30,7 @@
   import HistoryPage from "./pages/History/History01.svelte";
   import PersonnelPage from "./pages/Personnel/Personnel.svelte";
   import PersonnelProfilePage from "./pages/PersonnelProfile/PersonnelProfilePage.svelte";
+
   import Login from "./pages/User/UserTest.svelte";
   import Test from "./pages/Playground.svelte";
   import CookiesPage from "./pages/Cookies/CookiesPage.svelte";
@@ -150,6 +152,8 @@
 
         <!-- Admin pages -->
         <Route path="/admin" component={AdminMain} />
+
+        <Route path="/mdeditor" component={MarkdownEditor} />
 
         <Route path="/viewcorousels" component={AdminCorousels} />
         <Route

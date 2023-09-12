@@ -174,6 +174,7 @@
                   <li><a href="/viewactivities">Activities</a></li>
                   <li><a href="/viewcorousels">Banner</a></li>
                   <li><a href="/personnels">Personnel</a></li>
+                  <li><a href="/personnelprofile">Personnel Profile</a></li>
                 </ul>
               </details>
             </li>
@@ -233,6 +234,7 @@
                 <li><a href="/viewactivities">Activities</a></li>
                 <li><a href="/viewcorousels">Banner</a></li>
                 <li><a href="/personnels">Personnel</a></li>
+                <li><a href="/personnelprofile">Personnel Profile</a></li>
               </ul>
             </details>
           </li>

@@ -3,6 +3,14 @@ import log from "../log";
 import { API } from "./baseapi";
 
 
+export function getPublic(url) {
+  try{
+    if(url === "") return;
+    return API + url;
+  }catch(e){
+    console.log(e)
+  }
+}
 export async function get(url, headers = {
   Authorization: `Bearer ${localStorage.getItem("token")}`,
 }) {

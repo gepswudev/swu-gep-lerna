@@ -6,8 +6,8 @@
   export let person;
 </script>
 
-<div class="hero mx-12 ">
-  <div class="hero-content flex-col lg:flex-row gap-8 ">
+<div class="hero ">
+  <div class="z-0 flex flex-col lg:flex-row items-center justify-start gap-8 p-1 w-full px-32">
     <img
       src={getImg(person.img)}
       alt={`${person.name} profile image`}
@@ -25,12 +25,12 @@
       </p>
       <a
         href={`mailto:${person.email}`}
-        class="pt-2 font-semibold flex flex-row gap-1"
+        class="pt-4 font-semibold flex flex-row gap-1"
         ><span><IconMail /></span>{person.email}</a
       >
       <a
         href={`tel:${person.phone.replace(/-/g, "")}`}
-        class="pt-2 pb-4 font-semibold flex flex-row gap-1"
+        class="pt-4 pb-4 font-semibold flex flex-row gap-1"
         ><span><IconPhone /></span>{person.phone}</a
       >
     </div>

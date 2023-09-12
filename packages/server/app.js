@@ -44,6 +44,7 @@ app.use(fileUpload({
 if(process.env.NODE_ENV !== 'production') app.use('/log', express.static(path.join(__dirname, 'log')));
 
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
+app.use('/md', express.static(path.join(__dirname, 'public/markdown')));
 app.use('/files', express.static(path.join(__dirname, 'files')));
 app.use('/db', express.static(path.join(__dirname, 'log/database')));
 

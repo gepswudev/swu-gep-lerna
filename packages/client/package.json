@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@tabler/icons-svelte": "2.31.0",
     "@sveltejs/vite-plugin-svelte": "^2.4.2",
+    "@tabler/icons-svelte": "2.31.0",
     "autoprefixer": "^10.4.14",
     "daisyui": "^3.3.1",
     "postcss": "^8.4.27",
@@ -19,10 +19,14 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "@bytemd/plugin-gfm": "^1.21.0",
     "@tailwindcss/typography": "^0.5.9",
     "axios": "^1.4.0",
+    "bytemd": "^1.21.0",
     "dotenv": "^16.3.1",
     "leaflet": "^1.9.4",
+    "markdown-it": "^13.0.1",
+    "marked": "^9.0.0",
     "svelte-carousel": "^1.0.25",
     "svelte-copy": "^1.4.1",
     "svelte-forms-lib": "^2.0.1",
