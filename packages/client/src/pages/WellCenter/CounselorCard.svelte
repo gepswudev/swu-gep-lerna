@@ -1,13 +1,14 @@
 <script>
     import { IconMail, IconPhone } from "@tabler/icons-svelte";
     import { IconUser, IconClock } from "@tabler/icons-svelte";
+    import { link } from "svelte-routing";
     import getImg from "../../lib/getImg";
     import lang from "../../lib/lang";
 
     export let data;
 </script>
 
-<div class="bg-white h-fit w-80 rounded-[20px] shadow-xl flex py-6 p-3 hover:scale-105 hover:shadow-2xl duration-1000">
+<a use:link replace href={`/personnel/${data._id}`} class="bg-white h-fit w-80 rounded-[20px] shadow-xl flex py-6 p-3 hover:scale-105 hover:shadow-2xl duration-1000">
     <div class="items-center self-center">
         <img
             src={getImg(data.img)}
@@ -45,4 +46,4 @@
             </div>
         </div>
     </div>
-</div>
+</a>

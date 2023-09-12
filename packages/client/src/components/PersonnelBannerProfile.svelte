@@ -12,7 +12,7 @@
   <Loading />
 {:then person }
 <div class="hero ">
-  <div class="z-0 flex flex-col lg:flex-row items-center justify-start gap-8 p-1 w-full px-32">
+  <div class="z-0 flex flex-col lg:flex-row items-center justify-center md:justify-start gap-8 p-1 w-full px-32">
     <img
       src={getImg(person.data.img)}
       alt={`${person.data.name} profile image`}
@@ -22,20 +22,20 @@
       <h2 class="text-5xl font-bold">
         {lang() === "th" ? person.data.name : person.data.engName}
       </h2>
-      <h3 class="text-xl font-semibold">
+      <h3 class="pt-4 text-xl font-semibold">
         {lang() === "th" ? person.data.engName : person.data.name}
       </h3>
-      <p class="pt-4 font-semibold">
+      <p class="pt-8 font-semibold">
         {lang() === "th" ? person.data.position : person.data.engPosition}
       </p>
       <a
         href={`mailto:${person.data.email}`}
-        class="pt-4 font-semibold flex flex-row gap-1"
+        class="pt-2 font-semibold flex flex-row gap-1 hover:text-primary hover:underline"
         ><span><IconMail /></span>{person.data.email}</a
       >
       <a
         href={`tel:${person.data.phone.replace(/-/g, "")}`}
-        class="pt-4 pb-4 font-semibold flex flex-row gap-1"
+        class="pt-2 pb-4 font-semibold flex flex-row gap-1 hover:text-primary hover:underline"
         ><span><IconPhone /></span>{person.data.phone}</a
       >
     </div>

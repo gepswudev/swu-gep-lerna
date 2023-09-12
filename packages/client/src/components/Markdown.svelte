@@ -15,7 +15,7 @@
 {#if text.includes("404") || text.includes("Not Found")}
     <h1 class="py-12 text-4xl text-center">ไม่มีข้อมูล</h1>
     {:else}
-    <article class={"prose max-w-none px-32" + " " + sx}>
+    <article class={"prose md:max-w-none px-32" + " " + sx}>
         {@html marked(text)}
     </article>
 {/if}

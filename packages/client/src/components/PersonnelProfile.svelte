@@ -9,11 +9,11 @@
     export let data;
 </script>
 
-<button on:click={navigate(`personnel/${data._id.toString()}`)} class="w-[350px] md:w-[414px] h-[175px] mt-4 flex border-b-2 pb-8 border-red-500 md:border-none">
+<button on:click={navigate(`personnel/${data._id.toString()}`)} class="w-[350px] md:w-[414px] h-[175px] mt-4 flex border-b-2 pb-8 border-red-500 md:border-none hover:bg-base-200 hover:rounded-xl duration-700 transition-all hover:scale-105 hover:p-4 text-start">
     <img
     src={getImg(data.img)}
     alt={data.email + "_IMG"}
-    class="max-h-[175px] w-[120px] md:w-[153px] object-cover"
+    class="max-h-[175px] w-[120px] md:w-[153px] object-cover rounded-md"
     />
     <div class="pl-4 pt-2">
         {#if lang() === "th"}
