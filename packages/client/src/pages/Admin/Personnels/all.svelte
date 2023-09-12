@@ -23,7 +23,7 @@
       <input type="text" bind:value={filtered} class="input input-bordered focus:input-primary w-full grow" placeholder="Search ">
         <button
           class="btn btn-success w-full max-w-[12rem] text-xl flex-none"
-          on:click={() => navigate("/admin/personnels/create")}
+          on:click={() => navigate("/admin/personnels/create", { replace: true })}
           ><IconPlus /> New</button
         >
       </div>
@@ -41,3 +41,16 @@
     <p>{error.message}</p>
   {/await}
 </AdminProtect>
+
+<svelte:head>
+  <title>บุคคลากร | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+  <meta
+    property="og:title"
+    content="บุคคลากร | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+  />
+  <meta
+    property="og:description"
+    content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+  />
+  <meta property="og:url" content={window.location} />
+</svelte:head>

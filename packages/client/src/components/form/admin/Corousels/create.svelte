@@ -105,7 +105,7 @@
             if (res.status === "success") {
               submitButton.innerHTML = "Created";
               submitButton.disabled = false;
-              navigate("/viewcorousels");
+              navigate("/viewcorousels", { replace: true });
             } else {
               submitButton.innerHTML = "Create";
               submitButton.disabled = false;

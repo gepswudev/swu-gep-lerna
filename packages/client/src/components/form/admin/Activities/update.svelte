@@ -137,7 +137,7 @@
           text: res.message,
         });
 
-        navigate("/viewactivities");
+        navigate("/viewactivities", { replace: true });
       })
       .catch((err) => {
         console.log(err);

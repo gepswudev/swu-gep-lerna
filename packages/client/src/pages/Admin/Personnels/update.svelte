@@ -9,3 +9,16 @@
       <UpdateForm {id} />
     </div>
   </AdminProtect>
+
+  <svelte:head>
+    <title>แก้ไขบุคคลากร | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+    <meta
+      property="og:title"
+      content="บุคคลากร | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+    />
+    <meta
+      property="og:description"
+      content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+    />
+    <meta property="og:url" content={window.location} />
+  </svelte:head>

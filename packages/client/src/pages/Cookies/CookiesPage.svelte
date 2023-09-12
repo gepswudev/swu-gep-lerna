@@ -92,3 +92,16 @@
     <p class="text-gray-700 mb-6">This Cookies Consent is effective as of {today()}.</p>
 
   </div>
+
+  <svelte:head>
+    <title>Cookies | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+    <meta
+      property="og:title"
+      content="Cookies | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+    />
+    <meta
+      property="og:description"
+      content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+    />
+    <meta property="og:url" content={window.location} />
+  </svelte:head>

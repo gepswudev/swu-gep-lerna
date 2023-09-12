@@ -88,3 +88,16 @@
         </div>
       {/await}
 </AdminProtect>
+
+<svelte:head>
+  <title>การจัดการไฟล์ | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+  <meta
+    property="og:title"
+    content="การจัดการไฟล์ | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+  />
+  <meta
+    property="og:description"
+    content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+  />
+  <meta property="og:url" content={window.location} />
+</svelte:head>

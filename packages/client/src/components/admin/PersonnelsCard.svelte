@@ -10,7 +10,11 @@
   export let admin = false;
 
   const editHandler = () => {
-    navigate(`/admin/personnels/update/${data._id}`);
+    navigate(`/admin/personnels/update/${data._id}`, { replace: true });
+  };
+
+  const profileEditHandler = () => {
+    navigate(`/profile/edit/${data._id}`, { replace: true });
   };
 
   const deleteHandler = () => {
@@ -105,8 +109,9 @@
       {/if}
     </div>
     {#if admin}
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary" on:click={editHandler}>Edit</button>
+    <div class="card-actions justify-between">
+      <button class="btn btn-success" on:click={editHandler}>Edit Profile</button>
+      <button class="btn btn-primary" on:click={profileEditHandler}>Edit Full Profile</button>
       <button class="btn btn-error" on:click={deleteHandler}>Delete</button>
     </div>
     {/if}

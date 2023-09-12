@@ -30,7 +30,7 @@
     />
     <button
       class="btn btn-primary w-full max-w-md text-xl flex-none"
-      on:click={() => navigate("/admin/activities/create")}
+      on:click={() => navigate("/admin/activities/create", { replace: true })}
       ><IconPlus /> New</button
     >
   </div>
@@ -56,3 +56,16 @@
     {/await}
   </div>
 </AdminProtect>
+
+<svelte:head>
+    <title>กิจกรรมนิสิต | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+    <meta
+      property="og:title"
+      content="กิจกรรมนิสิต | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+    />
+    <meta
+      property="og:description"
+      content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+    />
+    <meta property="og:url" content={window.location} />
+  </svelte:head>

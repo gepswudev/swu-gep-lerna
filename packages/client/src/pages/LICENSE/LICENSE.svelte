@@ -47,3 +47,16 @@
     </pre>
   </div>
 </main>
+
+<svelte:head>
+    <title>License | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+    <meta
+      property="og:title"
+      content="License | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+    />
+    <meta
+      property="og:description"
+      content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+    />
+    <meta property="og:url" content={window.location} />
+  </svelte:head>

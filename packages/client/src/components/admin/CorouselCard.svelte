@@ -83,7 +83,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-center">
     <button
       class="btn btn-primary"
-      on:click={navigate(`/admin/corousels/update/${data._id}`)}
+      on:click={navigate(`/admin/corousels/update/${data._id}`, { replace: true })}
       ><IconEdit /> Edit</button
     >
     <button class="btn btn-error" on:click={deleteHandler}

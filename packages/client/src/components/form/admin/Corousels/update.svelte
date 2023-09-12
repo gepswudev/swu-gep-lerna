@@ -90,7 +90,7 @@
             //change button after creating
             submitButton.innerHTML = "Update";
             submitButton.disabled = false;
-            navigate("/viewcorousels");
+            navigate("/viewcorousels", { replace: true });
 
           });
       })
@@ -109,7 +109,7 @@
           text: res.message,
         },
         () => {
-          if (res.status === "error") navigate("/viewcorousels");
+          if (res.status === "error") navigate("/viewcorousels", { replace: true });
         }
       );
     log("Edit corousel", `Corousel: ${res.data.name} (${res.data._id})`);

@@ -140,3 +140,16 @@
     <img src={Banner} alt="gep swu building 2" class="swap-on w-screen object-cover" />
   </div>
  -->
+
+ <svelte:head>
+    <title>ประวัติภาควิชา | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+    <meta
+      property="og:title"
+      content="ประวัติภาควิชา | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+    />
+    <meta
+      property="og:description"
+      content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+    />
+    <meta property="og:url" content={window.location} />
+  </svelte:head>

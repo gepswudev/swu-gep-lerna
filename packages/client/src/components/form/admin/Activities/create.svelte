@@ -147,7 +147,7 @@
         //change button after creating
         submitButton.innerHTML = "Create";
         submitButton.disabled = false;
-        navigate("/viewactivities");
+        navigate("/viewactivities", { replace: true });
 
       })
       .catch((err) => {

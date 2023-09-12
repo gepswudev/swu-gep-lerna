@@ -9,3 +9,15 @@
     </div>
   </AdminProtect>
   
+  <svelte:head>
+  <title>เพิ่มบุคคลากร | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+  <meta
+    property="og:title"
+    content="บุคคลากร | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+  />
+  <meta
+    property="og:description"
+    content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+  />
+  <meta property="og:url" content={window.location} />
+</svelte:head>

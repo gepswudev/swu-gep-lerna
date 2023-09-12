@@ -41,7 +41,7 @@
             isLoading.classList.remove("opacity-50");
             isLoading.classList.remove("animate-pulse");
             if(res.data.role === "admin") {
-              navigate("/admin");
+              navigate("/admin", { replace: true });
             }
           } else {
             alert(JSON.stringify(res.message));

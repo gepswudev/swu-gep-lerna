@@ -47,7 +47,7 @@ export const logout = (redirect = "/") => {
             user.set(null);
             localStorage.removeItem("username");
             localStorage.removeItem("token");
-            navigate(redirect);
+            navigate(redirect, { replace: true });
             log("LOGOUT", `User ${user.username} logged out`, "info");
         };
     });

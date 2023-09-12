@@ -12,7 +12,8 @@
       return basepath = path;
     }
   };
-  pathDataVerify(basepath);
+  
+  $: pathDataVerify(basepath);
 </script>
 
 

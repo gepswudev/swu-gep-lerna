@@ -3,7 +3,6 @@
   import { Route, Router } from "svelte-routing";
   import { checkConnection } from "./lib/API/checkConnection";
   import Swal from "sweetalert2";
-
   import log from "./lib/log";
   import config from "./config";
 
@@ -22,6 +21,7 @@
   import AdminPersonnelsUpdate from "./pages/Admin/Personnels/update.svelte";
   import FileManagement from "./pages/Admin/FileManagementPage.svelte";
   import MarkdownEditor from "./pages/Editor.svelte";
+  import AdminMarkdownEditor from "./pages/Admin/Editor.svelte";
 //====================================| Import Admin Pages |====================================//
 
 //====================================| Import Common Pages |====================================//
@@ -38,7 +38,7 @@
   import Cookies from "./components/Cookies.svelte";
   import Loading from "./components/Loading.svelte";
   import ActivityPage from "./pages/Activity/ActivityPage.svelte";
-  import HeaderMetadata from "./components/HeaderMetadata.svelte";
+  // import HeaderMetadata from "./components/HeaderMetadata.svelte";
   import ContactPage from "./pages/Contact/ContactPage.svelte";
   import CoursePage from "./pages/Course/Course.svelte";
   import PrivacyPolicyPage from "./pages/Privacy/PrivacyPolicyPage.svelte";
@@ -115,7 +115,7 @@
   {#if alive}
   <Router {basepath} {url}>
 <!--======================== Navbar ========================-->
-      <Navbar active={currentPath} />
+      <Navbar/>
 <!--======================== Navbar ========================-->
 
       <main
@@ -185,6 +185,10 @@
           <AdminPersonnelsUpdate {...params} />
         </Route>
 
+        <Route path="/profile/edit/:id" let:params>
+          <AdminMarkdownEditor path={params.id} />
+        </Route>
+
         <Route path="/license" component={License} />
         <Route path="/files" component={FileManagement} />
         <Route path="/test" component={Test} />
@@ -198,7 +202,7 @@
 
 <!--======================== Untils component ========================-->
         <!-- Header Controller -->
-        <HeaderMetadata basepath={currentPath} />
+        <!-- <HeaderMetadata basepath={currentPath} /> -->
         <!-- Cookies consent popup -->
         <Cookies />
 <!--======================== Untils component ========================-->

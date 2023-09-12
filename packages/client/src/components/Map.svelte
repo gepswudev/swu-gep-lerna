@@ -58,7 +58,7 @@
 <main>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-static-element-interactions -->
-  <div bind:this={mapElement} on:click={ (e) => navigate(marker.navigate)} title="Click to navigate"/>
+  <div bind:this={mapElement} on:click={ (e) => navigate(marker.navigate, { replace: true })} title="Click to navigate"/>
 </main>
 
 <style>

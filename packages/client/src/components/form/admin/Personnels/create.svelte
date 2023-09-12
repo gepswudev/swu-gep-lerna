@@ -149,7 +149,7 @@
             if (res.status === "success") {
               submitButton.innerHTML = "Created";
               submitButton.disabled = false;
-              navigate("/personnels");
+              navigate("/personnels", { replace: true });
             } else {
               submitButton.innerHTML = "Create";
               submitButton.disabled = false;

@@ -4,6 +4,7 @@
     import { link } from "svelte-routing";
     import getImg from "../../lib/getImg";
     import lang from "../../lib/lang";
+  import Editor from "../Editor.svelte";
 
     export let data;
 </script>
@@ -47,3 +48,16 @@
         </div>
     </div>
 </a>
+
+<svelte:head>
+    <title>W.E.L.L Center | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+    <meta
+      property="og:title"
+      content="W.E.L.L Center | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+    />
+    <meta
+      property="og:description"
+      content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+    />
+    <meta property="og:url" content={window.location} />
+  </svelte:head>

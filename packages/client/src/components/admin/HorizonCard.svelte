@@ -9,7 +9,7 @@
   export let id = "";
 
   const editHandler = () => {
-    navigate(`/admin/activities/update/${id}`);
+    navigate(`/admin/activities/update/${id}`, { replace: true });
   };
 
   const deleteHandler = () => {

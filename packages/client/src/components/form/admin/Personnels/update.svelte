@@ -153,7 +153,7 @@
             if (res.status === "success") {
               submitButton.innerHTML = "Updated";
               submitButton.disabled = false;
-              navigate("/personnels");
+              navigate("/personnels", { replace: true });
             } else {
               submitButton.innerHTML = "Update";
               submitButton.disabled = false;

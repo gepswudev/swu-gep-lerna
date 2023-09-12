@@ -1,11 +1,12 @@
 <script>
   //muti-lang handlers
   import { onMount } from "svelte";
-  import { link } from "svelte-routing";
+  import { link, Link } from "svelte-routing";
   import lang from "../lib/lang";
-  export let active;
+  // export let active;
   let navLink = [];
   let navData = {};
+  
   onMount(async () => {
     try {
       // Use dynamic import to load the module based on the 'lang' variable
@@ -113,7 +114,7 @@
   };
 
   //active nav handler
-  $: log("Navbar", `Active nav is ${active}`);
+ 
 
   import { user, logout, login } from "../store/user";
   import { get } from "../lib/API/methods";
@@ -152,7 +153,7 @@
           class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
         >
           {#if $user.role === "admin"}
-            <li><a href="/" use:link replace>Home</a></li>
+            <li><a href="/" use:link replace >Home</a></li>
             <li tabindex="-1">
               <details>
                 <summary>Menu</summary>
@@ -175,7 +176,7 @@
                   <li><a use:link replace href="/viewactivities">Activities</a></li>
                   <li><a use:link replace href="/viewcorousels">Banner</a></li>
                   <li><a use:link replace href="/personnels">Personnel</a></li>
-                  <li><a use:link replace href="/personnelprofile">Personnel Profile</a></li>
+                  
                 </ul>
               </details>
             </li>
@@ -235,7 +236,7 @@
                 <li><a use:link replace href="/viewactivities">Activities</a></li>
                 <li><a use:link replace href="/viewcorousels">Banner</a></li>
                 <li><a use:link replace href="/personnels">Personnel</a></li>
-                <li><a use:link replace href="/personnelprofile">Personnel Profile</a></li>
+                
               </ul>
             </details>
           </li>
@@ -299,9 +300,10 @@
             {:else}
               <li>
                 <a use:link replace
+                let:active
                   id={"nav_" + nav.link}
                   href={nav.link}
-                  class={active === nav.link ? "text-primary" : ""}
+                  class={active ? "text-primary" : ""}
                   >{nav.title}</a
                 >
               </li>
@@ -353,30 +355,40 @@
                   <summary>{nav.title}</summary>
                   <ul class="p-2 px-1 z-50 flex flex-row gap-1">
                     {#each nav.submenu as menu, index ("dd_" + menu + index)}
-                      <li>
+                      <!-- <li>
                         <a use:link replace
+                        let:active
                           id={"nav_" + menu.link}
                           href={menu.link}
-                          class={active === menu.link
+                          class={active
                             ? "text-primary font-bold"
                             : ""}>{menu.title}</a
                         >
-                      </li>
+                      </li> -->
+                      <Link to={nav.link} let:active >
+                        {#if active}
+                          <p class="text-primary font-bold">{menu.link}</p>
+                        {:else}
+                          <p>{menu.title}</p>
+                        {/if}
+                      </Link>
                     {/each}
                   </ul>
                 </details>
               </li>
             {:else}
               <li>
-                <a use:link replace
-                  id={"nav_" + nav.link}
-                  href={nav.link}
-                  class={active === nav.link ? "text-primary font-bold" : ""}
-                  >{nav.title}</a
-                >
+                <Link to={nav.link} let:active >
+                  {#if active}
+                    <p class="text-primary font-bold">{nav.title}</p>
+                  {:else}
+                    <p>{nav.title}</p>
+                  {/if}
+                </Link>
               </li>
             {/if}
           {/each}
+          
         </ul>
       </div>
       <!-- Languages Switcher -->

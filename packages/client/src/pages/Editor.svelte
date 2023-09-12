@@ -28,3 +28,16 @@
   <button class="btn btn-primary w-full m-4 " on:click={download}>Download</button>
 <!-- </AdminProtect> -->
 <!-- Test playground -->
+
+<svelte:head>
+    <title>Markdown Editor | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+    <meta
+      property="og:title"
+      content="Markdown Editor | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+    />
+    <meta
+      property="og:description"
+      content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+    />
+    <meta property="og:url" content={window.location} />
+  </svelte:head>

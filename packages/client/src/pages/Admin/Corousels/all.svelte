@@ -25,7 +25,7 @@
   <input type="text" bind:value={filtered} class="input input-bordered focus:input-primary w-full grow" placeholder="Search ">
     <button
       class="btn btn-success w-full max-w-[12rem] text-xl flex-none"
-      on:click={() => navigate("/admin/corousels/create")}
+      on:click={() => navigate("/admin/corousels/create", { replace: true })}
       ><IconPlus /> New</button
     >
   </div>
@@ -57,3 +57,16 @@
     {/await}
   </div>
 </AdminProtect>
+
+<svelte:head>
+    <title>ป้ายประกาศ | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+    <meta
+      property="og:title"
+      content="ป้ายประกาศ | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+    />
+    <meta
+      property="og:description"
+      content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+    />
+    <meta property="og:url" content={window.location} />
+  </svelte:head>
