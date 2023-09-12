@@ -3,6 +3,7 @@
   import { Route, Router } from "svelte-routing";
   import { checkConnection } from "./lib/API/checkConnection";
   import Swal from "sweetalert2";
+
   import log from "./lib/log";
   import config from "./config";
 
@@ -29,7 +30,7 @@
   import HomePage from "./pages/Home/Home.svelte";
   import HistoryPage from "./pages/History/History01.svelte";
   import PersonnelPage from "./pages/Personnel/Personnel.svelte";
-  import PersonnelProfilePage from "./pages/PersonnelProfile/PersonnelProfilePage.svelte";
+  import PersonnelProfile from "./pages/Profile/Profile.svelte";
 
   import Login from "./pages/User/UserTest.svelte";
   import Test from "./pages/Playground.svelte";
@@ -56,6 +57,7 @@
 
 //====================================| Navbar Config |====================================//
   let basepath = "/";
+  export let url = "";
   let currentPath = window.location.pathname;
   let err = "";
 //====================================| Navbar Config |====================================//
@@ -111,7 +113,7 @@
 <!--======================== Loading page ========================-->
 {:then alive}
   {#if alive}
-    <Router {basepath}>
+  <Router {basepath} {url}>
 <!--======================== Navbar ========================-->
       <Navbar active={currentPath} />
 <!--======================== Navbar ========================-->
@@ -126,8 +128,11 @@
         <Route path="/about" component={HistoryPage} />
         <!-- Personnel Page -->
         <Route path="/personnel" component={PersonnelPage} />
+        <Route path="/personnel/:id" let:params>
+          <PersonnelProfile {...params} />
+        </Route>
         <!-- Personnel Profile Page -->
-        <Route path="/profile/:id" let:params><PersonnelProfilePage {...params}/></Route>
+        
         <!-- Activity Page -->
         <Route path="/activity" component={ActivityPage} />
         <!-- Course Page -->
@@ -147,8 +152,6 @@
 
 <!--======================== Admin pages ========================-->
         <!-- Login Test pages -->
-        <Route path="/user" component={Login} />
-        <Route path="/login" component={Login} />
 
         <!-- Admin pages -->
         <Route path="/admin" component={AdminMain} />
@@ -181,28 +184,23 @@
         <Route path="/admin/personnels/update/:id" let:params>
           <AdminPersonnelsUpdate {...params} />
         </Route>
+
         <Route path="/license" component={License} />
         <Route path="/files" component={FileManagement} />
         <Route path="/test" component={Test} />
 
-
 <!--======================== Admin pages ========================-->
-
-
 
 <!--======================== Error page ========================-->
         <!-- 404 page = Return to home -->
         <Route path="*" component={HomePage} />
 <!--======================== Error page ========================-->
 
-
 <!--======================== Untils component ========================-->
         <!-- Header Controller -->
         <HeaderMetadata basepath={currentPath} />
         <!-- Cookies consent popup -->
         <Cookies />
-
-        
 <!--======================== Untils component ========================-->
       </main>
 

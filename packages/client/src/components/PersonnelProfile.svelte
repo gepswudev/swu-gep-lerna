@@ -1,14 +1,15 @@
 <script>
     import lang from "../lib/lang";
     import getImg from "../lib/getImg";
-    import { get } from "../lib/API/methods";
+    
 
     import {IconMail, IconPhone} from "@tabler/icons-svelte";
+  import { navigate } from "svelte-routing";
 
     export let data;
 </script>
 
-<a href={`/profile/${data._id}`} class="w-[350px] md:w-[414px] h-[175px] mt-4 flex border-b-2 pb-8 border-red-500 md:border-none">
+<button on:click={navigate(`personnel/${data._id.toString()}`)} class="w-[350px] md:w-[414px] h-[175px] mt-4 flex border-b-2 pb-8 border-red-500 md:border-none">
     <img
     src={getImg(data.img)}
     alt={data.email + "_IMG"}
@@ -63,4 +64,4 @@
         </div>
 
     </div>
-</a>
+</button>

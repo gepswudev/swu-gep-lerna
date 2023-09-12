@@ -41,7 +41,7 @@
             isLoading.classList.remove("opacity-50");
             isLoading.classList.remove("animate-pulse");
             if(res.data.role === "admin") {
-              window.location.href = "/admin";
+              navigate("/admin");
             }
           } else {
             alert(JSON.stringify(res.message));

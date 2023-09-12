@@ -12,7 +12,12 @@
 {#await  data}
 <Loading />
 {:then text}
-<article class={"prose max-w-none px-32" + " " + sx}>
-    {@html marked(text)}
-</article>
+{#if text.includes("404") || text.includes("Not Found")}
+    <h1 class="py-12 text-4xl text-center">ไม่มีข้อมูล</h1>
+    {:else}
+    <article class={"prose max-w-none px-32" + " " + sx}>
+        {@html marked(text)}
+    </article>
+{/if}
+
 {/await}

@@ -1,6 +1,7 @@
 <script>
   import Carousel from "svelte-carousel";
   import Youtube from "svelte-youtube-embed";
+  import { link } from "svelte-routing";
 
   import config from "../../config";
   import wellcenter from "../../assets/wellcenter.png";
@@ -66,7 +67,7 @@
             <h3 class="font-semibold">
               {lang() === "th" ? "หลักสูตร" : "Course"}
             </h3>
-            <a href="/course" class="mt-2 hover:underline hover:text-primary">
+            <a use:link replace href="/course" class="mt-2 hover:underline hover:text-primary">
               <p>{lang() === "th" ? "ระดับปริญญาตรี" : "Bechelor Degree"}</p>
               <p>
                 {lang() === "th"
@@ -75,7 +76,7 @@
               </p>
             </a>
 
-            <a href="/course" class="mt-2 hover:underline hover:text-primary">
+            <a use:link replace href="/course" class="mt-2 hover:underline hover:text-primary">
               <p>{lang() === "th" ? "ระดับปริญญาโท" : "Master Degree"}</p>
               <p>
                 {lang() === "th"
@@ -84,7 +85,7 @@
               </p>
             </a>
 
-            <a href="/course" class="mt-2 hover:underline hover:text-primary">
+            <a use:link replace href="/course" class="mt-2 hover:underline hover:text-primary">
               <p>{lang() === "th" ? "ระดับปริญญาเอก" : "Doctoral Degree"}</p>
               <p>
                 {lang() === "th"

@@ -4,9 +4,11 @@
   export let href = "#";
   export let img;
   export let sx = "";
+
+  import { link } from "svelte-routing";
 </script>
 
-<a class={"card w-72 bg-gray shadow-xl hover:scale-105 hover:shadow-xl" + " " + sx} href={href}>
+<a use:link replace class={"card w-72 bg-gray shadow-xl hover:scale-105 hover:shadow-xl" + " " + sx} href={href}>
   <figure class="px-5 pt-5">
     <img
       src={img}

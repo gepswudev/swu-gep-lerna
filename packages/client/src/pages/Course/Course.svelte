@@ -1,6 +1,7 @@
 <script>
   import getFile from "../../lib/getFile";
   import lang from "../../lib/lang";
+  import { link } from "svelte-routing";
 
     
 </script>
@@ -20,24 +21,24 @@
         <div class="text-lg">
           <p class="text-red-500 underline py-2">ระดับปริญญาตรี</p>
           <div class="pl-4 flex flex-col">
-            <a href="#" class="pt-1">ภาษาไทย : การศึกษาบัณฑิต (กศ.บ.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
-            <a href="#" class="pt-1">English : Bacherlor of Education (B.Ed.) (Guidance Psychology)</a>
+            <a use:link replace href="#" class="pt-1">ภาษาไทย : การศึกษาบัณฑิต (กศ.บ.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
+            <a use:link replace href="#" class="pt-1">English : Bacherlor of Education (B.Ed.) (Guidance Psychology)</a>
           </div>
         </div>
     
         <div class="text-lg">
             <p class="text-red-500 underline py-2">ระดับปริญญาโท</p>
             <div class="pl-4 flex flex-col">
-              <a href={getFile("M-Ed_THA.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in Thai">ภาษาไทย : การศึกษามหาบัณฑิต (กศ.ม.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
-              <a href={getFile("M-Ed_ENG.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in English">English : Master of Education (M.Ed.) (Guidance Psychology)</a>
+              <a use:link replace href={getFile("M-Ed_THA.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in Thai">ภาษาไทย : การศึกษามหาบัณฑิต (กศ.ม.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
+              <a use:link replace href={getFile("M-Ed_ENG.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in English">English : Master of Education (M.Ed.) (Guidance Psychology)</a>
             </div>
           </div>
     
           <div class="text-lg">
             <p class="text-red-500 underline py-2">ระดับปริญญาเอก</p>
             <div class="pl-4 flex flex-col">
-              <a href={getFile("Ed-D_THA.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in Thai">ภาษาไทย : การศึกษาดุษฎีบัณฑิต (กศ.ด.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
-              <a href={getFile("Ed-D_ENG.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in English">English : Doctor of Education (Ed.D.) (Guidance Psychology)</a>
+              <a use:link replace href={getFile("Ed-D_THA.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in Thai">ภาษาไทย : การศึกษาดุษฎีบัณฑิต (กศ.ด.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
+              <a use:link replace href={getFile("Ed-D_ENG.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in English">English : Doctor of Education (Ed.D.) (Guidance Psychology)</a>
             </div>
           </div>
       </div>
@@ -58,24 +59,24 @@
           <div class="text-lg">
             <p class="text-red-500 underline py-2">Bachelor's degree</p>
             <div class="pl-4 flex flex-col">
-              <a href="/" class="pt-1 hover:text-primary hover:underline" >ภาษาไทย : การศึกษาบัณฑิต (กศ.บ.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
-              <a href="/" class="pt-1 hover:text-primary hover:underline" >English : Bacherlor of Education (B.Ed.) (Guidance Psychology)</a>
+              <a use:link replace href="/" class="pt-1 hover:text-primary hover:underline" >ภาษาไทย : การศึกษาบัณฑิต (กศ.บ.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
+              <a use:link replace href="/" class="pt-1 hover:text-primary hover:underline" >English : Bacherlor of Education (B.Ed.) (Guidance Psychology)</a>
             </div>
           </div>
       
           <div class="text-lg">
               <p class="text-red-500 underline py-2">Master's degree</p>
               <div class="pl-4 flex flex-col">
-                <a href={getFile("M-Ed_THA.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in Thai">ภาษาไทย : การศึกษามหาบัณฑิต (กศ.ม.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
-                <a href={getFile("M-Ed_ENG.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in English">English : Master of Education (M.Ed.) (Guidance Psychology)</a>
+                <a use:link replace href={getFile("M-Ed_THA.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in Thai">ภาษาไทย : การศึกษามหาบัณฑิต (กศ.ม.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
+                <a use:link replace href={getFile("M-Ed_ENG.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in English">English : Master of Education (M.Ed.) (Guidance Psychology)</a>
               </div>
             </div>
       
             <div class="text-lg">
               <p class="text-red-500 underline py-2">Doctoral degree</p>
               <div class="pl-4 flex flex-col">
-                <a href={getFile("Ed-D-THA.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in Thai">ภาษาไทย : การศึกษาดุษฎีบัณฑิต (กศ.ด.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
-                <a href={getFile("Ed-D_ENG.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in English">English : Doctor of Education (Ed.D.) (Guidance Psychology)</a>
+                <a use:link replace href={getFile("Ed-D-THA.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in Thai">ภาษาไทย : การศึกษาดุษฎีบัณฑิต (กศ.ด.) <span class="text-primary">(จิตวิทยาการศึกษาและการแนะแนว)</span></a>
+                <a use:link replace href={getFile("Ed-D_ENG.pdf")} class="pt-1 hover:underline hover:text-primary hover:tooltip-top" title="Click to download course description in English">English : Doctor of Education (Ed.D.) (Guidance Psychology)</a>
               </div>
             </div>
         </div>

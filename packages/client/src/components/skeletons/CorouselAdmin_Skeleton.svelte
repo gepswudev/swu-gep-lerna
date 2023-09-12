@@ -1,5 +1,6 @@
 <script>
     import { IconEdit, IconTrash } from "@tabler/icons-svelte";
+    import { link } from "svelte-routing";
     export let load = 1;
 </script>
 
@@ -12,7 +13,7 @@
     Name : <span class="text-xl">&nbsp</span>
   </p>
   <p class="font-semibold text-xl ">
-    URL : <a href="/viewcorousels" class="text-xl">&nbsp;</a>
+    URL : <a use:link replace href="/viewcorousels" class="text-xl">&nbsp;</a>
   </p>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-center">
     <button

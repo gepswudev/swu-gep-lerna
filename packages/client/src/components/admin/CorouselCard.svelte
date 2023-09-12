@@ -4,6 +4,7 @@
   import { del } from "../../lib/API/methods";
   import Swal from "sweetalert2";
   import getImg from "../../lib/getImg";
+  import { link } from "svelte-routing";
 
   export let data;
 
@@ -77,7 +78,7 @@
     Name : <span class="text-xl"> {data.name}</span>
   </p>
   <p class="text-md">
-    URL : <a href={data.url} class="text-md underline">{data.url}</a>
+    URL : <a use:link replace href={data.url} class="text-md underline">{data.url}</a>
   </p>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-center">
     <button

@@ -1,6 +1,7 @@
 <script>
   //muti-lang handlers
   import { onMount } from "svelte";
+  import { link } from "svelte-routing";
   import lang from "../lib/lang";
   export let active;
   let navLink = [];
@@ -151,14 +152,14 @@
           class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
         >
           {#if $user.role === "admin"}
-            <li><a href="/">Home</a></li>
+            <li><a href="/" use:link replace>Home</a></li>
             <li tabindex="-1">
               <details>
                 <summary>Menu</summary>
                 <ul class="p-2 z-50">
                   {#each navLink as menu, index ("md_" + menu + index)}
                     <li>
-                      <a id={"nav_" + menu.link} href={menu.link}
+                      <a use:link replace id={"nav_" + menu.link} href={menu.link}
                         >{menu.title}</a
                       >
                     </li>
@@ -170,19 +171,19 @@
               <details>
                 <summary>Admin Menu</summary>
                 <ul class="p-2 z-50">
-                  <li><a href="/files">File system</a></li>
-                  <li><a href="/viewactivities">Activities</a></li>
-                  <li><a href="/viewcorousels">Banner</a></li>
-                  <li><a href="/personnels">Personnel</a></li>
-                  <li><a href="/personnelprofile">Personnel Profile</a></li>
+                  <li><a use:link replace href="/files">File system</a></li>
+                  <li><a use:link replace href="/viewactivities">Activities</a></li>
+                  <li><a use:link replace href="/viewcorousels">Banner</a></li>
+                  <li><a use:link replace href="/personnels">Personnel</a></li>
+                  <li><a use:link replace href="/personnelprofile">Personnel Profile</a></li>
                 </ul>
               </details>
             </li>
           {:else}
-            <li><a href="/user">You are not admin!</a></li>
+            <li><a use:link replace href="/user">You are not admin!</a></li>
           {/if}
           <li class="text-error font-bold">
-            <a href="/admin">{$user.username.toUpperCase()}</a>
+            <a use:link replace href="/admin">{$user.username.toUpperCase()}</a>
           </li>
           <li>
             <button on:click={logout}>Logout</button>
@@ -190,19 +191,19 @@
         </ul>
       </div>
       <!-- Mobile size -->
-      <a href="/"
+      <a use:link replace href="/"
         ><img
           src={logo}
           class="hidden md:flex w-32 m-4 pt-2"
           alt="_swu_logo"
         /></a
       >
-      <a
+      <a use:link replace
         class="hidden lg:flex md:flex-1 xl:flex-none px-0 normal-case text-xl"
         href="/">{navData?.nav?.title || navData?.title}</a
       >
     </div>
-    <a href="/"
+    <a use:link replace href="/"
       ><img
         src={logo}
         class="navcenter md:hidden w-32 m-4 pt-2"
@@ -213,14 +214,14 @@
     <div class="navbar-end">
       <ul class="hidden lg:flex menu menu-horizontal px-1 align-baseline">
         {#if $user.role === "admin"}
-          <li><a href="/">Home</a></li>
+          <li><a use:link replace href="/">Home</a></li>
           <li tabindex="-1">
             <details>
               <summary>Menu</summary>
               <ul class="p-2 z-50">
                 {#each navLink as menu, index ("md_" + menu + index)}
                   <li>
-                    <a id={"nav_" + menu.link} href={menu.link}>{menu.title}</a>
+                    <a use:link replace id={"nav_" + menu.link} href={menu.link}>{menu.title}</a>
                   </li>
                 {/each}
               </ul>
@@ -230,19 +231,19 @@
             <details>
               <summary>Admin Menu</summary>
               <ul class="p-2 z-50">
-                <li><a href="/files">File system</a></li>
-                <li><a href="/viewactivities">Activities</a></li>
-                <li><a href="/viewcorousels">Banner</a></li>
-                <li><a href="/personnels">Personnel</a></li>
-                <li><a href="/personnelprofile">Personnel Profile</a></li>
+                <li><a use:link replace href="/files">File system</a></li>
+                <li><a use:link replace href="/viewactivities">Activities</a></li>
+                <li><a use:link replace href="/viewcorousels">Banner</a></li>
+                <li><a use:link replace href="/personnels">Personnel</a></li>
+                <li><a use:link replace href="/personnelprofile">Personnel Profile</a></li>
               </ul>
             </details>
           </li>
         {:else}
-          <li><a href="/user">You are not admin!</a></li>
+          <li><a use:link replace href="/user">You are not admin!</a></li>
         {/if}
         <li class="text-error font-bold">
-          <a href="/admin"
+          <a use:link replace href="/admin"
             >{$user.username.toUpperCase()} ( {$user.role.toLocaleUpperCase()} )</a
           >
         </li>
@@ -287,7 +288,7 @@
                   <ul class="p-2 z-50">
                     {#each nav.submenu as menu, index ("md_" + menu + index)}
                       <li>
-                        <a id={"nav_" + menu.link} href={menu.link}
+                        <a use:link replace id={"nav_" + menu.link} href={menu.link}
                           >{menu.title}</a
                         >
                       </li>
@@ -297,7 +298,7 @@
               </li>
             {:else}
               <li>
-                <a
+                <a use:link replace
                   id={"nav_" + nav.link}
                   href={nav.link}
                   class={active === nav.link ? "text-primary" : ""}
@@ -319,19 +320,19 @@
         </ul>
       </div>
       <!-- Mobile size -->
-      <a href="/"
+      <a use:link replace href="/"
         ><img
           src={logo}
           class="hidden sm:flex w-32 m-4 pt-2"
           alt="_swu_logo"
         /></a
       >
-      <a
+      <a use:link replace
         class="hidden md:flex md:flex-1 xl:flex-none px-0 pt-1 normal-case text-xl"
         href="/"><h1>{navData?.nav?.title || navData?.title}</h1></a
       >
     </div>
-    <a href="/"
+    <a use:link replace href="/"
       ><img
         src={logo}
         class="navcenter sm:hidden w-32 m-4 pt-2"
@@ -353,7 +354,7 @@
                   <ul class="p-2 px-1 z-50 flex flex-row gap-1">
                     {#each nav.submenu as menu, index ("dd_" + menu + index)}
                       <li>
-                        <a
+                        <a use:link replace
                           id={"nav_" + menu.link}
                           href={menu.link}
                           class={active === menu.link
@@ -367,7 +368,7 @@
               </li>
             {:else}
               <li>
-                <a
+                <a use:link replace
                   id={"nav_" + nav.link}
                   href={nav.link}
                   class={active === nav.link ? "text-primary font-bold" : ""}

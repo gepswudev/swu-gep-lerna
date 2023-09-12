@@ -4,6 +4,7 @@
     import CounselorCard from "./CounselorCard.svelte";
     import Loading from "../../components/Loading.svelte"
     import Carousel from "svelte-carousel";
+    import { link } from "svelte-routing";
     import {IconMessage, IconUsers, IconHeartbeat, IconWorld, IconSchool, IconHeartHandshake} from "@tabler/icons-svelte";
     import EvaluateQr from "./evaluateQrcode1.png"
     import RegisQr from "./regisQrcode1.png"
@@ -239,7 +240,7 @@
                     </div>
                 </div>
                 <div class="mt-0 md:mt-64">
-                    <a href={getFile('WELLCENTER_CONSENT.pdf')} class="flex flex-row w-[360px] md:w-[595px] h-[120px] bg-info rounded-3xl justify-center items-center gap-12 md:gap-0 md:relative hover:scale-105 duration-500">
+                    <a use:link replace href={getFile('WELLCENTER_CONSENT.pdf')} class="flex flex-row w-[360px] md:w-[595px] h-[120px] bg-info rounded-3xl justify-center items-center gap-12 md:gap-0 md:relative hover:scale-105 duration-500">
                         <div class="flex flex-col text-neutral justify-center items-center text-[8px] font-bold md:absolute left-3 md:left-8">
                             <IconHeartHandshake class="stroke-1 w-[64px] h-[64px] md:w-[72px] md:h-[72px]"/>
                             <p> {lang() === "th" ? "ศูนย์ให้คำปรึกษา" : "Consultation Center"}  </p>
@@ -259,26 +260,26 @@
                         </div>
                     </a>
                     <div class="flex flex-col md:flex-row justify-between items-center mx-8 mt-8 text-[14px] gap-8">
-                        <a href="https://web.facebook.com/W.E.L.L.Center.SWU/?locale=th_TH&_rdc=1&_rdr" class="flex flex-col items-center hover:scale-110 duration-500">
+                        <a use:link replace href="https://web.facebook.com/W.E.L.L.Center.SWU/?locale=th_TH&_rdc=1&_rdr" class="flex flex-col items-center hover:scale-110 duration-500">
                             <img src={FacebookIcon} alt="" class="mb-4">
                             <p> {lang() === "th" ? "ศูนย์ให้คำปรึกษา" : "Consultation Center"}  </p>
                             <p> {lang() === "th" ? "W.E.L.L Center มศว" : "W.E.L.L Center SWU"} </p>
                         </a>
                         <div>
-                            <a href="https://goo.gl/forms/1yc3zS2CFVndvoJt1" class="flex bg-[#FF7171] w-[180px] h-[180px] justify-center items-center rounded-xl hover:scale-110 duration-500">
+                            <a use:link replace href="https://goo.gl/forms/1yc3zS2CFVndvoJt1" class="flex bg-[#FF7171] w-[180px] h-[180px] justify-center items-center rounded-xl hover:scale-110 duration-500">
                                 <img src={RegisQr} alt="" class="w-[156px] h-[156px] ">
                             </a>
-                            <a href="https://goo.gl/forms/1yc3zS2CFVndvoJt1" class="flex bg-[#FF7171] w-[180px] h-fit justify-center items-center rounded-full mt-4 hover:scale-110 duration-500">
+                            <a use:link replace href="https://goo.gl/forms/1yc3zS2CFVndvoJt1" class="flex bg-[#FF7171] w-[180px] h-fit justify-center items-center rounded-full mt-4 hover:scale-110 duration-500">
                                 <p class="text-[16px] text-base-100"> 
                                     {lang() === "th" ? "ลงทะเบียน Click" : "Register Click!"} 
                                 </p>
                             </a>
                         </div>
                         <div>
-                            <a href="https://goo.gl/forms/Qs69vJln1HmhFnqM2" class="flex bg-[#FFBE71] w-[180px] h-[180px] justify-center items-center rounded-xl hover:scale-110 duration-500">
+                            <a use:link replace href="https://goo.gl/forms/Qs69vJln1HmhFnqM2" class="flex bg-[#FFBE71] w-[180px] h-[180px] justify-center items-center rounded-xl hover:scale-110 duration-500">
                                 <img src={EvaluateQr} alt="" class="w-[156px] h-[156px] ">
                             </a>
-                            <a href="https://goo.gl/forms/Qs69vJln1HmhFnqM2" class="flex bg-[#FFBE71] w-[180px] h-fit justify-center items-center rounded-full mt-4 hover:scale-110 duration-500">
+                            <a use:link replace href="https://goo.gl/forms/Qs69vJln1HmhFnqM2" class="flex bg-[#FFBE71] w-[180px] h-fit justify-center items-center rounded-full mt-4 hover:scale-110 duration-500">
                                 <p class="text-[16px] text-base-100"> 
                                     {lang() === "th" ? "ประเมิน Click" : "Evaluate Click!"} 
                                 </p>

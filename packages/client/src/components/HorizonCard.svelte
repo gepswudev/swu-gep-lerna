@@ -1,7 +1,7 @@
 <!-- Card -->
 <script>
   import Swal from "sweetalert2";
-  import log from "../lib/log";
+  import { link } from "svelte-routing";
   import getImg from "../lib/getImg";
   export let data;
   export let style = "";
@@ -37,6 +37,7 @@
 
 <!-- Card -->
 <a
+  use:link replace
   id={data.title}
   class={"card w-[20rem] mx-auto bg-base-100 border-none shadow-xl hover:shadow-2xl border hover:border-primary duration-500 transition-transform transform hover:scale-110 " + style}
   href={"#" + data.title}

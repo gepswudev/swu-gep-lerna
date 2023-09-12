@@ -1,5 +1,5 @@
 <script>
-  import { navigate } from "svelte-routing";
+  import { navigate, link } from "svelte-routing";
   import { get, put } from "../../../../lib/API/methods";
   import log from "../../../../lib/log";
   import Loading from "../../../Loading.svelte";
@@ -133,7 +133,7 @@
 <div class="flex flex-col md:flex-row">
   <div class="max-w-md flex-1 mx-16 my-4 gap-4">
     <p class="text-center">Preview</p>
-    <a href={previewData.url} class="flex justify-center hover:tooltip-open" tooltip={`Go to ${previewData.url}`} target="_blank">
+    <a use:link replace href={previewData.url} class="flex justify-center hover:tooltip-open" tooltip={`Go to ${previewData.url}`} target="_blank">
       <img
         src={previewData.img}
         alt={previewData.name+"_Banner"}
