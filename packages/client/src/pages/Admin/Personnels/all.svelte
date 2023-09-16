@@ -18,7 +18,7 @@
       <h1 class="text-4xl font-semibold text-gray-900">Personnel ({personelsData.data.length} people)</h1>
       <p class="mt-1 text-sm text-gray-600">List of all personnel</p>
       <div
-        class="m-12 px-36 flex flex-row w-full justify-center md:justify-start gap-4"
+        class="mt-12 px-24 py-12 flex flex-col md:flex-row w-full justify-center md:justify-start gap-4"
       >
       <input type="text" bind:value={filtered} class="input input-bordered focus:input-primary w-full grow" placeholder="Search ">
         <button
@@ -27,6 +27,7 @@
           ><IconPlus /> New</button
         >
       </div>
+
       <div class="grid grid-cols-1  xl:grid-cols-3 text-start gap-4">
         {#each personelsData.data as data, index}
           {#if filtered === "" || data.name.toLowerCase().includes(filtered.toLowerCase()) || data.engName.toLowerCase().includes(filtered.toLowerCase())}

@@ -23,7 +23,7 @@
     >
       {#each data as { name, img, url }, i ((name, i))}
       {@const c_img = getImg(img)}
-        <img src={c_img} alt={name} on:click={goTo(url)} class="object-fill w-full h-auto"/>
+        <img src={c_img} alt={name} on:click={goTo(url)} class="object-cover w-full h-[42rem]"/>
       {/each}
     </Carousel>
   </div>

@@ -214,7 +214,20 @@ exports.update = async (req, res) => {
 
       // Delete old image
       const imagePath = `${__dirname}/../public/${corousels.img}`;
-      fs.unlinkSync(imagePath);
+
+      if (fs.existsSync(imagePath) && !corousels.img.includes("default.png")) {
+        fs.unlink(imagePath, (err) => {
+          if (err) {
+            console.log(err);
+            return res.status(500).send({
+              status: "error",
+              message: "Error occurred while deleting the file.",
+            });
+          }
+          log(`Corousels`, `File deleted successfully: ${imagePath}`);
+        });
+      }
+      // fs.unlinkSync(imagePath);
 
       // Update the image path in the updated data
       updatedCorousels.img = `images/corousels/${renameFile}`;

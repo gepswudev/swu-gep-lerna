@@ -209,11 +209,13 @@ exports.update = async (req, res) => {
         //delete old image
         const personnels = await Personnels.findById(id);
         const imagePath = path.join(__dirname, `../public/${personnels.img}`);
+        if (fs.existsSync(imagePath)) {
         fs.unlink(imagePath, async (err) => {
           if (err) {
             log(`Personnels`, err.message, "error");
           }
         });
+      };
         //update new image
         await Personnels.findByIdAndUpdate(
           id,
@@ -263,11 +265,13 @@ exports.delete = async (req, res) => {
     }
     //delete image
     const imagePath = path.join(__dirname, `../public/${personnels.img}`);
+    if (fs.existsSync(imagePath)) {
     fs.unlink(imagePath, async (err) => {
       if (err) {
         log(`Personnels`, err.message, "error");
       }
     });
+  };
 
     await Personnels.findByIdAndDelete(id);
     log(`Personnels`, `Deleted ${personnels.name}`);

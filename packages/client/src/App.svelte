@@ -45,6 +45,9 @@
   import TermsOfUsePage from "./pages/Terms/TermsOfUsePage.svelte";
   import WellCenter from "./pages/WellCenter/WellCenter.svelte";
   import License from "./pages/LICENSE/LICENSE.svelte";
+  import { fade } from "svelte/transition";
+  import ServerPubFiles from "./pages/Admin/ServerPubFiles.svelte";
+  
   
 
 //====================================| Import Common Pages |====================================//
@@ -113,13 +116,15 @@
 <!--======================== Loading page ========================-->
 {:then alive}
   {#if alive}
-  <Router {basepath} {url}>
+  
+  <Router {basepath} {url} >
 <!--======================== Navbar ========================-->
       <Navbar/>
 <!--======================== Navbar ========================-->
 
       <main
         class="mx-auto pt-24 w-screen h-full scroll-smooth overflow-x-hidden bg-base-100"
+        transition:fade
       >
 <!--======================== Common pages ========================-->
         <!-- Homepage -->
@@ -191,6 +196,7 @@
 
         <Route path="/license" component={License} />
         <Route path="/files" component={FileManagement} />
+        <Route path="/serverfiles" component={ServerPubFiles} />
         <Route path="/test" component={Test} />
 
 <!--======================== Admin pages ========================-->
@@ -212,6 +218,8 @@
       <Footer />
 <!--======================== Footer ========================-->
     </Router>
+
+    
   {:else}
     <!-- Server connection error -->
     <Loading

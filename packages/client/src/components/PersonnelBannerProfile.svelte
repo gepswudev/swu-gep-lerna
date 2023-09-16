@@ -11,8 +11,8 @@
 {#await get(`personnels/${id}`)}
   <Loading />
 {:then person }
-<div class="hero ">
-  <div class="z-0 flex flex-col lg:flex-row items-center justify-center md:justify-start gap-8 p-1 w-full px-32">
+<div class="hero">
+  <div class="z-0 flex flex-col lg:flex-row items-center justify-center md:justify-start gap-8 p-1 w-full px-20 md:px-32">
     <img
       src={getImg(person.data.img)}
       alt={`${person.data.name} profile image`}

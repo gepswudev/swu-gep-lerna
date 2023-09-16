@@ -6,6 +6,7 @@ const path = require('path');
 // Middleware
 const identifyIP = require("../middlewares/ipidentify");
 const { tokenize } = require("../middlewares/tokenize");
+const getFiles = require("../utils/getFile");
 
 router.get("/", identifyIP, async (req, res, next) => {
   res.locals.userAgent = req.get("User-Agent");
@@ -100,6 +101,61 @@ router.put('/md/edit/:id', tokenize, (req, res) => {
       return res.status(500).json({ status:"error",message: 'Error occurred while editing the file.' });
     }
     res.status(200).json({status:"success", message: `${id}.md was edited!` });
+  }
+  );
+});
+
+router.get('/getlog', (req, res) => {
+  if(process.env.NODE_ENV == 'production') return res.status(403).json({ status:"error",message: 'Forbidden' }); 
+  res.zip([
+    { path: `${__dirname}/../log/database/error.log`, name: 'error.log' },
+    { path: `${__dirname}/../log/database/delete.log`, name: 'error.log' },
+    { path: `${__dirname}/../log/database/info.log`, name: 'info.log' },
+    { path: `${__dirname}/../log/database/update.log`, name: 'update.log' },],
+    'log.zip', (err) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ status:"error",message: 'Error occurred while downloading the file.' });
+      }
+    }
+  );
+});
+
+router.get('/pubfiles', (req, res) => {
+  const files = getFiles(`${__dirname}/../public`);
+  const re_files = files.map((file) => {
+    return file.replace(`${__dirname}/../public/`, '');
+  });
+  const filename = files.map((file) => {
+    return file.split('/').pop();
+  });
+  res.status(200).json({status:"success", files: re_files, filename:filename});
+});
+
+router.get('/pubfiles/all', async (req, res) => {
+  //zip all files in the public folder by express-zip
+  const files = getFiles(`${__dirname}/../public`);
+  const filenameAndPath = files.map((file) => {
+    return { path: file, name: file.split('/').pop() };
+  });
+  res.zip(filenameAndPath, `public_${Date.now()}.zip`, (err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ status:"error",message: 'Error occurred while downloading the file.' });
+    }
+  }
+  );
+});
+
+router.get('/pubfiles/:path', async (req, res) => {
+  const path = req.params.path;
+  const re_path = path.replace(/:/g, '/')
+  const files = `${__dirname}/../public/${re_path}`;
+  res.download(files, (err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ status:"error",message: 'Error occurred while downloading the file.',path:re_path });
+    }
   }
   );
 });

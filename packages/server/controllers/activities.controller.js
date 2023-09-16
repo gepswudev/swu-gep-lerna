@@ -213,11 +213,13 @@ exports.update = async (req, res) => {
         //delete old image
         const activities = await Activities.findById(req.params.id);
         const imagePath = path.join(__dirname, `../public/${activities.img}`);
+        if (fs.existsSync(imagePath) && !activities.img.includes("default.png")) {
         fs.unlink(imagePath, async (err) => {
           if (err) {
             log(`Activities`, err.message, "error");
           }
         });
+        };
         //update new image
         await Activities.findByIdAndUpdate(
           req.params.id,

@@ -40,7 +40,9 @@
   >
     <div class="w-full mx-auto">
       <!-- YouTube -->
+      
       <div class="flex flex-col w-[80rem] text-neutral mx-auto">
+      
         <div class="w-full border-b-2 border-black py-4">
           <p class="text-3xl font-semibold text-start">
             {lang() === "th" ? "แนะนำหลักสูตร" : "Course Introduction"}
@@ -58,6 +60,7 @@
             </p>
           </div>
         </div>
+      
 
         <div class="p-8 flex flex-row border-b-2 text-start">
           <div class="w-[55rem] grow">
@@ -96,6 +99,7 @@
           </div>
         </div>
       </div>
+    
       <!-- YouTube -->
 
       <HorizonCard showTagFilter={false} />

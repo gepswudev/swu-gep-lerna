@@ -6,7 +6,7 @@
 </script>
 <div class="container mx-auto p-8">
 
-    <h2 class="text-3xl font-bold mb-4">Welcome to GEP Srinakharinwirot University Website!</h2>
+    <h2 class="text-3xl font-bold mb-4">Welcome to Department of Guidance and Educational Psychology, Faculty of Education, Srinakharinwirot University Website!</h2>
 
     <p class="text-gray-700 mb-6">
       This page informs you about the use of cookies and other tracking technologies

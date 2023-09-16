@@ -6,6 +6,7 @@ const logger = require('morgan');
 const dotenv  = require('dotenv').config();
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
+const zip = require('express-zip');
 
 const { ensureDirectoriesExist } = require('./utils/dirValidate');
 const config = require('./config');
