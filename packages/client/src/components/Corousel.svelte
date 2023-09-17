@@ -27,7 +27,7 @@
           src={c_img}
           alt={name}
           on:click={goTo(url)}
-          class="object-cover w-full h-[42rem]"
+          class="object-cover w-full max-h-[42rem]"
         />
       {/each}
     </Carousel>

@@ -4,6 +4,7 @@
   import { get } from "../../../lib/API/methods";
   import { navigate } from "svelte-routing";
   import { IconPlus } from "@tabler/icons-svelte";
+  import Loading from "../../../components/Loading.svelte";
 
   let filtered = "";
 
@@ -12,7 +13,7 @@
 
 <AdminProtect>
   {#await personels}
-    <div />
+    <Loading />
   {:then personelsData}
     <div class="mx-auto p-12 justify-center text-center">
       <h1 class="text-4xl font-semibold text-gray-900">Personnel ({personelsData.data.length} people)</h1>
