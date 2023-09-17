@@ -47,6 +47,8 @@
   import License from "./pages/LICENSE/LICENSE.svelte";
   import { fade } from "svelte/transition";
   import ServerPubFiles from "./pages/Admin/ServerPubFiles.svelte";
+  import Webconfig from "./pages/Admin/Webconfig.svelte";
+  import Manual from "./pages/Admin/Manual.svelte";
   
   
 
@@ -197,6 +199,8 @@
         <Route path="/license" component={License} />
         <Route path="/files" component={FileManagement} />
         <Route path="/serverfiles" component={ServerPubFiles} />
+        <Route path="/config" component={Webconfig} />
+        <Route path="/manual" component={Manual} />
         <Route path="/test" component={Test} />
 
 <!--======================== Admin pages ========================-->

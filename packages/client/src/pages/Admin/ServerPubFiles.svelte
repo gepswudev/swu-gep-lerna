@@ -61,7 +61,7 @@
         {:then filedata}
           <div class="m-24 justify-center">
             <div class="flex flex-row justify-between mb-4">
-                <h2 class="my-4 text-4xl font-bold text-center">Server Public Files</h2>
+                <h2 class="my-4 text-4xl font-bold text-center">Server Public Files ({filedata.size})</h2>
                 <button class="btn btn-primary" title="Download all file as zip." on:click={downloadAllFile}>Download Backup All File</button>
             </div>
             {#if filedata.files.length === 0}

@@ -51,7 +51,7 @@
         </div>
       {:then filedata}
         <div class="m-24 justify-center">
-          <h2 class="my-4 text-4xl font-bold text-center">File Management</h2>
+          <h2 class="my-4 text-4xl font-bold text-center">File Management ({filedata.size})</h2>
           <FileUpload />
           <div class="mockup-window border border-primary bg-base-100">
             <div
@@ -77,7 +77,7 @@
                 </thead>
                 <tbody>
                   {#each filedata.data as data, index (index)}
-                    {#if data.name.includes(searchTerm) || data.ext.includes(searchTerm) || data.modified.includes(searchTerm) || data.created.includes(searchTerm)}
+                    {#if data.name.toLowerCase().includes(searchTerm.toLowerCase()) || data.ext.toLowerCase().includes(searchTerm.toLowerCase()) || data.modified.toLowerCase().includes(searchTerm.toLowerCase()) || data.created.toLowerCase().includes(searchTerm.toLowerCase())}
                       <File {data} {index} />
                     {/if}
                   {/each}

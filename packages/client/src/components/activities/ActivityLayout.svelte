@@ -3,6 +3,7 @@
   import { get } from "../../lib/API/methods";
   import { IconAdjustmentsHorizontal } from "@tabler/icons-svelte";
   import lang from "../../lib/lang";
+  import Loading from "../Loading.svelte";
 
   export let title = true;
   export let showFilter = true;
@@ -82,7 +83,7 @@
 </script>
 
 {#await activityData}
-  <div />
+  <Loading />
 {:then rawdata}
 <!-- mobile filer section -->
 <div class="flex flex-col justify-center items-center md:hidden mx-auto ">

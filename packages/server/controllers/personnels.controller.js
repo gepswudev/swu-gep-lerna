@@ -79,6 +79,7 @@ exports.create = async (req, res) => {
         };
       }
 
+      
       //find who created the activity
       const createdBy = req.userData?.username;
       //find _id of the user who created the activity
@@ -100,6 +101,21 @@ exports.create = async (req, res) => {
       console.log(personnel);
       log(`Personnels`, `Created ${name}`);
       logger.info(`Personnels`, `Created ${name}`);
+
+      //create md file in public markdown folder
+      fs.writeFile(
+        `${__dirname}/../public/markdown/${personnel._id}.md`,
+        "",
+        (err) => {
+          if (err) {
+            console.log(err);
+            return res.status(500).json({
+              status: "error",
+              message: "Error occurred while creating the file.",
+            });
+          }
+        });
+
       return res.status(200).send({
         status: "success",
         message: `Created ${name}`,
@@ -267,6 +283,16 @@ exports.delete = async (req, res) => {
     const imagePath = path.join(__dirname, `../public/${personnels.img}`);
     if (fs.existsSync(imagePath)) {
     fs.unlink(imagePath, async (err) => {
+      if (err) {
+        log(`Personnels`, err.message, "error");
+      }
+    });
+  };
+
+  //delete md file
+  const mdPath = path.join(__dirname, `../public/markdown/${personnels._id}.md`);
+  if (fs.existsSync(mdPath)) {
+    fs.unlink(mdPath, async (err) => {
       if (err) {
         log(`Personnels`, err.message, "error");
       }

@@ -172,11 +172,12 @@
               <details>
                 <summary>Admin Menu</summary>
                 <ul class="p-2 z-50">
-                  <li><a use:link replace href="/files">File system</a></li>
                   <li><a use:link replace href="/viewactivities">Activities</a></li>
                   <li><a use:link replace href="/viewcorousels">Banner</a></li>
                   <li><a use:link replace href="/personnels">Personnel</a></li>
-                  
+                  <li><a use:link replace href="/files">File system</a></li>
+                  <li><a use:link replace href="/serverfiles">Server File</a></li>
+                  <li><a use:link replace href="/manual">Manual</a></li>
                 </ul>
               </details>
             </li>
@@ -232,11 +233,12 @@
             <details>
               <summary>Admin Menu</summary>
               <ul class="p-2 z-50">
-                <li><a use:link replace href="/files">File system</a></li>
                 <li><a use:link replace href="/viewactivities">Activities</a></li>
-                <li><a use:link replace href="/viewcorousels">Banner</a></li>
-                <li><a use:link replace href="/personnels">Personnel</a></li>
-                
+                  <li><a use:link replace href="/viewcorousels">Banner</a></li>
+                  <li><a use:link replace href="/personnels">Personnel</a></li>
+                  <li><a use:link replace href="/files">File system</a></li>
+                  <li><a use:link replace href="/serverfiles">Server File</a></li>
+                  <li><a use:link replace href="/manual">Manual</a></li>
               </ul>
             </details>
           </li>

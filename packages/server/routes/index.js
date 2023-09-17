@@ -7,6 +7,7 @@ const path = require('path');
 const identifyIP = require("../middlewares/ipidentify");
 const { tokenize } = require("../middlewares/tokenize");
 const getFiles = require("../utils/getFile");
+const sizeOfFile = require("../utils/sizeOfFile");
 
 router.get("/", identifyIP, async (req, res, next) => {
   res.locals.userAgent = req.get("User-Agent");
@@ -42,7 +43,7 @@ router.get('/getfile', (req, res) => {
         ext: fileExt
       });
     });
-    res.status(200).json({status:"success", data: fileData });
+    res.status(200).json({status:"success", data: fileData, size:sizeOfFile(`${__dirname}/../files`) });
   });
 });
 
@@ -129,7 +130,7 @@ router.get('/pubfiles', (req, res) => {
   const filename = files.map((file) => {
     return file.split('/').pop();
   });
-  res.status(200).json({status:"success", files: re_files, filename:filename});
+  res.status(200).json({status:"success", files: re_files, filename:filename, size:sizeOfFile(`${__dirname}/../public`)});
 });
 
 router.get('/pubfiles/all', async (req, res) => {
@@ -158,6 +159,22 @@ router.get('/pubfiles/:path', async (req, res) => {
     }
   }
   );
+});
+
+router.get('/config', tokenize, async (req, res) => {
+  const config = require('../client.config.json');
+  res.status(200).json({status:"success", config: config});
+});
+
+router.post('/config', tokenize, async (req, res) => {
+  const config = req.body.config;
+  fs.writeFile(`${__dirname}/../client.config.json`, JSON.stringify(config), (err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ status:"error",message: 'Error occurred while editing the file.' });
+    }
+    res.status(200).json({status:"success", message: `client.config.json was edited!` });
+  });
 });
 
 module.exports = router;

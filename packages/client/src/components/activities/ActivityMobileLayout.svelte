@@ -3,6 +3,7 @@
   import { get } from "../../lib/API/methods";
   import { IconAdjustmentsHorizontal } from "@tabler/icons-svelte";
   import lang from "../../lib/lang";
+  import Loading from "../Loading.svelte";
 
   export let sx = "";
 
@@ -39,7 +40,7 @@
 </script>
 
 {#await activityData}
-  <div />
+  <Loading />
 {:then rawdata}
   <div class={"h-64 mt-10 mx-12" + " " +sx}>
     <p class="text-start text-xl font-bold my-4 pl-2">{lang() === "th" ? "ประมวลภาพกิจกรรม (ล่าสุด)" : "Activities (Recently)"}</p>
