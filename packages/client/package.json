@@ -1,0 +1,40 @@
+{
+  "name": "gep-swu-svelte-client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.4.2",
+    "@tabler/icons-svelte": "2.31.0",
+    "autoprefixer": "^10.4.14",
+    "daisyui": "^3.3.1",
+    "postcss": "^8.4.27",
+    "svelte": "^4.0.5",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "@bytemd/plugin-gfm": "^1.21.0",
+    "@tailwindcss/typography": "^0.5.9",
+    "axios": "^1.4.0",
+    "bytemd": "^1.21.0",
+    "dotenv": "^16.3.1",
+    "leaflet": "^1.9.4",
+    "markdown-it": "^13.0.1",
+    "marked": "^9.0.0",
+    "saos": "^1.3.1",
+    "svelte-carousel": "^1.0.25",
+    "svelte-copy": "^1.4.1",
+    "svelte-forms-lib": "^2.0.1",
+    "svelte-inview": "^4.0.1",
+    "svelte-routing": "2.3.0",
+    "svelte-youtube-embed": "^0.2.1",
+    "sweetalert2": "^11.7.20",
+    "yup": "^1.2.0"
+  }
+}

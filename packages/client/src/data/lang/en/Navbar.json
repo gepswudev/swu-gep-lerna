@@ -1,0 +1,8 @@
+[
+  { "title": "Home", "link": "/" },
+  { "title": "History", "link": "/about" },
+  { "title": "Personnels", "link": "/personnel" },
+  { "title": "Courses", "link": "/course" },
+  { "title": "Activities", "link": "/activity" },
+  { "title": "W.E.L.L CENTER", "link": "/wellcenter" }
+]

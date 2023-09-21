@@ -11,7 +11,12 @@ This repository is contain SWU-GEP and structured in monorepo with lerna for dev
 ```
 Lerna-workspace/
 ├ node_modules/
+  ├ [modules pakages]
 ├ packages/
+  ├ client/
+    ├ [Svelte project]
+  ├ server/
+    ├ [Express.js project]
 ├ lerna.json
 ├ package.json
 ├ .git (optional)
@@ -22,18 +27,17 @@ Lerna-workspace/
   
 We recommend you to use [PNPM](https://pnpm.io/installation) instead of NPM.
 - **On Windows**
--- Using PowerShell `
-iwr https://get.pnpm.io/install.ps1 -useb | iex`
--- Using winget `winget install pnpm`
--- Using NPM `npm install -g pnpm`
+  - Using PowerShell : `iwr https://get.pnpm.io/install.ps1 -useb | iex`
+  - Using winget : `winget install pnpm`
+  - Using NPM : `npm install -g pnpm`
 - **On Linux**
--- Using Bash `wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
+  - Using Bash : `wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
 `
--- Using NPM `npm install -g pnpm`
+  - Using NPM : `npm install -g pnpm`
 
 **Lerna Install**
-- Install Lerna globally `pnpm add -g lerna`
-- Run development mode `lerna run dev`
+- Install Lerna globally : `pnpm add -g lerna`
+- Run development mode : `lerna run dev`
 
 **For production**
 - Please follow each package instruction

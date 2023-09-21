@@ -1,0 +1,8 @@
+[
+  { "title": "หน้าแรก", "link": "/" },
+  { "title": "ประวัติ", "link": "/about" },
+  { "title": "บุคลากร", "link": "/personnel" },
+  { "title": "หลักสูตร", "link": "/course" },
+  { "title": "กิจกรรมนิสิต", "link": "/activity" },
+  { "title": "W.E.L.L CENTER", "link": "/wellcenter" }
+]

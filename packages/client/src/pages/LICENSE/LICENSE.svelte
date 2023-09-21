@@ -1,0 +1,62 @@
+<main class="min-h-screen flex items-center justify-center">
+  <div class="container mx-auto p-8">
+    <pre>
+        MIT License
+
+        Copyright &copy; 2023
+        DEPARTMENT OF GUIDANCE AND EDUCATIONAL PSYCHOLOGY, FACULTY OF EDUCATION, SRINAKHARUMWIROT UNIVERSITY
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+        ALL RIGHTS RESERVED TO OWNERSHIP
+
+        ICON CONTRIBUTED BY FLATICON & TABLER REFER TO OWNERSHIP
+
+        Icon made by Freepik from www.flaticon.com
+
+        ICON CONTRIBUTED BY FLATICON REFER TO OWNERSHIP
+        
+        DEVELOPED & MAINTENANCE BY PASSION FRUIT TEAM
+        UNDER TEAM POLICY FOLLOWING THE DATE OF DEVELOPMENT CONTACT
+        
+        RESONSIBLE BY
+        
+        - Akarasiri Chaowana (PASSION FRUIT TEAM)
+        - Arnon Sang-ngern (PASSION FRUIT TEAM)
+        - Chabar Ditsamarn (PASSION FRUIT TEAM)
+        - Kanyanat Ukaew (PASSION FRUIT TEAM)
+        - Nutnaree Chungrua (PASSION FRUIT TEAM)
+        - Weeraphan Janthapa (PASSION FRUIT TEAM)
+        - Ownership
+    </pre>
+  </div>
+</main>
+
+<svelte:head>
+    <title>License | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว</title>
+    <meta
+      property="og:title"
+      content="License | ภาควิชาการแนะแนวและจิตวิทยาการศึกษา - มศว"
+    />
+    <meta
+      property="og:description"
+      content="ภาควิชาการแนะแนวและจิตวิทยาการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยศรีนครินทรวิโรฒ"
+    />
+    <meta property="og:url" content={window.location} />
+  </svelte:head>
