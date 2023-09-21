@@ -104,7 +104,7 @@
     //email validate
     if (combindData.email.length > 0 && combindData.email !== "") {
       if (!combindData.email.includes("@")) {
-        err.email = "Email must be be in format : exmaple@email.com";
+        err.email = "Email must be in format : exmaple@email.com";
       } else {
         err.email = "";
       }
@@ -468,7 +468,7 @@
             name="well-time"
             id="well-time"
             class="input input-bordered input-primary w-full"
-            placeholder="Enter wellcenter-time here <Please keep in format : 10.00-13.00,14.00-16.00>"
+            placeholder="Enter wellcenter-time here <Please keep in format : 10.00 AM - 1.00 PM,2.00 PM - 4.00 PM>"
             bind:value={wellcenterTime}
           />
         {/if}
