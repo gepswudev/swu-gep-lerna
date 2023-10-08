@@ -79,7 +79,7 @@
   let isNavbarTransparent = false;
   let nav;
   const navOnTop =
-    "fixed navbar w-screen h-24  bg-base-100 z-50 transition-opacity transform duration-800 px-4";
+    "fixed navbar w-screen  bg-base-100 h-16 z-50 transition-opacity transform duration-800 px-4";
   const navScrolled =
     "fixed navbar w-screen  bg-base-100/[.5] h-16 z-50 transition-opacity transform duration-800 px-4";
   let navClass = navOnTop;
@@ -382,9 +382,9 @@
               <li>
                 <Link to={nav.link} let:active >
                   {#if active}
-                    <p class="text-primary font-bold">{nav.title}</p>
+                    <p class="text-[1rem] text-primary font-bold">{nav.title}</p>
                   {:else}
-                    <p>{nav.title}</p>
+                    <p class="text-[1rem]">{nav.title}</p>
                   {/if}
                 </Link>
               </li>
