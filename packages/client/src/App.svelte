@@ -125,7 +125,7 @@
 <!--======================== Navbar ========================-->
 
       <main
-        class="mx-auto pt-24 w-screen h-full scroll-smooth overflow-x-hidden bg-base-100"
+        class="mx-auto pt-16 w-screen h-full scroll-smooth overflow-x-hidden bg-base-100"
         transition:fade
       >
 <!--======================== Common pages ========================-->

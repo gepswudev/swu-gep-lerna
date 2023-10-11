@@ -18,6 +18,7 @@
   import ActivityMobileLayout from "../../components/activities/ActivityMobileLayout.svelte";
   import FbPageCardMobile from "../../components/FbPageCardMobile.svelte";
   import lang from "../../lib/lang";
+  import HomePageNews from "../../components/HomePageNews.svelte";
 
   let corouselWellcenter;
   const handleNextClick = () => {
@@ -35,12 +36,20 @@
     <CorouselBanner data={data.data} />
   {/await}
   <!-- Desktop Home page -->
+
+  
   <div
     class="hidden lg:hero bg-center items-center align-middle text-center py-8"
   >
+  
     <div class="w-full mx-auto">
-      <!-- YouTube -->
+      <!-- News -->
+      <p class="text-3xl font-semibold text-center">
+        {lang() === "th" ? "ข่าวสาร" : "News"}
+      </p>
+      <HomePageNews />
       
+      <!-- YouTube -->
       <div class="flex flex-col w-[80rem] text-neutral mx-auto">
       
         <div class="w-full border-b-2 border-black py-4">
@@ -212,6 +221,8 @@
         </div>
       </div>
       <!-- Facebook follow -->
+
+      
     </div>
   </div>
 
@@ -219,6 +230,11 @@
   <div
     class="flex flex-col bg-center items-center align-middle text-center py-8 lg:hidden"
   >
+  <!-- News -->
+  <p class="text-3xl font-semibold text-center">
+    {lang() === "th" ? "ข่าวสาร" : "News"}
+  </p>
+  <HomePageNews />
     <div class="w-full px-12 grow text-start">
       <div class="mb-4 pb-4 border-b-2">
         <p class="text-3xl font-semibold">
